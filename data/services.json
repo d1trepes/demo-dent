@@ -1,0 +1,105 @@
+{
+  "directions": [
+    { "id": "diagnostika", "title": "Диагностика и консультации", "hasPage": false, "priceFrom": 0, "specialties": ["therapist", "surgeon", "orthopedist", "orthodontist", "pediatric"] },
+    { "id": "lechenie-kariesa", "title": "Лечение кариеса", "hasPage": true, "priceFrom": 6500, "specialties": ["therapist"] },
+    { "id": "lechenie-kanalov", "title": "Лечение каналов", "hasPage": true, "priceFrom": 9800, "specialties": ["therapist"] },
+    { "id": "profgigiena", "title": "Профгигиена", "hasPage": true, "priceFrom": 5900, "specialties": ["hygienist", "therapist"] },
+    { "id": "implantaciya", "title": "Имплантация", "hasPage": true, "priceFrom": 58000, "specialties": ["surgeon"] },
+    { "id": "protezirovanie", "title": "Протезирование", "hasPage": true, "priceFrom": 18000, "specialties": ["orthopedist"] },
+    { "id": "ortodontiya", "title": "Брекеты и элайнеры", "hasPage": true, "priceFrom": 65000, "specialties": ["orthodontist"] },
+    { "id": "detskaya", "title": "Детская стоматология", "hasPage": true, "priceFrom": 1500, "specialties": ["pediatric"] },
+    { "id": "udalenie", "title": "Удаление зубов", "hasPage": true, "priceFrom": 3900, "specialties": ["surgeon"] }
+  ],
+  "items": [
+    { "id": "d-01", "directionId": "diagnostika", "code": "B01.065.007", "title": "Первичная консультация стоматолога-терапевта с планом лечения", "synonyms": ["консультация", "осмотр", "первичный приём", "план лечения"], "price": 0, "priceIsFrom": false, "durationMin": 30 },
+    { "id": "d-02", "directionId": "diagnostika", "code": "B01.067.001", "title": "Консультация хирурга-имплантолога с КТ", "synonyms": ["консультация по имплантации", "имплант консультация", "кт"], "price": 0, "priceIsFrom": false, "durationMin": 40 },
+    { "id": "d-03", "directionId": "diagnostika", "code": "B01.066.001", "title": "Консультация стоматолога-ортопеда", "synonyms": ["протезирование консультация", "коронка консультация"], "price": 1200, "priceIsFrom": false, "durationMin": 30 },
+    { "id": "d-04", "directionId": "diagnostika", "code": "B01.063.001", "title": "Консультация ортодонта с диагностикой прикуса", "synonyms": ["прикус", "брекеты консультация", "элайнеры консультация"], "price": 2500, "priceIsFrom": false, "durationMin": 40 },
+    { "id": "d-05", "directionId": "diagnostika", "code": "A06.07.003", "title": "Прицельный рентгеновский снимок зуба", "synonyms": ["снимок", "рентген", "визиограф"], "price": 600, "priceIsFrom": false, "durationMin": 10 },
+    { "id": "d-06", "directionId": "diagnostika", "code": "A06.07.004", "title": "Ортопантомограмма (панорамный снимок)", "synonyms": ["опт", "панорама", "панорамный снимок", "снимок всех зубов"], "price": 1500, "priceIsFrom": false, "durationMin": 10 },
+    { "id": "d-07", "directionId": "diagnostika", "code": "A06.07.013", "title": "КТ челюсти (один сегмент)", "synonyms": ["кт", "томография", "3d снимок", "компьютерная томография"], "price": 2800, "priceIsFrom": false, "durationMin": 15 },
+    { "id": "d-08", "directionId": "diagnostika", "code": "A06.07.013.2", "title": "КТ обеих челюстей", "synonyms": ["кт", "томография", "3d снимок"], "price": 4200, "priceIsFrom": false, "durationMin": 15 },
+
+    { "id": "k-01", "directionId": "lechenie-kariesa", "code": "A16.07.002.001", "title": "Лечение поверхностного кариеса, пломба из светоотверждаемого композита", "synonyms": ["кариес", "пломба", "поставить пломбу", "дырка в зубе", "лечить зуб"], "price": 6500, "priceIsFrom": true, "durationMin": 60 },
+    { "id": "k-02", "directionId": "lechenie-kariesa", "code": "A16.07.002.002", "title": "Лечение среднего кариеса, пломба из композита", "synonyms": ["кариес", "пломба", "лечить зуб"], "price": 7900, "priceIsFrom": true, "durationMin": 60 },
+    { "id": "k-03", "directionId": "lechenie-kariesa", "code": "A16.07.002.003", "title": "Лечение глубокого кариеса с лечебной прокладкой", "synonyms": ["кариес", "глубокий кариес", "пломба", "болит зуб"], "price": 9200, "priceIsFrom": true, "durationMin": 90 },
+    { "id": "k-04", "directionId": "lechenie-kariesa", "code": "A16.07.002.010", "title": "Замена старой пломбы", "synonyms": ["поменять пломбу", "старая пломба", "выпала пломба"], "price": 6900, "priceIsFrom": true, "durationMin": 60 },
+    { "id": "k-05", "directionId": "lechenie-kariesa", "code": "A16.07.002.012", "title": "Художественная реставрация переднего зуба", "synonyms": ["реставрация", "скол зуба", "передний зуб", "сколол зуб"], "price": 11500, "priceIsFrom": true, "durationMin": 90 },
+    { "id": "k-06", "directionId": "lechenie-kariesa", "code": "A16.07.003", "title": "Керамическая вкладка", "synonyms": ["вкладка", "керамика", "инлей"], "price": 24000, "priceIsFrom": true, "durationMin": 60 },
+    { "id": "k-07", "directionId": "lechenie-kariesa", "code": "A11.07.024", "title": "Местная анестезия (инфильтрационная или проводниковая)", "synonyms": ["анестезия", "обезболивание", "укол"], "price": 900, "priceIsFrom": false, "durationMin": 10 },
+    { "id": "k-08", "directionId": "lechenie-kariesa", "code": "A16.07.002.020", "title": "Изоляция зуба коффердамом", "synonyms": ["коффердам", "раббердам"], "price": 700, "priceIsFrom": false, "durationMin": 5 },
+
+    { "id": "c-01", "directionId": "lechenie-kanalov", "code": "A16.07.008.001", "title": "Лечение пульпита одноканального зуба под микроскопом", "synonyms": ["каналы", "пульпит", "удалить нерв", "болит зуб", "депульпирование"], "price": 9800, "priceIsFrom": true, "durationMin": 90 },
+    { "id": "c-02", "directionId": "lechenie-kanalov", "code": "A16.07.008.002", "title": "Лечение пульпита двухканального зуба под микроскопом", "synonyms": ["каналы", "пульпит", "удалить нерв"], "price": 13500, "priceIsFrom": true, "durationMin": 120 },
+    { "id": "c-03", "directionId": "lechenie-kanalov", "code": "A16.07.008.003", "title": "Лечение пульпита трёх- и четырёхканального зуба под микроскопом", "synonyms": ["каналы", "пульпит", "жевательный зуб", "удалить нерв"], "price": 17900, "priceIsFrom": true, "durationMin": 150 },
+    { "id": "c-04", "directionId": "lechenie-kanalov", "code": "A16.07.009", "title": "Перелечивание канала (за один канал)", "synonyms": ["перелечить каналы", "повторное лечение", "периодонтит"], "price": 7500, "priceIsFrom": true, "durationMin": 60 },
+    { "id": "c-05", "directionId": "lechenie-kanalov", "code": "A16.07.010", "title": "Временная пломба с лекарством в канале", "synonyms": ["временная пломба", "лекарство в канал"], "price": 2200, "priceIsFrom": false, "durationMin": 30 },
+    { "id": "c-06", "directionId": "lechenie-kanalov", "code": "A16.07.011", "title": "Восстановление зуба после лечения каналов (стекловолоконный штифт)", "synonyms": ["штифт", "восстановление зуба", "культя"], "price": 8500, "priceIsFrom": true, "durationMin": 60 },
+
+    { "id": "g-01", "directionId": "profgigiena", "code": "A16.07.051", "title": "Профессиональная гигиена: ультразвук, Air Flow, полировка, фторирование", "synonyms": ["чистка", "чистка зубов", "профчистка", "гигиена", "air flow", "эйр флоу", "камень", "налёт"], "price": 5900, "priceIsFrom": false, "durationMin": 60 },
+    { "id": "g-02", "directionId": "profgigiena", "code": "A16.07.051.2", "title": "Профгигиена при брекетах или элайнерах", "synonyms": ["чистка", "чистка с брекетами", "гигиена брекеты"], "price": 6900, "priceIsFrom": false, "durationMin": 75 },
+    { "id": "g-03", "directionId": "profgigiena", "code": "A16.07.051.3", "title": "Профгигиена с имплантами (специальные насадки)", "synonyms": ["чистка", "чистка имплантов"], "price": 6900, "priceIsFrom": false, "durationMin": 75 },
+    { "id": "g-04", "directionId": "profgigiena", "code": "A16.07.049", "title": "Глубокое фторирование зубов", "synonyms": ["фторирование", "реминерализация", "чувствительность зубов"], "price": 2400, "priceIsFrom": false, "durationMin": 20 },
+    { "id": "g-05", "directionId": "profgigiena", "code": "A16.07.050", "title": "Отбеливание зубов в кабинете", "synonyms": ["отбеливание", "белые зубы", "zoom"], "price": 22000, "priceIsFrom": false, "durationMin": 90 },
+    { "id": "g-06", "directionId": "profgigiena", "code": "A16.07.050.2", "title": "Домашнее отбеливание: индивидуальные каппы и гель", "synonyms": ["отбеливание", "каппы для отбеливания"], "price": 14500, "priceIsFrom": false, "durationMin": 30 },
+    { "id": "g-07", "directionId": "profgigiena", "code": "A13.30.007", "title": "Обучение гигиене и подбор щётки, пасты, ирригатора", "synonyms": ["обучение чистке", "подбор щётки", "ирригатор"], "price": 900, "priceIsFrom": false, "durationMin": 20 },
+
+    { "id": "i-01", "directionId": "implantaciya", "code": "A16.07.054.1", "title": "Имплант «под ключ», система уровня «Базовый»: операция, формирователь, абатмент, коронка", "synonyms": ["имплант", "имплантация", "поставить имплант", "нет зуба", "под ключ"], "price": 58000, "priceIsFrom": true, "durationMin": 90 },
+    { "id": "i-02", "directionId": "implantaciya", "code": "A16.07.054.2", "title": "Имплант «под ключ», система уровня «Стандарт»", "synonyms": ["имплант", "имплантация", "под ключ"], "price": 72000, "priceIsFrom": true, "durationMin": 90 },
+    { "id": "i-03", "directionId": "implantaciya", "code": "A16.07.054.3", "title": "Имплант «под ключ», система уровня «Премиум»", "synonyms": ["имплант", "имплантация", "под ключ", "премиум"], "price": 96000, "priceIsFrom": true, "durationMin": 90 },
+    { "id": "i-04", "directionId": "implantaciya", "code": "A16.07.055", "title": "Установка импланта (только операция), уровень «Базовый»", "synonyms": ["имплант", "операция имплантации"], "price": 36000, "priceIsFrom": true, "durationMin": 60 },
+    { "id": "i-05", "directionId": "implantaciya", "code": "A16.07.041", "title": "Синус-лифтинг закрытый", "synonyms": ["синус лифтинг", "наращивание кости", "костная пластика"], "price": 28000, "priceIsFrom": true, "durationMin": 60 },
+    { "id": "i-06", "directionId": "implantaciya", "code": "A16.07.042", "title": "Синус-лифтинг открытый", "synonyms": ["синус лифтинг", "наращивание кости", "костная пластика"], "price": 45000, "priceIsFrom": true, "durationMin": 90 },
+    { "id": "i-07", "directionId": "implantaciya", "code": "A16.07.043", "title": "Направленная костная регенерация (один участок)", "synonyms": ["наращивание кости", "костная пластика", "нкр"], "price": 32000, "priceIsFrom": true, "durationMin": 60 },
+    { "id": "i-08", "directionId": "implantaciya", "code": "A16.07.054.10", "title": "Протезирование на 4 имплантах (челюсть), временный протез", "synonyms": ["все на 4", "all on 4", "нет зубов", "протез на имплантах"], "price": 320000, "priceIsFrom": true, "durationMin": 240 },
+
+    { "id": "p-01", "directionId": "protezirovanie", "code": "A16.07.004.1", "title": "Коронка металлокерамическая", "synonyms": ["коронка", "металлокерамика", "поставить коронку"], "price": 18000, "priceIsFrom": false, "durationMin": 60 },
+    { "id": "p-02", "directionId": "protezirovanie", "code": "A16.07.004.2", "title": "Коронка из диоксида циркония", "synonyms": ["коронка", "цирконий", "циркониевая коронка", "безметалловая коронка"], "price": 27000, "priceIsFrom": false, "durationMin": 60 },
+    { "id": "p-03", "directionId": "protezirovanie", "code": "A16.07.004.3", "title": "Коронка E.max (прессованная керамика)", "synonyms": ["коронка", "emax", "керамика"], "price": 32000, "priceIsFrom": false, "durationMin": 60 },
+    { "id": "p-04", "directionId": "protezirovanie", "code": "A16.07.003.5", "title": "Керамический винир", "synonyms": ["винир", "виниры", "керамика"], "price": 35000, "priceIsFrom": true, "durationMin": 90 },
+    { "id": "p-05", "directionId": "protezirovanie", "code": "A16.07.004.5", "title": "Временная коронка", "synonyms": ["временная коронка", "пластмассовая коронка"], "price": 3500, "priceIsFrom": false, "durationMin": 30 },
+    { "id": "p-06", "directionId": "protezirovanie", "code": "A16.07.023", "title": "Съёмный протез акриловый (одна челюсть)", "synonyms": ["съёмный протез", "протез", "вставная челюсть"], "price": 29000, "priceIsFrom": true, "durationMin": 60 },
+    { "id": "p-07", "directionId": "protezirovanie", "code": "A16.07.023.2", "title": "Бюгельный протез на замках", "synonyms": ["бюгельный протез", "протез на замках", "съёмный протез"], "price": 62000, "priceIsFrom": true, "durationMin": 60 },
+    { "id": "p-08", "directionId": "protezirovanie", "code": "A16.07.004.9", "title": "Коронка на имплант (цирконий, винтовая фиксация)", "synonyms": ["коронка на имплант", "цирконий"], "price": 32000, "priceIsFrom": false, "durationMin": 60 },
+
+    { "id": "o-01", "directionId": "ortodontiya", "code": "A16.07.047.1", "title": "Металлические брекеты на одну челюсть (установка)", "synonyms": ["брекеты", "исправить прикус", "кривые зубы", "ровные зубы"], "price": 65000, "priceIsFrom": true, "durationMin": 120 },
+    { "id": "o-02", "directionId": "ortodontiya", "code": "A16.07.047.2", "title": "Керамические брекеты на одну челюсть (установка)", "synonyms": ["брекеты", "керамические брекеты", "незаметные брекеты"], "price": 85000, "priceIsFrom": true, "durationMin": 120 },
+    { "id": "o-03", "directionId": "ortodontiya", "code": "A16.07.047.3", "title": "Элайнеры: лечение лёгкой степени (до 14 капп)", "synonyms": ["элайнеры", "каппы", "прозрачные каппы", "ровные зубы"], "price": 160000, "priceIsFrom": true, "durationMin": 60 },
+    { "id": "o-04", "directionId": "ortodontiya", "code": "A16.07.047.4", "title": "Элайнеры: полный курс", "synonyms": ["элайнеры", "каппы", "прозрачные каппы"], "price": 290000, "priceIsFrom": true, "durationMin": 60 },
+    { "id": "o-05", "directionId": "ortodontiya", "code": "A16.07.048", "title": "Плановая коррекция брекет-системы", "synonyms": ["коррекция брекетов", "активация брекетов"], "price": 3500, "priceIsFrom": false, "durationMin": 30 },
+    { "id": "o-06", "directionId": "ortodontiya", "code": "A16.07.048.2", "title": "Ретейнер несъёмный (одна челюсть)", "synonyms": ["ретейнер", "после брекетов"], "price": 9500, "priceIsFrom": false, "durationMin": 40 },
+
+    { "id": "ch-01", "directionId": "detskaya", "code": "B01.064.003", "title": "Первый визит ребёнка: знакомство, осмотр, рекомендации родителям", "synonyms": ["детский стоматолог", "ребёнок", "первый визит", "осмотр ребёнка"], "price": 1500, "priceIsFrom": false, "durationMin": 30 },
+    { "id": "ch-02", "directionId": "detskaya", "code": "A16.07.002.31", "title": "Лечение кариеса молочного зуба", "synonyms": ["молочный зуб", "кариес у ребёнка", "детская пломба"], "price": 4900, "priceIsFrom": true, "durationMin": 45 },
+    { "id": "ch-03", "directionId": "detskaya", "code": "A16.07.057", "title": "Герметизация фиссур (один зуб)", "synonyms": ["герметизация", "фиссуры", "запечатать зубы"], "price": 2500, "priceIsFrom": false, "durationMin": 20 },
+    { "id": "ch-04", "directionId": "detskaya", "code": "A16.07.051.31", "title": "Детская профгигиена", "synonyms": ["чистка ребёнку", "детская чистка"], "price": 3200, "priceIsFrom": false, "durationMin": 40 },
+    { "id": "ch-05", "directionId": "detskaya", "code": "A16.07.001.31", "title": "Удаление молочного зуба", "synonyms": ["удалить молочный зуб", "ребёнок удаление"], "price": 2900, "priceIsFrom": true, "durationMin": 30 },
+    { "id": "ch-06", "directionId": "detskaya", "code": "A16.07.008.31", "title": "Лечение пульпита молочного зуба", "synonyms": ["пульпит у ребёнка", "нерв молочного зуба"], "price": 7200, "priceIsFrom": true, "durationMin": 60 },
+
+    { "id": "u-01", "directionId": "udalenie", "code": "A16.07.001.1", "title": "Удаление зуба простое", "synonyms": ["удалить зуб", "удаление", "вырвать зуб"], "price": 3900, "priceIsFrom": true, "durationMin": 30 },
+    { "id": "u-02", "directionId": "udalenie", "code": "A16.07.001.2", "title": "Удаление зуба сложное (с разъединением корней)", "synonyms": ["удалить зуб", "сложное удаление"], "price": 6900, "priceIsFrom": true, "durationMin": 45 },
+    { "id": "u-03", "directionId": "udalenie", "code": "A16.07.001.3", "title": "Удаление зуба мудрости", "synonyms": ["зуб мудрости", "восьмёрка", "удалить зуб мудрости", "удалить зуб"], "price": 8500, "priceIsFrom": true, "durationMin": 60 },
+    { "id": "u-04", "directionId": "udalenie", "code": "A16.07.001.4", "title": "Удаление ретинированного (непрорезавшегося) зуба мудрости", "synonyms": ["зуб мудрости", "непрорезавшийся зуб", "ретинированный"], "price": 14500, "priceIsFrom": true, "durationMin": 90 },
+    { "id": "u-05", "directionId": "udalenie", "code": "A16.07.017", "title": "Сохранение лунки после удаления (под будущий имплант)", "synonyms": ["сохранение лунки", "костный материал"], "price": 12000, "priceIsFrom": true, "durationMin": 30 }
+  ],
+  "implant": {
+    "systems": [
+      { "id": "basic", "title": "Базовый", "origin": "Южная Корея", "min": 36000, "max": 40000 },
+      { "id": "standard", "title": "Стандарт", "origin": "Израиль", "min": 45000, "max": 52000 },
+      { "id": "premium", "title": "Премиум", "origin": "Швейцария", "min": 64000, "max": 72000 }
+    ],
+    "crowns": [
+      { "id": "metal-ceramic", "title": "Металлокерамика", "min": 22000, "max": 26000 },
+      { "id": "zirconia", "title": "Диоксид циркония", "min": 27000, "max": 32000 }
+    ],
+    "bonePlasty": { "id": "bone", "title": "Костная пластика, если понадобится", "min": 0, "max": 45000 },
+    "consultationWithCT": 0,
+    "maxTeeth": 8
+  },
+  "installment": {
+    "months": [6, 12],
+    "minSum": 20000,
+    "maxSum": 600000,
+    "overpay": 0
+  }
+}

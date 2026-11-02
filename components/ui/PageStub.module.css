@@ -1,0 +1,8 @@
+.stub {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-12);
+}
+
+.note {
+  color: var(--color-text-muted);
+}

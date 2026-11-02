@@ -1,0 +1,15 @@
+[
+  { "id": "toothache", "title": "Болит зуб", "specialty": "therapist", "directionId": "lechenie-kanalov", "medical": true, "urgent": true, "kids": false },
+  { "id": "filling-lost", "title": "Выпала или сломалась пломба", "specialty": "therapist", "directionId": "lechenie-kariesa", "medical": true, "urgent": false, "kids": false },
+  { "id": "chip", "title": "Скололся зуб", "specialty": "therapist", "directionId": "lechenie-kariesa", "medical": true, "urgent": false, "kids": false },
+  { "id": "gums", "title": "Кровоточат дёсны", "specialty": "hygienist", "directionId": "profgigiena", "medical": true, "urgent": false, "kids": false },
+  { "id": "swelling", "title": "Отёк десны или щеки", "specialty": "surgeon", "directionId": "udalenie", "medical": true, "urgent": true, "kids": false },
+  { "id": "wisdom", "title": "Беспокоит зуб мудрости", "specialty": "surgeon", "directionId": "udalenie", "medical": true, "urgent": false, "kids": false },
+  { "id": "missing", "title": "Нет зуба, хочу восстановить", "specialty": "surgeon", "directionId": "implantaciya", "medical": true, "urgent": false, "kids": false },
+  { "id": "crown", "title": "Нужна коронка или протез", "specialty": "orthopedist", "directionId": "protezirovanie", "medical": true, "urgent": false, "kids": false },
+  { "id": "bite", "title": "Хочу ровные зубы", "specialty": "orthodontist", "directionId": "ortodontiya", "medical": false, "urgent": false, "kids": false },
+  { "id": "cleaning", "title": "Хочу почистить зубы", "specialty": "hygienist", "directionId": "profgigiena", "medical": false, "urgent": false, "kids": false },
+  { "id": "checkup", "title": "Плановый осмотр", "specialty": "therapist", "directionId": "diagnostika", "medical": false, "urgent": false, "kids": false },
+  { "id": "kid-checkup", "title": "Осмотр ребёнка", "specialty": "pediatric", "directionId": "detskaya", "medical": false, "urgent": false, "kids": true },
+  { "id": "kid-pain", "title": "У ребёнка болит зуб", "specialty": "pediatric", "directionId": "detskaya", "medical": true, "urgent": true, "kids": true }
+]

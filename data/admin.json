@@ -1,0 +1,469 @@
+{
+  "appointments": [
+    {
+      "id": "ap-101",
+      "status": "new",
+      "directionId": "lechenie-kanalov",
+      "reasonId": "toothache",
+      "doctorId": "dr-02",
+      "branchId": "center",
+      "at": {
+        "day": 0,
+        "time": "19:00"
+      },
+      "created": {
+        "day": 0,
+        "time": "08:12"
+      },
+      "durationMin": 60,
+      "urgent": true,
+      "patient": {
+        "name": "Максим Головин",
+        "phone": "+7 912 000-11-21"
+      },
+      "source": {
+        "page": "/",
+        "label": "Главная, «Острая боль»"
+      }
+    },
+    {
+      "id": "ap-102",
+      "status": "new",
+      "directionId": "implantaciya",
+      "serviceId": "d-02",
+      "reasonId": "missing",
+      "doctorId": "dr-04",
+      "branchId": "center",
+      "at": {
+        "day": 1,
+        "time": "10:00"
+      },
+      "created": {
+        "day": 0,
+        "time": "07:55"
+      },
+      "durationMin": 40,
+      "urgent": false,
+      "patient": {
+        "name": "Светлана Юрьева",
+        "phone": "+7 922 000-31-08"
+      },
+      "source": {
+        "page": "/uslugi/implantaciya/",
+        "label": "Калькулятор имплантации"
+      }
+    },
+    {
+      "id": "ap-103",
+      "status": "new",
+      "directionId": "profgigiena",
+      "serviceId": "g-01",
+      "reasonId": "cleaning",
+      "doctorId": "dr-11",
+      "branchId": "akadem",
+      "at": {
+        "day": 2,
+        "time": "09:00"
+      },
+      "created": {
+        "day": -1,
+        "time": "22:40"
+      },
+      "durationMin": 60,
+      "urgent": false,
+      "patient": {
+        "name": "Ксения Лаптева",
+        "phone": "+7 950 000-44-17"
+      },
+      "source": {
+        "page": "/uslugi/profgigiena/",
+        "label": "Страница «Профгигиена»"
+      }
+    },
+    {
+      "id": "ap-104",
+      "status": "new",
+      "directionId": "detskaya",
+      "serviceId": "ch-01",
+      "reasonId": "kid-checkup",
+      "doctorId": "dr-09",
+      "branchId": "akadem",
+      "at": {
+        "day": 1,
+        "time": "11:30"
+      },
+      "created": {
+        "day": -1,
+        "time": "20:15"
+      },
+      "durationMin": 30,
+      "urgent": false,
+      "patient": {
+        "name": "Марина Шарова",
+        "phone": "+7 908 000-12-90"
+      },
+      "source": {
+        "page": "/uslugi/detskaya/",
+        "label": "Страница «Детская стоматология»"
+      }
+    },
+    {
+      "id": "ap-105",
+      "status": "confirmed",
+      "directionId": "lechenie-kariesa",
+      "serviceId": "k-04",
+      "reasonId": "filling-lost",
+      "doctorId": "dr-01",
+      "branchId": "center",
+      "at": {
+        "day": 0,
+        "time": "11:00"
+      },
+      "created": {
+        "day": -1,
+        "time": "13:02"
+      },
+      "durationMin": 60,
+      "urgent": false,
+      "patient": {
+        "name": "Павел Носков",
+        "phone": "+7 912 000-77-45"
+      },
+      "source": {
+        "page": "/ceny/",
+        "label": "Прайс"
+      }
+    },
+    {
+      "id": "ap-106",
+      "status": "confirmed",
+      "directionId": "udalenie",
+      "serviceId": "u-03",
+      "reasonId": "wisdom",
+      "doctorId": "dr-05",
+      "branchId": "center",
+      "at": {
+        "day": 1,
+        "time": "15:00"
+      },
+      "created": {
+        "day": -2,
+        "time": "18:30"
+      },
+      "durationMin": 60,
+      "urgent": false,
+      "patient": {
+        "name": "Олег Сабуров",
+        "phone": "+7 932 000-05-63"
+      },
+      "source": {
+        "page": "/",
+        "label": "Главная, кнопка «Записаться»"
+      }
+    },
+    {
+      "id": "ap-107",
+      "status": "confirmed",
+      "directionId": "ortodontiya",
+      "serviceId": "d-04",
+      "reasonId": "bite",
+      "doctorId": "dr-08",
+      "branchId": "akadem",
+      "at": {
+        "day": 3,
+        "time": "16:30"
+      },
+      "created": {
+        "day": -2,
+        "time": "10:44"
+      },
+      "durationMin": 40,
+      "urgent": false,
+      "patient": {
+        "name": "Виктория Ахметова",
+        "phone": "+7 902 000-63-18"
+      },
+      "source": {
+        "page": "/vrachi/",
+        "label": "Карточка врача"
+      }
+    },
+    {
+      "id": "ap-108",
+      "status": "confirmed",
+      "directionId": "protezirovanie",
+      "serviceId": "p-02",
+      "reasonId": "crown",
+      "doctorId": "dr-07",
+      "branchId": "center",
+      "at": {
+        "day": 4,
+        "time": "09:30"
+      },
+      "created": {
+        "day": -3,
+        "time": "16:20"
+      },
+      "durationMin": 60,
+      "urgent": false,
+      "patient": {
+        "name": "Андрей Мельников",
+        "phone": "+7 919 000-24-71"
+      },
+      "source": {
+        "page": "/",
+        "label": "Главная, кнопка «Записаться»"
+      }
+    },
+    {
+      "id": "ap-109",
+      "status": "rescheduled",
+      "directionId": "profgigiena",
+      "serviceId": "g-01",
+      "reasonId": "cleaning",
+      "doctorId": "dr-11",
+      "branchId": "center",
+      "at": {
+        "day": 2,
+        "time": "12:00"
+      },
+      "created": {
+        "day": -4,
+        "time": "09:05"
+      },
+      "durationMin": 60,
+      "urgent": false,
+      "patient": {
+        "name": "Алёна Пестова",
+        "phone": "+7 922 000-88-02"
+      },
+      "source": {
+        "page": "/akcii/",
+        "label": "Акции"
+      }
+    },
+    {
+      "id": "ap-110",
+      "status": "rescheduled",
+      "directionId": "implantaciya",
+      "serviceId": "d-02",
+      "reasonId": "missing",
+      "doctorId": "dr-04",
+      "branchId": "center",
+      "at": {
+        "day": 5,
+        "time": "13:00"
+      },
+      "created": {
+        "day": -6,
+        "time": "19:58"
+      },
+      "durationMin": 40,
+      "urgent": false,
+      "patient": {
+        "name": "Николай Бурдин",
+        "phone": "+7 950 000-19-36"
+      },
+      "source": {
+        "page": "/uslugi/implantaciya/",
+        "label": "Страница «Имплантация»"
+      }
+    },
+    {
+      "id": "ap-111",
+      "status": "cancelled",
+      "directionId": "lechenie-kariesa",
+      "serviceId": "k-01",
+      "reasonId": "checkup",
+      "doctorId": "dr-03",
+      "branchId": "akadem",
+      "at": {
+        "day": 1,
+        "time": "08:00"
+      },
+      "created": {
+        "day": -3,
+        "time": "21:30"
+      },
+      "durationMin": 60,
+      "urgent": false,
+      "patient": {
+        "name": "Ирина Котова",
+        "phone": "+7 904 000-52-87"
+      },
+      "source": {
+        "page": "/ceny/",
+        "label": "Прайс"
+      }
+    },
+    {
+      "id": "ap-112",
+      "status": "done",
+      "directionId": "lechenie-kanalov",
+      "serviceId": "c-03",
+      "reasonId": "toothache",
+      "doctorId": "dr-01",
+      "branchId": "center",
+      "at": {
+        "day": -1,
+        "time": "09:00"
+      },
+      "created": {
+        "day": -2,
+        "time": "07:40"
+      },
+      "durationMin": 150,
+      "urgent": true,
+      "patient": {
+        "name": "Евгений Ларин",
+        "phone": "+7 912 000-36-54"
+      },
+      "source": {
+        "page": "/",
+        "label": "Главная, «Острая боль»"
+      }
+    },
+    {
+      "id": "ap-113",
+      "status": "done",
+      "directionId": "profgigiena",
+      "serviceId": "g-02",
+      "doctorId": "dr-11",
+      "branchId": "akadem",
+      "at": {
+        "day": -2,
+        "time": "10:00"
+      },
+      "created": {
+        "day": -9,
+        "time": "14:11"
+      },
+      "durationMin": 75,
+      "urgent": false,
+      "patient": {
+        "name": "Дарья Гусева",
+        "phone": "+7 953 000-90-12"
+      },
+      "source": {
+        "page": "/uslugi/profgigiena/",
+        "label": "Страница «Профгигиена»"
+      }
+    },
+    {
+      "id": "ap-114",
+      "status": "done",
+      "directionId": "detskaya",
+      "serviceId": "ch-03",
+      "reasonId": "kid-checkup",
+      "doctorId": "dr-10",
+      "branchId": "akadem",
+      "at": {
+        "day": -3,
+        "time": "15:00"
+      },
+      "created": {
+        "day": -10,
+        "time": "18:47"
+      },
+      "durationMin": 20,
+      "urgent": false,
+      "patient": {
+        "name": "Татьяна Зуева",
+        "phone": "+7 908 000-71-33"
+      },
+      "source": {
+        "page": "/uslugi/detskaya/",
+        "label": "Страница «Детская стоматология»"
+      }
+    },
+    {
+      "id": "ap-115",
+      "status": "no_show",
+      "directionId": "diagnostika",
+      "serviceId": "d-01",
+      "reasonId": "checkup",
+      "doctorId": "dr-02",
+      "branchId": "akadem",
+      "at": {
+        "day": -1,
+        "time": "18:00"
+      },
+      "created": {
+        "day": -4,
+        "time": "12:25"
+      },
+      "durationMin": 30,
+      "urgent": false,
+      "patient": {
+        "name": "Роман Карпов",
+        "phone": "+7 919 000-48-60"
+      },
+      "source": {
+        "page": "/",
+        "label": "Главная, кнопка «Записаться»"
+      }
+    }
+  ],
+  "taxRequests": [
+    {
+      "id": "tx-1",
+      "status": "new",
+      "taxpayerName": "Юрьева Светлана Петровна",
+      "taxpayerInn": "660000000101",
+      "year": 2025,
+      "relation": "self",
+      "patientName": null,
+      "method": "fns",
+      "phone": "+7 922 000-31-08",
+      "created": {
+        "day": 0,
+        "time": "09:14"
+      }
+    },
+    {
+      "id": "tx-2",
+      "status": "in_progress",
+      "taxpayerName": "Шаров Алексей Игоревич",
+      "taxpayerInn": "660000000202",
+      "year": 2025,
+      "relation": "child",
+      "patientName": "Шарова Полина Алексеевна",
+      "method": "paper",
+      "phone": "+7 908 000-12-90",
+      "created": {
+        "day": -2,
+        "time": "17:30"
+      }
+    },
+    {
+      "id": "tx-3",
+      "status": "ready",
+      "taxpayerName": "Носков Павел Андреевич",
+      "taxpayerInn": "660000000303",
+      "year": 2024,
+      "relation": "spouse",
+      "patientName": "Носкова Елена Викторовна",
+      "method": "paper",
+      "phone": "+7 912 000-77-45",
+      "created": {
+        "day": -5,
+        "time": "11:02"
+      }
+    },
+    {
+      "id": "tx-4",
+      "status": "issued",
+      "taxpayerName": "Ларин Евгений Олегович",
+      "taxpayerInn": "660000000404",
+      "year": 2025,
+      "relation": "self",
+      "patientName": null,
+      "method": "fns",
+      "phone": "+7 912 000-36-54",
+      "created": {
+        "day": -12,
+        "time": "15:48"
+      }
+    }
+  ]
+}

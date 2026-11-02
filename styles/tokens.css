@@ -1,0 +1,47 @@
+/*
+ * Токены — ЧЕРНОВИК чата 1. Цвета и шрифты утверждаются в чате 2 (docs/DESIGN.md).
+ * В компонентах — только эти переменные, без случайных значений.
+ */
+:root {
+  /* Цвета: тёплый светлый фон, один глубокий основной, один тёплый акцент */
+  --color-bg: #f7f3ec;
+  --color-surface: #ffffff;
+  --color-text: #1f2a27;
+  --color-text-muted: #56605c;
+  --color-primary: #24453c;
+  --color-primary-contrast: #ffffff;
+  --color-accent: #c8643b;
+  --color-accent-contrast: #ffffff;
+  --color-border: #ddd5c8;
+  --color-focus: #c8643b;
+  --color-notice-bg: #fff4d9;
+  --color-notice-text: #3d2f0a;
+
+  /* Шрифты: системные до выбора в чате 2 */
+  --font-heading: Georgia, "Times New Roman", serif;
+  --font-text: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2.25rem;
+
+  /* Отступы */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+
+  --container: 1200px;
+  --gutter: 16px;
+  --tap: 44px;
+  --header-h: 64px;
+  --mobile-bar-h: 64px;
+}

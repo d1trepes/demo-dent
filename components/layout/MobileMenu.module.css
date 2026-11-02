@@ -1,0 +1,75 @@
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap);
+  height: var(--tap);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.panel {
+  position: fixed;
+  inset: var(--header-h) 0 0;
+  z-index: 30;
+  overflow-y: auto;
+  padding: var(--space-4) var(--gutter) calc(var(--mobile-bar-h) + var(--space-6));
+  background: var(--color-bg);
+}
+
+.panel[hidden] {
+  display: none;
+}
+
+.list,
+.sublist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sublist {
+  padding-left: var(--space-4);
+}
+
+.group {
+  display: block;
+  padding-top: var(--space-4);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap);
+  font-size: var(--text-lg);
+  text-decoration: none;
+}
+
+.contacts {
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  text-decoration: none;
+}
+
+@media (min-width: 1024px) {
+  .toggle,
+  .panel {
+    display: none;
+  }
+}

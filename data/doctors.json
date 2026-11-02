@@ -1,0 +1,860 @@
+{
+  "specialties": [
+    {
+      "id": "therapist",
+      "title": "Стоматолог-терапевт",
+      "plural": "Терапевты"
+    },
+    {
+      "id": "surgeon",
+      "title": "Стоматолог-хирург, имплантолог",
+      "plural": "Хирурги-имплантологи"
+    },
+    {
+      "id": "orthopedist",
+      "title": "Стоматолог-ортопед",
+      "plural": "Ортопеды"
+    },
+    {
+      "id": "orthodontist",
+      "title": "Врач-ортодонт",
+      "plural": "Ортодонты"
+    },
+    {
+      "id": "pediatric",
+      "title": "Детский стоматолог",
+      "plural": "Детские стоматологи"
+    },
+    {
+      "id": "hygienist",
+      "title": "Гигиенист стоматологический",
+      "plural": "Гигиенисты"
+    }
+  ],
+  "doctors": [
+    {
+      "id": "dr-01",
+      "slug": "kovaleva-mariya",
+      "fullName": "Ковалёва Мария Андреевна",
+      "specialty": "therapist",
+      "position": "Стоматолог-терапевт, эндодонтист",
+      "experienceSince": 2012,
+      "category": "Высшая категория",
+      "education": [
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2011,
+          "qualification": "Стоматология, врач-стоматолог"
+        },
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2013,
+          "qualification": "Ординатура: стоматология терапевтическая"
+        }
+      ],
+      "certifications": [
+        {
+          "kind": "accreditation",
+          "number": "7766 031007351",
+          "date": "2023-02-11",
+          "validUntil": "2028-02-11",
+          "specialty": "Стоматология терапевтическая"
+        }
+      ],
+      "branches": [
+        "center"
+      ],
+      "directions": [
+        "diagnostika",
+        "lechenie-kariesa",
+        "lechenie-kanalov"
+      ],
+      "acceptsKids": false,
+      "slotMin": 60,
+      "schedule": [
+        {
+          "weekday": 1,
+          "branchId": "center",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 2,
+          "branchId": "center",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 3,
+          "branchId": "center",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 4,
+          "branchId": "center",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 5,
+          "branchId": "center",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 7,
+          "branchId": "center",
+          "start": "09:00",
+          "end": "15:00"
+        }
+      ],
+      "photo": "/images/doctors/kovaleva-mariya.webp",
+      "about": "Лечит каналы под микроскопом, в том числе повторно. Всегда показывает снимок до и после работы и объясняет, что дальше."
+    },
+    {
+      "id": "dr-02",
+      "slug": "demidov-ilya",
+      "fullName": "Демидов Илья Сергеевич",
+      "specialty": "therapist",
+      "position": "Стоматолог-терапевт",
+      "experienceSince": 2017,
+      "category": null,
+      "education": [
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2016,
+          "qualification": "Стоматология, врач-стоматолог"
+        },
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2018,
+          "qualification": "Ординатура: стоматология терапевтическая"
+        }
+      ],
+      "certifications": [
+        {
+          "kind": "accreditation",
+          "number": "7766 031014702",
+          "date": "2024-03-12",
+          "validUntil": "2029-03-12",
+          "specialty": "Стоматология терапевтическая"
+        }
+      ],
+      "branches": [
+        "center",
+        "akadem"
+      ],
+      "directions": [
+        "diagnostika",
+        "lechenie-kariesa",
+        "lechenie-kanalov"
+      ],
+      "acceptsKids": false,
+      "slotMin": 60,
+      "schedule": [
+        {
+          "weekday": 1,
+          "branchId": "center",
+          "start": "14:00",
+          "end": "21:00"
+        },
+        {
+          "weekday": 3,
+          "branchId": "center",
+          "start": "14:00",
+          "end": "21:00"
+        },
+        {
+          "weekday": 5,
+          "branchId": "center",
+          "start": "14:00",
+          "end": "21:00"
+        },
+        {
+          "weekday": 2,
+          "branchId": "akadem",
+          "start": "14:00",
+          "end": "21:00"
+        },
+        {
+          "weekday": 4,
+          "branchId": "akadem",
+          "start": "14:00",
+          "end": "21:00"
+        },
+        {
+          "weekday": 6,
+          "branchId": "center",
+          "start": "09:00",
+          "end": "18:00"
+        },
+        {
+          "weekday": 7,
+          "branchId": "akadem",
+          "start": "09:00",
+          "end": "18:00"
+        }
+      ],
+      "photo": "/images/doctors/demidov-ilya.webp",
+      "about": "Принимает вечером и в выходные — к нему чаще всего попадают с острой болью. Спокойно объясняет варианты и их цену."
+    },
+    {
+      "id": "dr-03",
+      "slug": "safina-alina",
+      "fullName": "Сафина Алина Рустамовна",
+      "specialty": "therapist",
+      "position": "Стоматолог-терапевт",
+      "experienceSince": 2015,
+      "category": "Первая категория",
+      "education": [
+        {
+          "institution": "Казанский государственный медицинский университет",
+          "year": 2014,
+          "qualification": "Стоматология, врач-стоматолог"
+        },
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2016,
+          "qualification": "Ординатура: стоматология терапевтическая"
+        }
+      ],
+      "certifications": [
+        {
+          "kind": "accreditation",
+          "number": "7766 031022053",
+          "date": "2022-04-13",
+          "validUntil": "2027-04-13",
+          "specialty": "Стоматология терапевтическая"
+        }
+      ],
+      "branches": [
+        "akadem"
+      ],
+      "directions": [
+        "diagnostika",
+        "lechenie-kariesa",
+        "lechenie-kanalov"
+      ],
+      "acceptsKids": false,
+      "slotMin": 60,
+      "schedule": [
+        {
+          "weekday": 1,
+          "branchId": "akadem",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 2,
+          "branchId": "akadem",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 3,
+          "branchId": "akadem",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 4,
+          "branchId": "akadem",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 5,
+          "branchId": "akadem",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 6,
+          "branchId": "akadem",
+          "start": "09:00",
+          "end": "18:00"
+        }
+      ],
+      "photo": "/images/doctors/safina-alina.webp",
+      "about": "Художественные реставрации передних зубов и лечение кариеса. Ведёт пациентов, которые боятся стоматологов."
+    },
+    {
+      "id": "dr-04",
+      "slug": "orlov-konstantin",
+      "fullName": "Орлов Константин Павлович",
+      "specialty": "surgeon",
+      "position": "Хирург-имплантолог, ведущий врач клиники",
+      "experienceSince": 2008,
+      "category": "Высшая категория",
+      "education": [
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2007,
+          "qualification": "Стоматология, врач-стоматолог"
+        },
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2009,
+          "qualification": "Ординатура: стоматология хирургическая"
+        }
+      ],
+      "certifications": [
+        {
+          "kind": "accreditation",
+          "number": "7766 031029404",
+          "date": "2023-05-14",
+          "validUntil": "2028-05-14",
+          "specialty": "Стоматология хирургическая"
+        }
+      ],
+      "branches": [
+        "center"
+      ],
+      "directions": [
+        "diagnostika",
+        "implantaciya",
+        "udalenie"
+      ],
+      "acceptsKids": false,
+      "slotMin": 60,
+      "schedule": [
+        {
+          "weekday": 1,
+          "branchId": "center",
+          "start": "09:00",
+          "end": "17:00"
+        },
+        {
+          "weekday": 2,
+          "branchId": "center",
+          "start": "09:00",
+          "end": "17:00"
+        },
+        {
+          "weekday": 4,
+          "branchId": "center",
+          "start": "09:00",
+          "end": "17:00"
+        },
+        {
+          "weekday": 5,
+          "branchId": "center",
+          "start": "09:00",
+          "end": "17:00"
+        },
+        {
+          "weekday": 6,
+          "branchId": "center",
+          "start": "09:00",
+          "end": "15:00"
+        }
+      ],
+      "photo": "/images/doctors/orlov-konstantin.webp",
+      "about": "Имплантация, синус-лифтинг, костная пластика. Каждую операцию планирует по КТ и заранее показывает пациенту план."
+    },
+    {
+      "id": "dr-05",
+      "slug": "zaycev-artyom",
+      "fullName": "Зайцев Артём Игоревич",
+      "specialty": "surgeon",
+      "position": "Стоматолог-хирург",
+      "experienceSince": 2016,
+      "category": null,
+      "education": [
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2015,
+          "qualification": "Стоматология, врач-стоматолог"
+        },
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2017,
+          "qualification": "Ординатура: стоматология хирургическая"
+        }
+      ],
+      "certifications": [
+        {
+          "kind": "accreditation",
+          "number": "7766 031036755",
+          "date": "2024-06-15",
+          "validUntil": "2029-06-15",
+          "specialty": "Стоматология хирургическая"
+        }
+      ],
+      "branches": [
+        "center",
+        "akadem"
+      ],
+      "directions": [
+        "diagnostika",
+        "implantaciya",
+        "udalenie"
+      ],
+      "acceptsKids": false,
+      "slotMin": 60,
+      "schedule": [
+        {
+          "weekday": 1,
+          "branchId": "akadem",
+          "start": "14:00",
+          "end": "21:00"
+        },
+        {
+          "weekday": 3,
+          "branchId": "akadem",
+          "start": "14:00",
+          "end": "21:00"
+        },
+        {
+          "weekday": 5,
+          "branchId": "akadem",
+          "start": "14:00",
+          "end": "21:00"
+        },
+        {
+          "weekday": 2,
+          "branchId": "center",
+          "start": "14:00",
+          "end": "21:00"
+        },
+        {
+          "weekday": 4,
+          "branchId": "center",
+          "start": "14:00",
+          "end": "21:00"
+        },
+        {
+          "weekday": 7,
+          "branchId": "center",
+          "start": "09:00",
+          "end": "18:00"
+        }
+      ],
+      "photo": "/images/doctors/zaycev-artyom.webp",
+      "about": "Удаление зубов любой сложности, включая зубы мудрости. Работает вечером и по воскресеньям."
+    },
+    {
+      "id": "dr-06",
+      "slug": "lebedeva-olga",
+      "fullName": "Лебедева Ольга Николаевна",
+      "specialty": "orthopedist",
+      "position": "Главный врач, стоматолог-ортопед",
+      "experienceSince": 2005,
+      "category": "Высшая категория",
+      "education": [
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2004,
+          "qualification": "Стоматология, врач-стоматолог"
+        },
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2006,
+          "qualification": "Ординатура: стоматология ортопедическая"
+        },
+        {
+          "institution": "Уральский институт управления здравоохранением",
+          "year": 2019,
+          "qualification": "Организация здравоохранения"
+        }
+      ],
+      "certifications": [
+        {
+          "kind": "accreditation",
+          "number": "7766 031044106",
+          "date": "2022-07-16",
+          "validUntil": "2027-07-16",
+          "specialty": "Стоматология ортопедическая"
+        }
+      ],
+      "branches": [
+        "center"
+      ],
+      "directions": [
+        "diagnostika",
+        "protezirovanie"
+      ],
+      "acceptsKids": false,
+      "slotMin": 30,
+      "schedule": [
+        {
+          "weekday": 1,
+          "branchId": "center",
+          "start": "09:00",
+          "end": "15:00"
+        },
+        {
+          "weekday": 2,
+          "branchId": "center",
+          "start": "09:00",
+          "end": "15:00"
+        },
+        {
+          "weekday": 4,
+          "branchId": "center",
+          "start": "09:00",
+          "end": "15:00"
+        }
+      ],
+      "photo": "/images/doctors/lebedeva-olga.webp",
+      "about": "Основатель клиники. Коронки, виниры и протезирование на имплантах. Отвечает за то, чтобы цена в плане лечения не менялась по ходу работы."
+    },
+    {
+      "id": "dr-07",
+      "slug": "garanin-denis",
+      "fullName": "Гаранин Денис Олегович",
+      "specialty": "orthopedist",
+      "position": "Стоматолог-ортопед",
+      "experienceSince": 2014,
+      "category": "Первая категория",
+      "education": [
+        {
+          "institution": "Пермский государственный медицинский университет",
+          "year": 2013,
+          "qualification": "Стоматология, врач-стоматолог"
+        },
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2015,
+          "qualification": "Ординатура: стоматология ортопедическая"
+        }
+      ],
+      "certifications": [
+        {
+          "kind": "accreditation",
+          "number": "7766 031051457",
+          "date": "2023-08-17",
+          "validUntil": "2028-08-17",
+          "specialty": "Стоматология ортопедическая"
+        }
+      ],
+      "branches": [
+        "center",
+        "akadem"
+      ],
+      "directions": [
+        "diagnostika",
+        "protezirovanie"
+      ],
+      "acceptsKids": false,
+      "slotMin": 30,
+      "schedule": [
+        {
+          "weekday": 3,
+          "branchId": "center",
+          "start": "09:00",
+          "end": "15:00"
+        },
+        {
+          "weekday": 5,
+          "branchId": "center",
+          "start": "09:00",
+          "end": "15:00"
+        },
+        {
+          "weekday": 2,
+          "branchId": "akadem",
+          "start": "15:00",
+          "end": "21:00"
+        },
+        {
+          "weekday": 4,
+          "branchId": "akadem",
+          "start": "15:00",
+          "end": "21:00"
+        },
+        {
+          "weekday": 6,
+          "branchId": "akadem",
+          "start": "09:00",
+          "end": "15:00"
+        }
+      ],
+      "photo": "/images/doctors/garanin-denis.webp",
+      "about": "Коронки на импланты и съёмное протезирование. Работает с цифровым сканированием вместо слепочной массы."
+    },
+    {
+      "id": "dr-08",
+      "slug": "mironova-ekaterina",
+      "fullName": "Миронова Екатерина Владимировна",
+      "specialty": "orthodontist",
+      "position": "Врач-ортодонт",
+      "experienceSince": 2013,
+      "category": "Первая категория",
+      "education": [
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2012,
+          "qualification": "Стоматология, врач-стоматолог"
+        },
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2014,
+          "qualification": "Ординатура: ортодонтия"
+        }
+      ],
+      "certifications": [
+        {
+          "kind": "accreditation",
+          "number": "7766 031058808",
+          "date": "2024-09-18",
+          "validUntil": "2029-09-18",
+          "specialty": "Ортодонтия"
+        }
+      ],
+      "branches": [
+        "center",
+        "akadem"
+      ],
+      "directions": [
+        "diagnostika",
+        "ortodontiya"
+      ],
+      "acceptsKids": true,
+      "slotMin": 30,
+      "schedule": [
+        {
+          "weekday": 1,
+          "branchId": "akadem",
+          "start": "10:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 3,
+          "branchId": "akadem",
+          "start": "10:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 5,
+          "branchId": "center",
+          "start": "10:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 6,
+          "branchId": "akadem",
+          "start": "09:00",
+          "end": "15:00"
+        }
+      ],
+      "photo": "/images/doctors/mironova-ekaterina.webp",
+      "about": "Брекеты и элайнеры для подростков и взрослых. Перед началом показывает план лечения и примерные сроки."
+    },
+    {
+      "id": "dr-09",
+      "slug": "belova-anastasiya",
+      "fullName": "Белова Анастасия Дмитриевна",
+      "specialty": "pediatric",
+      "position": "Детский стоматолог",
+      "experienceSince": 2016,
+      "category": null,
+      "education": [
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2015,
+          "qualification": "Стоматология, врач-стоматолог"
+        },
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2017,
+          "qualification": "Ординатура: стоматология детская"
+        }
+      ],
+      "certifications": [
+        {
+          "kind": "accreditation",
+          "number": "7766 031066159",
+          "date": "2022-01-10",
+          "validUntil": "2027-01-10",
+          "specialty": "Стоматология детская"
+        }
+      ],
+      "branches": [
+        "akadem"
+      ],
+      "directions": [
+        "diagnostika",
+        "detskaya"
+      ],
+      "acceptsKids": true,
+      "slotMin": 30,
+      "schedule": [
+        {
+          "weekday": 1,
+          "branchId": "akadem",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 2,
+          "branchId": "akadem",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 3,
+          "branchId": "akadem",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 4,
+          "branchId": "akadem",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 5,
+          "branchId": "akadem",
+          "start": "08:00",
+          "end": "14:00"
+        }
+      ],
+      "photo": "/images/doctors/belova-anastasiya.webp",
+      "about": "Первые визиты и лечение молочных зубов. Не начинает лечение, пока ребёнок не готов."
+    },
+    {
+      "id": "dr-10",
+      "slug": "kuznecova-irina",
+      "fullName": "Кузнецова Ирина Алексеевна",
+      "specialty": "pediatric",
+      "position": "Детский стоматолог",
+      "experienceSince": 2019,
+      "category": null,
+      "education": [
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2018,
+          "qualification": "Стоматология, врач-стоматолог"
+        },
+        {
+          "institution": "Уральский государственный медицинский университет",
+          "year": 2020,
+          "qualification": "Ординатура: стоматология детская"
+        }
+      ],
+      "certifications": [
+        {
+          "kind": "accreditation",
+          "number": "7766 031073510",
+          "date": "2023-02-11",
+          "validUntil": "2028-02-11",
+          "specialty": "Стоматология детская"
+        }
+      ],
+      "branches": [
+        "akadem"
+      ],
+      "directions": [
+        "diagnostika",
+        "detskaya"
+      ],
+      "acceptsKids": true,
+      "slotMin": 30,
+      "schedule": [
+        {
+          "weekday": 2,
+          "branchId": "akadem",
+          "start": "14:00",
+          "end": "21:00"
+        },
+        {
+          "weekday": 4,
+          "branchId": "akadem",
+          "start": "14:00",
+          "end": "21:00"
+        },
+        {
+          "weekday": 6,
+          "branchId": "akadem",
+          "start": "09:00",
+          "end": "18:00"
+        },
+        {
+          "weekday": 7,
+          "branchId": "akadem",
+          "start": "09:00",
+          "end": "18:00"
+        }
+      ],
+      "photo": "/images/doctors/kuznecova-irina.webp",
+      "about": "Принимает детей после школы и в выходные. Герметизация фиссур и детская профгигиена."
+    },
+    {
+      "id": "dr-11",
+      "slug": "fedorova-yuliya",
+      "fullName": "Фёдорова Юлия Михайловна",
+      "specialty": "hygienist",
+      "position": "Гигиенист стоматологический",
+      "experienceSince": 2018,
+      "category": null,
+      "education": [
+        {
+          "institution": "Свердловский областной медицинский колледж",
+          "year": 2017,
+          "qualification": "Стоматология профилактическая, гигиенист стоматологический"
+        }
+      ],
+      "certifications": [
+        {
+          "kind": "accreditation",
+          "number": "7766 031080861",
+          "date": "2024-03-12",
+          "validUntil": "2029-03-12",
+          "specialty": "Стоматология профилактическая"
+        }
+      ],
+      "branches": [
+        "center",
+        "akadem"
+      ],
+      "directions": [
+        "profgigiena"
+      ],
+      "acceptsKids": true,
+      "slotMin": 60,
+      "schedule": [
+        {
+          "weekday": 1,
+          "branchId": "center",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 3,
+          "branchId": "center",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 5,
+          "branchId": "center",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 2,
+          "branchId": "akadem",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 4,
+          "branchId": "akadem",
+          "start": "08:00",
+          "end": "14:00"
+        },
+        {
+          "weekday": 6,
+          "branchId": "akadem",
+          "start": "09:00",
+          "end": "18:00"
+        }
+      ],
+      "photo": "/images/doctors/fedorova-yuliya.webp",
+      "about": "Профгигиена, в том числе с брекетами и имплантами. Подбирает щётку и пасту и показывает, как ими пользоваться."
+    }
+  ]
+}

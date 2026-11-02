@@ -1,0 +1,37 @@
+{
+  "profile": {
+    "id": "pt-demo",
+    "fullName": "Петрова Анна Сергеевна",
+    "phone": "+7 900 000-00-00",
+    "birthDate": "1988-05-17"
+  },
+  "appointments": [
+    { "id": "ap-p1", "status": "confirmed", "directionId": "profgigiena", "serviceId": "g-03", "doctorId": "dr-11", "branchId": "center", "at": { "day": 3, "time": "10:00" }, "created": { "day": -5, "time": "19:42" }, "durationMin": 75, "urgent": false, "patient": { "name": "Анна Петрова", "phone": "+7 900 000-00-00" }, "source": { "page": "/kabinet/", "label": "Личный кабинет" } },
+    { "id": "ap-p2", "status": "confirmed", "directionId": "implantaciya", "serviceId": "p-08", "doctorId": "dr-06", "branchId": "center", "at": { "day": 12, "time": "11:30" }, "created": { "day": -20, "time": "12:10" }, "durationMin": 60, "urgent": false, "patient": { "name": "Анна Петрова", "phone": "+7 900 000-00-00" }, "source": { "page": "/kabinet/", "label": "Личный кабинет" } },
+    { "id": "ap-p3", "status": "done", "directionId": "implantaciya", "serviceId": "i-04", "doctorId": "dr-04", "branchId": "center", "at": { "day": -74, "time": "09:00" }, "created": { "day": -90, "time": "21:05" }, "durationMin": 60, "urgent": false, "patient": { "name": "Анна Петрова", "phone": "+7 900 000-00-00" }, "source": { "page": "/uslugi/implantaciya/", "label": "Страница «Имплантация»" } }
+  ],
+  "plan": {
+    "id": "plan-1",
+    "title": "Имплантация зуба 3.6 «под ключ»",
+    "doctorId": "dr-04",
+    "createdDay": -88,
+    "stages": [
+      { "id": "st-1", "title": "Консультация и КТ", "items": [ { "title": "Консультация хирурга-имплантолога с КТ", "price": 0 } ], "sum": 0, "status": "done", "paid": true, "day": -88 },
+      { "id": "st-2", "title": "Установка импланта", "items": [ { "title": "Установка импланта, уровень «Стандарт»", "price": 45000 }, { "title": "Местная анестезия", "price": 900 } ], "sum": 45900, "status": "done", "paid": true, "day": -74 },
+      { "id": "st-3", "title": "Формирователь десны", "items": [ { "title": "Установка формирователя десны", "price": 4500 } ], "sum": 4500, "status": "in_progress", "paid": false, "day": -2 },
+      { "id": "st-4", "title": "Коронка на имплант", "items": [ { "title": "Абатмент индивидуальный", "price": 9500 }, { "title": "Коронка на имплант (цирконий, винтовая фиксация)", "price": 32000 } ], "sum": 41500, "status": "planned", "paid": false, "day": 12 }
+    ]
+  },
+  "documents": [
+    { "id": "doc-1", "kind": "contract", "title": "Договор на оказание платных медицинских услуг", "day": -88, "file": "/docs/sample-contract.pdf" },
+    { "id": "doc-2", "kind": "plan", "title": "План лечения с итоговой стоимостью", "day": -88, "file": "/docs/sample-plan.pdf" },
+    { "id": "doc-3", "kind": "act", "title": "Акт оказанных услуг — установка импланта", "day": -74, "file": "/docs/sample-act.pdf" },
+    { "id": "doc-4", "kind": "tax", "title": "Справка об оплате медицинских услуг для налогового органа за 2025 год", "day": -200, "file": "/docs/sample-tax.pdf" },
+    { "id": "doc-5", "kind": "consent", "title": "Информированное добровольное согласие на имплантацию", "day": -74, "file": "/docs/sample-consent.pdf" }
+  ],
+  "reminders": {
+    "channels": { "sms": true, "telegram": true, "max": false },
+    "before24h": true,
+    "before2h": true
+  }
+}
