@@ -1,3 +1,4 @@
+import { RevealTitle } from "@/components/ui/RevealTitle";
 import { getHomeContent } from "@/lib/api";
 import { ButtonLink } from "@/components/ui/Button";
 import { BeforeAfterSlider } from "./BeforeAfterSlider";
@@ -15,9 +16,7 @@ export async function BeforeAfter() {
   return (
     <section className={styles.section} aria-labelledby="before-after-title">
       <div className="container">
-        <h2 id="before-after-title" className={styles.title}>
-          {title}
-        </h2>
+        <RevealTitle id="before-after-title" text={title} className={styles.title} />
       </div>
       <BeforeAfterSlider cases={cases} labels={labels} />
       <div className={styles.cta}>

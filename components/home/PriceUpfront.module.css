@@ -1,10 +1,10 @@
 .section {
-  padding-block: var(--section-gap);
+  padding-top: var(--section-gap);
   overflow-x: clip;
 }
 
 .cta {
   display: flex;
   justify-content: center;
-  margin-top: var(--space-16);
+  margin-top: var(--space-12);
 }

@@ -619,22 +619,21 @@ export type HomeBeforeAfter = {
   cases: BeforeAfterCase[];
 };
 
-/** Карточка филиала в блоке 7: адрес, часы, что есть — из branches.json, отзыв — из reviews.json по id. */
+/** Карточка филиала в блоке 7 (правка 2D): название — из branches.json, подзаголовок и 2 фото. Адрес, часы, отзывы — на /filialy/. */
 export type HomeBranchCard = {
   branchId: BranchId;
-  reviewId: string;
+  /** Одна строка о том, чем филиал отличается, без обещаний результата. */
+  subtitle: string;
   photos: Picture[];
 };
 
 export type HomeBranches = {
   title: string;
+  /** Фото-таблетка в строке заголовка — после слова с номером `after`. */
+  titlePill: { after: number; image: Picture };
   /** Шаблон абзаца: {weekdays}, {weekend}, {kidsBranch}, {ctBranch} подставляются из branches.json. */
   intro: string;
-  ratingsLabel: string;
-  /** Формы слова для числа отзывов: 1, 2–4, 5+. */
-  reviewsWord: [string, string, string];
   routeLink: HomeLink;
-  features: { ct: string; kids: string };
   cards: HomeBranchCard[];
   /** 2 доп. фото 1:1 слева внизу — декоративные, alt пустой. */
   extras: Picture[];

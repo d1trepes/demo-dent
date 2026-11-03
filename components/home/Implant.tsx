@@ -1,3 +1,4 @@
+import { RevealTitle } from "@/components/ui/RevealTitle";
 import { getHomeContent } from "@/lib/api";
 import { ImplantScroll } from "./ImplantScroll";
 import styles from "./Implant.module.css";
@@ -15,9 +16,7 @@ export async function Implant() {
       <ImplantScroll
         content={implant}
         heading={
-          <h2 id="implant-title" className={styles.title}>
-            {implant.title}
-          </h2>
+          <RevealTitle id="implant-title" text={implant.title} className={styles.title} />
         }
       />
     </section>

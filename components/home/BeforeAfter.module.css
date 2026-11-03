@@ -21,4 +21,8 @@
   .title {
     font-size: 48px;
   }
+
+  .cta {
+    margin-top: var(--space-12);
+  }
 }

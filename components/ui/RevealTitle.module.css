@@ -1,0 +1,51 @@
+/* Перелив заголовков блоков главной (2D) — тот же приём, что у манифеста блока 3. Размер шрифта задаёт блок. */
+.title {
+  text-wrap: balance;
+}
+
+.pill {
+  display: inline-block;
+  width: 68px;
+  height: 32px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--color-placeholder);
+  vertical-align: -0.1em;
+}
+
+.pill img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+  .pill {
+    width: 104px;
+    height: 48px;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .title {
+      view-timeline: --reveal-title block;
+    }
+
+    .word {
+      animation: word-fill linear both;
+      animation-timeline: --reveal-title;
+      animation-range: cover calc(8% + var(--p) * 16%) cover calc(24% + var(--p) * 16%);
+    }
+  }
+}
+
+@keyframes word-fill {
+  from {
+    color: var(--color-border);
+  }
+
+  to {
+    color: var(--color-text);
+  }
+}

@@ -1,3 +1,4 @@
+import { RevealTitle } from "@/components/ui/RevealTitle";
 import { getBranches, getDoctors, getHomeContent } from "@/lib/api";
 import { formatYears } from "@/lib/format";
 import { ButtonLink } from "@/components/ui/Button";
@@ -35,9 +36,7 @@ export async function Doctors() {
   return (
     <section className={styles.section} aria-labelledby="doctors-title">
       <div className={`container ${styles.layout}`}>
-        <h2 id="doctors-title" className={styles.title}>
-          {content.title}
-        </h2>
+        <RevealTitle id="doctors-title" text={content.title} className={styles.title} />
         <ButtonLink href={content.allDoctors.href} variant="secondary" className={styles.all}>
           {content.allDoctors.label}
         </ButtonLink>

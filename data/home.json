@@ -388,25 +388,24 @@
   },
   "branchesBlock": {
     "title": "Два филиала в Екатеринбурге",
+    "titlePill": {
+      "after": 2,
+      "image": {
+        "src": "/images/branches/title-pill.webp",
+        "width": 416,
+        "height": 192,
+        "alt": ""
+      }
+    },
     "intro": "Оба филиала работают {weekdays} и {weekend} — без выходных. Детский кабинет есть в филиале «{kidsBranch}», компьютерный томограф — в филиале «{ctBranch}».",
-    "ratingsLabel": "Рейтинг на площадках",
-    "reviewsWord": [
-      "отзыв",
-      "отзыва",
-      "отзывов"
-    ],
     "routeLink": {
       "label": "Как добраться",
       "href": "/filialy/"
     },
-    "features": {
-      "ct": "Компьютерный томограф",
-      "kids": "Детский кабинет"
-    },
     "cards": [
       {
         "branchId": "center",
-        "reviewId": "r-2",
+        "subtitle": "Компьютерный томограф, хирургия и своя зуботехническая лаборатория",
         "photos": [
           {
             "src": "/images/branches/center-01.webp",
@@ -424,7 +423,7 @@
       },
       {
         "branchId": "akadem",
-        "reviewId": "r-5",
+        "subtitle": "Детский кабинет с игровой зоной и кабинет ортодонта",
         "photos": [
           {
             "src": "/images/branches/akadem-01.webp",

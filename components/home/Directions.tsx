@@ -1,3 +1,4 @@
+import { RevealTitle } from "@/components/ui/RevealTitle";
 import Link from "next/link";
 import { getHomeContent, getServices } from "@/lib/api";
 import { asset } from "@/lib/asset";
@@ -20,9 +21,7 @@ export async function Directions() {
   return (
     <section className={styles.section} aria-labelledby="directions-title">
       <div className={`container ${styles.layout}`}>
-        <h2 id="directions-title" className={styles.title}>
-          {content.title}
-        </h2>
+        <RevealTitle id="directions-title" text={content.title} className={styles.title} />
         <ButtonLink href={content.allPrices.href} variant="secondary" className={styles.all}>
           {content.allPrices.label}
         </ButtonLink>
