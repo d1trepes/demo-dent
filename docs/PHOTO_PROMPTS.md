@@ -213,6 +213,44 @@ A kind female pediatric dentist of Slavic appearance, 34 years old, curly light-
 A male oral surgeon of Slavic appearance, 34 years old, neatly trimmed beard, cobalt-blue scrubs, putting on sterile white gloves and smiling reassuringly toward a patient off-camera, covered sterile instrument tray in front of him. Framing: square 1:1, face in the upper third, no blood, no instruments in use. Natural documentary-style editorial photograph for a modern family dental clinic in Yekaterinburg, Russia. Shot on a full-frame camera, 50mm lens, f/2.8, soft diffused daylight from a large window. Cool light color palette: white, pale grey-blue (#F3F4F8) and soft grey, cobalt blue (#2D4BE6) only as a small accent in clothing or one detail. Realistic skin texture with visible pores, freckles or small imperfections, natural facial asymmetry, realistic hands with five fingers. Genuine, warm, unposed emotion, candid moment, not stock-like, not glossy, no plastic retouching, no exaggerated teeth-whitening smile. No text, no logos, no brand names, no watermark.
 ```
 
+## Главная, блок 3 «Цена до начала лечения» — манифест и ветка плана (для чата 2B)
+Две «таблетки» внутри текста манифеста и 4 листа ветки. Файлы: `public/images/manifest/`. Фото консультации с планшетом — промпт «Блок 3» ниже (используется как «таблетка» 1).
+
+### Таблетка 2 · договор с итоговой суммой → manifest-contract.webp
+Размер: горизонт 2:1, от 1600×800
+
+```
+Close-up of two hands at a light wooden desk: a female clinic administrator in a white blouse with a thin cobalt-blue lanyard slides a printed one-page treatment agreement toward a patient, the patient's hand holds a pen ready to sign, a cup of water and a small plant softly blurred nearby, paper text completely unreadable and blurred, no faces in frame. Framing: horizontal 2:1, the main subject exactly in the center, calm empty space left and right, so that the image still reads when cropped into a small pill shape 120×56 px inside a line of text. Natural documentary-style editorial photograph for a modern family dental clinic in Yekaterinburg, Russia. Shot on a full-frame camera, 50mm lens, f/2.8, soft diffused daylight from a large window. Cool light color palette: white, pale grey-blue (#F3F4F8) and soft grey, cobalt blue (#2D4BE6) only as a small accent in clothing or one detail. Realistic skin texture with visible pores, freckles or small imperfections, natural facial asymmetry, realistic hands with five fingers. Genuine, warm, unposed emotion, candid moment, not stock-like, not glossy, no plastic retouching, no exaggerated teeth-whitening smile. No text, no logos, no brand names, no watermark.
+```
+
+### Лист 01 · осмотр и снимок → plan-01-scan.webp
+Размер: квадрат 1:1, от 1600×1600
+
+```
+A female radiology technician of Slavic appearance, 40 years old, short dark hair, white coat over cobalt-blue scrubs, gently positioning a smiling middle-aged male patient in a modern white dental CT scanner, both calm, bright clean room with window light. Framing: square 1:1, the main subject in the central 60% of the frame with calm empty space around it, so that the image still reads when cropped into a narrow leaf-shaped lens with two sharp opposite corners. Natural documentary-style editorial photograph for a modern family dental clinic in Yekaterinburg, Russia. Shot on a full-frame camera, 50mm lens, f/2.8, soft diffused daylight from a large window. Cool light color palette: white, pale grey-blue (#F3F4F8) and soft grey, cobalt blue (#2D4BE6) only as a small accent in clothing or one detail. Realistic skin texture with visible pores, freckles or small imperfections, natural facial asymmetry, realistic hands with five fingers. Genuine, warm, unposed emotion, candid moment, not stock-like, not glossy, no plastic retouching, no exaggerated teeth-whitening smile. No text, no logos, no brand names, no watermark.
+```
+
+### Лист 02 · план и итоговая цена → plan-02-plan.webp
+Размер: квадрат 1:1, от 1600×1600
+
+```
+A male dentist of Slavic appearance, 50 years old, grey short beard, thin rimless glasses, white coat over cobalt-blue scrubs, sitting at a desk beside a female patient in her thirties and showing her a treatment plan on a large monitor, the screen content softly blurred and unreadable, the patient nodding with relief. Framing: square 1:1, the main subject in the central 60% of the frame with calm empty space around it, so that the image still reads when cropped into a narrow leaf-shaped lens with two sharp opposite corners. Natural documentary-style editorial photograph for a modern family dental clinic in Yekaterinburg, Russia. Shot on a full-frame camera, 50mm lens, f/2.8, soft diffused daylight from a large window. Cool light color palette: white, pale grey-blue (#F3F4F8) and soft grey, cobalt blue (#2D4BE6) only as a small accent in clothing or one detail. Realistic skin texture with visible pores, freckles or small imperfections, natural facial asymmetry, realistic hands with five fingers. Genuine, warm, unposed emotion, candid moment, not stock-like, not glossy, no plastic retouching, no exaggerated teeth-whitening smile. No text, no logos, no brand names, no watermark.
+```
+
+### Лист 03 · лечение → plan-03-treatment.webp
+Размер: квадрат 1:1, от 1600×1600
+
+```
+A dental assistant of Slavic appearance, 27 years old, blond hair in a neat braid, white gloves and cobalt-blue scrubs, handing a dental instrument to a dentist whose hands are visible at the edge of the frame, patient in the chair softly out of focus and their mouth not visible, calm focused atmosphere, bright treatment room. Framing: square 1:1, the main subject in the central 60% of the frame with calm empty space around it, so that the image still reads when cropped into a narrow leaf-shaped lens with two sharp opposite corners. Natural documentary-style editorial photograph for a modern family dental clinic in Yekaterinburg, Russia. Shot on a full-frame camera, 50mm lens, f/2.8, soft diffused daylight from a large window. Cool light color palette: white, pale grey-blue (#F3F4F8) and soft grey, cobalt blue (#2D4BE6) only as a small accent in clothing or one detail. Realistic skin texture with visible pores, freckles or small imperfections, natural facial asymmetry, realistic hands with five fingers. Genuine, warm, unposed emotion, candid moment, not stock-like, not glossy, no plastic retouching, no exaggerated teeth-whitening smile. No text, no logos, no brand names, no watermark.
+```
+
+### Лист 04 · контроль и напоминание → plan-04-control.webp
+Размер: квадрат 1:1, от 1600×1600
+
+```
+A woman of Slavic appearance, 45 years old, natural wavy grey-blond hair, light knit sweater, standing at a bright clinic reception desk and smiling at a text-message reminder on her phone, the phone screen blurred and unreadable, a small cobalt-blue detail on her scarf, window light. Framing: square 1:1, the main subject in the central 60% of the frame with calm empty space around it, so that the image still reads when cropped into a narrow leaf-shaped lens with two sharp opposite corners. Natural documentary-style editorial photograph for a modern family dental clinic in Yekaterinburg, Russia. Shot on a full-frame camera, 50mm lens, f/2.8, soft diffused daylight from a large window. Cool light color palette: white, pale grey-blue (#F3F4F8) and soft grey, cobalt blue (#2D4BE6) only as a small accent in clothing or one detail. Realistic skin texture with visible pores, freckles or small imperfections, natural facial asymmetry, realistic hands with five fingers. Genuine, warm, unposed emotion, candid moment, not stock-like, not glossy, no plastic retouching, no exaggerated teeth-whitening smile. No text, no logos, no brand names, no watermark.
+```
+
 ## Другие блоки главной
 
 ### Блок 3 «Цена до начала лечения» — консультация с планом
