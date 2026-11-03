@@ -34,7 +34,7 @@
 /* ---- Заголовок ---- */
 .title {
   position: absolute;
-  inset: calc(22 * var(--u)) 0 auto;
+  inset: calc(30 * var(--u)) 0 auto;
   z-index: 1;
   margin: 0;
   font-weight: 400;
@@ -48,17 +48,19 @@
   display: block;
 }
 
-.titleLead {
-  font-family: var(--font-accent);
-  font-style: italic;
-  font-weight: 500;
-  font-size: calc(44 * var(--u));
+/* «Лечим всей» и «СЕМЬЁЙ» — оба Prata, первая строка заметно мельче */
+.titleLead,
+.titleAccent {
+  font-family: var(--font-display);
 }
 
-/* Отступ сверху — чтобы хвосты курсива не касались точек Ё */
+.titleLead {
+  font-size: calc(30 * var(--u));
+}
+
+/* Отступ сверху — чтобы первая строка не касалась точек Ё */
 .titleAccent {
-  margin-top: calc(14 * var(--u));
-  font-family: var(--font-display);
+  margin-top: calc(20 * var(--u));
   font-size: calc(58 * var(--u));
   letter-spacing: 0.01em;
   text-transform: uppercase;
@@ -150,7 +152,6 @@
 .leafPhoto {
   overflow: hidden;
   background: var(--color-placeholder);
-  opacity: var(--fade, 1);
 }
 
 .leafPhoto img {
@@ -211,17 +212,6 @@
   background: var(--color-bg);
 }
 
-/* ---- Предупреждение: тихая прозрачная пилюля во всю ширину ---- */
-.hero .note {
-  max-width: 520px;
-  margin: var(--space-4) auto 0;
-  min-height: 56px;
-  padding: var(--space-3) var(--space-6);
-  font-size: var(--text-base);
-  font-weight: 400;
-  color: var(--color-text-muted);
-  background: transparent;
-}
 
 /* ---- Десктоп: макет 1360 × 772, три пары листьев ---- */
 @media (min-width: 1024px) {
@@ -257,15 +247,15 @@
   }
 
   .title {
-    top: calc(8 * var(--u));
+    top: calc(40 * var(--u));
   }
 
   .titleLead {
-    font-size: calc(108 * var(--u));
+    font-size: calc(72 * var(--u));
   }
 
   .titleAccent {
-    margin-top: calc(34 * var(--u));
+    margin-top: calc(38 * var(--u));
     font-size: calc(214 * var(--u));
   }
 
@@ -289,11 +279,10 @@
     display: block;
   }
 
-  /* Размеры 150 / 180 / 210, к плашке бледнее; появляются снизу вверх */
+  /* Размеры 150 / 180 / 210, фото непрозрачные; появляются снизу вверх */
   .top {
     --y: 336;
     --s: 150;
-    --fade: 0.55;
     --delay: 0.45s;
   }
 
@@ -308,7 +297,6 @@
   .middle {
     --y: 456;
     --s: 180;
-    --fade: 0.8;
     --delay: 0.3s;
   }
 
@@ -343,9 +331,6 @@
     min-width: 280px;
   }
 
-  .hero .note {
-    max-width: none;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

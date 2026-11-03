@@ -7,13 +7,14 @@ import { MobileMenu } from "./MobileMenu";
 import { NavLink } from "./NavLink";
 import styles from "./Header.module.css";
 
-/** Шапка как у Whitebloom: логотип слева, плашка-навбар по центру, «Войти» и «Записаться» справа. */
+/** Шапка: на десктопе — одна белая плашка шириной с синюю панель hero: логотип, меню по центру, «Войти» и «Записаться». */
 export async function Header() {
   const clinic = await getClinic();
 
   return (
     <header className={styles.header}>
-      <div className={`container ${styles.row}`}>
+      <div className="container">
+        <div className={styles.row}>
         <Link href="/" className={styles.logo} aria-label={`${clinic.name} — на главную`}>
           <Logo name={clinic.shortName} />
         </Link>
@@ -57,6 +58,7 @@ export async function Header() {
           <div className={styles.mobileOnly}>
             <MobileMenu nav={mainNav} phone={clinic.phone} phoneHref={clinic.phoneHref} hours={clinic.hours} />
           </div>
+        </div>
         </div>
       </div>
     </header>

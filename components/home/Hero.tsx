@@ -3,7 +3,6 @@ import { asset } from "@/lib/asset";
 import { cx } from "@/lib/cx";
 import type { HeroLeaf } from "@/lib/types";
 import { ButtonLink } from "@/components/ui/Button";
-import { Contraindications } from "@/components/ui/Contraindications";
 import styles from "./Hero.module.css";
 
 /**
@@ -49,8 +48,6 @@ export async function Hero() {
             {hero.doctorsLink.label}
           </ButtonLink>
         </div>
-
-        <Contraindications className={styles.note} />
       </div>
     </section>
   );

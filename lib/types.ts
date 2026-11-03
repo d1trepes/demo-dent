@@ -508,7 +508,7 @@ export type HeroLeaf = {
 };
 
 export type HomeHero = {
-  /** «Лечим всей» — Cormorant Italic, «семьёй» — Prata капсом (регистр задаёт CSS). */
+  /** «Лечим всей» — Prata мельче, «семьёй» — Prata капсом (регистр задаёт CSS). */
   title: { lead: string; accent: string };
   /** Мелкий белый текст по бокам синей плашки, по строкам. Только десктоп. */
   asideLeft: string[];

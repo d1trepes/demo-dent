@@ -32,16 +32,6 @@ h3 {
   letter-spacing: -0.01em;
 }
 
-/* Курсивная «рукописная» вставка в заголовках: <em> внутри h1–h3 */
-h1 em,
-h2 em,
-h3 em {
-  font-family: var(--font-accent);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: 0;
-}
-
 p {
   margin: 0;
 }

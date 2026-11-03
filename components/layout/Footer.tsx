@@ -84,7 +84,7 @@ export async function Footer() {
           </div>
 
           <div className={styles.legal}>
-            <Contraindications variant="inline" tone="onBlue" />
+            <Contraindications variant="inline" tone="onBlue" className={styles.note} />
             <p>
               {clinic.legalName} ({clinic.legalNameShort}), ИНН {clinic.inn}, ОГРН {clinic.ogrn}. {clinic.legalAddress}.
             </p>
