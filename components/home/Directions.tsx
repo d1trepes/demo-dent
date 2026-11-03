@@ -63,12 +63,7 @@ export async function Directions() {
             <span className={styles.urgentTitle}>{content.urgent.label}</span>
             <span className={styles.urgentNote}>{content.urgent.text}</span>
           </span>
-          <span className={styles.urgentAction}>
-            {content.urgent.action}
-            <svg viewBox="0 0 32 12" width="32" height="12" aria-hidden>
-              <path d="M0 6 H30 M25 1 L30 6 L25 11" />
-            </svg>
-          </span>
+          <span className={styles.urgentAction}>{content.urgent.action}</span>
         </Link>
       </div>
     </section>

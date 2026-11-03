@@ -40,12 +40,14 @@
   color: var(--color-primary);
 }
 
+/* ФИО — Golos, не Prata: антиква только у заголовков блоков (правка 2C-2) */
 .name {
   margin: var(--space-2) 0 0;
-  font-family: var(--font-display);
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 1.15;
+  font-family: var(--font-text);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
 .nameRest {
@@ -182,7 +184,7 @@
   }
 
   .name {
-    font-size: clamp(32px, 2.6vw, 40px);
+    font-size: clamp(28px, 2.2vw, 34px);
   }
 
   .thumbs {

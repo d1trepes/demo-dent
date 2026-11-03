@@ -8,22 +8,33 @@ import styles from "./ImplantScroll.module.css";
 /*
  * Видео импланта по скроллу (блок 4, DESIGN.md).
  * Отрезок видео: кадр 0 — максимальный разбор, последний — правильная сборка.
- * Прогресс секции p: 0–0,5 — видео задом наперёд (разбирается), 0,5–1 — вперёд (собирается),
- * то есть время = T·|1 − 2p|, первый и последний кадр одинаковые (собранный имплант).
+ * Прогресс секции p: первая часть — видео задом наперёд (разбирается), середина HOLD — стоит
+ * в разборе с подписями (правка 2C-2: подписи были видны мгновение), последняя — вперёд (собирается).
+ * Первый и последний кадр одинаковые (собранный имплант).
  * Подписи появляются только у самого разбора: --k = 0 пока детали сомкнуты, 1 — полный разбор.
  */
 
 /** Работает только на десктопе без reduced-motion; иначе — статичный кадр и список (CSS). */
 const SCENE_QUERY = "(min-width: 1024px) and (prefers-reduced-motion: no-preference)";
 /** Доля отрезка (от разбора), на которой подписи уже исчезли / ещё полностью видны. */
-const REVEAL_FROM = 0.12;
-const REVEAL_FULL = 0.03;
-/** Плавность догоняния скролла (0–1 за кадр). */
-const EASE = 0.22;
+const REVEAL_FROM = 0.15;
+const REVEAL_FULL = 0.04;
+/** Доля прохода, когда имплант стоит разобранным (по центру). */
+const HOLD = 0.34;
+/** Плавность догоняния скролла (0–1 за кадр): меньше — мягче. */
+const EASE = 0.1;
 /** Не трогать currentTime ради сдвига меньше полкадра (24 к/с). */
 const MIN_STEP = 1 / 48;
 
 const clamp = (v: number) => Math.min(1, Math.max(0, v));
+
+/** Прогресс прохода → доля отрезка видео: 1 — собран, 0 — максимальный разбор. */
+function shareAt(p: number): number {
+  const edge = (1 - HOLD) / 2;
+  if (p < edge) return 1 - p / edge;
+  if (p > 1 - edge) return (p - (1 - edge)) / edge;
+  return 0;
+}
 
 type Vars = CSSProperties & Record<`--${string}`, string | number>;
 
@@ -64,7 +75,7 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
       const rect = track.getBoundingClientRect();
       const distance = rect.height - window.innerHeight;
       const p = distance > 0 ? clamp(-rect.top / distance) : 0;
-      const share = Math.abs(1 - 2 * p); // 1 — собран, 0 — максимальный разбор
+      const share = shareAt(p);
 
       current = current < 0 ? share : current + (share - current) * EASE;
       if (Math.abs(share - current) < 0.001) current = share;

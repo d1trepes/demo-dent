@@ -116,21 +116,20 @@
 }
 
 /* ---- Плашка «Болит зуб? Приём сегодня»: светлый тон кобальта, заметнее строк прайса ---- */
+/* Плашка «Болит зуб?» — кобальтовая заливка, белый текст, справа белая пилюля без стрелки (правка 2C-2) */
 .urgent {
   grid-area: urgent;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  align-items: flex-start;
+  gap: var(--space-5);
   margin-top: var(--space-6);
   padding: var(--space-6);
-  border: 1px solid transparent;
   border-radius: var(--radius-lg);
-  background: var(--color-tint);
-  color: var(--color-text);
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
   text-decoration: none;
-  transition:
-    background-color 0.3s var(--ease),
-    border-color 0.3s var(--ease);
+  transition: background-color 0.3s var(--ease);
 }
 
 .urgentText {
@@ -143,46 +142,43 @@
   font-size: 20px;
   font-weight: 500;
   line-height: 1.3;
-  color: var(--color-primary);
 }
 
 .urgentNote {
   font-size: 15px;
   line-height: 1.45;
-  color: var(--color-text-muted);
+  color: rgb(255 255 255 / 0.88); /* контраст AA на кобальте */
 }
 
+/* Вид как у кнопки (56 px, пилюля), но это span внутри ссылки-плашки */
 .urgentAction {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-3);
+  justify-content: center;
+  min-height: var(--button-h);
+  padding: 0 var(--space-8);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-primary);
   font-size: 16px;
   font-weight: 500;
-  color: var(--color-primary);
   white-space: nowrap;
-}
-
-.urgentAction svg {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-  transition: transform 0.3s var(--ease);
+  transition: color 0.3s var(--ease);
 }
 
 .urgent:focus-visible {
-  outline-offset: 2px;
-  border-radius: var(--radius-lg);
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
 }
 
 .urgent:focus-visible,
 .urgent:hover {
-  border-color: var(--color-primary);
-  background: var(--color-surface);
+  background: var(--color-primary-deep);
 }
 
-.urgent:focus-visible .urgentAction svg,
-.urgent:hover .urgentAction svg {
-  transform: translateX(6px);
+.urgent:focus-visible .urgentAction,
+.urgent:hover .urgentAction {
+  color: var(--color-primary-deep);
 }
 
 /* ---- Десктоп: одна строка 80 px, таблетка между описанием и ценой ---- */
