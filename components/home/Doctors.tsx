@@ -1,0 +1,54 @@
+import { getBranches, getDoctors, getHomeContent } from "@/lib/api";
+import { formatYears } from "@/lib/format";
+import { ButtonLink } from "@/components/ui/Button";
+import { DoctorsShowcase, type DoctorCard } from "./DoctorsShowcase";
+import styles from "./Doctors.module.css";
+
+/**
+ * Блок 5 главной — «Врачи»: большая карточка врача + ряд листьев-миниатюр, клик меняет местами.
+ * Порядок — data/home.json → doctors.slugs, сами врачи — doctors.json через lib/api.ts.
+ */
+export async function Doctors() {
+  const [{ doctors: content }, doctors, branches] = await Promise.all([getHomeContent(), getDoctors(), getBranches()]);
+  const year = new Date().getFullYear();
+
+  const cards: DoctorCard[] = content.slugs.flatMap((slug) => {
+    const doctor = doctors.find((d) => d.slug === slug);
+    if (!doctor) return [];
+    const facts = [
+      `Стаж ${formatYears(year - doctor.experienceSince)}`,
+      doctor.category,
+      doctor.branches.map((id) => branches.find((b) => b.id === id)?.name).filter(Boolean).join(" и "),
+    ].filter((fact): fact is string => Boolean(fact));
+    return [
+      {
+        slug: doctor.slug,
+        fullName: doctor.fullName,
+        position: doctor.position,
+        facts,
+        about: doctor.about,
+        photo: doctor.photo,
+      },
+    ];
+  });
+
+  return (
+    <section className={styles.section} aria-labelledby="doctors-title">
+      <div className={`container ${styles.layout}`}>
+        <h2 id="doctors-title" className={styles.title}>
+          {content.title}
+        </h2>
+        <ButtonLink href={content.allDoctors.href} variant="secondary" className={styles.all}>
+          {content.allDoctors.label}
+        </ButtonLink>
+        <div className={styles.showcase}>
+          <DoctorsShowcase
+            doctors={cards}
+            photo={content.photo}
+            labels={{ book: content.bookLabel, profile: content.profileLabel, thumbs: content.thumbsLabel }}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}

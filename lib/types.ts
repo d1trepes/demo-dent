@@ -568,16 +568,10 @@ export type ImplantPart = {
   visibleWidth: number;
 };
 
-export type HomeImplantCalculator = {
+/** Строка с ценой под имплантом (2C-1, вместо калькулятора): цена — priceFrom направления из services.json. */
+export type HomeImplantOffer = {
   title: string;
-  teethLabel: string;
-  /** Тизер считает до этого числа зубов, полный калькулятор — до tariffs.maxTeeth. */
-  maxTeeth: number;
-  systemLabel: string;
-  crownId: string;
-  months: number;
-  totalLabel: string;
-  monthlyLabel: string;
+  directionId: string;
   note: string;
   cta: HomeLink;
 };
@@ -587,7 +581,18 @@ export type HomeImplant = {
   paragraphs: string[];
   assembled: Picture;
   parts: ImplantPart[];
-  calculator: HomeImplantCalculator;
+  offer: HomeImplantOffer;
+};
+
+/** Блок 5 «Врачи» (2C-1): порядок врачей на главной, первый — в большой карточке. Фото — Doctor.photo, все 3:4. */
+export type HomeDoctors = {
+  title: string;
+  allDoctors: HomeLink;
+  slugs: string[];
+  photo: { width: number; height: number };
+  bookLabel: string;
+  profileLabel: string;
+  thumbsLabel: string;
 };
 
 export type HomeContent = {
@@ -596,4 +601,5 @@ export type HomeContent = {
   manifesto: HomeManifesto;
   plan: HomePlan;
   implant: HomeImplant;
+  doctors: HomeDoctors;
 };

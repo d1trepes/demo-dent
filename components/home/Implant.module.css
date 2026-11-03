@@ -12,8 +12,56 @@
   line-height: 1.1;
 }
 
-.calculator {
-  margin-top: var(--space-16);
+.offer {
+  display: grid;
+  grid-template-areas:
+    "price"
+    "note"
+    "cta"
+    "warning";
+  gap: var(--space-6);
+  max-width: 1120px;
+  margin: var(--space-16) auto 0;
+  padding: var(--space-6) var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.offerPrice {
+  grid-area: price;
+}
+
+.offerTitle {
+  margin: 0;
+  font-size: 17px;
+  color: var(--color-text-muted);
+}
+
+.offerValue {
+  margin: var(--space-1) 0 0;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.offerNote {
+  grid-area: note;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.offerCta {
+  grid-area: cta;
+  justify-self: start;
+}
+
+.offerWarning {
+  grid-area: warning;
 }
 
 @media (min-width: 1024px) {
@@ -22,7 +70,18 @@
     text-align: center;
   }
 
-  .calculator {
+  .offer {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "price note cta"
+      "warning warning warning";
+    align-items: center;
+    column-gap: var(--space-10);
     margin-top: var(--space-12);
+    padding: var(--space-8) var(--space-10);
+  }
+
+  .offerNote {
+    max-width: 420px;
   }
 }

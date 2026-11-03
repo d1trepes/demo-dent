@@ -293,20 +293,36 @@
         "visibleWidth": 0.475
       }
     ],
-    "calculator": {
-      "title": "Сколько стоит",
-      "teethLabel": "Сколько зубов",
-      "maxTeeth": 4,
-      "systemLabel": "Система импланта",
-      "crownId": "zirconia",
-      "months": 12,
-      "totalLabel": "Под ключ",
-      "monthlyLabel": "В рассрочку на 12 месяцев",
-      "note": "Коронка из диоксида циркония. Костная пластика, если понадобится, — по итогам КТ.",
+    "offer": {
+      "title": "Имплантация под ключ",
+      "directionId": "implantaciya",
+      "note": "Итоговую сумму хирург называет после КТ, до начала лечения. В цену входят операция, формирователь, абатмент и коронка.",
       "cta": {
         "label": "Записаться на консультацию с КТ",
         "href": "/zapis/?service=implantaciya"
       }
     }
+  },
+  "doctors": {
+    "title": "Врачи",
+    "allDoctors": {
+      "label": "Все врачи",
+      "href": "/vrachi/"
+    },
+    "slugs": [
+      "lebedeva-olga",
+      "orlov-konstantin",
+      "kovaleva-mariya",
+      "belova-anastasiya",
+      "garanin-denis",
+      "demidov-ilya"
+    ],
+    "photo": {
+      "width": 720,
+      "height": 960
+    },
+    "bookLabel": "Записаться к врачу",
+    "profileLabel": "О враче",
+    "thumbsLabel": "Другие врачи клиники"
   }
 }

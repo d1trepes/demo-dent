@@ -1,31 +1,19 @@
-import { calcImplant, calcInstallment, getHomeContent, getImplantTariffs } from "@/lib/api";
-import { ImplantCalculator, type ImplantQuote } from "./ImplantCalculator";
+import { getHomeContent, getServices } from "@/lib/api";
+import { formatPrice } from "@/lib/format";
+import { ButtonLink } from "@/components/ui/Button";
+import { Contraindications } from "@/components/ui/Contraindications";
 import { ImplantExploded } from "./ImplantExploded";
 import styles from "./Implant.module.css";
 
 /**
  * Блок 4 главной — «Имплантация под ключ»: имплант в разборе (сборка/разборка по скроллу)
- * и калькулятор-тизер. Все цифры — из services.json через lib/api.ts, считаются при сборке.
+ * и строка с ценой «от» + запись на консультацию с КТ. Калькулятор убран в 2C-1:
+ * пациент не знает свой случай, цену называем после КТ (манифест блока 3).
  */
 export async function Implant() {
-  const [{ implant }, { implant: tariffs }] = await Promise.all([getHomeContent(), getImplantTariffs()]);
-  const { calculator } = implant;
-  const maxTeeth = Math.min(calculator.maxTeeth, tariffs.maxTeeth);
-
-  const quotes: ImplantQuote[] = tariffs.systems.flatMap((system) =>
-    Array.from({ length: maxTeeth }, (_, i) => {
-      const teeth = i + 1;
-      const result = calcImplant({ teeth, systemId: system.id, crownId: calculator.crownId, includeBonePlasty: false });
-      return {
-        systemId: system.id,
-        teeth,
-        min: result.min,
-        max: result.max,
-        monthly: calcInstallment(result.min, calculator.months).monthly,
-      };
-    }),
-  );
-  const systems = tariffs.systems.map(({ id, title, origin }) => ({ id, title, origin }));
+  const [{ implant }, { directions }] = await Promise.all([getHomeContent(), getServices()]);
+  const { offer } = implant;
+  const priceFrom = directions.find((d) => d.id === offer.directionId)?.priceFrom;
 
   return (
     <section className={styles.section} aria-labelledby="implant-title">
@@ -38,8 +26,16 @@ export async function Implant() {
             </h2>
           }
         />
-        <div className={styles.calculator}>
-          <ImplantCalculator content={{ ...calculator, maxTeeth }} systems={systems} quotes={quotes} />
+        <div className={styles.offer}>
+          <div className={styles.offerPrice}>
+            <p className={styles.offerTitle}>{offer.title}</p>
+            {priceFrom !== undefined && <p className={styles.offerValue}>{formatPrice(priceFrom, true)}</p>}
+          </div>
+          <p className={styles.offerNote}>{offer.note}</p>
+          <ButtonLink href={offer.cta.href} className={styles.offerCta}>
+            {offer.cta.label}
+          </ButtonLink>
+          <Contraindications variant="inline" className={styles.offerWarning} />
         </div>
       </div>
     </section>

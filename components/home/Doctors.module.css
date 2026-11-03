@@ -1,0 +1,53 @@
+/* Блок 5 «Врачи». Шапка как у блока 2: заголовок слева, «Все врачи» справа (на мобильном — под карточкой). */
+.section {
+  padding-top: var(--section-gap);
+}
+
+.layout {
+  display: grid;
+  grid-template-areas:
+    "title"
+    "showcase"
+    "all";
+  align-items: end;
+}
+
+.title {
+  grid-area: title;
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.all {
+  grid-area: all;
+  justify-self: start;
+  margin-top: var(--space-8);
+}
+
+.showcase {
+  grid-area: showcase;
+  min-width: 0;
+  margin-top: var(--space-10);
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "title all"
+      "showcase showcase";
+    column-gap: var(--space-8);
+  }
+
+  .title {
+    font-size: 48px;
+  }
+
+  .all {
+    margin-top: 0;
+  }
+
+  .showcase {
+    margin-top: var(--space-12);
+  }
+}
