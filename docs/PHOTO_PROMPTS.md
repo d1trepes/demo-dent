@@ -251,6 +251,38 @@ A dental assistant of Slavic appearance, 27 years old, blond hair in a neat brai
 A woman of Slavic appearance, 45 years old, natural wavy grey-blond hair, light knit sweater, standing at a bright clinic reception desk and smiling at a text-message reminder on her phone, the phone screen blurred and unreadable, a small cobalt-blue detail on her scarf, window light. Framing: square 1:1, the main subject in the central 60% of the frame with calm empty space around it, so that the image still reads when cropped into a narrow leaf-shaped lens with two sharp opposite corners. Natural documentary-style editorial photograph for a modern family dental clinic in Yekaterinburg, Russia. Shot on a full-frame camera, 50mm lens, f/2.8, soft diffused daylight from a large window. Cool light color palette: white, pale grey-blue (#F3F4F8) and soft grey, cobalt blue (#2D4BE6) only as a small accent in clothing or one detail. Realistic skin texture with visible pores, freckles or small imperfections, natural facial asymmetry, realistic hands with five fingers. Genuine, warm, unposed emotion, candid moment, not stock-like, not glossy, no plastic retouching, no exaggerated teeth-whitening smile. No text, no logos, no brand names, no watermark.
 ```
 
+## Главная, блок 4 «Имплантация» — имплант в разборе (для чата 2C)
+
+Три детали генерируем **по отдельности, одним и тем же промптом камеры**: одинаковый ракурс, свет и масштаб, чтобы в коде они сложились в один зуб. Фон белый — вырезаем фон сами (rembg) и сохраняем `.webp` с прозрачностью в `public/images/implant/`. Если детали получились в разном масштабе — не страшно, выровняем в чате 2C. Сгенерировать по 2–3 варианта каждой детали.
+
+### Коронка → implant-crown.webp
+Размер: квадрат 1:1, 2048×2048
+
+```
+Single dental crown for a lower first molar, isolated, made of high-translucency zirconia ceramic: soft milky white enamel with natural translucency at the cusps, smooth glossy surface, realistic anatomy with four rounded cusps. The crown floats with its underside slightly visible: a round polished titanium inner sleeve at the bottom opening where it seats on the abutment. Camera: straight front view at the object's mid-height, tilted down 10°, long lens 100mm, no perspective distortion. The vertical axis of the object is perfectly vertical and exactly in the horizontal center of the frame. The crown occupies 34% of the frame height and sits in the upper-middle part of the frame (its center at 40% of the frame height). Pure seamless white background #FFFFFF, no floor, no shadow, no reflection, no other objects — the object will be cut out and placed on a light page. Soft diffused studio light from the top left, gentle highlights, cool neutral color grading: white, pale grey-blue, polished silver, cobalt blue (#2D4BE6) only as a thin anodized ring. Premium medical product render, photorealistic, ultra sharp focus across the whole object, high detail, clean edges for background removal. Square 1:1, 2048×2048. No text, no logos, no brand names, no labels, no watermark, no hands, no people, no gums, no jaw.
+```
+
+### Абатмент → implant-abutment.webp
+Размер: квадрат 1:1, 2048×2048
+
+```
+Single dental implant abutment, isolated: polished medical titanium, short conical upper post with a flat top and a small round screw opening, a wider platform below with one thin glossy cobalt blue (#2D4BE6) anodized ring around it, a short narrow connection pin at the bottom. Precise machined surfaces, crisp metal reflections. Camera: straight front view at the object's mid-height, tilted down 10°, long lens 100mm, no perspective distortion. The vertical axis of the object is perfectly vertical and exactly in the horizontal center of the frame. The abutment occupies 22% of the frame height, its center at 50% of the frame height. Pure seamless white background #FFFFFF, no floor, no shadow, no reflection, no other objects — the object will be cut out and placed on a light page. Soft diffused studio light from the top left, gentle highlights, cool neutral color grading: white, pale grey-blue, polished silver, cobalt blue (#2D4BE6) only as a thin anodized ring. Premium medical product render, photorealistic, ultra sharp focus across the whole object, high detail, clean edges for background removal. Square 1:1, 2048×2048. No text, no logos, no brand names, no labels, no watermark, no hands, no people, no gums, no jaw.
+```
+
+### Имплант → implant-screw.webp
+Размер: квадрат 1:1, 2048×2048
+
+```
+Single dental implant fixture, isolated: medical titanium screw with a slightly matte sandblasted surface, deep even threads along the body tapering to a rounded apex, a smooth polished collar at the top with a thin glossy cobalt blue (#2D4BE6) anodized ring and a visible round connection opening on top. Camera: straight front view at the object's mid-height, tilted down 10°, long lens 100mm, no perspective distortion. The vertical axis of the object is perfectly vertical and exactly in the horizontal center of the frame. The implant occupies 46% of the frame height, its center at 55% of the frame height. Pure seamless white background #FFFFFF, no floor, no shadow, no reflection, no other objects — the object will be cut out and placed on a light page. Soft diffused studio light from the top left, gentle highlights, cool neutral color grading: white, pale grey-blue, polished silver, cobalt blue (#2D4BE6) only as a thin anodized ring. Premium medical product render, photorealistic, ultra sharp focus across the whole object, high detail, clean edges for background removal. Square 1:1, 2048×2048. No text, no logos, no brand names, no labels, no watermark, no hands, no people, no gums, no jaw.
+```
+
+### Имплант в сборе → implant-assembled.webp (постер для мобильного и reduced-motion)
+Размер: квадрат 1:1, 2048×2048
+
+```
+Fully assembled dental implant as one object, isolated: a high-translucency zirconia crown for a lower first molar (milky white, natural translucency, four rounded cusps) seated on a polished titanium abutment with a thin cobalt blue (#2D4BE6) anodized ring, on top of a titanium screw implant with deep even threads, a polished collar with a thin cobalt blue ring and a rounded apex. All parts on one perfectly vertical axis, no gaps between parts. Camera: straight front view at the object's mid-height, tilted down 10°, long lens 100mm, no perspective distortion. The vertical axis of the object is perfectly vertical and exactly in the horizontal center of the frame. The assembled implant occupies 80% of the frame height and is centered. Pure seamless white background #FFFFFF, no floor, no shadow, no reflection, no other objects — the object will be cut out and placed on a light page. Soft diffused studio light from the top left, gentle highlights, cool neutral color grading: white, pale grey-blue, polished silver, cobalt blue (#2D4BE6) only as a thin anodized ring. Premium medical product render, photorealistic, ultra sharp focus across the whole object, high detail, clean edges for background removal. Square 1:1, 2048×2048. No text, no logos, no brand names, no labels, no watermark, no hands, no people, no gums, no jaw.
+```
+
 ## Другие блоки главной
 
 ### Блок 3 «Цена до начала лечения» — консультация с планом

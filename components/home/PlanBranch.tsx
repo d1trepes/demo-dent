@@ -71,10 +71,6 @@ export function PlanBranch({ content }: { content: HomePlan }) {
 
   return (
     <div className={styles.branch}>
-      <span className={styles.backdrop} aria-hidden>
-        {content.backdrop}
-      </span>
-
       <svg className={styles.lineDesktop} viewBox={`0 0 ${STAGE_W} ${STAGE_H}`} width={STAGE_W} height={STAGE_H} aria-hidden>
         <path className={styles.line} d={linePath(steps.length)} pathLength={1} />
       </svg>

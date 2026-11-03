@@ -7,20 +7,6 @@
   margin-top: var(--space-24);
 }
 
-/* Слово-фон «ПЛАН» */
-.backdrop {
-  position: absolute;
-  top: -24px;
-  right: 0;
-  z-index: 0;
-  font-family: var(--font-display);
-  font-size: 96px;
-  line-height: 1;
-  text-transform: uppercase;
-  color: var(--color-tint);
-  pointer-events: none;
-  user-select: none;
-}
 
 .lineDesktop,
 .lineMobile,
@@ -135,13 +121,6 @@
     margin: 120px auto 0;
   }
 
-  .backdrop {
-    top: 24px;
-    right: auto;
-    left: 50%;
-    translate: -50% 0;
-    font-size: 260px;
-  }
 
   .lineMobile,
   .stemMobile {

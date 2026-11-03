@@ -553,8 +553,6 @@ export type PlanBranchStep = {
 };
 
 export type HomePlan = {
-  /** Слово-фон за веткой (aria-hidden). */
-  backdrop: string;
   steps: PlanBranchStep[];
   cta: HomeLink;
 };
