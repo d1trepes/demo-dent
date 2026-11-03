@@ -1,0 +1,28 @@
+/* Блок 4 «Имплантация под ключ». overflow-x: clip — подписи и повороты деталей не дают горизонтального скролла. */
+.section {
+  padding-top: var(--section-gap);
+  overflow-x: clip;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.calculator {
+  margin-top: var(--space-16);
+}
+
+@media (min-width: 1024px) {
+  .title {
+    font-size: 48px;
+    text-align: center;
+  }
+
+  .calculator {
+    margin-top: var(--space-12);
+  }
+}

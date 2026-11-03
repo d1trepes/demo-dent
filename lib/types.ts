@@ -557,9 +557,43 @@ export type HomePlan = {
   cta: HomeLink;
 };
 
+/** Деталь импланта в разборе (блок 4). Все картинки — на холсте одной ширины, деталь по центру. */
+export type ImplantPart = {
+  id: "crown" | "abutment" | "screw";
+  title: string;
+  /** 1–2 строки, без обещаний результата. */
+  text: string;
+  image: Picture;
+  /** Ширина самой детали относительно холста (0–1): от её края идёт выноска. */
+  visibleWidth: number;
+};
+
+export type HomeImplantCalculator = {
+  title: string;
+  teethLabel: string;
+  /** Тизер считает до этого числа зубов, полный калькулятор — до tariffs.maxTeeth. */
+  maxTeeth: number;
+  systemLabel: string;
+  crownId: string;
+  months: number;
+  totalLabel: string;
+  monthlyLabel: string;
+  note: string;
+  cta: HomeLink;
+};
+
+export type HomeImplant = {
+  title: string;
+  paragraphs: string[];
+  assembled: Picture;
+  parts: ImplantPart[];
+  calculator: HomeImplantCalculator;
+};
+
 export type HomeContent = {
   hero: HomeHero;
   directions: HomeDirections;
   manifesto: HomeManifesto;
   plan: HomePlan;
+  implant: HomeImplant;
 };

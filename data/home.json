@@ -242,5 +242,71 @@
       "label": "Записаться на консультацию",
       "href": "/zapis/?service=diagnostika"
     }
+  },
+  "implant": {
+    "title": "Имплантация под ключ",
+    "paragraphs": [
+      "«Под ключ» значит, что в цену входят операция, формирователь десны, абатмент и коронка. Итоговую сумму называем до начала лечения.",
+      "Первый шаг — бесплатная консультация хирурга с КТ. По снимку врач оценивает кость и составляет план с этапами и сроками."
+    ],
+    "assembled": {
+      "src": "/images/implant/implant-assembled.webp",
+      "width": 400,
+      "height": 891,
+      "alt": "Имплант в сборе: коронка, абатмент и титановый винт"
+    },
+    "parts": [
+      {
+        "id": "crown",
+        "title": "Коронка",
+        "text": "Цирконий, подбираем оттенок под соседние зубы",
+        "image": {
+          "src": "/images/implant/implant-crown.webp",
+          "width": 400,
+          "height": 374,
+          "alt": "Коронка из диоксида циркония"
+        },
+        "visibleWidth": 1
+      },
+      {
+        "id": "abutment",
+        "title": "Абатмент",
+        "text": "Соединяет коронку и имплант",
+        "image": {
+          "src": "/images/implant/implant-abutment.webp",
+          "width": 400,
+          "height": 402,
+          "alt": "Титановый абатмент"
+        },
+        "visibleWidth": 0.675
+      },
+      {
+        "id": "screw",
+        "title": "Имплант",
+        "text": "Титановый винт, заменяет корень зуба",
+        "image": {
+          "src": "/images/implant/implant-screw.webp",
+          "width": 400,
+          "height": 536,
+          "alt": "Титановый имплант с резьбой"
+        },
+        "visibleWidth": 0.475
+      }
+    ],
+    "calculator": {
+      "title": "Сколько стоит",
+      "teethLabel": "Сколько зубов",
+      "maxTeeth": 4,
+      "systemLabel": "Система импланта",
+      "crownId": "zirconia",
+      "months": 12,
+      "totalLabel": "Под ключ",
+      "monthlyLabel": "В рассрочку на 12 месяцев",
+      "note": "Коронка из диоксида циркония. Костная пластика, если понадобится, — по итогам КТ.",
+      "cta": {
+        "label": "Записаться на консультацию с КТ",
+        "href": "/zapis/?service=implantaciya"
+      }
+    }
   }
 }
