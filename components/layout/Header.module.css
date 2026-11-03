@@ -1,21 +1,17 @@
-/* Шапка — плавающая белая плашка со скруглением поверх фона страницы. */
+/* Шапка: без тени и без телефона. Плашка-навбар — отдельный элемент по центру. */
 .header {
   position: sticky;
   top: 0;
   z-index: 20;
-  padding-top: var(--space-2);
-  background: linear-gradient(var(--color-bg) 60%, rgb(245 246 250 / 0));
+  background: var(--color-bg);
 }
 
 .row {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: var(--space-4);
-  min-height: 60px;
-  padding: 0 var(--space-2) 0 var(--space-4);
-  border-radius: var(--radius-pill);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-soft);
+  min-height: var(--header-h);
 }
 
 .logo {
@@ -39,7 +35,13 @@
 
 .navList {
   display: flex;
+  align-items: center;
   gap: var(--space-1);
+  min-height: var(--button-h);
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
 }
 
 .navLink {
@@ -47,21 +49,21 @@
   align-items: center;
   min-height: var(--tap);
   padding: 0 var(--space-4);
-  border: 1px solid transparent;
   border-radius: var(--radius-pill);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   font-weight: 500;
   color: var(--color-text);
   text-decoration: none;
+  white-space: nowrap;
   cursor: pointer;
   transition:
-    border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
     color var(--dur) var(--ease);
 }
 
 .navLink:hover,
 .dropdown[open] > .navLink {
-  border-color: var(--color-line);
+  background: var(--color-bg);
   color: var(--color-primary);
 }
 
@@ -79,13 +81,14 @@
 
 .dropdownList {
   position: absolute;
-  top: calc(100% + var(--space-2));
-  left: 0;
+  top: calc(100% + var(--space-3));
+  left: 50%;
+  translate: -50% 0;
   min-width: 240px;
   padding: var(--space-2);
   background: var(--color-surface);
+  border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-soft);
 }
 
 .dropdownList .navLink {
@@ -96,48 +99,38 @@
 .actions {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
-  margin-left: auto;
+  gap: var(--space-3);
 }
 
-.phone,
-.login {
+.desktopOnly {
   display: none;
-  min-height: var(--tap);
-  align-items: center;
-  padding: 0 var(--space-2);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.login {
-  color: var(--color-primary);
-}
-
-.cta {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .cta {
-    display: inline-flex;
-  }
 }
 
 @media (min-width: 1024px) {
+  .row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
   .nav {
     display: block;
   }
-  .phone,
-  .login {
+  .actions {
+    justify-self: end;
+  }
+  .desktopOnly {
     display: inline-flex;
+  }
+  /* Меню-бургер на десктопе не нужно: всё в плашке */
+  .mobileOnly {
+    display: none;
   }
 }
 
 @media (min-width: 1024px) and (max-width: 1199px) {
-  .phone {
+  .navLink {
+    padding: 0 var(--space-3);
+  }
+  .actions .desktopOnly:first-child {
     display: none;
   }
 }

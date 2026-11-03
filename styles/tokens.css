@@ -4,25 +4,29 @@
  */
 :root {
   /* Цвета: кобальт + белый */
-  --color-primary: #3048d0; /* кобальт: кнопки, акценты, крупные заголовки, подвал */
-  --color-primary-deep: #16226b; /* hover/active, текст на светлых плашках */
+  --color-primary: #2d4be6; /* кобальт: основная кнопка, арка hero, акценты */
+  --color-primary-deep: #1a2fa8; /* hover/active основной кнопки */
   --color-primary-contrast: #ffffff;
-  --color-tint: #e8ecfb; /* плашки, выбранные слоты */
-  --color-bg: #f5f6fa; /* фон страницы */
+  --color-tint: #e6eafc; /* плашки, выбранные слоты */
+  --color-bg: #f3f4f8; /* фон страницы */
   --color-surface: #ffffff;
-  --color-text: #0f1530;
-  --color-text-muted: #5b6280;
-  --color-border: #d9def0;
-  --color-line: #d9def0; /* тонкие линии, пунктир */
+  --color-text: #12162e;
+  --color-text-muted: #5a6079;
+  --color-border: #dcdfea;
+  --color-line: #dcdfea; /* обводки 1 px, разделители */
+  --color-placeholder: #d5d8e2; /* серые заглушки фото */
   --color-danger: #c2342b; /* только ошибки и статусы */
-  --color-focus: #3048d0;
+  --color-focus: #2d4be6;
   /* Совместимость с каркасом: «акцент» = основной синий */
   --color-accent: var(--color-primary);
   --color-accent-contrast: var(--color-primary-contrast);
 
-  /* Шрифты: self-hosted (@fontsource), кириллица */
-  --font-heading: "Cormorant Garamond", "Times New Roman", serif;
-  --font-text: "Manrope Variable", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  /* Шрифты (docs/DESIGN.md): Prata — 2–3 акцентных слова, Golos Text — всё остальное.
+     Cormorant Italic — только одно слово в заголовке hero. */
+  --font-display: "Prata", "Times New Roman", serif;
+  --font-heading: var(--font-display);
+  --font-accent: "Cormorant Garamond", "Times New Roman", serif;
+  --font-text: "Golos Text", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
   /* Текст */
   --text-xs: 0.75rem;
@@ -34,8 +38,6 @@
   /* Заголовки антиквой — крупнее, тянутся от ширины экрана */
   --display-1: clamp(2.5rem, 5.2vw + 1rem, 5rem);
   --display-2: clamp(2rem, 3.6vw + 1rem, 3.75rem);
-  /* Огромное слово-марка на первом экране: почти на всю ширину */
-  --display-mark: clamp(5.5rem, 25.5vw, 22rem);
 
   /* Отступы */
   --space-1: 0.25rem;
@@ -62,15 +64,23 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --dur: 0.35s;
 
-  --container: 1280px;
-  --gutter: 16px;
+  --container: 1680px;
+  --gutter: 20px;
+  --button-h: 56px;
   --tap: 44px;
-  --header-h: 68px;
-  --mobile-bar-h: 68px;
+  --header-h: 72px;
+  --mobile-bar-h: 73px;
 }
 
 @media (min-width: 768px) {
   :root {
-    --gutter: 32px;
+    --gutter: 40px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --gutter: 64px;
+    --header-h: 96px;
   }
 }

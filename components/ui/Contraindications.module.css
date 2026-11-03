@@ -1,26 +1,21 @@
-/* Заметная плашка, не мелкий серый шрифт: текст ≥ 14 px, полужирный, капслок, контраст AA. */
+/* Спокойная, но заметная строка: ≥ 16 px, контраст AA, без капса. Высоту не уменьшать — от неё зависят 5% площади. */
 .note {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
   margin: 0;
-  font-size: var(--text-sm);
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--color-primary-deep);
-  background: var(--color-tint);
-}
-
-.icon {
-  flex: none;
+  font-size: var(--text-base);
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
 }
 
 .banner {
   justify-content: center;
-  min-height: 56px;
-  padding: var(--space-3) var(--space-5);
+  min-height: 72px;
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-pill);
   text-align: center;
 }
 
@@ -32,10 +27,11 @@
 .onBlue {
   color: var(--color-primary-contrast);
   background: var(--color-primary-deep);
+  border-color: transparent;
 }
 
 @media (min-width: 768px) {
   .banner {
-    font-size: var(--text-base);
+    font-size: 1.125rem;
   }
 }

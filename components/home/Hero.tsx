@@ -1,32 +1,34 @@
-import { Star, Zap } from "lucide-react";
-import { getBranches, getHomeContent, getReviews } from "@/lib/api";
+import { getHomeContent } from "@/lib/api";
 import { asset } from "@/lib/asset";
-import { bookingHref } from "@/lib/nav";
 import { ButtonLink } from "@/components/ui/Button";
 import { Contraindications } from "@/components/ui/Contraindications";
-import { NearestSlots } from "./NearestSlots";
+import { HeroMarquee } from "./HeroMarquee";
 import styles from "./Hero.module.css";
 
-/** Блок 1 главной: огромное слово-марка за фото врача, синяя плашка с записью и ближайшим временем. */
+/**
+ * Блок 1 главной, вариант C «Арка по центру» (docs/DESIGN.md).
+ * Заголовок разорван аркой; врач — вырезанная фигура, голова выходит за арку, рукава заходят на буквы.
+ * Видимые слова заголовка — декоративные (aria-hidden), для скринридера — цельный h1.
+ */
 export async function Hero() {
-  const [{ hero }, branches, reviews] = await Promise.all([getHomeContent(), getBranches(), getReviews()]);
-  const top = [...reviews.ratings].sort((a, b) => b.count - a.count)[0];
+  const { hero } = await getHomeContent();
+  const { title } = hero;
 
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
-      <div className="container">
-        <ul className={styles.eyebrow}>
-          {hero.eyebrow.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+      <h1 id="hero-title" className="visually-hidden">
+        {`${title.left} ${title.rightLead} ${title.rightAccent}`}
+      </h1>
 
+      <div className="container">
         <div className={styles.stage}>
-          <p className={styles.mark} aria-hidden>
-            {hero.mark}
+          <p className={styles.wordLeft} aria-hidden>
+            {title.left}
           </p>
 
-          <div className={styles.panel}>
+          <div className={styles.arch}>
+            <span className={styles.archLine} aria-hidden />
+            <span className={styles.archFill} aria-hidden />
             <img
               className={styles.photo}
               src={asset(hero.photo.src)}
@@ -36,47 +38,30 @@ export async function Hero() {
               fetchPriority="high"
               decoding="async"
             />
-
-            <div className={styles.copy}>
-              <h1 id="hero-title" className={styles.title}>
-                {hero.title} <em>{hero.titleAccent}</em>
-              </h1>
-              <p className={styles.lead}>{hero.lead}</p>
-              <div className={styles.actions}>
-                <ButtonLink href={bookingHref} variant="light" size="lg" arrow>
-                  Записаться
-                </ButtonLink>
-                <ButtonLink
-                  href="/zapis/?mode=urgent"
-                  variant="outlineLight"
-                  size="lg"
-                  icon={<Zap aria-hidden size={18} />}
-                >
-                  Острая боль — приём сегодня
-                </ButtonLink>
-              </div>
-            </div>
-
-            <div className={styles.aside}>
-              <NearestSlots title={hero.slotsTitle} branches={branches.map(({ id, name }) => ({ id, name }))} />
-              <a href={top.url} className={styles.rating} target="_blank" rel="noopener noreferrer">
-                <span className={styles.score}>{top.rating.toFixed(1).replace(".", ",")}</span>
-                <span className={styles.ratingText}>
-                  <span className={styles.stars} aria-hidden>
-                    {Array.from({ length: 5 }, (_, i) => (
-                      <Star key={i} size={14} fill="currentColor" strokeWidth={0} />
-                    ))}
-                  </span>
-                  <span>
-                    {top.source} · {top.count} отзывов
-                  </span>
-                </span>
-              </a>
-            </div>
-
-            <Contraindications variant="banner" tone="onBlue" className={styles.note} />
           </div>
+
+          <p className={styles.wordRight} aria-hidden>
+            {title.rightLead} <em>{title.rightAccent}</em>
+          </p>
+
+          <p className={styles.lead}>{hero.lead}</p>
+
+          <div className={styles.cta}>
+            <ButtonLink href={hero.cta.href}>{hero.cta.label}</ButtonLink>
+          </div>
+
+          <span className={styles.spark} aria-hidden>
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M12 0c.6 6.4 5.6 11.4 12 12-6.4.6-11.4 5.6-12 12-.6-6.4-5.6-11.4-12-12 6.4-.6 11.4-5.6 12-12Z" />
+            </svg>
+          </span>
         </div>
+      </div>
+
+      <HeroMarquee label={hero.marqueeLabel} items={hero.marquee} />
+
+      <div className="container">
+        <Contraindications className={styles.note} />
       </div>
     </section>
   );

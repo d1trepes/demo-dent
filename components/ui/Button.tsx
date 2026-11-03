@@ -1,68 +1,44 @@
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
-import { ArrowUpRight } from "lucide-react";
 import { cx } from "@/lib/cx";
 import styles from "./Button.module.css";
 
 /**
- * primary — синяя на светлом; light — белая на синем; outline / outlineLight — контурные.
- * size: md (44 px) или lg (56 px) для первого экрана.
+ * Одна система кнопок на весь сайт (docs/DESIGN.md):
+ * primary — заливка кобальтом, secondary — обводка 1 px. Высота 56, скругление 999.
+ * Никаких стрелок и иконок внутри.
  */
-export type ButtonVariant = "primary" | "light" | "outline" | "outlineLight";
+export type ButtonVariant = "primary" | "secondary";
+
 type Common = {
   variant?: ButtonVariant;
-  size?: "md" | "lg";
-  /** Стрелка ↗ после текста — фирменный приём для действий. */
-  arrow?: boolean;
-  icon?: ReactNode;
   block?: boolean;
   className?: string;
   children: ReactNode;
 };
 
-function classes({ variant = "primary", size = "md", block, className }: Omit<Common, "children">) {
-  return cx(styles.button, styles[variant], size === "lg" && styles.lg, block && styles.block, className);
-}
-
-function Content({ icon, arrow, children }: Pick<Common, "icon" | "arrow" | "children">) {
-  return (
-    <>
-      {icon}
-      <span>{children}</span>
-      {arrow && (
-        <span className={styles.arrow} aria-hidden>
-          <ArrowUpRight size={18} strokeWidth={2} />
-        </span>
-      )}
-    </>
-  );
+/** Классы кнопки для обычной ссылки <a> (tel:, внешние адреса). */
+export function buttonClass({ variant = "primary", block, className }: Omit<Common, "children"> = {}) {
+  return cx(styles.button, styles[variant], block && styles.block, className);
 }
 
 export function ButtonLink({
   href,
   variant,
-  size,
-  arrow,
-  icon,
   block,
   className,
   children,
   ...rest
 }: Common & Omit<ComponentProps<typeof Link>, "className" | "children">) {
   return (
-    <Link href={href} className={classes({ variant, size, block, className })} {...rest}>
-      <Content icon={icon} arrow={arrow}>
-        {children}
-      </Content>
+    <Link href={href} className={buttonClass({ variant, block, className })} {...rest}>
+      {children}
     </Link>
   );
 }
 
 export function Button({
   variant,
-  size,
-  arrow,
-  icon,
   block,
   className,
   children,
@@ -70,10 +46,8 @@ export function Button({
   ...rest
 }: Common & Omit<ComponentProps<"button">, "className" | "children">) {
   return (
-    <button type={type} className={classes({ variant, size, block, className })} {...rest}>
-      <Content icon={icon} arrow={arrow}>
-        {children}
-      </Content>
+    <button type={type} className={buttonClass({ variant, block, className })} {...rest}>
+      {children}
     </button>
   );
 }

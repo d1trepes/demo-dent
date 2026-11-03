@@ -497,16 +497,19 @@ export type AdminSeed = {
 
 export type Picture = { src: string; width: number; height: number; alt: string };
 
+export type HomeLink = { label: string; href: string };
+
 export type HomeHero = {
-  /** Три короткие подписи над словом-маркой. */
-  eyebrow: string[];
-  mark: string;
-  title: string;
-  /** Курсивное продолжение заголовка. */
-  titleAccent: string;
+  /** Заголовок, разорванный аркой: слева — Prata, справа — Prata + одно слово Cormorant Italic. */
+  title: { left: string; rightLead: string; rightAccent: string };
   lead: string;
-  slotsTitle: string;
+  cta: HomeLink;
+  /** Вырезанная по силуэту фигура врача (.webp с прозрачностью). */
   photo: Picture;
+  /** Подпись списка услуг для скринридера. */
+  marqueeLabel: string;
+  /** Бегущая строка услуг внизу hero. */
+  marquee: HomeLink[];
 };
 
 export type HomeContent = { hero: HomeHero };

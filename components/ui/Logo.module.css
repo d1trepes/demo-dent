@@ -1,24 +1,29 @@
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-3);
   color: var(--color-primary);
 }
 
+/* Пропорции знака 322 × 412 (public/logo.svg) */
 .mark {
-  width: 28px;
-  height: 28px;
+  flex: none;
+  width: 30px;
+  height: 38px;
+  background: currentColor;
+  -webkit-mask: var(--logo-src) center / contain no-repeat;
+  mask: var(--logo-src) center / contain no-repeat;
 }
 
 .word {
-  font-family: var(--font-heading);
-  font-size: 1.75rem;
-  font-style: italic;
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: 0.01em;
+  color: var(--color-text);
 }
 
-.light {
+.light,
+.light .word {
   color: var(--color-primary-contrast);
 }
