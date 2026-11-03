@@ -1,102 +1,95 @@
 import Link from "next/link";
 import { getBranches, getClinic } from "@/lib/api";
 import { formatDate } from "@/lib/format";
-import { footerLegalNav, mainNav } from "@/lib/nav";
+import { footerLegalNav, footerNav } from "@/lib/nav";
 import { Contraindications } from "@/components/ui/Contraindications";
 import { Logo } from "@/components/ui/Logo";
 import styles from "./Footer.module.css";
 
-/** Подвал на всех страницах: реквизиты, лицензия, документы, предупреждение, пометка «демо». */
+/**
+ * Подвал на всех страницах (чат 2E, реф. ref-footer.png — только внутрянка): синяя плашка;
+ * верхний ряд — логотип, телефон и 3 колонки простых ссылок; средний — 2 филиала;
+ * нижний — реквизиты, лицензия, документы, предупреждение о противопоказаниях, пометка «демо».
+ * Данные — clinic.json и branches.json через lib/api.ts, ссылки — lib/nav.ts.
+ */
 export async function Footer() {
   const [clinic, branches] = await Promise.all([getClinic(), getBranches()]);
   const { license } = clinic;
-  const sections = mainNav.flatMap((item) => [item, ...(item.children ?? [])]);
 
   return (
     <footer className={styles.footer}>
       <div className="container">
         <div className={styles.panel}>
-          <span className={styles.watermark} aria-hidden>
-            {clinic.shortName}
-          </span>
-
-          <div className={styles.grid}>
-            <section aria-labelledby="footer-contacts" className={styles.contacts}>
-              <h2 id="footer-contacts" className="visually-hidden">
-                {clinic.name}
-              </h2>
-              <Logo name={clinic.shortName} tone="light" />
+          <div className={styles.top}>
+            <div className={styles.brand}>
+              <Link href="/" className={styles.logoLink} aria-label={`${clinic.name} — на главную`}>
+                <Logo name={clinic.shortName} tone="light" />
+              </Link>
               <a href={clinic.phoneHref} className={styles.phone}>
                 {clinic.phone}
               </a>
-              <p className={styles.muted}>
-                {clinic.hours.weekdays}
-                <br />
-                {clinic.hours.weekend}
-                <br />
-                {clinic.email}
-              </p>
-            </section>
+            </div>
 
-            <section aria-labelledby="footer-branches">
-              <h2 id="footer-branches" className={styles.heading}>
-                Филиалы
-              </h2>
-              <ul className={styles.list}>
-                {branches.map((b) => (
-                  <li key={b.id} className={styles.branch}>
-                    <span className={styles.branchName}>«{b.name}»</span>
-                    {b.address}
-                  </li>
-                ))}
-              </ul>
-            </section>
-
-            <nav aria-labelledby="footer-nav">
-              <h2 id="footer-nav" className={styles.heading}>
-                Разделы
-              </h2>
-              <ul className={styles.list}>
-                {sections.map((link) => (
-                  <li key={link.href + link.label}>
-                    <Link href={link.href} className={styles.link}>
-                      {link.label === "Пациентам" ? "О клинике" : link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            <nav aria-labelledby="footer-legal">
-              <h2 id="footer-legal" className={styles.heading}>
-                Документы
-              </h2>
-              <ul className={styles.list}>
-                {footerLegalNav.map((link) => (
-                  <li key={link.href}>
-                    <Link href={link.href} className={styles.link}>
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            {footerNav.map((group) => (
+              <nav key={group.title} aria-label={group.title} className={styles.group}>
+                <h2 className={styles.heading}>{group.title}</h2>
+                <ul className={styles.list}>
+                  {group.links.map((link) => (
+                    <li key={link.label}>
+                      {link.href ? (
+                        <Link href={link.href} className={styles.link}>
+                          {link.label}
+                        </Link>
+                      ) : (
+                        <span className={styles.stub}>{link.label}</span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ))}
           </div>
 
+          <section aria-label="Филиалы" className={styles.branches}>
+            {branches.map((b) => (
+              <div key={b.id} className={styles.branch}>
+                <h2 className={styles.branchName}>«{b.name}»</h2>
+                <p className={styles.muted}>{b.address}</p>
+                <p className={styles.muted}>
+                  {b.hours.weekdays}
+                  <br />
+                  {b.hours.weekend}
+                </p>
+                <Link href="/filialy/" className={styles.route}>
+                  Как добраться
+                </Link>
+              </div>
+            ))}
+          </section>
+
           <div className={styles.legal}>
-            <Contraindications variant="inline" tone="onBlue" className={styles.note} />
-            <p>
-              {clinic.legalName} ({clinic.legalNameShort}), ИНН {clinic.inn}, ОГРН {clinic.ogrn}. {clinic.legalAddress}.
-            </p>
-            <p>
-              Лицензия на осуществление медицинской деятельности № {license.number} от {formatDate(license.date)},
-              выдана: {license.issuer}.{" "}
-              <Link href="/o-klinike/" className={styles.inlineLink}>
-                Сведения о медицинской организации
-              </Link>
-              .
-            </p>
-            <p className={styles.demo}>{clinic.demoNote}.</p>
+            <div className={styles.requisites}>
+              <p>
+                {clinic.legalName}, ИНН {clinic.inn}, ОГРН {clinic.ogrn}
+              </p>
+              <p>
+                Лицензия № {license.number} от {formatDate(license.date)}, выдана: {license.issuer}
+              </p>
+            </div>
+            <ul className={styles.legalLinks}>
+              {footerLegalNav.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className={styles.legalLink}>
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className={styles.notes}>
+              <Contraindications variant="inline" tone="onBlue" className={styles.note} />
+              <p>{clinic.demoNote}</p>
+              <p>© {new Date().getFullYear()} {clinic.legalNameShort}</p>
+            </div>
           </div>
         </div>
       </div>

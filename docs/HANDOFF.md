@@ -17,6 +17,7 @@
 | getReminderSettings(), updateReminderSettings(s) | ReminderSettings | рассылка напоминаний за 24 ч и 2 ч |
 | payPlanStage(stageId) | PayStageResult | ЮKassa или банк клиники, чеки |
 | createTaxCertificateRequest(payload) | TaxRequest | очередь администратора, статус в кабинете |
+| createCallbackRequest({ name, phone, consentVersion }) | { id, status: 'new' } | заявка «Перезвоните мне» → очередь администратора + уведомление в Telegram/MAX; логировать согласие (версия текста) |
 | calcImplant(params), calcInstallment(sum, months), getImplantTariffs() | считаются локально (`lib/calc.ts`) | тарифы из прайса |
 | getAdminAppointments(filters), updateAppointmentStatus(id, status), getTaxRequests() | админка | МИС / своя база |
 

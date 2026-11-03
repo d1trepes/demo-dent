@@ -57,6 +57,7 @@
   --radius-md: 18px;
   --radius-lg: 28px;
   --radius-xl: 40px;
+  --radius-panel: 36px; /* плашки hero, блока 8 и подвала с 1024 px (2E) */
   --radius-pill: 999px;
 
   --shadow-soft: 0 1px 2px rgb(15 21 48 / 0.04), 0 8px 24px rgb(15 21 48 / 0.06);

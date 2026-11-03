@@ -9,6 +9,9 @@ type Props = Omit<ComponentProps<"input">, "type" | "id" | "defaultChecked" | "c
   /** Ссылка на отдельный документ согласия (/soglasie/ или /soglasie-zdorovye/). */
   docHref: string;
   docLabel?: string;
+  /** Вторая ссылка — на политику обработки ПДн (/privacy/), если форма её показывает. */
+  policyHref?: string;
+  policyLabel?: string;
   error?: string;
 };
 
@@ -16,7 +19,16 @@ type Props = Omit<ComponentProps<"input">, "type" | "id" | "defaultChecked" | "c
  * Отдельный чекбокс согласия (152-ФЗ ст. 9): по умолчанию не отмечен, ссылка на текст согласия.
  * defaultChecked запрещён типом, чтобы галочку нельзя было поставить заранее.
  */
-export function ConsentCheckbox({ label, docHref, docLabel = "Текст согласия", error, className, ...input }: Props) {
+export function ConsentCheckbox({
+  label,
+  docHref,
+  docLabel = "Текст согласия",
+  policyHref,
+  policyLabel = "Политика обработки данных",
+  error,
+  className,
+  ...input
+}: Props) {
   const id = useId();
   const errorId = `${id}-error`;
   return (
@@ -34,6 +46,14 @@ export function ConsentCheckbox({ label, docHref, docLabel = "Текст сог�
         <Link href={docHref} target="_blank" className={styles.link}>
           {docLabel}
         </Link>
+        {policyHref && (
+          <>
+            {" · "}
+            <Link href={policyHref} target="_blank" className={styles.link}>
+              {policyLabel}
+            </Link>
+          </>
+        )}
       </label>
       {error && (
         <p id={errorId} className={styles.error}>

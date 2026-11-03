@@ -28,8 +28,10 @@ import type {
   AppointmentSeed,
   AppointmentStatus,
   Branch,
+  CallbackPayload,
   Clinic,
   CreateAppointmentResult,
+  CreateCallbackResult,
   Direction,
   Doctor,
   HomeContent,
@@ -256,6 +258,15 @@ export async function rescheduleAppointment(id: string, slot: Slot): Promise<App
 
 export async function cancelAppointment(id: string): Promise<{ id: string; status: AppointmentStatus }> {
   return respond({ id, status: "cancelled" as AppointmentStatus });
+}
+
+/* ---------- Обратный звонок ---------- */
+
+/** Заявка «Перезвоните мне» (блок 8 главной). В бою — очередь администратора + уведомление в Telegram/MAX. */
+export async function createCallbackRequest(payload: CallbackPayload): Promise<CreateCallbackResult> {
+  if (!payload.consentVersion) throw new ApiError("validation", "Нужно согласие на обработку персональных данных");
+  if (payload.phone.replace(/\D/g, "").length !== 11) throw new ApiError("validation", "Проверьте номер телефона");
+  return respond({ id: newId("cb"), status: "new" as const });
 }
 
 /* ---------- Кабинет ---------- */

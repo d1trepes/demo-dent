@@ -47,6 +47,7 @@
 .error {
   grid-column: 2;
   margin-top: var(--space-1);
-  font-size: var(--text-sm);
+  font-size: 13px;
+  line-height: 1.4;
   color: var(--color-danger);
 }

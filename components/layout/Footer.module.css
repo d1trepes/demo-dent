@@ -1,145 +1,269 @@
-/* Синий подвал-плашка с огромным контурным «Ясень» на фоне (приём SmileDent). */
+/*
+ * Подвал (чат 2E): синяя плашка на ширину контейнера, скругление 36, под ней — поле страницы.
+ * Белый текст; второстепенный — белый .8: 4,7:1 на кобальте (.72 даёт 4,1 — не проходит AA для мелкого текста).
+ * Мобильный: одна колонка, колонки ссылок по 2 в ряд, филиалы друг под другом, отступы 32.
+ * С 1024 px — 12 колонок: логотип и телефон 1–3, три колонки ссылок по 3.
+ */
 .footer {
-  margin-top: var(--space-16);
-  padding-bottom: var(--space-4);
+  --footer-muted: rgb(255 255 255 / 0.8);
+  --footer-line: rgb(255 255 255 / 0.2);
+  margin-top: var(--section-gap);
+  padding-bottom: var(--gutter);
 }
 
 .panel {
-  position: relative;
-  overflow: hidden;
-  padding: var(--space-10) var(--space-5) var(--space-6);
+  display: grid;
+  padding: var(--space-8) var(--space-5);
   border-radius: var(--radius-lg);
   background: var(--color-primary);
   color: var(--color-primary-contrast);
-  font-size: var(--text-sm);
+  font-size: 15px;
+  line-height: 1.5;
 }
 
-.watermark {
-  position: absolute;
-  right: -0.04em;
-  bottom: -0.22em;
-  font-family: var(--font-heading);
-  font-size: clamp(10rem, 34vw, 30rem);
-  font-style: italic;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgb(255 255 255 / 0.14);
-  pointer-events: none;
-  user-select: none;
+/* На синем — белая обводка фокуса */
+.panel :focus-visible {
+  outline-color: var(--color-primary-contrast);
 }
 
-.grid {
-  position: relative;
+.muted {
+  color: var(--footer-muted);
+}
+
+/* ---- Верхний ряд ---- */
+.top {
   display: grid;
-  gap: var(--space-8);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-8) var(--space-5);
 }
 
-.contacts {
+.brand {
+  grid-column: 1 / -1;
   display: grid;
-  align-content: start;
-  gap: var(--space-3);
   justify-items: start;
+  gap: var(--space-3);
+}
+
+.logoLink {
+  display: inline-flex;
+  text-decoration: none;
+  border-radius: 4px;
 }
 
 .phone {
   display: inline-flex;
   align-items: center;
   min-height: var(--tap);
-  font-size: var(--text-lg);
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
   text-decoration: none;
+  white-space: nowrap;
 }
 
-.muted {
-  color: rgb(255 255 255 / 0.85);
+.phone:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .heading {
   margin-bottom: var(--space-2);
   font-family: var(--font-text);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgb(255 255 255 / 0.75);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+  color: var(--footer-muted);
 }
 
 .list {
-  list-style: none;
+  display: grid;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
-.link {
+.link,
+.stub {
   display: inline-flex;
   align-items: center;
   min-height: var(--tap);
   text-decoration: none;
-  text-underline-offset: 4px;
 }
 
 .link:hover,
-.inlineLink:hover {
+.route:hover,
+.legalLink:hover {
   text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
-.link:focus-visible,
-.inlineLink:focus-visible,
-.phone:focus-visible {
-  outline-color: var(--color-surface);
+/* Мессенджеры-заглушки: тот же вид, без ссылки и без подчёркивания */
+.stub {
+  cursor: default;
+}
+
+/* ---- Филиалы ---- */
+.branches {
+  display: grid;
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--footer-line);
 }
 
 .branch {
   display: grid;
-  margin-bottom: var(--space-3);
+  justify-items: start;
+  gap: var(--space-1);
 }
 
 .branchName {
-  font-weight: 700;
+  font-family: var(--font-text);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0;
 }
 
+.route {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  text-decoration: underline;
+  text-decoration-color: var(--footer-line);
+  text-underline-offset: 4px;
+}
+
+/* ---- Нижний ряд ---- */
 .legal {
-  position: relative;
   display: grid;
-  gap: var(--space-3);
-  margin-top: var(--space-10);
-  padding-top: var(--space-6);
-  border-top: 1px solid rgb(255 255 255 / 0.25);
-  font-size: var(--text-xs);
-  line-height: 1.6;
-  color: rgb(255 255 255 / 0.85);
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--footer-line);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--footer-muted);
 }
 
-.inlineLink {
-  text-underline-offset: 3px;
+.requisites {
+  display: grid;
+  gap: var(--space-1);
 }
 
-.demo {
-  font-size: var(--text-sm);
-  font-weight: 700;
-  color: var(--color-primary-contrast);
+.legalLinks {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legalLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  text-decoration: none;
+}
+
+.notes {
+  display: grid;
+  gap: var(--space-1);
+}
+
+/* Предупреждение — мелким спокойным текстом в нижнем ряду (на главной оно только здесь) */
+.legal .note {
+  display: block;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--footer-muted);
 }
 
 @media (min-width: 768px) {
   .panel {
     padding: var(--space-12) var(--space-10) var(--space-8);
-    border-radius: var(--radius-xl);
   }
-  .grid {
-    grid-template-columns: 1.3fr 1fr 1fr 1.3fr;
+
+  .top {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .branches {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
   }
 }
 
-@media (max-width: 767px) {
-  .footer {
-    padding-bottom: var(--space-2);
+@media (min-width: 1024px) {
+  .panel {
+    padding: var(--space-16) var(--space-16) var(--space-10);
+    border-radius: var(--radius-panel);
   }
-}
 
-/* Предупреждение о противопоказаниях — мелким текстом в подвале (из hero убрано в 2A-3) */
-.legal .note {
-  padding: 0;
-  font-size: var(--text-sm);
-  font-weight: 400;
-  background: transparent;
+  .top {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--space-6);
+  }
+
+  .brand {
+    grid-column: 1 / 4;
+    align-content: start;
+  }
+
+  .group {
+    grid-column: span 3;
+  }
+
+  /* На десктопе строки ссылок плотнее, как в референсе; зона нажатия ≥ 32 px (WCAG 2.5.8 — 24) */
+  .link,
+  .stub,
+  .legalLink {
+    min-height: 32px;
+  }
+
+  .branches {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--space-6);
+    margin-top: var(--space-12);
+    padding-top: var(--space-12);
+  }
+
+  .branch {
+    grid-column: span 3;
+  }
+
+  .legal {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--space-6);
+    row-gap: var(--space-4);
+    margin-top: var(--space-12);
+  }
+
+  .requisites {
+    grid-column: 1 / 9;
+  }
+
+  .legalLinks {
+    grid-column: 9 / 13;
+    justify-content: flex-end;
+    align-self: start;
+    margin-top: calc(-1 * (32px - 1.5em) / 2);
+  }
+
+  .notes {
+    grid-column: 1 / -1;
+    grid-template-columns: auto auto 1fr;
+    column-gap: var(--space-6);
+  }
+
+  .notes > :last-child {
+    justify-self: end;
+  }
 }

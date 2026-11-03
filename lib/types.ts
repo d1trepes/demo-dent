@@ -399,6 +399,33 @@ export type InstallmentResult = {
   overpay: number;
 };
 
+/* ---------- Обратный звонок (блок 8 главной, 2E) ---------- */
+
+/** Повода и свободного текста нет — значит, согласие на данные о здоровье не нужно. */
+export type CallbackPayload = {
+  name: string;
+  /** "+7 (999) 123-45-67" — как ввёл пациент, с маской. */
+  phone: string;
+  /** Версия текста согласия на ПДн (legal.json → version). */
+  consentVersion: string;
+};
+
+export type CallbackStatus = "new" | "called" | "booked" | "no_answer";
+
+export type CreateCallbackResult = { id: string; status: "new" };
+
+/** Заявка в панели администратора. */
+export type CallbackRequest = {
+  id: string;
+  /** "YYYY-MM-DDTHH:mm", время клиники. */
+  createdAt: string;
+  status: CallbackStatus;
+  name: string;
+  phone: string;
+  consentVersion: string;
+  source: AppointmentSource;
+};
+
 /* ---------- Админка ---------- */
 
 export type AdminAppointmentFilters = {
@@ -639,6 +666,24 @@ export type HomeBranches = {
   extras: Picture[];
 };
 
+/** Блок 8 «Перезвоните мне» (2E). Сообщение об успехе — шаблон с {name}. */
+export type HomeCallback = {
+  title: string;
+  subtitle: string;
+  nameLabel: string;
+  phoneLabel: string;
+  consentLabel: string;
+  consentDocLabel: string;
+  policyLabel: string;
+  submit: string;
+  sending: string;
+  success: string;
+  bookOnline: HomeLink;
+  errors: { name: string; phone: string; consent: string; submit: string };
+  /** Вырезанное фото врача (прозрачный фон). */
+  photo: Picture;
+};
+
 export type HomeContent = {
   hero: HomeHero;
   directions: HomeDirections;
@@ -648,4 +693,5 @@ export type HomeContent = {
   doctors: HomeDoctors;
   beforeAfter: HomeBeforeAfter;
   branchesBlock: HomeBranches;
+  callback: HomeCallback;
 };
