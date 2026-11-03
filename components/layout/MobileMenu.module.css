@@ -1,5 +1,6 @@
 .toggle {
   display: inline-flex;
+  border-radius: var(--radius-pill);
   align-items: center;
   justify-content: center;
   width: var(--tap);
@@ -45,9 +46,17 @@
 .link {
   display: flex;
   align-items: center;
-  min-height: var(--tap);
-  font-size: var(--text-lg);
+  min-height: 52px;
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 500;
   text-decoration: none;
+}
+
+.contacts .link {
+  font-family: var(--font-text);
+  font-size: var(--text-lg);
+  font-weight: 600;
 }
 
 .contacts {
@@ -61,7 +70,10 @@
   align-items: center;
   justify-content: center;
   min-height: var(--tap);
-  border-radius: var(--radius-sm);
+  min-height: 56px;
+  margin-top: var(--space-4);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
   background: var(--color-accent);
   color: var(--color-accent-contrast);
   text-decoration: none;

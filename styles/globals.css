@@ -8,6 +8,8 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -16,24 +18,52 @@ body {
   color: var(--color-text);
   font-family: var(--font-text);
   font-size: var(--text-base);
-  line-height: 1.5;
+  line-height: 1.55;
   overflow-x: hidden;
 }
 
 h1,
 h2,
 h3 {
+  margin: 0;
   font-family: var(--font-heading);
-  line-height: 1.2;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+/* Курсивная «рукописная» вставка в заголовках: <em> внутри h1–h3 */
+h1 em,
+h2 em,
+h3 em {
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+p {
+  margin: 0;
 }
 
 a {
   color: inherit;
 }
 
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+}
+
 :focus-visible {
   outline: 3px solid var(--color-focus);
-  outline-offset: 2px;
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 .container {
@@ -41,6 +71,15 @@ a {
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 var(--gutter);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 .skip-link {
@@ -68,6 +107,8 @@ a {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

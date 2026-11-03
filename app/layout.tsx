@@ -3,6 +3,11 @@ import { CookieBanner } from "@/components/layout/CookieBanner";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { MobileBar } from "@/components/layout/MobileBar";
+import "@fontsource/cormorant-garamond/400-italic.css";
+import "@fontsource/cormorant-garamond/500.css";
+import "@fontsource/cormorant-garamond/500-italic.css";
+import "@fontsource/cormorant-garamond/600.css";
+import "@fontsource-variable/manrope/wght.css";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
@@ -16,7 +21,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f7f3ec",
+  themeColor: "#f5f6fa",
   width: "device-width",
   initialScale: 1,
 };

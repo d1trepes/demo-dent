@@ -1,0 +1,41 @@
+/* Заметная плашка, не мелкий серый шрифт: текст ≥ 14 px, полужирный, капслок, контраст AA. */
+.note {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-primary-deep);
+  background: var(--color-tint);
+}
+
+.icon {
+  flex: none;
+}
+
+.banner {
+  justify-content: center;
+  min-height: 56px;
+  padding: var(--space-3) var(--space-5);
+  text-align: center;
+}
+
+.inline {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+}
+
+.onBlue {
+  color: var(--color-primary-contrast);
+  background: var(--color-primary-deep);
+}
+
+@media (min-width: 768px) {
+  .banner {
+    font-size: var(--text-base);
+  }
+}

@@ -8,6 +8,7 @@ import adminData from "@/data/admin.json";
 import branchesData from "@/data/branches.json";
 import clinicData from "@/data/clinic.json";
 import doctorsData from "@/data/doctors.json";
+import homeData from "@/data/home.json";
 import legalData from "@/data/legal.json";
 import patientData from "@/data/patient.json";
 import promosData from "@/data/promos.json";
@@ -31,6 +32,7 @@ import type {
   CreateAppointmentResult,
   Direction,
   Doctor,
+  HomeContent,
   DoctorFilters,
   DoctorsData,
   ImplantParams,
@@ -72,6 +74,7 @@ const reviews = reviewsData as ReviewsData;
 const patient = patientData as PatientSeed;
 const admin = adminData as AdminSeed;
 const legal = legalData as LegalData;
+const home = homeData as HomeContent;
 
 /** Демо-код из SMS. */
 export const DEMO_SMS_CODE = "1234";
@@ -121,6 +124,11 @@ function materializeAppointment(seed: AppointmentSeed): Appointment {
 
 export function getClinic(): Promise<Clinic> {
   return respond(clinic);
+}
+
+/** Тексты и картинки главной (в бою — CMS или те же JSON). */
+export function getHomeContent(): Promise<HomeContent> {
+  return respond(home);
 }
 
 export function getBranches(): Promise<Branch[]> {

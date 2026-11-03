@@ -492,3 +492,21 @@ export type AdminSeed = {
   appointments: AppointmentSeed[];
   taxRequests: TaxRequestSeed[];
 };
+
+/* ---------- Контент главной ---------- */
+
+export type Picture = { src: string; width: number; height: number; alt: string };
+
+export type HomeHero = {
+  /** Три короткие подписи над словом-маркой. */
+  eyebrow: string[];
+  mark: string;
+  title: string;
+  /** Курсивное продолжение заголовка. */
+  titleAccent: string;
+  lead: string;
+  slotsTitle: string;
+  photo: Picture;
+};
+
+export type HomeContent = { hero: HomeHero };

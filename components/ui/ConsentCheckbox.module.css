@@ -1,0 +1,52 @@
+.field {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--space-3);
+  align-items: start;
+}
+
+/* Сам чекбокс 24 px, кликабельная зона — вся подпись (≥ 44 px по высоте строки) */
+.input {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  margin: 10px 0 0;
+  border: 1.5px solid var(--color-text-muted);
+  border-radius: 6px;
+  background: var(--color-surface);
+  cursor: pointer;
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.input:checked {
+  border-color: var(--color-primary);
+  background: var(--color-primary)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L19 7'/%3E%3C/svg%3E")
+    center / 16px no-repeat;
+}
+
+.input[aria-invalid="true"] {
+  border-color: var(--color-danger);
+}
+
+.label {
+  min-height: var(--tap);
+  padding-top: 10px;
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.link {
+  color: var(--color-primary);
+  text-underline-offset: 3px;
+}
+
+.error {
+  grid-column: 2;
+  margin-top: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--color-danger);
+}

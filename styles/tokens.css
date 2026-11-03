@@ -1,47 +1,76 @@
 /*
- * Токены — ЧЕРНОВИК чата 1. Цвета и шрифты утверждаются в чате 2 (docs/DESIGN.md).
+ * Токены дизайн-системы «Ясень» (утверждено в чате 2, docs/DESIGN.md).
  * В компонентах — только эти переменные, без случайных значений.
  */
 :root {
-  /* Цвета: тёплый светлый фон, один глубокий основной, один тёплый акцент */
-  --color-bg: #f7f3ec;
-  --color-surface: #ffffff;
-  --color-text: #1f2a27;
-  --color-text-muted: #56605c;
-  --color-primary: #24453c;
+  /* Цвета: кобальт + белый */
+  --color-primary: #3048d0; /* кобальт: кнопки, акценты, крупные заголовки, подвал */
+  --color-primary-deep: #16226b; /* hover/active, текст на светлых плашках */
   --color-primary-contrast: #ffffff;
-  --color-accent: #c8643b;
-  --color-accent-contrast: #ffffff;
-  --color-border: #ddd5c8;
-  --color-focus: #c8643b;
-  --color-notice-bg: #fff4d9;
-  --color-notice-text: #3d2f0a;
+  --color-tint: #e8ecfb; /* плашки, выбранные слоты */
+  --color-bg: #f5f6fa; /* фон страницы */
+  --color-surface: #ffffff;
+  --color-text: #0f1530;
+  --color-text-muted: #5b6280;
+  --color-border: #d9def0;
+  --color-line: #d9def0; /* тонкие линии, пунктир */
+  --color-danger: #c2342b; /* только ошибки и статусы */
+  --color-focus: #3048d0;
+  /* Совместимость с каркасом: «акцент» = основной синий */
+  --color-accent: var(--color-primary);
+  --color-accent-contrast: var(--color-primary-contrast);
 
-  /* Шрифты: системные до выбора в чате 2 */
-  --font-heading: Georgia, "Times New Roman", serif;
-  --font-text: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  /* Шрифты: self-hosted (@fontsource), кириллица */
+  --font-heading: "Cormorant Garamond", "Times New Roman", serif;
+  --font-text: "Manrope Variable", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
+  /* Текст */
+  --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
   --text-lg: 1.25rem;
   --text-xl: 1.75rem;
   --text-2xl: 2.25rem;
+  /* Заголовки антиквой — крупнее, тянутся от ширины экрана */
+  --display-1: clamp(2.5rem, 5.2vw + 1rem, 5rem);
+  --display-2: clamp(2rem, 3.6vw + 1rem, 3.75rem);
+  /* Огромное слово-марка на первом экране: почти на всю ширину */
+  --display-mark: clamp(5.5rem, 25.5vw, 22rem);
 
   /* Отступы */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
   --space-4: 1rem;
+  --space-5: 1.25rem;
   --space-6: 1.5rem;
   --space-8: 2rem;
+  --space-10: 2.5rem;
   --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
 
-  --radius-sm: 6px;
-  --radius-md: 12px;
+  /* Скругления: умеренные у карточек, крупные у плашек, пилюли у кнопок */
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --radius-xl: 40px;
+  --radius-pill: 999px;
 
-  --container: 1200px;
+  --shadow-soft: 0 1px 2px rgb(15 21 48 / 0.04), 0 8px 24px rgb(15 21 48 / 0.06);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 0.35s;
+
+  --container: 1280px;
   --gutter: 16px;
   --tap: 44px;
-  --header-h: 64px;
-  --mobile-bar-h: 64px;
+  --header-h: 68px;
+  --mobile-bar-h: 68px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 32px;
+  }
 }

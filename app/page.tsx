@@ -1,5 +1,6 @@
-import { PageStub } from "@/components/ui/PageStub";
+import { Hero } from "@/components/home/Hero";
 
+/** Главная собирается по блокам в чатах 2A–2E (docs/DESIGN.md). */
 export default function HomePage() {
-  return <PageStub title="Семейная стоматология «Ясень»" chat={2} />;
+  return <Hero />;
 }
