@@ -1,0 +1,261 @@
+/* Блок 2 «Направления». Мобильный сначала: номер · название · цена, описание под названием. */
+.section {
+  padding-top: var(--section-gap);
+}
+
+.layout {
+  display: grid;
+  grid-template-areas:
+    "title"
+    "sub"
+    "list"
+    "all";
+  align-items: end;
+}
+
+.title {
+  grid-area: title;
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.subtitle {
+  grid-area: sub;
+  max-width: 36em;
+  margin-top: var(--space-4);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.all {
+  grid-area: all;
+  justify-self: start;
+  margin-top: var(--space-8);
+}
+
+.list {
+  grid-area: list;
+  margin: var(--space-10) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list > li + li {
+  border-top: 1px solid var(--color-line);
+}
+
+/* ---- Строка ---- */
+.row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  grid-template-areas:
+    "num name price"
+    ". desc desc";
+  column-gap: var(--space-3);
+  row-gap: var(--space-1);
+  align-items: baseline;
+  min-height: 80px;
+  padding: var(--space-5) var(--space-3);
+  border-radius: 20px;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: background-color 0.3s var(--ease);
+}
+
+.num {
+  grid-area: num;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+}
+
+.name {
+  grid-area: name;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.desc {
+  grid-area: desc;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+.price {
+  grid-area: price;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.priceValue {
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  transition: color 0.3s var(--ease);
+}
+
+.priceNote {
+  font-size: 13px;
+  line-height: 1.3;
+  color: var(--color-text-muted);
+}
+
+.pillSlot,
+.arrow {
+  display: none;
+}
+
+/* Строка-акцент «Острая боль» — без цены, текст кобальтом */
+.urgent .name {
+  grid-column: name-start / price-end;
+  color: var(--color-primary);
+}
+
+.row:focus-visible {
+  outline-offset: 0;
+  border-radius: 20px;
+  background: var(--color-surface);
+}
+
+@media (hover: hover) {
+  .row:hover {
+    background: var(--color-surface);
+  }
+}
+
+/* ---- Десктоп: одна строка 80 px, таблетка между описанием и ценой ---- */
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "title all"
+      "sub sub"
+      "list list";
+    column-gap: var(--space-8);
+  }
+
+  .title {
+    font-size: 48px;
+  }
+
+  .all {
+    justify-self: end;
+    margin-top: 0;
+  }
+
+  .list {
+    margin-top: var(--space-12);
+  }
+
+  .row {
+    grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1.3fr) 136px 168px 48px;
+    grid-template-areas: "num name desc pill price arrow";
+    column-gap: var(--space-6);
+    align-items: center;
+    height: 80px;
+    min-height: 0;
+    padding: 0 var(--space-8);
+  }
+
+  .name {
+    font-size: 22px;
+  }
+
+  .pillSlot {
+    grid-area: pill;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .pill {
+    display: block;
+    width: 72px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: var(--radius-pill);
+    background: var(--color-placeholder);
+    transition:
+      width 0.3s var(--ease),
+      height 0.3s var(--ease);
+  }
+
+  .pill img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .arrow {
+    grid-area: arrow;
+    display: block;
+    justify-self: end;
+    fill: none;
+    stroke: var(--color-primary);
+    stroke-width: 1.5;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition:
+      opacity 0.3s var(--ease),
+      transform 0.3s var(--ease);
+  }
+
+  .urgent .name {
+    grid-column: name-start / price-end;
+  }
+
+  .row:focus-visible .pill {
+    width: 120px;
+    height: 64px;
+  }
+
+  .row:focus-visible .priceValue {
+    color: var(--color-primary);
+  }
+
+  .row:focus-visible .arrow {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (min-width: 1024px) and (hover: hover) {
+  .row:hover .pill {
+    width: 120px;
+    height: 64px;
+  }
+
+  .row:hover .priceValue {
+    color: var(--color-primary);
+  }
+
+  .row:hover .arrow {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Без движения — только смена фона строки */
+@media (prefers-reduced-motion: reduce) {
+  .row:hover .pill,
+  .row:focus-visible .pill {
+    width: 72px;
+    height: 40px;
+  }
+
+  .row:hover .priceValue,
+  .row:focus-visible .priceValue {
+    color: inherit;
+  }
+
+  .row:hover .arrow,
+  .row:focus-visible .arrow {
+    opacity: 0;
+  }
+}

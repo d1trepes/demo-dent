@@ -114,12 +114,10 @@
 
 .strokeSoft {
   stroke: var(--color-primary);
-  stroke-opacity: 0.7;
 }
 
 .strokeWhite {
   stroke: var(--color-primary-contrast);
-  stroke-opacity: 0.5;
 }
 
 /* ---- Листья-«линзы» ---- */

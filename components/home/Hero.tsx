@@ -67,7 +67,7 @@ function Aside({ lines, className }: { lines: string[]; className: string }) {
 }
 
 /**
- * Лист-«линза». Фото гаснет к плашке (opacity), обводка 2 px — нет.
+ * Лист-«линза», фото непрозрачное, обводка 2 px поверх.
  * У средней пары обводка меняет цвет ровно по нижнему краю плашки: снизу кобальт, сверху белая, обрезанная clip-path.
  */
 function Leaf({ leaf }: { leaf: HeroLeaf }) {
@@ -88,9 +88,11 @@ function Branch() {
     <>
       <svg className={cx(styles.branch, styles.branchDesktop)} viewBox="0 0 1360 772" preserveAspectRatio="none" aria-hidden>
         <path className={styles.stroke} d="M680 600 V716" />
-        <path className={styles.strokeWhite} d="M680 516 C610 516 550 506 500 486 M680 516 C750 516 810 506 860 486" />
-        <path className={styles.strokeSoft} d="M680 646 C560 651 460 644 390 636 M680 646 C800 651 900 644 970 636" />
-        <path className={styles.stroke} d="M680 744 C520 758 380 764 280 766 M680 744 C840 758 980 764 1080 766" />
+        {/* Черенок приходит в основание листа по его диагонали: кривая выходит на ось листа,
+            последний отрезок — прямой под 45° и заходит на 4 ед. внутрь (лист выше, зазора нет). */}
+        <path className={styles.strokeWhite} d="M680 516 C620 518 532 518 516 502 L496 482 M680 516 C740 518 828 518 844 502 L864 482" />
+        <path className={styles.strokeSoft} d="M680 646 C580 652 436 682 414 660 L386 632 M680 646 C780 652 924 682 946 660 L974 632" />
+        <path className={styles.stroke} d="M680 744 C540 752 312 798 296 782 L276 762 M680 744 C820 752 1048 798 1064 782 L1084 762" />
       </svg>
       <svg className={cx(styles.branch, styles.branchMobile)} viewBox="0 0 335 566" preserveAspectRatio="none" aria-hidden>
         <path className={styles.stroke} d="M167.5 340 V510" />

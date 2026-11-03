@@ -520,4 +520,57 @@ export type HomeHero = {
   leaves: HeroLeaf[];
 };
 
-export type HomeContent = { hero: HomeHero };
+/** Строка блока 2 «Направления». Цена — только из services.json (priceFrom), здесь её нет. */
+export type HomeDirectionRow = {
+  directionId: string;
+  /** До 60 знаков, без обещаний результата. */
+  description: string;
+  /** Подпись под ценой, например «под ключ». */
+  priceNote?: string;
+  /** Фото-таблетка (декоративное, alt пустой). */
+  photo: Picture;
+};
+
+export type HomeDirections = {
+  title: string;
+  subtitle: string;
+  allPrices: HomeLink;
+  rows: HomeDirectionRow[];
+  /** Строка-акцент после направлений → срочная запись. */
+  urgent: HomeLink;
+};
+
+/** Манифест блока 3: текст с фото-таблетками внутри строки. */
+export type ManifestoSegment = { kind: "text"; text: string } | { kind: "pill"; image: Picture };
+
+export type HomeManifesto = { segments: ManifestoSegment[] };
+
+/** Шаг ветки плана. Фото листа подготовлено под правый лист (основание внизу слева). */
+export type PlanBranchStep = {
+  number: string;
+  title: string;
+  text: string;
+  leaf: Picture;
+};
+
+export type HomePlan = {
+  /** Слово-фон за веткой (aria-hidden). */
+  backdrop: string;
+  steps: PlanBranchStep[];
+  /** Карточка возле шага 02: цифры — из getTreatmentPlan() и calcInstallment(). */
+  card: {
+    caption: string;
+    totalLabel: string;
+    installmentMonths: number;
+    /** {sum} заменяется на «от N ₽». */
+    installmentLabel: string;
+  };
+  cta: HomeLink;
+};
+
+export type HomeContent = {
+  hero: HomeHero;
+  directions: HomeDirections;
+  manifesto: HomeManifesto;
+  plan: HomePlan;
+};

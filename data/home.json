@@ -4,8 +4,14 @@
       "lead": "Лечим всей",
       "accent": "семьёй"
     },
-    "asideLeft": ["Семейная стоматология", "с 2016 года"],
-    "asideRight": ["Детский кабинет", "и приём в выходные"],
+    "asideLeft": [
+      "Семейная стоматология",
+      "с 2016 года"
+    ],
+    "asideRight": [
+      "Детский кабинет",
+      "и приём в выходные"
+    ],
     "photo": {
       "src": "/images/hero/doctor-ash.webp",
       "width": 928,
@@ -54,5 +60,193 @@
         "alt": "Врач в бинокулярных лупах ведёт приём"
       }
     ]
+  },
+  "directions": {
+    "title": "Направления",
+    "subtitle": "Цена „от“ — до консультации. Точную сумму назовём в плане лечения",
+    "allPrices": {
+      "label": "Весь прайс",
+      "href": "/ceny/"
+    },
+    "rows": [
+      {
+        "directionId": "lechenie-kariesa",
+        "description": "Современные пломбы, лечение под анестезией",
+        "photo": {
+          "src": "/images/directions/lechenie-kariesa.webp",
+          "width": 800,
+          "height": 800,
+          "alt": ""
+        }
+      },
+      {
+        "directionId": "lechenie-kanalov",
+        "description": "Под микроскопом, с контрольным снимком",
+        "photo": {
+          "src": "/images/directions/lechenie-kanalov.webp",
+          "width": 800,
+          "height": 800,
+          "alt": ""
+        }
+      },
+      {
+        "directionId": "profgigiena",
+        "description": "Снятие камня и налёта, полировка, советы по уходу",
+        "photo": {
+          "src": "/images/directions/profgigiena.webp",
+          "width": 800,
+          "height": 800,
+          "alt": ""
+        }
+      },
+      {
+        "directionId": "implantaciya",
+        "description": "Консультация хирурга и КТ — бесплатно",
+        "priceNote": "под ключ",
+        "photo": {
+          "src": "/images/directions/implantaciya.webp",
+          "width": 800,
+          "height": 800,
+          "alt": ""
+        }
+      },
+      {
+        "directionId": "protezirovanie",
+        "description": "Коронки и протезы, в том числе на импланты",
+        "photo": {
+          "src": "/images/directions/protezirovanie.webp",
+          "width": 800,
+          "height": 800,
+          "alt": ""
+        }
+      },
+      {
+        "directionId": "ortodontiya",
+        "description": "Для детей и взрослых, план с итоговой ценой",
+        "photo": {
+          "src": "/images/directions/ortodontiya.webp",
+          "width": 800,
+          "height": 800,
+          "alt": ""
+        }
+      },
+      {
+        "directionId": "detskaya",
+        "description": "Отдельный кабинет в филиале «Академический»",
+        "photo": {
+          "src": "/images/directions/detskaya.webp",
+          "width": 800,
+          "height": 800,
+          "alt": ""
+        }
+      },
+      {
+        "directionId": "udalenie",
+        "description": "В том числе зубы мудрости, с анестезией",
+        "photo": {
+          "src": "/images/directions/udalenie.webp",
+          "width": 800,
+          "height": 800,
+          "alt": ""
+        }
+      }
+    ],
+    "urgent": {
+      "label": "Острая боль — приём сегодня",
+      "href": "/zapis/?mode=urgent"
+    }
+  },
+  "manifesto": {
+    "segments": [
+      {
+        "kind": "text",
+        "text": "Мы называем"
+      },
+      {
+        "kind": "pill",
+        "image": {
+          "src": "/images/manifest/manifest-consult.webp",
+          "width": 800,
+          "height": 400,
+          "alt": ""
+        }
+      },
+      {
+        "kind": "text",
+        "text": "итоговую цену до начала лечения и не меняем её"
+      },
+      {
+        "kind": "pill",
+        "image": {
+          "src": "/images/manifest/manifest-contract.webp",
+          "width": 800,
+          "height": 400,
+          "alt": ""
+        }
+      },
+      {
+        "kind": "text",
+        "text": "без вашего согласия"
+      }
+    ]
+  },
+  "plan": {
+    "backdrop": "План",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Осмотр и снимок",
+        "text": "КТ в день визита в филиале «Центр»",
+        "leaf": {
+          "src": "/images/manifest/plan-01-scan.webp",
+          "width": 640,
+          "height": 640,
+          "alt": "Врач помогает пациенту встать в аппарат КТ"
+        }
+      },
+      {
+        "number": "02",
+        "title": "План и итоговая цена",
+        "text": "Сумма до начала работ, закреплена в договоре",
+        "leaf": {
+          "src": "/images/manifest/plan-02-plan.webp",
+          "width": 640,
+          "height": 640,
+          "alt": "Врач показывает пациентке снимок на мониторе"
+        }
+      },
+      {
+        "number": "03",
+        "title": "Лечение",
+        "text": "По этапам, рассрочка без переплаты",
+        "leaf": {
+          "src": "/images/manifest/plan-03-treatment.webp",
+          "width": 640,
+          "height": 640,
+          "alt": "Ассистент подаёт врачу инструмент во время приёма"
+        }
+      },
+      {
+        "number": "04",
+        "title": "Контроль",
+        "text": "Напоминания в SMS, Telegram или MAX",
+        "leaf": {
+          "src": "/images/manifest/plan-04-control.webp",
+          "width": 640,
+          "height": 640,
+          "alt": "Пациентка у стойки регистратуры смотрит напоминание в телефоне"
+        }
+      }
+    ],
+    "card": {
+      "caption": "Пример плана лечения",
+      "totalLabel": "Итого",
+      "installmentMonths": 12,
+      "installmentLabel": "Рассрочка без переплаты — {sum}/мес"
+    },
+    "cta": {
+      "label": "Записаться на консультацию",
+      "href": "/zapis/?service=diagnostika"
+    }
   }
 }
