@@ -127,11 +127,6 @@
   color: var(--color-text-muted);
 }
 
-.card {
-  position: relative;
-  z-index: 2;
-  margin: var(--space-6) 0 0 -40px;
-}
 
 /* ---- Десктоп: сцена 1120 px, листья 200 px чередуются ---- */
 @media (min-width: 1200px) {
@@ -209,13 +204,6 @@
     left: calc(var(--leaf-x) + var(--leaf-s) + 40px);
   }
 
-  .card {
-    position: absolute;
-    top: var(--leaf-top);
-    left: 40px;
-    width: 420px;
-    margin: 0;
-  }
 }
 
 /*

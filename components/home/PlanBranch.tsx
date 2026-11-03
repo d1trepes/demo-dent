@@ -1,9 +1,7 @@
 import type { CSSProperties } from "react";
-import { calcInstallment, getTreatmentPlan } from "@/lib/api";
 import { asset } from "@/lib/asset";
 import { cx } from "@/lib/cx";
 import type { HomePlan, PlanBranchStep } from "@/lib/types";
-import { PlanCard } from "./PlanCard";
 import styles from "./PlanBranch.module.css";
 
 /*
@@ -13,7 +11,7 @@ import styles from "./PlanBranch.module.css";
  * Константы — только геометрия сцены, контент приходит из data/home.json.
  */
 const STAGE_W = 1120;
-const ROW_H = [320, 480, 320, 320];
+const ROW_H = [300, 300, 300, 300];
 const LEAF = 200;
 const LEAF_TOP = 16;
 /** Линия отходит от листа: у левого шага правее центра, у правого — левее. */
@@ -68,9 +66,7 @@ function stepVars(i: number): CSSProperties {
   } as CSSProperties;
 }
 
-export async function PlanBranch({ content }: { content: HomePlan }) {
-  const plan = await getTreatmentPlan();
-  const installment = calcInstallment(plan.total, content.card.installmentMonths);
+export function PlanBranch({ content }: { content: HomePlan }) {
   const steps = content.steps.slice(0, ROW_H.length);
 
   return (
@@ -101,7 +97,6 @@ export async function PlanBranch({ content }: { content: HomePlan }) {
               <h3 className={styles.title}>{step.title}</h3>
               <p className={styles.caption}>{step.text}</p>
             </div>
-            {i === 1 && <PlanCard plan={plan} installment={installment} labels={content.card} className={styles.card} />}
           </li>
         ))}
       </ol>

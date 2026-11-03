@@ -57,14 +57,20 @@ export async function Directions() {
               </Link>
             </li>
           ))}
-          <li>
-            <Link href={content.urgent.href} className={`${styles.row} ${styles.urgent}`}>
-              <span className={styles.num} aria-hidden />
-              <span className={styles.name}>{content.urgent.label}</span>
-              <Arrow />
-            </Link>
-          </li>
         </ol>
+
+        <Link href={content.urgent.href} className={styles.urgent}>
+          <span className={styles.urgentText}>
+            <span className={styles.urgentTitle}>{content.urgent.label}</span>
+            <span className={styles.urgentNote}>{content.urgent.text}</span>
+          </span>
+          <span className={styles.urgentAction}>
+            {content.urgent.action}
+            <svg viewBox="0 0 32 12" width="32" height="12" aria-hidden>
+              <path d="M0 6 H30 M25 1 L30 6 L25 11" />
+            </svg>
+          </span>
+        </Link>
       </div>
     </section>
   );

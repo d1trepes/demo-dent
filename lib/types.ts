@@ -536,8 +536,8 @@ export type HomeDirections = {
   subtitle: string;
   allPrices: HomeLink;
   rows: HomeDirectionRow[];
-  /** Строка-акцент после направлений → срочная запись. */
-  urgent: HomeLink;
+  /** Плашка-акцент после направлений → срочная запись. */
+  urgent: HomeLink & { text: string; action: string };
 };
 
 /** Манифест блока 3: текст с фото-таблетками внутри строки. */
@@ -557,14 +557,6 @@ export type HomePlan = {
   /** Слово-фон за веткой (aria-hidden). */
   backdrop: string;
   steps: PlanBranchStep[];
-  /** Карточка возле шага 02: цифры — из getTreatmentPlan() и calcInstallment(). */
-  card: {
-    caption: string;
-    totalLabel: string;
-    installmentMonths: number;
-    /** {sum} заменяется на «от N ₽». */
-    installmentLabel: string;
-  };
   cta: HomeLink;
 };
 
