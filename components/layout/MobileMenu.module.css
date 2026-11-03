@@ -55,7 +55,7 @@
 .contacts .link {
   font-family: var(--font-text);
   font-size: var(--text-lg);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .contacts {

@@ -6,7 +6,6 @@ import { MobileBar } from "@/components/layout/MobileBar";
 import "@fontsource/prata/400.css";
 import "@fontsource/golos-text/400.css";
 import "@fontsource/golos-text/500.css";
-import "@fontsource/golos-text/600.css";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {

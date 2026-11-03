@@ -52,8 +52,6 @@
   padding: var(--space-5) var(--space-3);
   border-radius: 20px;
   color: var(--color-text);
-  text-decoration: none;
-  transition: background-color 0.3s var(--ease);
 }
 
 .num {
@@ -166,19 +164,27 @@
   transition: color 0.3s var(--ease);
 }
 
-.urgent:focus-visible {
-  outline: 2px solid var(--color-focus);
+.urgentAction {
+  text-decoration: none;
+  transition:
+    background-color 0.3s var(--ease),
+    color 0.3s var(--ease);
+}
+
+/* Hover/фокус — только у кнопки: белая пилюля становится тёмно-синей с белым текстом */
+.urgentAction:hover,
+.urgentAction:focus-visible {
+  background: var(--color-primary-deep);
+  color: var(--color-primary-contrast);
+}
+
+.urgentAction:focus-visible {
+  outline: 3px solid var(--color-primary-contrast);
   outline-offset: 3px;
 }
 
-.urgent:focus-visible,
-.urgent:hover {
-  background: var(--color-primary-deep);
-}
-
-.urgent:focus-visible .urgentAction,
-.urgent:hover .urgentAction {
-  color: var(--color-primary-deep);
+.urgentAction:active {
+  transform: scale(0.98);
 }
 
 /* ---- Десктоп: одна строка 80 px, таблетка между описанием и ценой ---- */
@@ -304,11 +310,6 @@
 
 /* Без движения — только смена фона строки */
 @media (prefers-reduced-motion: reduce) {
-  .urgent:hover .urgentAction svg,
-  .urgent:focus-visible .urgentAction svg {
-    transform: none;
-  }
-
   .row:hover .pill,
   .row:focus-visible .pill {
     width: 72px;

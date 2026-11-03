@@ -24,8 +24,11 @@ export async function Header() {
             {mainNav.map((item) =>
               item.children ? (
                 <li key={item.href}>
-                  <details className={styles.dropdown}>
-                    <summary className={styles.navLink}>{item.label}</summary>
+                  {/* Открывается при наведении и фокусе с клавиатуры (CSS), закрывается, когда курсор уходит */}
+                  <div className={styles.dropdown}>
+                    <NavLink href={item.href} className={styles.navLink}>
+                      {item.label}
+                    </NavLink>
                     <ul className={styles.dropdownList}>
                       {item.children.map((child) => (
                         <li key={child.href}>
@@ -35,7 +38,7 @@ export async function Header() {
                         </li>
                       ))}
                     </ul>
-                  </details>
+                  </div>
                 </li>
               ) : (
                 <li key={item.href}>

@@ -57,13 +57,16 @@ export async function Directions() {
           ))}
         </ol>
 
-        <Link href={content.urgent.href} className={styles.urgent}>
-          <span className={styles.urgentText}>
+        {/* Плашка — не ссылка: нажимается и подсвечивается только кнопка (правка 2E) */}
+        <div className={styles.urgent}>
+          <p className={styles.urgentText}>
             <span className={styles.urgentTitle}>{content.urgent.label}</span>
             <span className={styles.urgentNote}>{content.urgent.text}</span>
-          </span>
-          <span className={styles.urgentAction}>{content.urgent.action}</span>
-        </Link>
+          </p>
+          <Link href={content.urgent.href} className={styles.urgentAction}>
+            {content.urgent.action}
+          </Link>
+        </div>
       </div>
     </section>
   );
