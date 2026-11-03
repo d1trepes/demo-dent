@@ -595,6 +595,51 @@ export type HomeDoctors = {
   thumbsLabel: string;
 };
 
+/** Клинический случай блока 6 (2D): нейтральная подпись — что сделано, кто делал, сколько визитов. Без слов о результате. */
+export type BeforeAfterCase = {
+  id: string;
+  title: string;
+  specialty: string;
+  visits: number;
+  /** Пары 1200×1200, выровнены по кадру — при движении ползунка зубы не прыгают. */
+  before: Picture;
+  after: Picture;
+};
+
+export type HomeBeforeAfter = {
+  title: string;
+  sliderLabel: string;
+  beforeLabel: string;
+  afterLabel: string;
+  prevLabel: string;
+  nextLabel: string;
+  /** Формы слова для числа визитов: 1, 2–4, 5+. */
+  visitsWord: [string, string, string];
+  cta: HomeLink;
+  cases: BeforeAfterCase[];
+};
+
+/** Карточка филиала в блоке 7: адрес, часы, что есть — из branches.json, отзыв — из reviews.json по id. */
+export type HomeBranchCard = {
+  branchId: BranchId;
+  reviewId: string;
+  photos: Picture[];
+};
+
+export type HomeBranches = {
+  title: string;
+  /** Шаблон абзаца: {weekdays}, {weekend}, {kidsBranch}, {ctBranch} подставляются из branches.json. */
+  intro: string;
+  ratingsLabel: string;
+  /** Формы слова для числа отзывов: 1, 2–4, 5+. */
+  reviewsWord: [string, string, string];
+  routeLink: HomeLink;
+  features: { ct: string; kids: string };
+  cards: HomeBranchCard[];
+  /** 2 доп. фото 1:1 слева внизу — декоративные, alt пустой. */
+  extras: Picture[];
+};
+
 export type HomeContent = {
   hero: HomeHero;
   directions: HomeDirections;
@@ -602,4 +647,6 @@ export type HomeContent = {
   plan: HomePlan;
   implant: HomeImplant;
   doctors: HomeDoctors;
+  beforeAfter: HomeBeforeAfter;
+  branchesBlock: HomeBranches;
 };

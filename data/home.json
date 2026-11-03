@@ -312,5 +312,148 @@
     "bookLabel": "Записаться к врачу",
     "profileLabel": "О враче",
     "thumbsLabel": "Другие врачи клиники"
+  },
+  "beforeAfter": {
+    "title": "Работы наших врачей",
+    "sliderLabel": "Сравнение до и после",
+    "beforeLabel": "До",
+    "afterLabel": "После",
+    "prevLabel": "Предыдущий случай",
+    "nextLabel": "Следующий случай",
+    "visitsWord": [
+      "визит",
+      "визита",
+      "визитов"
+    ],
+    "cta": {
+      "label": "Записаться на консультацию",
+      "href": "/zapis/"
+    },
+    "cases": [
+      {
+        "id": "case-01",
+        "title": "Восстановление скола на переднем зубе композитом",
+        "specialty": "Стоматолог-терапевт",
+        "visits": 1,
+        "before": {
+          "src": "/images/before-after/case-01-before.webp",
+          "width": 1200,
+          "height": 1200,
+          "alt": "Передние зубы со сколом на верхнем резце, крупный план"
+        },
+        "after": {
+          "src": "/images/before-after/case-01-after.webp",
+          "width": 1200,
+          "height": 1200,
+          "alt": "Те же зубы после восстановления композитом, крупный план"
+        }
+      },
+      {
+        "id": "case-02",
+        "title": "Имплантация переднего зуба с коронкой на абатменте",
+        "specialty": "Хирург-имплантолог и стоматолог-ортопед",
+        "visits": 4,
+        "before": {
+          "src": "/images/before-after/case-02-before.webp",
+          "width": 1200,
+          "height": 1200,
+          "alt": "Верхний ряд без одного переднего зуба, крупный план"
+        },
+        "after": {
+          "src": "/images/before-after/case-02-after.webp",
+          "width": 1200,
+          "height": 1200,
+          "alt": "Тот же ряд с коронкой на импланте, крупный план"
+        }
+      },
+      {
+        "id": "case-03",
+        "title": "Выравнивание зубного ряда на элайнерах",
+        "specialty": "Ортодонт",
+        "visits": 9,
+        "before": {
+          "src": "/images/before-after/case-03-before.webp",
+          "width": 1200,
+          "height": 1200,
+          "alt": "Скученность передних зубов, крупный план"
+        },
+        "after": {
+          "src": "/images/before-after/case-03-after.webp",
+          "width": 1200,
+          "height": 1200,
+          "alt": "Те же зубы после лечения на элайнерах, крупный план"
+        }
+      }
+    ]
+  },
+  "branchesBlock": {
+    "title": "Два филиала в Екатеринбурге",
+    "intro": "Оба филиала работают {weekdays} и {weekend} — без выходных. Детский кабинет есть в филиале «{kidsBranch}», компьютерный томограф — в филиале «{ctBranch}».",
+    "ratingsLabel": "Рейтинг на площадках",
+    "reviewsWord": [
+      "отзыв",
+      "отзыва",
+      "отзывов"
+    ],
+    "routeLink": {
+      "label": "Как добраться",
+      "href": "/filialy/"
+    },
+    "features": {
+      "ct": "Компьютерный томограф",
+      "kids": "Детский кабинет"
+    },
+    "cards": [
+      {
+        "branchId": "center",
+        "reviewId": "r-2",
+        "photos": [
+          {
+            "src": "/images/branches/center-01.webp",
+            "width": 1200,
+            "height": 900,
+            "alt": "Ресепшен филиала «Центр»: светлая стойка и кресло для ожидания"
+          },
+          {
+            "src": "/images/branches/center-02.webp",
+            "width": 1200,
+            "height": 900,
+            "alt": "Кабинет филиала «Центр» с компьютерным томографом"
+          }
+        ]
+      },
+      {
+        "branchId": "akadem",
+        "reviewId": "r-5",
+        "photos": [
+          {
+            "src": "/images/branches/akadem-01.webp",
+            "width": 1200,
+            "height": 900,
+            "alt": "Детский кабинет филиала «Академический» с полкой игрушек"
+          },
+          {
+            "src": "/images/branches/akadem-02.webp",
+            "width": 1200,
+            "height": 900,
+            "alt": "Зона ожидания филиала «Академический» с детским столиком"
+          }
+        ]
+      }
+    ],
+    "extras": [
+      {
+        "src": "/images/branches/extra-01.webp",
+        "width": 800,
+        "height": 800,
+        "alt": ""
+      },
+      {
+        "src": "/images/branches/extra-02.webp",
+        "width": 800,
+        "height": 800,
+        "alt": ""
+      }
+    ]
   }
 }

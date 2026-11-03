@@ -1,3 +1,5 @@
+import { BeforeAfter } from "@/components/home/BeforeAfter";
+import { Branches } from "@/components/home/Branches";
 import { Doctors } from "@/components/home/Doctors";
 import { Directions } from "@/components/home/Directions";
 import { Hero } from "@/components/home/Hero";
@@ -13,6 +15,8 @@ export default function HomePage() {
       <PriceUpfront />
       <Implant />
       <Doctors />
+      <BeforeAfter />
+      <Branches />
     </>
   );
 }

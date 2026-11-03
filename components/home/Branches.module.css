@@ -1,0 +1,281 @@
+/*
+ * Блок 7 «Филиалы», раскладка по ref-branches-rows.png.
+ * Мобильный: заголовок → абзац → рейтинги → карточки столбиком (фото сверху) → доп. фото.
+ * С 1024 px, 12 колонок: слева (1–5) текст и 2 доп. фото внизу, справа (7–12) 2 карточки-строки.
+ * Прямоугольники со скруглением, без листьев и синей заливки; hover карточки — --color-tint.
+ */
+.section {
+  padding-top: var(--section-gap);
+}
+
+.layout {
+  display: grid;
+  grid-template-areas:
+    "aside"
+    "cards"
+    "extras";
+  row-gap: var(--space-10);
+}
+
+.aside {
+  grid-area: aside;
+  display: grid;
+  align-content: start;
+  gap: var(--space-6);
+}
+
+.title {
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.intro {
+  max-width: 520px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+/* ---- Рейтинги: цифра и площадка, без звёзд ---- */
+.ratingList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.ratingValue {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.ratingSource {
+  display: grid;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.ratingCount {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* ---- Карточки филиалов ---- */
+.cards {
+  grid-area: cards;
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-4);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  transition: background-color var(--dur) var(--ease);
+}
+
+.cardPhotos {
+  order: -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.cardPhoto,
+.extra {
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--color-placeholder);
+}
+
+.cardPhoto {
+  aspect-ratio: 4 / 3;
+}
+
+.cardPhoto img,
+.extra img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardText {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-2);
+  padding: 0 var(--space-2) var(--space-2);
+}
+
+.cardTitle {
+  font-family: var(--font-text);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.address,
+.hours {
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.hours {
+  display: grid;
+  color: var(--color-text-muted);
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature {
+  padding: 4px 12px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.review {
+  margin: var(--space-3) 0 0;
+}
+
+.reviewText {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.reviewAuthor {
+  margin-top: var(--space-1);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* Ссылка — текстовая, но с зоной нажатия 44 px */
+.route {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  margin-top: var(--space-1);
+  color: var(--color-primary);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.route:hover {
+  text-decoration-color: transparent;
+}
+
+/* ---- Доп. фото 1:1 ---- */
+.extras {
+  grid-area: extras;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.extra {
+  aspect-ratio: 1;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .extras {
+    max-width: 480px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: auto 1fr;
+    grid-template-areas: none;
+    column-gap: var(--space-8);
+    row-gap: var(--space-10);
+  }
+
+  .aside {
+    grid-column: 1 / 6;
+    grid-row: 1;
+  }
+
+  .title {
+    font-size: 48px;
+  }
+
+  .extras {
+    grid-column: 1 / 6;
+    grid-row: 2;
+    align-self: end;
+    grid-template-columns: repeat(2, clamp(120px, 11vw, 180px));
+    gap: var(--space-4);
+  }
+
+  .cards {
+    grid-column: 7 / 13;
+    grid-row: 1 / 3;
+  }
+
+  /* Карточка-строка: текст слева, 2 фото справа */
+  .card {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: stretch;
+    gap: var(--space-6);
+    padding: var(--space-6);
+  }
+
+  .cardText {
+    padding: var(--space-2) 0 0 var(--space-2);
+  }
+
+  .cardPhotos {
+    order: 0;
+    grid-template-columns: repeat(2, clamp(104px, 8.6vw, 160px));
+  }
+
+  /* Фото тянутся на высоту карточки: картинка абсолютом, чтобы не раздувала строку */
+  .cardPhoto {
+    position: relative;
+    aspect-ratio: auto;
+    min-height: 220px;
+  }
+
+  .cardPhoto img {
+    position: absolute;
+    inset: 0;
+  }
+}
+
+@media (hover: hover) and (min-width: 1024px) {
+  .card:hover,
+  .card:focus-within {
+    background: var(--color-tint);
+  }
+}

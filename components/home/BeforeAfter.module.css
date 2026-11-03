@@ -1,0 +1,24 @@
+/* Блок 6 «До/после»: заголовок по центру, сравнение, вторичная кнопка внизу. Без синей заливки и предупреждения (DESIGN.md). */
+.section {
+  padding-top: var(--section-gap);
+  overflow-x: clip;
+}
+
+.title {
+  font-size: 32px;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-10);
+  padding: 0 var(--gutter);
+}
+
+@media (min-width: 1024px) {
+  .title {
+    font-size: 48px;
+  }
+}
