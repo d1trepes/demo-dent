@@ -557,31 +557,31 @@ export type HomePlan = {
   cta: HomeLink;
 };
 
-/** Деталь импланта в разборе (блок 4). Все картинки — на холсте одной ширины, деталь по центру. */
+/** Деталь импланта (блок 4): подпись и точка, от которой идёт линия, — в долях кадра видео (по кадру максимального разбора). */
 export type ImplantPart = {
   id: "crown" | "abutment" | "screw";
   title: string;
   /** 1–2 строки, без обещаний результата. */
   text: string;
-  image: Picture;
-  /** Ширина самой детали относительно холста (0–1): от её края идёт выноска. */
-  visibleWidth: number;
+  anchor: { x: number; y: number };
 };
 
-/** Строка с ценой под имплантом (2C-1, вместо калькулятора): цена — priceFrom направления из services.json. */
-export type HomeImplantOffer = {
-  title: string;
-  directionId: string;
-  note: string;
-  cta: HomeLink;
+/** Видео импланта, проматываемое скроллом (2C-2): отрезок «максимальный разбор → правильная сборка». */
+export type ImplantVideo = {
+  src: string;
+  /** Собранный кадр — до загрузки видео. */
+  poster: string;
+  width: number;
+  height: number;
 };
 
 export type HomeImplant = {
   title: string;
   paragraphs: string[];
-  assembled: Picture;
+  video: ImplantVideo;
+  /** Статичный кадр разбора: мобильный и reduced-motion. */
+  exploded: Picture;
   parts: ImplantPart[];
-  offer: HomeImplantOffer;
 };
 
 /** Блок 5 «Врачи» (2C-1): порядок врачей на главной, первый — в большой карточке. Фото — Doctor.photo, все 3:4. */

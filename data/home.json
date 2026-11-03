@@ -249,59 +249,47 @@
       "«Под ключ» значит, что в цену входят операция, формирователь десны, абатмент и коронка. Итоговую сумму называем до начала лечения.",
       "Первый шаг — бесплатная консультация хирурга с КТ. По снимку врач оценивает кость и составляет план с этапами и сроками."
     ],
-    "assembled": {
-      "src": "/images/implant/implant-assembled.webp",
-      "width": 400,
-      "height": 891,
-      "alt": "Имплант в сборе: коронка, абатмент и титановый винт"
+    "video": {
+      "src": "/video/implant.mp4",
+      "poster": "/video/implant-poster.webp",
+      "width": 392,
+      "height": 720
+    },
+    "exploded": {
+      "src": "/video/implant-exploded.webp",
+      "width": 784,
+      "height": 1440,
+      "alt": "Имплант в разборе: коронка, абатмент и титановый имплант"
     },
     "parts": [
       {
         "id": "crown",
         "title": "Коронка",
         "text": "Цирконий, подбираем оттенок под соседние зубы",
-        "image": {
-          "src": "/images/implant/implant-crown.webp",
-          "width": 400,
-          "height": 374,
-          "alt": "Коронка из диоксида циркония"
-        },
-        "visibleWidth": 1
+        "anchor": {
+          "x": 0.61,
+          "y": 0.2
+        }
       },
       {
         "id": "abutment",
         "title": "Абатмент",
         "text": "Соединяет коронку и имплант",
-        "image": {
-          "src": "/images/implant/implant-abutment.webp",
-          "width": 400,
-          "height": 402,
-          "alt": "Титановый абатмент"
-        },
-        "visibleWidth": 0.675
+        "anchor": {
+          "x": 0.71,
+          "y": 0.455
+        }
       },
       {
         "id": "screw",
         "title": "Имплант",
         "text": "Титановый винт, заменяет корень зуба",
-        "image": {
-          "src": "/images/implant/implant-screw.webp",
-          "width": 400,
-          "height": 536,
-          "alt": "Титановый имплант с резьбой"
-        },
-        "visibleWidth": 0.475
+        "anchor": {
+          "x": 0.86,
+          "y": 0.74
+        }
       }
-    ],
-    "offer": {
-      "title": "Имплантация под ключ",
-      "directionId": "implantaciya",
-      "note": "Итоговую сумму хирург называет после КТ, до начала лечения. В цену входят операция, формирователь, абатмент и коронка.",
-      "cta": {
-        "label": "Записаться на консультацию с КТ",
-        "href": "/zapis/?service=implantaciya"
-      }
-    }
+    ]
   },
   "doctors": {
     "title": "Врачи",

@@ -10,7 +10,7 @@ export type DoctorCard = {
   slug: string;
   fullName: string;
   position: string;
-  /** Стаж, категория, филиалы — уже готовыми строками. */
+  /** Стаж и филиал — уже готовыми строками. */
   facts: string[];
   about: string;
   photo: string;
@@ -28,7 +28,11 @@ function splitName(fullName: string): [string, string] {
   return space === -1 ? [fullName, ""] : [fullName.slice(0, space), fullName.slice(space + 1)];
 }
 
-/** Большая карточка + миниатюры-листья. Клик по миниатюре меняет врачей местами. */
+/**
+ * Ряд врачей по референсу ref-doctors-carousel.png: маленькое фото слева → большое → текст,
+ * под текстом ряд маленьких. order[0] — большой врач, order[1] — маленький слева, остальные — справа.
+ * Клик по маленькому — врачи меняются местами.
+ */
 export function DoctorsShowcase({ doctors, photo, labels }: Props) {
   const [order, setOrder] = useState(() => doctors.map((d) => d.slug));
   const bySlug = new Map(doctors.map((d) => [d.slug, d]));
@@ -45,7 +49,7 @@ export function DoctorsShowcase({ doctors, photo, labels }: Props) {
 
   return (
     <div className={styles.root}>
-      <div key={active.slug} className={styles.photo}>
+      <div key={active.slug} className={`${styles.photo} ${styles.fade}`}>
         <img
           src={asset(active.photo)}
           width={photo.width}
@@ -56,60 +60,40 @@ export function DoctorsShowcase({ doctors, photo, labels }: Props) {
         />
       </div>
 
-      <div className={styles.info}>
-        <div key={active.slug} className={styles.details} aria-live="polite">
-          <p className={styles.position}>{active.position}</p>
-          <h3 className={styles.name}>
-            {surname}
-            {name && <span className={styles.nameRest}>{name}</span>}
-          </h3>
-          <ul className={styles.facts}>
-            {active.facts.map((fact) => (
-              <li key={fact}>{fact}</li>
-            ))}
-          </ul>
-          <p className={styles.about}>{active.about}</p>
-          <div className={styles.actions}>
-            <ButtonLink href={`/zapis/?doctor=${active.slug}`}>{labels.book}</ButtonLink>
-            <Link href={`/vrachi/${active.slug}/`} className={styles.profile}>
-              {labels.profile}
-            </Link>
-          </div>
+      <div key={`${active.slug}-text`} className={`${styles.details} ${styles.fade}`} aria-live="polite">
+        <p className={styles.position}>{active.position}</p>
+        <h3 className={styles.name}>
+          {surname}
+          {name && <span className={styles.nameRest}>{name}</span>}
+        </h3>
+        <p className={styles.facts}>{active.facts.join(" · ")}</p>
+        <p className={styles.about}>{active.about}</p>
+        <div className={styles.actions}>
+          <ButtonLink href={`/zapis/?doctor=${active.slug}`}>{labels.book}</ButtonLink>
+          <Link href={`/vrachi/${active.slug}/`} className={styles.profile}>
+            {labels.profile}
+          </Link>
         </div>
-
-        <ul className={styles.thumbs} aria-label={labels.thumbs}>
-          {order.slice(1).map((slug, i) => {
-            const doctor = bySlug.get(slug);
-            if (!doctor) return null;
-            const [thumbSurname, thumbName] = splitName(doctor.fullName);
-            return (
-              <li key={slug}>
-                <button
-                  type="button"
-                  className={styles.thumb}
-                  onClick={() => swap(i + 1)}
-                  aria-label={`Показать: ${doctor.fullName}, ${doctor.position.toLowerCase()}`}
-                >
-                  <span className={styles.leaf}>
-                    <img
-                      src={asset(doctor.photo)}
-                      width={photo.width}
-                      height={photo.height}
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </span>
-                  <span className={styles.thumbName} aria-hidden>
-                    {thumbSurname}
-                    <span>{thumbName.split(" ")[0]}</span>
-                  </span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
       </div>
+
+      <ul className={styles.thumbs} aria-label={labels.thumbs}>
+        {order.slice(1).map((slug, i) => {
+          const doctor = bySlug.get(slug);
+          if (!doctor) return null;
+          return (
+            <li key={slug} className={i === 0 ? styles.thumbLeft : undefined}>
+              <button
+                type="button"
+                className={`${styles.thumb} ${styles.fade}`}
+                onClick={() => swap(i + 1)}
+                aria-label={`Показать: ${doctor.fullName}, ${doctor.position.toLowerCase()}`}
+              >
+                <img src={asset(doctor.photo)} width={photo.width} height={photo.height} alt="" loading="lazy" decoding="async" />
+              </button>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

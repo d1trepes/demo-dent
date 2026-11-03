@@ -5,7 +5,7 @@ import { DoctorsShowcase, type DoctorCard } from "./DoctorsShowcase";
 import styles from "./Doctors.module.css";
 
 /**
- * Блок 5 главной — «Врачи»: большая карточка врача + ряд листьев-миниатюр, клик меняет местами.
+ * Блок 5 главной — «Врачи»: большое фото врача, текст и ряд маленьких фото (реф. ref-doctors-carousel.png), клик меняет местами.
  * Порядок — data/home.json → doctors.slugs, сами врачи — doctors.json через lib/api.ts.
  */
 export async function Doctors() {
@@ -15,9 +15,9 @@ export async function Doctors() {
   const cards: DoctorCard[] = content.slugs.flatMap((slug) => {
     const doctor = doctors.find((d) => d.slug === slug);
     if (!doctor) return [];
+    // Стаж и филиал — одной строкой под ФИО (DESIGN.md, блок 5)
     const facts = [
       `Стаж ${formatYears(year - doctor.experienceSince)}`,
-      doctor.category,
       doctor.branches.map((id) => branches.find((b) => b.id === id)?.name).filter(Boolean).join(" и "),
     ].filter((fact): fact is string => Boolean(fact));
     return [

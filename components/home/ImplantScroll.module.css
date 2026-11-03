@@ -1,0 +1,213 @@
+/*
+ * Блок 4 — видео импланта по скроллу. Мобильный сначала: абзацы → статичный кадр разбора → подписи списком.
+ * С 1024 px без reduced-motion: секция закреплена ~2 экрана, абзацы слева, видео по центру,
+ * подписи как у DENTAX (линия уходит в прозрачность к детали, синяя точка, текст справа).
+ * --k (0–1) ставит скрипт: насколько имплант разобран.
+ */
+.stage {
+  display: grid;
+  gap: var(--space-10);
+}
+
+.text {
+  display: grid;
+  gap: var(--space-8);
+}
+
+/* Короткая кобальтовая черта над абзацем */
+.paragraph {
+  max-width: 34ch;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.paragraph::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 2px;
+  margin-bottom: var(--space-4);
+  background: var(--color-primary);
+}
+
+.calloutTitle {
+  display: block;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+.calloutText {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+/* ---------- Статичный вариант: мобильный и reduced-motion ---------- */
+.scene {
+  display: none;
+}
+
+.static {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.staticImage {
+  display: block;
+  justify-self: center;
+  width: min(240px, 64vw);
+  height: auto;
+}
+
+/* Фон кадров уже перекрашен в --color-bg; мягкий край — страховка от разницы цветовых профилей */
+.staticImage,
+.video {
+  mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent),
+    linear-gradient(to bottom, transparent, #000 2%, #000 97%, transparent);
+  mask-composite: intersect;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.listItem {
+  padding-block: var(--space-4);
+}
+
+.listItem + .listItem {
+  border-top: 1px solid var(--color-line);
+}
+
+@media (min-width: 1024px) {
+  .stage {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: var(--space-12);
+  }
+
+  .heading {
+    grid-column: 1 / -1;
+  }
+
+  .text {
+    justify-self: end;
+    gap: var(--space-10);
+    max-width: 340px;
+  }
+
+  .static {
+    grid-column: 2 / 4;
+    grid-template-columns: auto minmax(0, 320px);
+    align-items: center;
+    column-gap: var(--space-12);
+  }
+
+  .staticImage {
+    width: 300px;
+  }
+}
+
+/* ---------- Сцена по скроллу ---------- */
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  /* 1 экран сцены + ~2 экрана прохода */
+  .track {
+    height: 300svh;
+  }
+
+  .stage {
+    position: sticky;
+    top: var(--header-h);
+    height: calc(100svh - var(--header-h));
+    grid-template-rows: auto minmax(0, 1fr);
+    align-content: center;
+    row-gap: var(--space-8);
+    padding-block: var(--space-8);
+  }
+
+  .static {
+    display: none;
+  }
+
+  .scene {
+    --h: min(680px, calc(100svh - var(--header-h) - 200px));
+    --line: 112px;
+    position: relative;
+    display: block;
+    width: calc(var(--h) * var(--ratio));
+    height: var(--h);
+  }
+
+  .video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+  }
+
+  .callouts {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Точка начала — край детали на кадре разбора; линия на уровне названия (17 × 1,3 / 2). */
+  .callout {
+    --r: clamp(0, var(--k, 0) * 1.3 - var(--i) * 0.15, 1);
+    position: absolute;
+    left: calc(var(--x) * 100%);
+    top: calc(var(--y) * 100% - 11px);
+    display: flex;
+    align-items: flex-start;
+    width: max-content;
+  }
+
+  .leader {
+    position: relative;
+    flex: none;
+    width: calc(var(--line) * var(--r));
+    height: 1px;
+    margin-top: 11px;
+    background: linear-gradient(to right, transparent, rgb(90 96 121 / 0.55));
+  }
+
+  /* Синяя точка на конце линии — единственное исключение из запрета точек (DESIGN.md) */
+  .leader::after {
+    content: "";
+    position: absolute;
+    top: -3.5px;
+    right: -4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    opacity: var(--r);
+  }
+
+  .label {
+    width: 240px;
+    padding-left: var(--space-4);
+    opacity: var(--r);
+    transform: translateX(calc((1 - var(--r)) * 24px));
+  }
+}
+
+/* 1024–1279: справа места меньше — короче линия и уже подписи */
+@media (min-width: 1024px) and (max-width: 1279px) and (prefers-reduced-motion: no-preference) {
+  .scene {
+    --line: 64px;
+  }
+
+  .label {
+    width: 190px;
+  }
+}

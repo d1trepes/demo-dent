@@ -78,10 +78,16 @@
   }
 }
 
+/* С 1024 px шапка — пилюля высотой ~96 (2C-2: раньше токен отставал до 1200 и sticky-блоки уезжали под шапку) */
+@media (min-width: 1024px) {
+  :root {
+    --header-h: 96px;
+  }
+}
+
 @media (min-width: 1200px) {
   :root {
     --gutter: 64px;
     --section-gap: 160px;
-    --header-h: 96px;
   }
 }
