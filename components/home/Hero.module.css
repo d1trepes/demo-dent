@@ -1,222 +1,355 @@
 /*
- * Hero, вариант C. Мобильный (проектируется первым): «Спокойно» → арка с врачом → «о зубах» → подзаголовок.
- * С 1024 px — сетка 12 колонок: слово | арка (колонки 5–8) | слово.
+ * Hero «Ветвь ясеня». Сцена — контейнер (container-type), всё внутри — в единицах макета:
+ * --u = 1 px макета. Мобильный макет 335 px (375 − поля), десктоп 1360 px (с 1024 px).
+ * Координаты взяты с холста «Ясень — идеи первого экрана», артборд 2.
  */
 .hero {
-  --arch-top: 14%; /* насколько ниже верха кадра начинается арка: на столько голова выходит за неё */
+  padding-top: var(--space-2);
   overflow-x: clip;
-  padding-top: var(--space-4);
 }
 
 .stage {
+  --u: calc(100cqw / 335);
   position: relative;
-  display: grid;
-  justify-items: center;
-  text-align: center;
+  container-type: inline-size;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  aspect-ratio: 335 / 566;
 }
 
-/* ---- Слова заголовка ---- */
-.wordLeft,
-.wordRight {
-  position: relative;
-  z-index: 1;
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 17vw, 5rem);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--color-text);
-  white-space: nowrap;
-}
-
-.wordRight em {
-  font-family: var(--font-accent);
-  font-style: italic;
-  font-weight: 500;
-  font-size: 1.22em; /* у Cormorant меньше очко — добираем размером */
-  letter-spacing: -0.01em;
-}
-
-/* ---- Арка с врачом ---- */
-.arch {
-  position: relative;
-  z-index: 2;
-  width: min(74%, 300px);
-  height: clamp(340px, 108vw, 440px);
-  margin-top: var(--space-4);
-  /* Обрезаем только снизу: голова и рукава выходят за арку */
-  clip-path: inset(-100% -100% 0 -100%);
-}
-
-.archFill {
+/* ---- Синяя плашка ---- */
+.plate {
   position: absolute;
-  inset: var(--arch-top) 0 0;
-  border-radius: 999px 999px 0 0;
+  inset: 0 0 auto;
+  height: calc(330 * var(--u));
+  border-radius: var(--radius-lg);
   background: var(--color-primary);
 }
 
-/* Орнамент 1: тонкая дуга за аркой */
-.archLine {
-  position: absolute;
-  inset: calc(var(--arch-top) - 28px) -28px 34% -28px;
-  border: 1px solid rgb(45 75 230 / 0.35);
-  border-bottom: 0;
-  border-radius: 999px 999px 0 0;
+.aside {
+  display: none;
 }
 
-.photo {
+/* ---- Заголовок ---- */
+.title {
   position: absolute;
-  top: 0;
-  left: 50%;
-  width: 132%;
-  max-width: none;
-  height: auto;
-  translate: -50% 0;
-}
-
-/* ---- Подзаголовок и кнопка ---- */
-.lead {
-  position: relative;
+  inset: calc(22 * var(--u)) 0 auto;
   z-index: 1;
-  max-width: 30ch;
-  margin-top: var(--space-5);
-  font-size: var(--text-lg);
-  line-height: 1.4;
-  color: var(--color-text);
+  margin: 0;
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  color: var(--color-primary-contrast);
 }
 
-/* На мобильном «Записаться» — в нижней панели */
-.cta {
-  display: none;
+.titleLead,
+.titleAccent {
+  display: block;
 }
 
-/* Орнамент 2: вертикальная линия с искрой */
-.spark {
+.titleLead {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 500;
+  font-size: calc(44 * var(--u));
+}
+
+/* Отступ сверху — чтобы хвосты курсива не касались точек Ё */
+.titleAccent {
+  margin-top: calc(14 * var(--u));
+  font-family: var(--font-display);
+  font-size: calc(58 * var(--u));
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+/* ---- Врач в овале: верх чуть перекрывает «СЕМЬЁЙ», низ выходит за плашку ---- */
+.oval {
   position: absolute;
-  top: 0;
-  right: 2%;
+  left: calc(82.5 * var(--u));
+  top: calc(128 * var(--u));
+  z-index: 3;
+  width: calc(170 * var(--u));
+  height: calc(245 * var(--u));
+  overflow: hidden;
+  border: 4px solid var(--color-primary-contrast);
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.oval img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 4%;
+}
+
+/* ---- Стебель и черенки ---- */
+.branch {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: none;
+}
+
+.branchDesktop {
   display: none;
-  flex-direction: column;
-  align-items: center;
-  height: 120px;
-  color: rgb(45 75 230 / 0.55);
 }
 
-.spark::before {
-  content: "";
-  flex: 1;
-  width: 1px;
-  background: currentColor;
+.branch path {
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
 }
 
-.spark svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
+.stroke {
+  stroke: var(--color-primary);
 }
 
-.note {
-  margin-top: var(--space-2);
+.strokeSoft {
+  stroke: var(--color-primary);
+  stroke-opacity: 0.7;
 }
 
-@media (min-width: 640px) {
-  .arch {
-    width: min(60%, 360px);
-    height: 480px;
+.strokeWhite {
+  stroke: var(--color-primary-contrast);
+  stroke-opacity: 0.5;
+}
+
+/* ---- Листья-«линзы» ---- */
+.leaf {
+  position: absolute;
+  left: calc(var(--x) * var(--u));
+  top: calc(var(--y) * var(--u));
+  z-index: 2;
+  width: calc(var(--s) * var(--u));
+  height: calc(var(--s) * var(--u));
+  animation: leaf-in 0.8s var(--ease) var(--delay, 0s) both;
+}
+
+/* Слева острые углы — верхний левый и нижний правый (основание к стеблю), справа — зеркально */
+.left {
+  --leaf-radius: 0 100% 0 100%;
+}
+
+.right {
+  --leaf-radius: 100% 0 100% 0;
+}
+
+.leafPhoto,
+.leafOutline {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--leaf-radius);
+}
+
+.leafPhoto {
+  overflow: hidden;
+  background: var(--color-placeholder);
+  opacity: var(--fade, 1);
+}
+
+.leafPhoto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.leafOutline {
+  border: 2px solid;
+  pointer-events: none;
+}
+
+.outlineBlue {
+  border-color: var(--color-primary);
+}
+
+.outlineWhite {
+  border-color: var(--color-primary-contrast);
+}
+
+/* Мобильный: только нижняя пара, по бокам от стебля */
+.top,
+.middle {
+  display: none;
+}
+
+.bottom {
+  --y: 380;
+  --s: 110;
+  --delay: 0.15s;
+}
+
+.bottom.left {
+  --x: 30;
+}
+
+.bottom.right {
+  --x: 195;
+}
+
+@keyframes leaf-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.92);
   }
-  .wordLeft,
-  .wordRight {
-    font-size: 5.5rem;
-  }
-  .spark {
-    display: flex;
-  }
 }
 
-/* ---- Десктоп: 12 колонок, слова по бокам арки ---- */
+/* ---- Кнопка на стебле ---- */
+.doctors {
+  position: absolute;
+  left: 50%;
+  top: calc(510 * var(--u));
+  z-index: 3;
+  translate: -50% 0;
+  min-width: min(100%, 260px);
+  background: var(--color-bg);
+}
+
+/* ---- Предупреждение: тихая прозрачная пилюля во всю ширину ---- */
+.hero .note {
+  max-width: 520px;
+  margin: var(--space-4) auto 0;
+  min-height: 56px;
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-base);
+  font-weight: 400;
+  color: var(--color-text-muted);
+  background: transparent;
+}
+
+/* ---- Десктоп: макет 1360 × 772, три пары листьев ---- */
 @media (min-width: 1024px) {
-  .hero {
-    --arch-top: 13%;
-    padding-top: var(--space-2);
-  }
-
   .stage {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-rows: 2.4fr auto auto 0.1fr;
-    column-gap: 24px;
-    min-height: min(clamp(540px, calc(100svh - 330px), 780px), 52vw);
-    justify-items: stretch;
-    text-align: left;
+    --u: calc(100cqw / 1360);
+    max-width: none;
+    aspect-ratio: 1360 / 772;
   }
 
-  .arch {
-    grid-column: 5 / 9;
-    grid-row: 1 / -1;
-    width: auto;
-    height: auto;
-    margin: 0;
+  .plate {
+    height: calc(520 * var(--u));
+    border-radius: calc(36 * var(--u));
   }
 
-  .photo {
-    width: 130%;
-  }
-
-  .wordLeft,
-  .wordRight {
-    grid-row: 2;
-    font-size: clamp(3.5rem, 5.9vw, 7.25rem);
-  }
-
-  /* Буквы почти касаются арки */
-  .wordLeft {
-    grid-column: 1 / 5;
-    justify-self: end;
-    margin-right: -24px;
-  }
-
-  .wordRight {
-    grid-column: 9 / 13;
-    justify-self: start;
-    margin-left: 14px;
-  }
-
-  .lead {
-    grid-column: 1 / 5;
-    grid-row: 3;
-    justify-self: start;
-    max-width: 26ch;
-    margin-top: var(--space-6);
-  }
-
-  .cta {
-    position: relative;
+  .aside {
+    position: absolute;
+    top: calc(46 * var(--u));
     z-index: 1;
     display: block;
-    grid-column: 9 / 13;
-    grid-row: 3;
-    margin: var(--space-6) 0 0 14px;
+    margin: 0;
+    font-size: max(14px, calc(17 * var(--u)));
+    line-height: 1.45;
+    color: var(--color-primary-contrast);
   }
 
-  .spark {
-    right: 6%;
-    height: 38%;
+  .asideLeft {
+    left: calc(48 * var(--u));
   }
 
-  .archLine {
-    inset: calc(var(--arch-top) - 44px) -44px 30% -44px;
+  .asideRight {
+    right: calc(48 * var(--u));
+    text-align: right;
+  }
+
+  .title {
+    top: calc(8 * var(--u));
+  }
+
+  .titleLead {
+    font-size: calc(108 * var(--u));
+  }
+
+  .titleAccent {
+    margin-top: calc(34 * var(--u));
+    font-size: calc(214 * var(--u));
+  }
+
+  .oval {
+    left: calc(515 * var(--u));
+    top: calc(214 * var(--u));
+    width: calc(330 * var(--u));
+    height: calc(476 * var(--u));
+  }
+
+  .branchDesktop {
+    display: block;
+  }
+
+  .branchMobile {
+    display: none;
+  }
+
+  .top,
+  .middle {
+    display: block;
+  }
+
+  /* Размеры 150 / 180 / 210, к плашке бледнее; появляются снизу вверх */
+  .top {
+    --y: 336;
+    --s: 150;
+    --fade: 0.55;
+    --delay: 0.45s;
+  }
+
+  .top.left {
+    --x: 350;
+  }
+
+  .top.right {
+    --x: 860;
+  }
+
+  .middle {
+    --y: 456;
+    --s: 180;
+    --fade: 0.8;
+    --delay: 0.3s;
+  }
+
+  .middle.left {
+    --x: 210;
+  }
+
+  .middle.right {
+    --x: 970;
+  }
+
+  /* Белая обводка средней пары — только выше края плашки (лист 456…636, плашка до 520) */
+  .middle .outlineWhite {
+    clip-path: inset(0 0 calc(116 * var(--u)) 0);
+  }
+
+  .bottom {
+    --y: 556;
+    --s: 210;
+  }
+
+  .bottom.left {
+    --x: 70;
+  }
+
+  .bottom.right {
+    --x: 1080;
+  }
+
+  .doctors {
+    top: calc(716 * var(--u));
+    min-width: 280px;
+  }
+
+  .hero .note {
+    max-width: none;
   }
 }
 
-/* Узкий десктоп: арка уже, фигуру уменьшаем, чтобы рукава не закрывали буквы целиком */
-@media (min-width: 1024px) and (max-width: 1279px) {
-  .photo {
-    width: 112%;
-  }
-  .wordLeft {
-    margin-right: 0;
-  }
-  .wordRight,
-  .cta {
-    margin-left: 24px;
+@media (prefers-reduced-motion: reduce) {
+  .leaf {
+    animation: none;
   }
 }

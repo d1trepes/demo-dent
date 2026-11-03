@@ -1,4 +1,4 @@
-# Промпты для фото — «Ясень» (чат 2A-1)
+# Промпты для фото — «Ясень» (чат 2A-2)
 Каждый промпт полный, копируется целиком. Пропорции и кадр — под конкретное место на сайте.
 
 ## Логотип — 3 варианта знака
@@ -24,27 +24,56 @@ A logo mark built from two soft overlapping arches forming the abstract silhouet
 A logo mark: a thin circle outline, inside it a tooth reduced to three geometric strokes — a soft wide arch on top and two short vertical roots — with one small solid dot in the upper right like a light reflection on enamel. Precise, architectural, premium. Flat vector logo mark, single color cobalt blue #2D4BE6 on a very light grey-blue background #F3F4F8, minimal, geometric, generous negative space, consistent stroke weight, must stay legible at 24 px in a website header, no gradients, no shadows, no 3D, no glossy effects, no text or letters except where described, not a clipart cartoon tooth, no smile face, centered on a square canvas, 1:1, 2048×2048, clean SVG-like edges. Style should pair with the serif typeface Prata and the sans-serif Golos Text.
 ```
 
-## Первый экран — под каждую композицию
+## Первый экран «Ветвь ясеня» (чат 2A-2)
+Врач — в овале на синей плашке, 6 фото — в листьях-«линзах» (обрезаются по форме листа, на сайте 640×640). Файлы: `public/images/hero/`.
 
-### Hero A · портрет справа (лупы на лбу)
+### Врач в овале (шкала оттенков) → doctor-ash.webp
 Размер: вертикаль 4:5, от 2000×2500
 
 ```
-A male dentist of Slavic appearance, 42 years old, short dark-blond hair with grey at the temples, light stubble, laugh lines around the eyes, slim athletic build, white medical coat over a cobalt-blue scrub top, binocular dental loupes raised up on his forehead, laughing sincerely mid-conversation with someone off-camera, relaxed shoulders, standing in a bright dental treatment room with the chair softly blurred behind him. Framing: vertical 4:5, waist-up, face in the upper third, at least 12% empty space above the head, eyes fully visible, nothing covering the face, subject centered. Natural documentary-style editorial photograph for a modern family dental clinic in Yekaterinburg, Russia. Shot on a full-frame camera, 50mm lens, f/2.8, soft diffused daylight from a large window. Cool light color palette: white, pale grey-blue (#F3F4F8) and soft grey, cobalt blue (#2D4BE6) only as a small accent in clothing or one detail. Realistic skin texture with visible pores, freckles or small imperfections, natural facial asymmetry, realistic hands with five fingers. Genuine, warm, unposed emotion, candid moment, not stock-like, not glossy, no plastic retouching, no exaggerated teeth-whitening smile. No text, no logos, no brand names, no watermark.
+A female dentist of Slavic appearance, 34 years old, shoulder-length wavy light-brown hair with soft natural volume, light freckles, warm open face, white medical coat over a cobalt-blue scrub top, holding an open dental shade guide of tooth color samples with both hands at chest height, smiling sincerely straight at the camera. Background: a perfectly even solid cobalt blue studio backdrop #2D4BE6 with no gradient and no vignette, so the photo blends into a blue website panel of the same color. Framing: vertical 4:5, waist-up, perfectly centered, head in the upper 35% with about 10% empty space above the head, eyes fully visible, nothing covering the face, the whole figure fits inside a centered vertical oval. Natural documentary-style editorial photograph for a modern family dental clinic in Yekaterinburg, Russia. Shot on a full-frame camera, 50mm lens, f/2.8, soft diffused daylight from a large window. Cool light color palette: white, pale grey-blue (#F3F4F8) and soft grey, cobalt blue (#2D4BE6) only as a small accent in clothing or one detail. Realistic skin texture with visible pores, freckles or small imperfections, natural facial asymmetry, realistic hands with five fingers. Genuine, warm, unposed emotion, candid moment, not stock-like, not glossy, no plastic retouching, no exaggerated teeth-whitening smile. No text, no logos, no brand names, no watermark.
 ```
 
-### Hero B · широкий кадр (шкала оттенков)
-Размер: горизонт 21:9, от 3360×1440
+### Лист · зеркало с зондом → leaf-mirror.webp
+Размер: квадрат 1:1, от 1600×1600
 
 ```
-A female dentist of Slavic appearance, 38 years old, light-brown hair in a loose low bun with a few strands falling out, freckles across the nose and cheeks, small gold stud earrings, white fitted medical coat over cobalt-blue scrubs, holding an open dental shade guide fan of tooth color samples in one hand and smiling openly at the viewer, standing by a large window in a light minimalist clinic corridor. Framing: ultra-wide 21:9, the doctor stands in the right third of the frame, waist-up, face in the upper half, generous empty calm space on the left two thirds (soft wall and window light) for text, head fully in frame with space above, must also crop well to a 4:5 vertical around her. Natural documentary-style editorial photograph for a modern family dental clinic in Yekaterinburg, Russia. Shot on a full-frame camera, 50mm lens, f/2.8, soft diffused daylight from a large window. Cool light color palette: white, pale grey-blue (#F3F4F8) and soft grey, cobalt blue (#2D4BE6) only as a small accent in clothing or one detail. Realistic skin texture with visible pores, freckles or small imperfections, natural facial asymmetry, realistic hands with five fingers. Genuine, warm, unposed emotion, candid moment, not stock-like, not glossy, no plastic retouching, no exaggerated teeth-whitening smile. No text, no logos, no brand names, no watermark.
+A dental mouth mirror and a dental explorer probe lying neatly side by side on a folded white linen napkin with a thin cobalt-blue edge stripe, on a white table near a window, top-down three-quarter view. Framing: square 1:1, the main subject in the central 60% of the frame with calm empty space around it, so that the image still reads when cropped into a narrow leaf-shaped lens with two sharp opposite corners. Calm minimalist still-life photograph for a modern family dental clinic in Yekaterinburg, Russia. Shot on a full-frame camera, 85mm lens, f/2.8, soft diffused daylight from a large window, gentle soft shadows. Cool light color palette: white, pale grey-blue (#F3F4F8) and soft grey, cobalt blue (#2D4BE6) only as one small accent. Realistic materials and textures, clean but not sterile, no blood, no open mouths, no teeth close-ups, not stock-like, not glossy, no plastic CGI look. No text, no logos, no brand names, no watermark.
 ```
 
-### Hero C · арка по центру (интраоральный сканер)
-Размер: вертикаль 3:4, от 2100×2800
+### Лист · интраоральный сканер → leaf-scanner.webp
+Размер: квадрат 1:1, от 1600×1600
 
 ```
-A female dentist of Slavic appearance, 35 years old, short wavy ash-blonde bob, thin round metal glasses, slim build, white medical coat over cobalt-blue scrubs, holding a white intraoral 3D scanner wand at chest height, smiling warmly and naturally while looking slightly past the camera, bright clean treatment room with a large monitor softly blurred behind. Framing: vertical 3:4, chest-up, perfectly centered, head in the upper 40% with at least 18% empty space above the head so it fits inside an arched frame, eyes fully visible, nothing covering the face. Natural documentary-style editorial photograph for a modern family dental clinic in Yekaterinburg, Russia. Shot on a full-frame camera, 50mm lens, f/2.8, soft diffused daylight from a large window. Cool light color palette: white, pale grey-blue (#F3F4F8) and soft grey, cobalt blue (#2D4BE6) only as a small accent in clothing or one detail. Realistic skin texture with visible pores, freckles or small imperfections, natural facial asymmetry, realistic hands with five fingers. Genuine, warm, unposed emotion, candid moment, not stock-like, not glossy, no plastic retouching, no exaggerated teeth-whitening smile. No text, no logos, no brand names, no watermark.
+A white intraoral 3D dental scanner wand with a thin cobalt-blue cable lying diagonally on a clean white surface, soft window light, nothing else in the frame. Framing: square 1:1, the main subject in the central 60% of the frame with calm empty space around it, so that the image still reads when cropped into a narrow leaf-shaped lens with two sharp opposite corners. Calm minimalist still-life photograph for a modern family dental clinic in Yekaterinburg, Russia. Shot on a full-frame camera, 85mm lens, f/2.8, soft diffused daylight from a large window, gentle soft shadows. Cool light color palette: white, pale grey-blue (#F3F4F8) and soft grey, cobalt blue (#2D4BE6) only as one small accent. Realistic materials and textures, clean but not sterile, no blood, no open mouths, no teeth close-ups, not stock-like, not glossy, no plastic CGI look. No text, no logos, no brand names, no watermark.
+```
+
+### Лист · элайнеры → leaf-aligners.webp
+Размер: квадрат 1:1, от 1600×1600
+
+```
+A pair of clear transparent orthodontic aligners resting in a shallow round white ceramic dish, a tiny cobalt-blue aligner case clip beside them, on a white table, soft window light, gentle reflections on the clear plastic. Framing: square 1:1, the main subject in the central 60% of the frame with calm empty space around it, so that the image still reads when cropped into a narrow leaf-shaped lens with two sharp opposite corners. Calm minimalist still-life photograph for a modern family dental clinic in Yekaterinburg, Russia. Shot on a full-frame camera, 85mm lens, f/2.8, soft diffused daylight from a large window, gentle soft shadows. Cool light color palette: white, pale grey-blue (#F3F4F8) and soft grey, cobalt blue (#2D4BE6) only as one small accent. Realistic materials and textures, clean but not sterile, no blood, no open mouths, no teeth close-ups, not stock-like, not glossy, no plastic CGI look. No text, no logos, no brand names, no watermark.
+```
+
+### Лист · коронка → leaf-crown.webp
+Размер: квадрат 1:1, от 1600×1600
+
+```
+A single natural-looking ceramic dental crown balanced on the fingertip of a hand in a cobalt-blue nitrile glove, the hand enters from the lower right corner, plain pale grey-blue wall behind, soft window light, realistic glove texture, five fingers. Framing: square 1:1, the main subject in the central 60% of the frame with calm empty space around it, so that the image still reads when cropped into a narrow leaf-shaped lens with two sharp opposite corners. Calm minimalist still-life photograph for a modern family dental clinic in Yekaterinburg, Russia. Shot on a full-frame camera, 85mm lens, f/2.8, soft diffused daylight from a large window, gentle soft shadows. Cool light color palette: white, pale grey-blue (#F3F4F8) and soft grey, cobalt blue (#2D4BE6) only as one small accent. Realistic materials and textures, clean but not sterile, no blood, no open mouths, no teeth close-ups, not stock-like, not glossy, no plastic CGI look. No text, no logos, no brand names, no watermark.
+```
+
+### Лист · врач у рентгена → leaf-xray.webp
+Размер: квадрат 1:1, от 1600×1600
+
+```
+A male dentist of Slavic appearance, 45 years old, short dark hair with grey at the temples, white medical coat over cobalt-blue scrubs, seen from behind over his shoulder in three-quarter view, pointing with a pen at a panoramic dental X-ray on a monitor in a bright treatment room, face partly visible in profile, focused and calm. Framing: square 1:1, the main subject in the central 60% of the frame with calm empty space around it, so that the image still reads when cropped into a narrow leaf-shaped lens with two sharp opposite corners. Natural documentary-style editorial photograph for a modern family dental clinic in Yekaterinburg, Russia. Shot on a full-frame camera, 50mm lens, f/2.8, soft diffused daylight from a large window. Cool light color palette: white, pale grey-blue (#F3F4F8) and soft grey, cobalt blue (#2D4BE6) only as a small accent in clothing or one detail. Realistic skin texture with visible pores, freckles or small imperfections, natural facial asymmetry, realistic hands with five fingers. Genuine, warm, unposed emotion, candid moment, not stock-like, not glossy, no plastic retouching, no exaggerated teeth-whitening smile. No text, no logos, no brand names, no watermark.
+```
+
+### Лист · врач с лупами → leaf-loupes.webp
+Размер: квадрат 1:1, от 1600×1600
+
+```
+A female dentist of Slavic appearance, 30 years old, light-brown hair in a low bun, wearing binocular dental loupes and white gloves, white medical coat over cobalt-blue scrubs, working attentively at a patient in a dental chair, the patient is softly out of focus in the lower left and their mouth is not visible, bright treatment room with large window. Framing: square 1:1, the main subject in the central 60% of the frame with calm empty space around it, so that the image still reads when cropped into a narrow leaf-shaped lens with two sharp opposite corners. Natural documentary-style editorial photograph for a modern family dental clinic in Yekaterinburg, Russia. Shot on a full-frame camera, 50mm lens, f/2.8, soft diffused daylight from a large window. Cool light color palette: white, pale grey-blue (#F3F4F8) and soft grey, cobalt blue (#2D4BE6) only as a small accent in clothing or one detail. Realistic skin texture with visible pores, freckles or small imperfections, natural facial asymmetry, realistic hands with five fingers. Genuine, warm, unposed emotion, candid moment, not stock-like, not glossy, no plastic retouching, no exaggerated teeth-whitening smile. No text, no logos, no brand names, no watermark.
 ```
 
 ## Врачи — 11 карточек (одна серия)

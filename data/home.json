@@ -1,42 +1,57 @@
 {
   "hero": {
     "title": {
-      "left": "Спокойно",
-      "rightLead": "о",
-      "rightAccent": "зубах"
+      "lead": "Лечим всей",
+      "accent": "семьёй"
     },
-    "lead": "Объясним, что делать и сколько это стоит, ещё до начала лечения",
-    "cta": {
-      "label": "Записаться",
-      "href": "/zapis/"
-    },
+    "asideLeft": ["Семейная стоматология", "с 2016 года"],
+    "asideRight": ["Детский кабинет", "и приём в выходные"],
     "photo": {
-      "src": "/images/hero/doctor-c.webp",
-      "width": 641,
-      "height": 1028,
+      "src": "/images/hero/doctor-ash.webp",
+      "width": 928,
+      "height": 1152,
       "alt": "Врач-стоматолог клиники «Ясень» улыбается и держит шкалу оттенков зубов"
     },
-    "marqueeLabel": "Направления клиники",
-    "marquee": [
+    "doctorsLink": {
+      "label": "Познакомиться с врачами",
+      "href": "/vrachi/"
+    },
+    "leaves": [
       {
-        "label": "Имплантация",
-        "href": "/uslugi/implantaciya/"
+        "tier": "top",
+        "side": "left",
+        "src": "/images/hero/leaf-mirror.webp",
+        "alt": "Стоматологическое зеркало и зонд на салфетке"
       },
       {
-        "label": "Виниры",
-        "href": "/ceny/?q=виниры"
+        "tier": "top",
+        "side": "right",
+        "src": "/images/hero/leaf-scanner.webp",
+        "alt": "Интраоральный сканер"
       },
       {
-        "label": "Лечение",
-        "href": "/uslugi/lechenie-kariesa/"
+        "tier": "middle",
+        "side": "left",
+        "src": "/images/hero/leaf-aligners.webp",
+        "alt": "Прозрачные элайнеры в чашке"
       },
       {
-        "label": "Детская стоматология",
-        "href": "/uslugi/detskaya/"
+        "tier": "middle",
+        "side": "right",
+        "src": "/images/hero/leaf-crown.webp",
+        "alt": "Коронка на кончике пальца в перчатке"
       },
       {
-        "label": "Отбеливание",
-        "href": "/ceny/?q=отбеливание"
+        "tier": "bottom",
+        "side": "left",
+        "src": "/images/hero/leaf-xray.webp",
+        "alt": "Врач рассматривает панорамный снимок на мониторе"
+      },
+      {
+        "tier": "bottom",
+        "side": "right",
+        "src": "/images/hero/leaf-loupes.webp",
+        "alt": "Врач в бинокулярных лупах ведёт приём"
       }
     ]
   }

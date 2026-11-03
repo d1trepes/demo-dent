@@ -4,6 +4,7 @@ import { bookingHref, loginHref, mainNav } from "@/lib/nav";
 import { ButtonLink } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
 import { MobileMenu } from "./MobileMenu";
+import { NavLink } from "./NavLink";
 import styles from "./Header.module.css";
 
 /** Шапка как у Whitebloom: логотип слева, плашка-навбар по центру, «Войти» и «Записаться» справа. */
@@ -37,9 +38,9 @@ export async function Header() {
                 </li>
               ) : (
                 <li key={item.href}>
-                  <Link href={item.href} className={styles.navLink}>
+                  <NavLink href={item.href} className={styles.navLink}>
                     {item.label}
-                  </Link>
+                  </NavLink>
                 </li>
               ),
             )}

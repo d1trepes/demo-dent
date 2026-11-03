@@ -499,17 +499,25 @@ export type Picture = { src: string; width: number; height: number; alt: string 
 
 export type HomeLink = { label: string; href: string };
 
+/** Лист «ветви ясеня» в hero: ярус (сверху вниз — к плашке бледнее) и сторона от стебля. */
+export type HeroLeaf = {
+  tier: "top" | "middle" | "bottom";
+  side: "left" | "right";
+  src: string;
+  alt: string;
+};
+
 export type HomeHero = {
-  /** Заголовок, разорванный аркой: слева — Prata, справа — Prata + одно слово Cormorant Italic. */
-  title: { left: string; rightLead: string; rightAccent: string };
-  lead: string;
-  cta: HomeLink;
-  /** Вырезанная по силуэту фигура врача (.webp с прозрачностью). */
+  /** «Лечим всей» — Cormorant Italic, «семьёй» — Prata капсом (регистр задаёт CSS). */
+  title: { lead: string; accent: string };
+  /** Мелкий белый текст по бокам синей плашки, по строкам. Только десктоп. */
+  asideLeft: string[];
+  asideRight: string[];
+  /** Врач в овале, снят на фоне цвета плашки. */
   photo: Picture;
-  /** Подпись списка услуг для скринридера. */
-  marqueeLabel: string;
-  /** Бегущая строка услуг внизу hero. */
-  marquee: HomeLink[];
+  doctorsLink: HomeLink;
+  /** 6 листьев (640×640): на мобильном остаётся только нижняя пара. */
+  leaves: HeroLeaf[];
 };
 
 export type HomeContent = { hero: HomeHero };
