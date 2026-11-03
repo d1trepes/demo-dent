@@ -7,7 +7,6 @@
   display: grid;
   grid-template-areas:
     "title"
-    "sub"
     "list"
     "urgent"
     "all";
@@ -21,14 +20,6 @@
   line-height: 1.1;
 }
 
-.subtitle {
-  grid-area: sub;
-  max-width: 36em;
-  margin-top: var(--space-4);
-  font-size: 17px;
-  line-height: 1.5;
-  color: var(--color-text-muted);
-}
 
 .all {
   grid-area: all;
@@ -200,7 +191,6 @@
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
       "title all"
-      "sub sub"
       "list list"
       "urgent urgent";
     column-gap: var(--space-8);

@@ -26,7 +26,6 @@ export async function Directions() {
         <ButtonLink href={content.allPrices.href} variant="secondary" className={styles.all}>
           {content.allPrices.label}
         </ButtonLink>
-        <p className={styles.subtitle}>{content.subtitle}</p>
 
         <ol className={styles.list}>
           {rows.map((row, i) => (

@@ -533,7 +533,6 @@ export type HomeDirectionRow = {
 
 export type HomeDirections = {
   title: string;
-  subtitle: string;
   allPrices: HomeLink;
   rows: HomeDirectionRow[];
   /** Плашка-акцент после направлений → срочная запись. */
