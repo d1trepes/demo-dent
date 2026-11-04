@@ -1,0 +1,113 @@
+.item {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, max-content) 1fr auto;
+  align-items: end;
+  gap: var(--space-4);
+  width: 100%;
+  min-height: 64px;
+  padding: var(--space-5) 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 18px;
+  line-height: 1.4;
+  text-align: left;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.name {
+  transition: color var(--dur) var(--ease);
+}
+
+.row:hover .name,
+.rowOpen .name {
+  color: var(--color-primary);
+}
+
+/* Отточие: пунктир на уровне базовой линии последней строки названия */
+.leader {
+  align-self: end;
+  height: 0;
+  margin-bottom: 0.4em;
+  border-bottom: 1px dotted var(--color-text-muted);
+}
+
+.price {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.mark {
+  padding: 0 2px;
+  margin: 0 -2px;
+  border-radius: 4px;
+  background: var(--color-tint);
+  color: inherit;
+}
+
+/* Раскрытие: высота 0fr → 1fr; закрытое содержимое не фокусируется (visibility) */
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition:
+    grid-template-rows 0.3s var(--ease),
+    visibility 0s linear 0.3s;
+}
+
+.panelOpen {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition:
+    grid-template-rows 0.3s var(--ease),
+    visibility 0s;
+}
+
+.panelClip {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  margin-bottom: var(--space-5);
+  padding: var(--space-5) var(--space-6);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-12);
+  margin: 0;
+}
+
+.fact dt {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--color-text-muted);
+}
+
+.fact dd {
+  margin: 2px 0 0;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .panelOpen,
+  .name {
+    transition: none;
+  }
+}

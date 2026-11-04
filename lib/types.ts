@@ -802,3 +802,32 @@ export type BookingContent = {
     ics: { summary: string; description: string };
   };
 };
+
+/* ---------- Страница /ceny/ ---------- */
+
+export type PricesContent = {
+  title: string;
+  lead: string;
+  updated: string;
+  searchLabel: string;
+  searchPlaceholder: string;
+  popular: string[];
+  /** «Найдено {n} {word}», word — по serviceForms. */
+  found: string;
+  serviceForms: [string, string, string];
+  reset: string;
+  empty: { title: string; text: string };
+  tocLabel: string;
+  aboutDirection: string;
+  facts: {
+    duration: string;
+    minutes: string;
+    code: string;
+    price: string;
+    perTooth: string;
+    fixed: string;
+    multi: string;
+  };
+  book: string;
+  free: string;
+};

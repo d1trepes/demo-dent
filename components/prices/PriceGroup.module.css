@@ -1,0 +1,36 @@
+.group {
+  scroll-margin-top: calc(var(--header-h) + 24px);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-text);
+}
+
+.title {
+  font-size: 36px;
+}
+
+.about {
+  font-size: var(--text-base);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--color-line);
+  white-space: nowrap;
+  transition: color var(--dur) var(--ease);
+}
+
+.about:hover {
+  color: var(--color-primary);
+  text-decoration-color: currentColor;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

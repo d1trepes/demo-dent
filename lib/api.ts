@@ -12,6 +12,7 @@ import doctorsData from "@/data/doctors.json";
 import homeData from "@/data/home.json";
 import legalData from "@/data/legal.json";
 import patientData from "@/data/patient.json";
+import pricesData from "@/data/prices.json";
 import promosData from "@/data/promos.json";
 import reasonsData from "@/data/reasons.json";
 import reviewsData from "@/data/reviews.json";
@@ -52,6 +53,7 @@ import type {
   Promo,
   Reason,
   ReminderSettings,
+  PricesContent,
   ReviewsData,
   ServiceDetails,
   ServicePage,
@@ -153,6 +155,11 @@ export function getLegal(): Promise<LegalData> {
 
 export function getServices(): Promise<Pick<ServicesData, "directions" | "items">> {
   return respond({ directions: services.directions, items: services.items });
+}
+
+/** Тексты страницы /ceny/. */
+export function getPricesContent(): Promise<PricesContent> {
+  return respond(pricesData as PricesContent);
 }
 
 export async function getService(slug: string): Promise<ServiceDetails | null> {
