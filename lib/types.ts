@@ -223,6 +223,8 @@ export type SlotQuery = {
   directionId?: string;
   doctorId?: string;
   branchId?: BranchId;
+  /** Только врачи этой специальности (ветка «не знаю, к кому»). */
+  specialty?: Specialty;
   /** "YYYY-MM-DD" */
   date: string;
 };
@@ -694,4 +696,126 @@ export type HomeContent = {
   beforeAfter: HomeBeforeAfter;
   branchesBlock: HomeBranches;
   callback: HomeCallback;
+};
+
+/* ---------- Мастер онлайн-записи (тексты — data/booking.json) ---------- */
+
+export type BookingItem = Pick<PriceItem, "id" | "directionId" | "title" | "price" | "priceIsFrom" | "durationMin">;
+
+export type BookingDoctor = Pick<
+  Doctor,
+  "id" | "slug" | "fullName" | "specialty" | "position" | "experienceSince" | "branches" | "directions" | "acceptsKids" | "photo"
+>;
+
+/** Всё, что мастеру нужно «с сервера»: страница собирает это при сборке через lib/api.ts. */
+export type BookingData = {
+  directions: Direction[];
+  items: BookingItem[];
+  reasons: Reason[];
+  branches: Branch[];
+  doctors: BookingDoctor[];
+  specialties: SpecialtyInfo[];
+  consentsVersion: string;
+  content: BookingContent;
+};
+
+export type BookingContent = {
+  title: string;
+  lead: string;
+  urgentLead: string;
+  stepsLabel: string;
+  steps: { service: string; place: string; time: string; contacts: string; done: string };
+  nav: { back: string; next: string; submit: string; submitting: string };
+  service: {
+    heading: string;
+    tabs: { known: string; unknown: string };
+    directionsLabel: string;
+    itemsHeading: string;
+    anyItem: string;
+    reasonsLabel: string;
+    reasonsHint: string;
+    urgentHint: { text: string; action: string };
+  };
+  place: {
+    branchHeading: string;
+    doctorHeading: string;
+    anyDoctor: { title: string; text: string };
+    noDoctors: string;
+    pickBranchFirst: string;
+    branchUnavailable: string;
+    kidsRoom: string;
+    ct: string;
+    experience: string;
+  };
+  time: {
+    heading: string;
+    loading: string;
+    empty: string;
+    today: string;
+    dayParts: { morning: string; day: string; evening: string };
+    anyDoctorNote: string;
+    datesLabel: string;
+    timesLabel: string;
+  };
+  urgent: {
+    heading: string;
+    reasonLabel: string;
+    loading: string;
+    today: string;
+    shiftedDay: string;
+    empty: string;
+    showMore: string;
+    notUrgent: string;
+    kids: { text: string; action: string };
+  };
+  contacts: {
+    heading: string;
+    lead: string;
+    nameLabel: string;
+    phoneLabel: string;
+    personal: { label: string; docLabel: string; policyLabel: string };
+    health: { label: string; docLabel: string; hint: string };
+    errors: { name: string; phone: string; personal: string; health: string; submit: string };
+    slotTaken: string;
+    chooseOther: string;
+    demoNote: string;
+  };
+  summary: {
+    title: string;
+    rows: { service: string; reason: string; branch: string; doctor: string; time: string };
+    empty: string;
+    anyDoctor: string;
+    minutes: string;
+  };
+  source: { fallback: string; urgent: string; doctor: string; service: string; direction: string };
+  done: {
+    title: string;
+    lead: string;
+    urgentLead: string;
+    status: string;
+    rows: { doctor: string; branch: string; address: string; time: string; service: string; number: string };
+    calendar: string;
+    cabinet: string;
+    another: string;
+    notFound: { title: string; text: string; action: string };
+    telegram: {
+      title: string;
+      note: string;
+      header: string;
+      urgent: string;
+      fields: { patient: string; phone: string; direction: string; doctor: string; branch: string; time: string; source: string };
+      buttons: string[];
+      adminLink: string;
+    };
+    reminders: {
+      title: string;
+      before24: string;
+      before2: string;
+      channel: string;
+      confirm: string;
+      none: string;
+      settings: string;
+    };
+    ics: { summary: string; description: string };
+  };
 };

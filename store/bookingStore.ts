@@ -4,7 +4,7 @@
  * Созданная запись попадает в кабинет пациента и в панель администратора.
  */
 import { create } from "zustand";
-import { createAppointment } from "@/lib/api";
+import { ApiError, createAppointment } from "@/lib/api";
 import { clinicNow } from "@/lib/dates";
 import type { Appointment, AppointmentSource, BranchId, Slot } from "@/lib/types";
 import { useAdminStore } from "./adminStore";
@@ -12,6 +12,7 @@ import { usePatientStore } from "./patientStore";
 
 export type BookingMode = "planned" | "unknown" | "urgent";
 export type BookingStep = 1 | 2 | 3 | 4;
+export type BookingDraft = Draft;
 
 type Draft = {
   mode: BookingMode;
@@ -32,6 +33,8 @@ type Draft = {
 type BookingState = Draft & {
   submitting: boolean;
   error: string | null;
+  /** Код ошибки api: slot_taken — время заняли, мастер предлагает выбрать другое. */
+  errorCode: string | null;
   lastAppointmentId: string | null;
   /** Предзаполнение из URL: ?service= &doctor= &branch= и режим. */
   start: (init: Partial<Draft>) => void;
@@ -62,17 +65,18 @@ export const useBookingStore = create<BookingState>()((set, get) => ({
   ...initialDraft,
   submitting: false,
   error: null,
+  errorCode: null,
   lastAppointmentId: null,
-  start: (init) => set({ ...initialDraft, ...init, error: null }),
-  update: (patch) => set({ ...patch, error: null }),
+  start: (init) => set({ ...initialDraft, ...init, error: null, errorCode: null }),
+  update: (patch) => set({ ...patch, error: null, errorCode: null }),
   goTo: (step) => set({ step }),
   submit: async (consentsVersion) => {
     const d = get();
     if (!d.slot || !d.directionId) {
-      set({ error: "Выберите услугу и время" });
+      set({ error: "Выберите услугу и время", errorCode: "validation" });
       return null;
     }
-    set({ submitting: true, error: null });
+    set({ submitting: true, error: null, errorCode: null });
     try {
       const result = await createAppointment({
         directionId: d.directionId,
@@ -107,9 +111,13 @@ export const useBookingStore = create<BookingState>()((set, get) => ({
       set({ ...initialDraft, submitting: false, lastAppointmentId: result.id });
       return result.id;
     } catch (e) {
-      set({ submitting: false, error: e instanceof Error ? e.message : "Не удалось записаться" });
+      set({
+        submitting: false,
+        error: e instanceof Error ? e.message : "Не удалось записаться",
+        errorCode: e instanceof ApiError ? e.code : null,
+      });
       return null;
     }
   },
-  reset: () => set({ ...initialDraft, error: null }),
+  reset: () => set({ ...initialDraft, error: null, errorCode: null }),
 }));

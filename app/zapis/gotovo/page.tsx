@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
-import { PageStub } from "@/components/ui/PageStub";
+import { Suspense } from "react";
+import { BookingDone } from "@/components/booking/BookingDone";
+import { getBookingData } from "@/lib/bookingData";
 
 export const metadata: Metadata = { title: "Запись создана" };
 
-export default function ZapisGotovoPage() {
-  return <PageStub title="Запись создана" chat={3} />;
+export default async function ZapisGotovoPage() {
+  const data = await getBookingData();
+  return (
+    <Suspense fallback={null}>
+      <BookingDone data={data} />
+    </Suspense>
+  );
 }

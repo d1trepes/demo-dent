@@ -5,6 +5,7 @@
  * сигнатуры и типы из lib/types.ts остаются. Данные никуда не отправляются.
  */
 import adminData from "@/data/admin.json";
+import bookingData from "@/data/booking.json";
 import branchesData from "@/data/branches.json";
 import clinicData from "@/data/clinic.json";
 import doctorsData from "@/data/doctors.json";
@@ -20,6 +21,7 @@ import { implant, installment } from "./calc";
 import { clinicNow, fromRelative, relativeDay } from "./dates";
 import { slotsForDoctors } from "./slots";
 import type {
+  BookingContent,
   AdminAppointmentFilters,
   AdminSeed,
   Appointment,
@@ -170,6 +172,10 @@ export function getServiceSlugs(): Promise<string[]> {
   return respond(services.directions.filter((d) => d.hasPage).map((d) => d.id));
 }
 
+export function getBookingContent(): Promise<BookingContent> {
+  return respond(bookingData as BookingContent);
+}
+
 export function getReasons(): Promise<Reason[]> {
   return respond(reasons);
 }
@@ -226,7 +232,7 @@ export function getSlots(query: SlotQuery): Promise<Slot[]> {
   const direction = directionOf(query);
   const list = query.doctorId
     ? doctors.doctors.filter((d) => d.id === query.doctorId)
-    : filterDoctors({ branchId: query.branchId, directionId: direction?.id });
+    : filterDoctors({ branchId: query.branchId, directionId: direction?.id, specialty: query.specialty });
   const slots = slotsForDoctors(list, query.date, { taken: takenFor(list) }).filter(
     (s) => !query.branchId || s.branchId === query.branchId,
   );

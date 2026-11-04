@@ -1,0 +1,231 @@
+.page {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-24);
+}
+
+.head {
+  max-width: 760px;
+  margin-bottom: var(--space-10);
+}
+
+.title {
+  font-size: var(--display-2);
+}
+
+.lead {
+  margin-top: var(--space-4);
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+  min-height: 640px;
+  padding: var(--space-12);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.redirect {
+  color: var(--color-text-muted);
+}
+
+/* Прогресс */
+.progress {
+  display: flex;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.progressItem {
+  flex: 1;
+  padding-top: var(--space-3);
+  border-top: 2px solid var(--color-line);
+  transition: border-color var(--dur) var(--ease);
+}
+
+.progressItem.done,
+.progressItem.current {
+  border-top-color: var(--color-primary);
+}
+
+.progressButton {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--tap);
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--color-text-muted);
+  text-align: left;
+}
+
+button.progressButton {
+  cursor: pointer;
+}
+
+button.progressButton:hover .progressLabel {
+  color: var(--color-primary);
+}
+
+.progressMark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.current .progressMark {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.done .progressMark {
+  border-color: var(--color-primary);
+  background: var(--color-tint);
+  color: var(--color-primary-deep);
+}
+
+.progressLabel {
+  font-size: 15px;
+  font-weight: 500;
+  transition: color var(--dur) var(--ease);
+}
+
+.current .progressLabel {
+  color: var(--color-text);
+}
+
+/* Шаг */
+.step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  animation: step-in 0.45s var(--ease) both;
+}
+
+.forward {
+  --from: 24px;
+}
+
+.back {
+  --from: -24px;
+}
+
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateX(var(--from));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.stepTitle {
+  font-size: var(--text-2xl);
+}
+
+.stepTitle:focus-visible {
+  outline-offset: 6px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-line);
+}
+
+/* Сводка */
+.summary {
+  position: sticky;
+  top: calc(var(--header-h) + var(--space-8));
+  padding: var(--space-8);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.summaryTitle {
+  margin-bottom: var(--space-6);
+  font-size: var(--text-xl);
+}
+
+.summaryList {
+  display: grid;
+  gap: var(--space-5);
+  margin: 0;
+}
+
+.summaryRow {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.summaryRow dt {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.summaryRow dd {
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.summaryEmpty {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.summaryHint {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .summary {
+    position: static;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step {
+    animation: none;
+  }
+}

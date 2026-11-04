@@ -63,3 +63,12 @@ export function fromRelative(rel: RelativeMoment, today: string = clinicNow().da
 export function relativeDay(day: number, today: string = clinicNow().date): string {
   return addDays(today, day);
 }
+
+/** Сдвиг момента "YYYY-MM-DDTHH:mm" на N минут (в минутах клиники, без часовых поясов браузера). */
+export function shiftMoment(value: string, minutes: number): string {
+  const [date, time] = value.split("T");
+  const [y, m, d] = date.split("-").map(Number);
+  const [hh, mm] = time.split(":").map(Number);
+  const iso = new Date(Date.UTC(y, m - 1, d, hh, mm + minutes)).toISOString();
+  return `${iso.slice(0, 10)}T${iso.slice(11, 16)}`;
+}

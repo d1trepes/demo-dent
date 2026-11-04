@@ -1,0 +1,424 @@
+/* Общие блоки шагов мастера: строки выбора, сетки, чипы, даты, время */
+
+.stack {
+  display: grid;
+  gap: var(--space-10);
+}
+
+.subheading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  font-family: var(--font-text);
+  font-size: var(--text-base);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.subheadingNote {
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.hint {
+  margin-bottom: var(--space-5);
+  font-size: 15px;
+  color: var(--color-text-muted);
+}
+
+.placeholder {
+  padding: var(--space-6);
+  border: 1px dashed var(--color-line);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+}
+
+.list {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.twoCols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-8);
+  align-items: start;
+}
+
+/* Строка выбора */
+.option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  min-height: 64px;
+  padding: var(--space-4) var(--space-6);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.option:hover:not(:disabled),
+.branch:hover:not(:disabled),
+.date:hover,
+.time:hover,
+.slotCard:hover {
+  border-color: var(--color-primary);
+}
+
+.option:active:not(:disabled),
+.time:active,
+.date:active,
+.slotCard:active {
+  transform: scale(0.98);
+}
+
+.option:disabled,
+.branch:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.selected {
+  border-color: var(--color-primary);
+  background: var(--color-tint);
+  box-shadow: inset 0 0 0 1px var(--color-primary);
+}
+
+.optionMain {
+  display: grid;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.optionTitle {
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.optionText {
+  font-size: var(--text-sm);
+  line-height: 1.35;
+  color: var(--color-text-muted);
+}
+
+.optionMeta {
+  flex: none;
+  font-size: 15px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.check {
+  flex: none;
+  color: var(--color-primary);
+}
+
+/* Переключатель «Знаю услугу / Не знаю, к кому» и повод в срочной ветке */
+.tabs,
+.segment {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-bottom: var(--space-8);
+  padding: var(--space-1);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+}
+
+.segment {
+  margin-bottom: 0;
+}
+
+.tab {
+  min-height: var(--tap);
+  padding: 0 var(--space-6);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: none;
+  font: inherit;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition:
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.tab:hover {
+  color: var(--color-primary);
+}
+
+.tabActive {
+  background: var(--color-tint);
+  color: var(--color-primary-deep);
+}
+
+/* Плашка-подсказка под списком */
+.callout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+  padding: var(--space-5) var(--space-6);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+}
+
+.textLink {
+  justify-self: start;
+  min-height: var(--tap);
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.more {
+  margin-top: var(--space-4);
+}
+
+/* Филиалы */
+.branches {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.branch {
+  display: grid;
+  gap: var(--space-1);
+  align-content: start;
+  min-height: 112px;
+  padding: var(--space-5) var(--space-6);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.chip {
+  padding: 2px var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* Врач */
+.avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--color-tint);
+  color: var(--color-primary-deep);
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* Даты и время */
+.dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.date {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  min-width: 76px;
+  padding: var(--space-3) var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.dateWeekday,
+.dateMonth {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.dateDay {
+  font-size: var(--text-lg);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.partLabel {
+  margin-bottom: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.times {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.time {
+  min-height: 48px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font: inherit;
+  font-weight: 500;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+/* Срочные слоты */
+.slotCards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.slotCard {
+  display: grid;
+  gap: 2px;
+  justify-items: start;
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.slotTime {
+  font-size: var(--text-lg);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* Контакты */
+.form {
+  display: grid;
+  gap: var(--space-8);
+  max-width: 640px;
+}
+
+.form .hint {
+  margin-bottom: 0;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.consents {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.consents .hint {
+  margin: var(--space-2) 0 0;
+  padding-left: 34px;
+  font-size: var(--text-sm);
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding: var(--space-4) var(--space-6);
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-md);
+  color: var(--color-danger);
+}
+
+.note {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 1100px) {
+  .split,
+  .twoCols,
+  .branches,
+  .fields {
+    grid-template-columns: 1fr;
+  }
+
+  .times {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .slotCards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
