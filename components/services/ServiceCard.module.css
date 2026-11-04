@@ -29,6 +29,10 @@
   transition: transform 0.8s var(--ease);
 }
 
+img.photoImg {
+  padding: 0;
+}
+
 .shot {
   max-width: 34ch;
   font-size: 13px;
