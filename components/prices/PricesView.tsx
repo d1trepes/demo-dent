@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { fill } from "@/lib/format";
 import { matchesItem, queryStems } from "@/lib/priceSearch";
 import type { Direction, PriceItem, PricesContent } from "@/lib/types";
-import { PriceGroup, priceSectionId } from "./PriceGroup";
+import { PriceGroup } from "./PriceGroup";
 import { PriceSearch } from "./PriceSearch";
 import { PriceAside } from "./PriceAside";
 import styles from "./PricesView.module.css";
@@ -18,6 +18,7 @@ type Props = {
 
 export function PricesView({ directions, items, texts, phone }: Props) {
   const [query, setQuery] = useState("");
+  const [direction, setDirection] = useState("all");
   const [openId, setOpenId] = useState<string | null>(null);
   const [searchOut, setSearchOut] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
@@ -34,6 +35,12 @@ export function PricesView({ directions, items, texts, phone }: Props) {
     return () => observer.disconnect();
   }, []);
 
+  // /ceny/?direction=<id> — со страницы услуги открываем прайс с выбранным направлением
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get("direction");
+    if (id && directions.some((d) => d.id === id)) setDirection(id);
+  }, [directions]);
+
   const stems = useMemo(() => queryStems(query), [query]);
   const groups = useMemo(
     () =>
@@ -44,16 +51,31 @@ export function PricesView({ directions, items, texts, phone }: Props) {
     [directions, items, stems],
   );
   const found = groups.reduce((sum, g) => sum + g.items.length, 0);
+  // Направление, пустое в поисковой выдаче, не держим выбранным
+  const active = direction !== "all" && groups.some((g) => g.direction.id === direction && g.items.length > 0) ? direction : "all";
+  const shown = groups.filter((g) => g.items.length > 0 && (active === "all" || g.direction.id === active));
+  const entries = [
+    { id: "all", title: texts.all, count: found },
+    ...groups.map((g) => ({ id: g.direction.id, title: g.direction.title, count: g.items.length })),
+  ];
 
   const changeQuery = (value: string) => {
     setQuery(value);
     setOpenId(null);
   };
-  // Поиск из боковой колонки: выдача меняется — возвращаем к её началу, если ушли ниже
-  const changeFromAside = (value: string) => {
-    changeQuery(value);
+  // Выдача из боковой колонки меняется — возвращаем к её началу, если ушли ниже
+  const toListTop = () => {
     const top = groupsRef.current?.getBoundingClientRect().top ?? 0;
     if (top < 0) groupsRef.current?.scrollIntoView({ block: "start" });
+  };
+  const changeFromAside = (value: string) => {
+    changeQuery(value);
+    toListTop();
+  };
+  const changeDirection = (id: string) => {
+    setDirection(id);
+    setOpenId(null);
+    toListTop();
   };
   const toggle = (id: string) => setOpenId((current) => (current === id ? null : id));
 
@@ -71,11 +93,13 @@ export function PricesView({ directions, items, texts, phone }: Props) {
 
       <div className={styles.layout}>
         <PriceAside
-          entries={groups.map((g) => ({ id: g.direction.id, title: g.direction.title, count: g.items.length }))}
+          entries={entries}
+          direction={active}
           query={query}
           showSearch={searchOut}
           texts={texts}
           onChange={changeFromAside}
+          onDirection={changeDirection}
         />
         <div className={styles.main}>
           <div ref={searchRef}>
@@ -95,19 +119,17 @@ export function PricesView({ directions, items, texts, phone }: Props) {
             </div>
           ) : (
             <div ref={groupsRef} className={styles.groups}>
-              {groups
-                .filter((g) => g.items.length > 0)
-                .map((g) => (
-                  <PriceGroup
-                    key={priceSectionId(g.direction.id)}
-                    direction={g.direction}
-                    items={g.items}
-                    stems={stems}
-                    openId={openId}
-                    onToggle={toggle}
-                    texts={texts}
-                  />
-                ))}
+              {shown.map((g) => (
+                <PriceGroup
+                  key={g.direction.id}
+                  direction={g.direction}
+                  items={g.items}
+                  stems={stems}
+                  openId={openId}
+                  onToggle={toggle}
+                  texts={texts}
+                />
+              ))}
             </div>
           )}
 

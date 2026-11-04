@@ -100,6 +100,7 @@ button, input { font: inherit; color: inherit; }
 /* Широкая карточка: фото ровно по колонке сетки, текст — по второй колонке (column-gap 48 = 24 зазор сетки + 2×12 поля карточек) */
 .wide { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; grid-template-rows: none; column-gap: 48px; }
 .wide.flip .photo { order: 2; }
+.wide .photo { aspect-ratio: auto; min-height: 280px; }
 .wide .body { padding: 24px 16px 4px; }
 .wide.flip .body { padding-left: 4px; }
 .wide .name { font-size: 32px; line-height: 1.2; }
@@ -110,7 +111,7 @@ button, input { font: inherit; color: inherit; }
 .price-label { display: block; font-size: 13px; color: var(--muted); }
 /* Фильтр или поиск: широкие карточки становятся обычными */
 .filtered .wide { grid-column: auto; grid-template-columns: none; grid-template-rows: auto 1fr; }
-.filtered .wide .photo { order: 0; }
+.filtered .wide .photo { order: 0; aspect-ratio: 16 / 10; min-height: 0; }
 .filtered .wide .body { padding: 24px 16px 8px; }
 .filtered .wide .name { font-size: 24px; }
 .filtered .wide .short { font-size: 15px; margin-top: 8px; }
@@ -133,6 +134,7 @@ button, input { font: inherit; color: inherit; }
   .aside { position: static; }
   .wide { grid-template-columns: 1fr; }
   .wide.flip .photo { order: 0; }
+  .wide .photo { aspect-ratio: 16 / 10; min-height: 0; }
 }
 @media (max-width: 720px) {
   .grid { grid-template-columns: 1fr; }

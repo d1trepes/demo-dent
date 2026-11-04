@@ -133,6 +133,12 @@ img.photoImg {
   column-gap: 48px;
 }
 
+/* Высоту задаёт текст; 280 — минимум. Плашка цены — через gap 24, при высоком фото прижата к низу */
+.wide .photo {
+  aspect-ratio: auto;
+  min-height: 280px;
+}
+
 .wide .body {
   padding: var(--space-6) var(--space-4) var(--space-1);
 }

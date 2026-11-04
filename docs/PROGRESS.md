@@ -31,8 +31,9 @@
 | 4А-1 | Переделка вида `/ceny/`: карточки разделов, без пунктиров, hover кобальтом, поиск в боковой колонке при скролле | готово (04.11.2026) |
 | 4Б | `/uslugi/` по макету `docs/mockups/uslugi.html` (делает Sonnet по промпту) | готово (04.11.2026) |
 | 4А-2 | `/ceny/`: убрать «Прайс действует…» и «Найдено N · Сбросить», крестик в поиске | готово (04.11.2026) |
-| 4В | Макеты + промпты: шаблон `/uslugi/[slug]/`, `/rassrochka/`, `/akcii/` | следующий чат |
+| 4В | Макеты + промпты: шаблон `/uslugi/[slug]/`, `/rassrochka/`, `/akcii/` | в работе |
 | 4В-1 | `/rassrochka/` + передача рассрочки в мастер | готово (04.11.2026) |
+| 4В-2 | Правки `/uslugi/` и `/ceny/`; макеты + промпты шаблона услуги и `/akcii/` | в работе |
 | 5 | Врачи, филиалы, юр.страницы | — |
 | 6 | Кабинет пациента | — |
 | 7 | Панель администратора | — |
@@ -81,6 +82,8 @@
 - 04.11.2026, 4Б: `UrgentCallout` получил проп `wide` и принимает ReactNode; в `components/booking/init.ts` добавлен `?mode=unknown` (открывает вкладку «Не знаю, к кому»). «от» у протезирования и детской стоматологии нет — в макете было, в прайсе фиксированная цена.
 - 04.11.2026, 4В-1: `/rassrochka/` по макету `docs/mockups/rassrochka.html`: `data/rassrochka.json`, тип `RassrochkaContent`, `getRassrochkaContent()` / `getInstallmentTerms()`, `components/rassrochka/*` (hero, калькулятор, `RassrochkaView`). Переиспользованы `Manifesto`, `PlanBranch` (проп `compact`, тип `PlanContent` без cta) и новая `CallbackCard` (вынесена из `Callback`; `CallbackForm` получил проп `source`). Калькулятор платежа оставлен (вопрос «оставить или убрать» закрыт).
 - 04.11.2026, 4В-1: мастер принимает `?sum=&months=` (оба допустимы по `services.json → installment`): `BookingData.installment`, `BookingDraft.installment`, метка `source.label` «Рассрочка: … ₽ на … мес.» приоритетнее остальных, строка «Рассрочка» в `Summary`, примечание в `BookingDone`; `Appointment.installment?` хранится вместе с записью, чтобы `/zapis/gotovo/` знал, что показывать после сброса черновика.
+- 04.11.2026, 4В-2: `/uslugi/` — у широких карточек фото без aspect-ratio, `min-height: 280`, высоту задаёт текст (то же в `docs/mockups/uslugi.html`).
+- 04.11.2026, 4В-2: `/ceny/` — `PriceToc` со скролл-шпионом и якорями заменён фильтром `PriceFilter` («Все направления» + направления, счётчики по поиску, `?direction=`); `prices.json`: `tocLabel` → `filterLabel`, `all`.
 
 ## Расхождения с паспортом
 - §10: вместо тёплой палитры — синий и белый; 3D-имплант — слоёные картинки, не r3f/.glb; «до/после» заменён слайдером КТ. Подробно — docs/DESIGN.md.

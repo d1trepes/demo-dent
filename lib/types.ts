@@ -828,7 +828,9 @@ export type PricesContent = {
   count: string;
   serviceForms: [string, string, string];
   empty: { title: string; text: string };
-  tocLabel: string;
+  filterLabel: string;
+  /** Первая кнопка фильтра — весь прайс. */
+  all: string;
   aboutDirection: string;
   facts: {
     duration: string;

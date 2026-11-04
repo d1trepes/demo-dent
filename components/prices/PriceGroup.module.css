@@ -2,7 +2,6 @@
   padding: var(--space-8) var(--space-3) var(--space-3);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
-  scroll-margin-top: calc(var(--header-h) + 24px);
 }
 
 .head {

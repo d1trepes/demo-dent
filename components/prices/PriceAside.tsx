@@ -1,18 +1,20 @@
 import { cx } from "@/lib/cx";
 import type { PricesContent } from "@/lib/types";
-import { PriceToc, type TocEntry } from "./PriceToc";
+import { PriceFilter, type FilterEntry } from "./PriceFilter";
 import styles from "./PriceAside.module.css";
 
 type Props = {
-  entries: TocEntry[];
+  entries: FilterEntry[];
+  direction: string;
   query: string;
   showSearch: boolean;
   texts: PricesContent;
   onChange: (value: string) => void;
+  onDirection: (id: string) => void;
 };
 
-/** Липкая колонка: компактный поиск (появляется, когда основной ушёл из вида) + оглавление. */
-export function PriceAside({ entries, query, showSearch, texts, onChange }: Props) {
+/** Липкая колонка: компактный поиск (появляется, когда основной ушёл из вида) + фильтр направлений. */
+export function PriceAside({ entries, direction, query, showSearch, texts, onChange, onDirection }: Props) {
   return (
     <aside className={styles.aside}>
       <div className={cx(styles.searchWrap, showSearch && styles.searchShown)} aria-hidden={!showSearch}>
@@ -45,7 +47,7 @@ export function PriceAside({ entries, query, showSearch, texts, onChange }: Prop
           </div>
         </div>
       </div>
-      <PriceToc label={texts.tocLabel} entries={entries} />
+      <PriceFilter label={texts.filterLabel} entries={entries} active={direction} onSelect={onDirection} />
     </aside>
   );
 }

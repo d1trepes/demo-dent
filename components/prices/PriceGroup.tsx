@@ -14,16 +14,12 @@ type Props = {
   texts: PricesContent;
 };
 
-export function priceSectionId(directionId: string) {
-  return `dir-${directionId}`;
-}
-
 export function PriceGroup({ direction, items, stems, openId, onToggle, texts }: Props) {
   return (
-    <section id={priceSectionId(direction.id)} className={styles.group} aria-labelledby={`${priceSectionId(direction.id)}-title`}>
+    <section className={styles.group} aria-labelledby={`price-${direction.id}-title`}>
       <header className={styles.head}>
         <div className={styles.titleWrap}>
-          <h2 id={`${priceSectionId(direction.id)}-title`} className={styles.title}>
+          <h2 id={`price-${direction.id}-title`} className={styles.title}>
             {direction.title}
           </h2>
           <span className={styles.count}>{fill(texts.count, { n: items.length, word: pluralWord(items.length, texts.serviceForms) })}</span>
