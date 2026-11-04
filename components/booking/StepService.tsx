@@ -78,7 +78,7 @@ export function StepService({ data, draft, update, onUrgent }: Props) {
               />
             ))}
           </div>
-          {draft.directionId && items.length > 0 && (
+          {!unknown && draft.directionId && items.length > 0 && (
             <div key={draft.directionId} className={styles.reveal}>
               <h3 className={styles.subheading}>{t.itemsHeading}</h3>
               <div className={styles.grid} role="group" aria-label={t.itemsHeading}>

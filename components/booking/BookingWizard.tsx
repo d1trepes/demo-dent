@@ -137,7 +137,7 @@ export function BookingWizard({ data }: { data: BookingData }) {
             {step === 1 && <StepService data={data} draft={draft} update={update} onUrgent={toUrgent} />}
             {step === 2 && <StepPlace data={data} draft={draft} update={update} />}
             {step === 3 && mode !== "urgent" && <StepTime data={data} draft={draft} update={update} />}
-            {step === 3 && mode === "urgent" && <StepUrgent data={data} draft={draft} update={update} onPlanned={toPlanned} />}
+            {step === 3 && mode === "urgent" && <StepUrgent data={data} draft={draft} update={update} />}
             {step === 4 && (
               <StepContacts
                 content={content}
@@ -155,6 +155,10 @@ export function BookingWizard({ data }: { data: BookingData }) {
             {previous ? (
               <Button variant="secondary" onClick={() => go(previous)}>
                 {content.nav.back}
+              </Button>
+            ) : mode === "urgent" ? (
+              <Button variant="secondary" onClick={toPlanned}>
+                {content.urgent.notUrgent}
               </Button>
             ) : (
               <span />

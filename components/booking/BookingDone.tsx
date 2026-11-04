@@ -118,10 +118,10 @@ export function BookingDone({ data }: { data: BookingData }) {
           </section>
 
           <div className={styles.actions}>
-            <Button onClick={addToCalendar}>{t.calendar}</Button>
             <ButtonLink href="/zapis/" variant="secondary">
               {t.another}
             </ButtonLink>
+            <Button onClick={addToCalendar}>{t.calendar}</Button>
           </div>
         </section>
       </div>

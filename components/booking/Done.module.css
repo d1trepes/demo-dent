@@ -6,6 +6,7 @@
 /* Одна колонка: реквизиты, под ними напоминания и кнопки (правка 3А) */
 .layout {
   max-width: 880px;
+  margin-inline: auto;
 }
 
 .card {
@@ -57,7 +58,6 @@
 .reminders {
   display: grid;
   gap: var(--space-2);
-  max-width: 640px;
   padding: var(--space-5) var(--space-6);
   border-radius: var(--radius-md);
   background: var(--color-bg);
@@ -76,9 +76,11 @@
   color: var(--color-text-muted);
 }
 
+/* Как подвал мастера: вторичная слева, основная справа */
 .actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   gap: var(--space-3);
 }
 

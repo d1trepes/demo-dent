@@ -4,7 +4,8 @@ import { cx } from "@/lib/cx";
 import { fill, formatDayMonth, formatWeekday, shortName, timeOf } from "@/lib/format";
 import type { BookingData, BranchId, Slot } from "@/lib/types";
 import type { BookingDraft } from "@/store/bookingStore";
-import { Button, ButtonLink } from "@/components/ui/Button";
+import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 import styles from "./Steps.module.css";
 
 type Props = {
@@ -12,7 +13,6 @@ type Props = {
   draft: BookingDraft;
   update: (patch: Partial<BookingDraft>) => void;
   /** Вернуться в обычную запись (не срочно). */
-  onPlanned: () => void;
 };
 
 /** Сколько дней вперёд ищем, если сегодня мест нет. */
@@ -21,7 +21,7 @@ const DAYS_AHEAD = 7;
 const PER_BRANCH = 9;
 
 /** Ветка «острая боль»: слоты на сегодня сразу по обоим филиалам, без выбора услуги и врача. */
-export function StepUrgent({ data, draft, update, onPlanned }: Props) {
+export function StepUrgent({ data, draft, update }: Props) {
   const t = data.content.urgent;
   const today = clinicNow().date;
   const [days, setDays] = useState<{ date: string; slots: Slot[] }[] | null>(null);
@@ -79,6 +79,12 @@ export function StepUrgent({ data, draft, update, onPlanned }: Props) {
             </button>
           ))}
         </div>
+        <p className={styles.note}>
+          {t.kids.text}{" "}
+          <Link href="/zapis/?reason=kid-pain" className={styles.inlineLink}>
+            {t.kids.action}
+          </Link>
+        </p>
       </section>
 
       {shown.date !== today && shown.slots.length > 0 && (
@@ -128,15 +134,6 @@ export function StepUrgent({ data, draft, update, onPlanned }: Props) {
         })
       )}
 
-      <div className={styles.callout}>
-        <p>{t.kids.text}</p>
-        <ButtonLink href="/zapis/?reason=kid-pain" variant="secondary">
-          {t.kids.action}
-        </ButtonLink>
-      </div>
-      <button type="button" className={styles.textLink} onClick={onPlanned}>
-        {t.notUrgent}
-      </button>
     </div>
   );
 }
