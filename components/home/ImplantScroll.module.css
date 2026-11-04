@@ -68,6 +68,8 @@
 /* Фон кадров уже перекрашен в --color-bg; мягкий край — страховка от разницы цветовых профилей */
 .staticImage,
 .video {
+  transform: translateZ(0);
+  will-change: contents;
   mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent),
     linear-gradient(to bottom, transparent, #000 2%, #000 97%, transparent);
   mask-composite: intersect;

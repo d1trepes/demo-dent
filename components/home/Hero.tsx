@@ -15,7 +15,7 @@ export async function Hero() {
 
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
-      <div className="container">
+      <div className={`container ${styles.frame}`}>
         <div className={styles.stage}>
           <div className={styles.plate} aria-hidden />
 

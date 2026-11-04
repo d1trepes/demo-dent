@@ -22,7 +22,7 @@ const REVEAL_FULL = 0.04;
 /** Доля прохода, когда имплант стоит разобранным (по центру). */
 const HOLD = 0.34;
 /** Плавность догоняния скролла (0–1 за кадр): меньше — мягче. */
-const EASE = 0.1;
+const EASE = 0.12;
 /** Не трогать currentTime ради сдвига меньше полкадра (24 к/с). */
 const MIN_STEP = 1 / 48;
 
@@ -66,6 +66,8 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
     let frame = 0;
     let visible = false;
     let current = -1;
+    let ready = false;
+    let blobUrl = "";
 
     const duration = () => (Number.isFinite(video.duration) && video.duration > 0 ? video.duration : 0);
 
@@ -80,7 +82,6 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
       current = current < 0 ? share : current + (share - current) * EASE;
       if (Math.abs(share - current) < 0.001) current = share;
 
-      const ready = T > 0 && video.readyState >= 2;
       if (ready && !video.seeking && Math.abs(video.currentTime - current * T) > MIN_STEP) {
         video.currentTime = current * T;
       }
@@ -93,16 +94,36 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
       if (!frame && visible) frame = requestAnimationFrame(tick);
     };
 
-    // Ленивая загрузка: src ставим, когда до блока остаётся ~экран. До этого — постер (собранный кадр).
+    // Ленивая загрузка (правка 2F): файл качается целиком в память (blob) за ~3 экрана до блока,
+    // поэтому перемотка не ждёт сеть — без рывков при первом проходе. До готовности — постер.
+    const load = () => {
+      if (video.getAttribute("src")) return;
+      fetch(asset(content.video.src))
+        .then((r) => r.blob())
+        .then((b) => {
+          blobUrl = URL.createObjectURL(b);
+          video.src = blobUrl;
+          video.load();
+        })
+        .catch(() => {
+          video.src = asset(content.video.src);
+          video.preload = "auto";
+          video.load();
+        });
+    };
     const loader = new IntersectionObserver(
       ([entry]) => {
-        if (!entry?.isIntersecting || !mq.matches || video.getAttribute("src")) return;
-        video.src = asset(content.video.src);
-        video.load();
+        if (!entry?.isIntersecting || !mq.matches) return;
         loader.disconnect();
+        load();
       },
-      { rootMargin: "100% 0px" },
+      { rootMargin: "300% 0px" },
     );
+    // Флаг готовности ставится один раз: во время seek readyState падает — подписи из-за этого мигали.
+    const onReady = () => {
+      ready = true;
+      schedule();
+    };
     const watcher = new IntersectionObserver(([entry]) => {
       visible = Boolean(entry?.isIntersecting) && mq.matches;
       schedule();
@@ -112,7 +133,7 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
     watcher.observe(track);
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);
-    video.addEventListener("loadeddata", schedule);
+    video.addEventListener("loadeddata", onReady);
     video.addEventListener("seeked", schedule);
 
     return () => {
@@ -121,7 +142,8 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
       watcher.disconnect();
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
-      video.removeEventListener("loadeddata", schedule);
+      video.removeEventListener("loadeddata", onReady);
+      if (blobUrl) URL.revokeObjectURL(blobUrl);
       video.removeEventListener("seeked", schedule);
     };
   }, [content.video.src]);

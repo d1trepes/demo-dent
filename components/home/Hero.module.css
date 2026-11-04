@@ -8,7 +8,20 @@
   overflow-x: clip;
 }
 
+/* Ширина сетки (контент контейнера) — для плашки по краям шапки. Свойство зарегистрировано,
+   поэтому 100cqw считается на .stage от .frame, а не от самой сцены. */
+@property --frame-w {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+.frame {
+  container-type: inline-size;
+}
+
 .stage {
+  --frame-w: 100cqw;
   --u: calc(100cqw / 335);
   position: relative;
   container-type: inline-size;
@@ -221,7 +234,13 @@
     aspect-ratio: 1360 / 772;
   }
 
+  /* Правка 2F: плашка всегда по сетке — края совпадают с шапкой (ширина контейнера минус поля),
+     даже когда сцена сужена по высоте экрана. */
   .plate {
+    left: 50%;
+    right: auto;
+    width: var(--frame-w);
+    transform: translateX(-50%);
     height: calc(520 * var(--u));
     border-radius: calc(36 * var(--u));
   }
