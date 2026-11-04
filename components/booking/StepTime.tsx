@@ -99,7 +99,7 @@ export function StepTime({ data, draft, update }: Props) {
 
       <section>
         <h3 className={styles.subheading}>{t.timesLabel}</h3>
-        <div className={styles.stack}>
+        <div key={activeDate} className={cx(styles.stack, styles.reveal)}>
           {parts.map(({ part, slots: list }) => (
             <div key={part}>
               <p className={styles.partLabel}>{t.dayParts[part]}</p>
@@ -122,7 +122,6 @@ export function StepTime({ data, draft, update }: Props) {
             </div>
           ))}
         </div>
-        {!doctorId && <p className={styles.hint}>{t.anyDoctorNote}</p>}
       </section>
     </div>
   );

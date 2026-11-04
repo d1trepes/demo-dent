@@ -1,37 +1,45 @@
-import { Check } from "lucide-react";
 import { cx } from "@/lib/cx";
+import { fill } from "@/lib/format";
 import styles from "./Wizard.module.css";
 
 export type ProgressItem = { id: number; label: string; state: "done" | "current" | "todo" };
 
-type Props = { label: string; items: ProgressItem[]; onSelect: (id: number) => void };
+type Props = {
+  label: string;
+  stepOf: string;
+  backTo: string;
+  items: ProgressItem[];
+  onSelect: (id: number) => void;
+};
 
-/** Прогресс сверху: пройденные шаги — кнопки (можно вернуться), текущий — aria-current. */
-export function Progress({ label, items, onSelect }: Props) {
+/** Прогресс: «Шаг 2 из 4 · Филиал и врач» + тонкая полоса; пройденные отрезки — кнопки «вернуться». */
+export function Progress({ label, stepOf, backTo, items, onSelect }: Props) {
+  const index = items.findIndex((i) => i.state === "current");
+  const current = items[index];
   return (
-    <nav aria-label={label}>
-      <ol className={styles.progress}>
-        {items.map((item, index) => {
-          const body = (
-            <>
-              <span className={styles.progressMark}>{item.state === "done" ? <Check size={16} aria-hidden /> : index + 1}</span>
-              <span className={styles.progressLabel}>{item.label}</span>
-            </>
-          );
-          return (
-            <li key={item.id} className={cx(styles.progressItem, styles[item.state])}>
-              {item.state === "done" ? (
-                <button type="button" className={styles.progressButton} onClick={() => onSelect(item.id)}>
-                  {body}
-                </button>
-              ) : (
-                <span className={styles.progressButton} aria-current={item.state === "current" ? "step" : undefined}>
-                  {body}
-                </span>
-              )}
-            </li>
-          );
-        })}
+    <nav aria-label={label} className={styles.progress}>
+      <p className={styles.progressText} aria-live="polite">
+        <span className={styles.progressCount}>{fill(stepOf, { n: String(index + 1), total: String(items.length) })}</span>
+        {current && <span> · {current.label}</span>}
+      </p>
+      <ol className={styles.progressBar}>
+        {items.map((item) => (
+          <li key={item.id} className={cx(styles.progressItem, styles[item.state])}>
+            {item.state === "done" ? (
+              <button
+                type="button"
+                className={styles.progressHit}
+                aria-label={fill(backTo, { label: item.label })}
+                title={item.label}
+                onClick={() => onSelect(item.id)}
+              />
+            ) : (
+              <span className={styles.progressHit} aria-current={item.state === "current" ? "step" : undefined}>
+                <span className="visually-hidden">{item.label}</span>
+              </span>
+            )}
+          </li>
+        ))}
       </ol>
     </nav>
   );

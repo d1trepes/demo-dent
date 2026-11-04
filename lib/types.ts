@@ -724,6 +724,8 @@ export type BookingContent = {
   lead: string;
   urgentLead: string;
   stepsLabel: string;
+  stepOf: string;
+  backTo: string;
   steps: { service: string; place: string; time: string; contacts: string; done: string };
   nav: { back: string; next: string; submit: string; submitting: string };
   service: {
@@ -734,7 +736,7 @@ export type BookingContent = {
     anyItem: string;
     reasonsLabel: string;
     reasonsHint: string;
-    urgentHint: { text: string; action: string };
+    urgentHint: { title: string; text: string; action: string };
   };
   place: {
     branchHeading: string;
@@ -753,7 +755,6 @@ export type BookingContent = {
     empty: string;
     today: string;
     dayParts: { morning: string; day: string; evening: string };
-    anyDoctorNote: string;
     datesLabel: string;
     timesLabel: string;
   };
@@ -795,27 +796,9 @@ export type BookingContent = {
     status: string;
     rows: { doctor: string; branch: string; address: string; time: string; service: string; number: string };
     calendar: string;
-    cabinet: string;
     another: string;
     notFound: { title: string; text: string; action: string };
-    telegram: {
-      title: string;
-      note: string;
-      header: string;
-      urgent: string;
-      fields: { patient: string; phone: string; direction: string; doctor: string; branch: string; time: string; source: string };
-      buttons: string[];
-      adminLink: string;
-    };
-    reminders: {
-      title: string;
-      before24: string;
-      before2: string;
-      channel: string;
-      confirm: string;
-      none: string;
-      settings: string;
-    };
+    reminders: { title: string; text: string; before24: string; before2: string; joiner: string; none: string; settings: string };
     ics: { summary: string; description: string };
   };
 };

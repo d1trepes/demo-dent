@@ -128,9 +128,9 @@ export function BookingWizard({ data }: { data: BookingData }) {
 
       <div className={styles.layout}>
         <div className={styles.card} ref={cardRef}>
-          <Progress label={content.stepsLabel} items={progress} onSelect={go} />
+          <Progress label={content.stepsLabel} stepOf={content.stepOf} backTo={content.backTo} items={progress} onSelect={go} />
 
-          <div key={`${mode}-${step}`} className={cx(styles.step, direction.current === "back" ? styles.back : styles.forward)}>
+          <div key={`${mode === "urgent" ? "urgent" : "planned"}-${step}`} className={cx(styles.step, direction.current === "back" ? styles.back : styles.forward)}>
             <h2 ref={headingRef} tabIndex={-1} className={styles.stepTitle}>
               {headings[step]}
             </h2>

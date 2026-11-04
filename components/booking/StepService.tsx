@@ -2,7 +2,7 @@ import { cx } from "@/lib/cx";
 import { formatPrice } from "@/lib/format";
 import type { BookingData, Reason } from "@/lib/types";
 import type { BookingDraft } from "@/store/bookingStore";
-import { Button } from "@/components/ui/Button";
+import { UrgentCallout } from "@/components/ui/UrgentCallout";
 import { Option } from "./Option";
 import styles from "./Steps.module.css";
 
@@ -40,10 +40,11 @@ export function StepService({ data, draft, update, onUrgent }: Props) {
         </div>
       )}
 
-      {unknown ? (
-        <div>
+      {/* Обе вкладки лежат в одной ячейке грида: высота — по большей, при переключении ничего не прыгает */}
+      <div className={styles.panels}>
+        <div className={cx(styles.panel, !unknown && styles.panelHidden)} inert={!unknown}>
           <p className={styles.hint}>{t.reasonsHint}</p>
-          <div className={styles.twoCols} role="group" aria-label={t.reasonsLabel}>
+          <div className={styles.grid} role="group" aria-label={t.reasonsLabel}>
             {data.reasons.map((r) => (
               <Option
                 key={r.id}
@@ -54,38 +55,38 @@ export function StepService({ data, draft, update, onUrgent }: Props) {
             ))}
           </div>
           {reason?.urgent && !reason.kids && (
-            <div className={styles.callout}>
-              <p>{t.urgentHint.text}</p>
-              <Button variant="secondary" onClick={() => onUrgent(reason)}>
-                {t.urgentHint.action}
-              </Button>
-            </div>
+            <UrgentCallout
+              compact
+              className={styles.reveal}
+              title={t.urgentHint.title}
+              text={t.urgentHint.text}
+              action={t.urgentHint.action}
+              onAction={() => onUrgent(reason)}
+            />
           )}
         </div>
-      ) : (
-        <div className={styles.split}>
-          <div>
-            <h3 className={styles.subheading}>{t.directionsLabel}</h3>
-            <div className={styles.list} role="group" aria-label={t.directionsLabel}>
-              {directions.map((d) => (
-                <Option
-                  key={d.id}
-                  title={d.title}
-                  meta={formatPrice(d.priceFrom, true)}
-                  selected={d.id === draft.directionId}
-                  onClick={() => update({ directionId: d.id, serviceId: null, reasonId: null, slot: null })}
-                />
-              ))}
-            </div>
+
+        <div className={cx(styles.panel, unknown && styles.panelHidden)} inert={unknown}>
+          <div className={styles.grid} role="group" aria-label={t.directionsLabel}>
+            {directions.map((d) => (
+              <Option
+                key={d.id}
+                title={d.title}
+                meta={formatPrice(d.priceFrom, true)}
+                selected={d.id === draft.directionId}
+                onClick={() => update({ directionId: d.id, serviceId: null, reasonId: null, slot: null })}
+              />
+            ))}
           </div>
-          <div>
-            <h3 className={styles.subheading}>{t.itemsHeading}</h3>
-            {draft.directionId ? (
-              <div className={styles.list} role="group" aria-label={t.itemsHeading}>
-                <Option title={t.anyItem} selected={!draft.serviceId} onClick={() => update({ serviceId: null, slot: null })} />
+          {draft.directionId && items.length > 0 && (
+            <div key={draft.directionId} className={styles.reveal}>
+              <h3 className={styles.subheading}>{t.itemsHeading}</h3>
+              <div className={styles.grid} role="group" aria-label={t.itemsHeading}>
+                <Option compact title={t.anyItem} selected={!draft.serviceId} onClick={() => update({ serviceId: null, slot: null })} />
                 {items.map((i) => (
                   <Option
                     key={i.id}
+                    compact
                     title={i.title}
                     meta={formatPrice(i.price, i.priceIsFrom)}
                     selected={i.id === draft.serviceId}
@@ -93,12 +94,10 @@ export function StepService({ data, draft, update, onUrgent }: Props) {
                   />
                 ))}
               </div>
-            ) : (
-              <p className={styles.placeholder}>{t.directionsLabel}</p>
-            )}
-          </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }

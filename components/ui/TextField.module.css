@@ -1,5 +1,6 @@
 .field {
   display: grid;
+  align-content: start; /* ошибка у соседнего поля растягивает строку — подпись и поле не съезжают */
   gap: var(--space-2);
 }
 
@@ -33,16 +34,42 @@
   border-color: var(--color-text);
 }
 
-.input:focus {
-  border-color: var(--color-primary);
-}
-
+/* Фокус — одна целая обводка 2 px по форме поля (рамка + inset), без глобального outline */
+.input:focus,
 .input:focus-visible {
-  border-radius: var(--radius-pill);
+  outline: none;
+  border-radius: var(--radius-pill); /* глобальный :focus-visible ставит 4 px */
+  border-color: var(--color-primary);
+  box-shadow: inset 0 0 0 1px var(--color-primary);
 }
 
 .input[aria-invalid="true"] {
   border-color: var(--color-danger);
+}
+
+.input[aria-invalid="true"]:focus {
+  border-color: var(--color-danger);
+  box-shadow: inset 0 0 0 1px var(--color-danger);
+}
+
+/* Автозаполнение браузера: без жёлто-синего тинта, фон поля белый */
+.input:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-text);
+  caret-color: var(--color-text);
+  box-shadow: inset 0 0 0 100px var(--color-surface);
+  transition: background-color 9999s;
+}
+
+.input:-webkit-autofill:focus {
+  box-shadow:
+    inset 0 0 0 1px var(--color-primary),
+    inset 0 0 0 100px var(--color-surface);
+}
+
+.input[aria-invalid="true"]:-webkit-autofill:focus {
+  box-shadow:
+    inset 0 0 0 1px var(--color-danger),
+    inset 0 0 0 100px var(--color-surface);
 }
 
 .error {

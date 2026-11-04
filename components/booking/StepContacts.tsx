@@ -45,6 +45,7 @@ export function StepContacts({ content, draft, needHealth, errorCode, update, on
     watch,
     formState: { errors },
   } = useForm<Values>({
+    mode: "onTouched",
     resolver: zodResolver(schemaFor(t.errors, needHealth)),
     defaultValues: { name: draft.name, phone: draft.phone, personal: draft.consentPersonalData, health: draft.consentHealth },
   });

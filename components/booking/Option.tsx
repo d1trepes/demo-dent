@@ -11,15 +11,17 @@ type Props = {
   meta?: string;
   lead?: ReactNode;
   disabled?: boolean;
+  /** Строка поменьше — для необязательных уточнений. */
+  compact?: boolean;
   className?: string;
 };
 
 /** Строка выбора: кнопка с aria-pressed, выбранная — в рамке кобальта на светлой плашке. */
-export function Option({ selected, onClick, title, text, meta, lead, disabled, className }: Props) {
+export function Option({ selected, onClick, title, text, meta, lead, disabled, compact, className }: Props) {
   return (
     <button
       type="button"
-      className={cx(styles.option, selected && styles.selected, className)}
+      className={cx(styles.option, compact && styles.compact, selected && styles.selected, className)}
       aria-pressed={selected}
       disabled={disabled}
       onClick={onClick}

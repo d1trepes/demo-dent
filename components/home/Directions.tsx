@@ -4,6 +4,7 @@ import { getHomeContent, getServices } from "@/lib/api";
 import { asset } from "@/lib/asset";
 import { formatPrice } from "@/lib/format";
 import { ButtonLink } from "@/components/ui/Button";
+import { UrgentCallout } from "@/components/ui/UrgentCallout";
 import styles from "./Directions.module.css";
 
 /**
@@ -57,16 +58,13 @@ export async function Directions() {
           ))}
         </ol>
 
-        {/* Плашка — не ссылка: нажимается и подсвечивается только кнопка (правка 2E) */}
-        <div className={styles.urgent}>
-          <p className={styles.urgentText}>
-            <span className={styles.urgentTitle}>{content.urgent.label}</span>
-            <span className={styles.urgentNote}>{content.urgent.text}</span>
-          </p>
-          <Link href={content.urgent.href} className={styles.urgentAction}>
-            {content.urgent.action}
-          </Link>
-        </div>
+        <UrgentCallout
+          className={styles.urgent}
+          title={content.urgent.label}
+          text={content.urgent.text}
+          action={content.urgent.action}
+          href={content.urgent.href}
+        />
       </div>
     </section>
   );

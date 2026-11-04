@@ -119,74 +119,7 @@
 /* Плашка «Болит зуб?» — кобальтовая заливка, белый текст, справа белая пилюля без стрелки (правка 2C-2) */
 .urgent {
   grid-area: urgent;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-5);
   margin-top: var(--space-6);
-  padding: var(--space-6);
-  border-radius: var(--radius-lg);
-  background: var(--color-primary);
-  color: var(--color-primary-contrast);
-  text-decoration: none;
-  transition: background-color 0.3s var(--ease);
-}
-
-.urgentText {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-.urgentTitle {
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.3;
-}
-
-.urgentNote {
-  font-size: 15px;
-  line-height: 1.45;
-  color: rgb(255 255 255 / 0.88); /* контраст AA на кобальте */
-}
-
-/* Вид как у кнопки (56 px, пилюля), но это span внутри ссылки-плашки */
-.urgentAction {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: var(--button-h);
-  padding: 0 var(--space-8);
-  border-radius: var(--radius-pill);
-  background: var(--color-surface);
-  color: var(--color-primary);
-  font-size: 16px;
-  font-weight: 500;
-  white-space: nowrap;
-  transition: color 0.3s var(--ease);
-}
-
-.urgentAction {
-  text-decoration: none;
-  transition:
-    background-color 0.3s var(--ease),
-    color 0.3s var(--ease);
-}
-
-/* Hover/фокус — только у кнопки: белая пилюля становится тёмно-синей с белым текстом */
-.urgentAction:hover,
-.urgentAction:focus-visible {
-  background: var(--color-primary-deep);
-  color: var(--color-primary-contrast);
-}
-
-.urgentAction:focus-visible {
-  outline: 3px solid var(--color-primary-contrast);
-  outline-offset: 3px;
-}
-
-.urgentAction:active {
-  transform: scale(0.98);
 }
 
 /* ---- Десктоп: одна строка 80 px, таблетка между описанием и ценой ---- */
@@ -214,16 +147,7 @@
   }
 
   .urgent {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--space-8);
     margin-top: var(--space-8);
-    padding: var(--space-8) var(--space-10);
-  }
-
-  .urgentTitle {
-    font-size: 22px;
   }
 
   .row {

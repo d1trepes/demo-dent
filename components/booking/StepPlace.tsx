@@ -63,7 +63,7 @@ export function StepPlace({ data, draft, update }: Props) {
         ) : doctors.length === 0 ? (
           <p className={styles.placeholder}>{t.noDoctors}</p>
         ) : (
-          <div className={styles.twoCols} role="group" aria-label={t.doctorHeading}>
+          <div key={draft.branchId} className={cx(styles.grid, styles.reveal)} role="group" aria-label={t.doctorHeading}>
             <Option
               title={t.anyDoctor.title}
               text={t.anyDoctor.text}

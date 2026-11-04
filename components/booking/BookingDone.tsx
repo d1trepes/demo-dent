@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { clinicNow, shiftMoment } from "@/lib/dates";
 import { cx } from "@/lib/cx";
@@ -12,10 +11,9 @@ import { useBookingStore } from "@/store/bookingStore";
 import { usePatientStore } from "@/store/patientStore";
 import { useHydrated } from "@/store/useHydrated";
 import { Button, ButtonLink } from "@/components/ui/Button";
-import { TelegramPreview } from "./TelegramPreview";
 import styles from "./Done.module.css";
 
-/** «Запись создана»: итог, календарь (.ics локально), превью уведомления администратору и напоминания. */
+/** «Запись создана»: итог, календарь (.ics локально), напоминания. */
 export function BookingDone({ data }: { data: BookingData }) {
   const t = data.content.done;
   const hydrated = useHydrated();
@@ -102,46 +100,30 @@ export function BookingDone({ data }: { data: BookingData }) {
             ))}
           </dl>
 
-          <div className={styles.actions}>
-            <Button onClick={addToCalendar}>{t.calendar}</Button>
-            <ButtonLink href="/kabinet/vhod/" variant="secondary">
-              {t.cabinet}
-            </ButtonLink>
-          </div>
-          <Link href="/zapis/" className={styles.link}>
-            {t.another}
-          </Link>
-        </section>
-
-        <div className={styles.side}>
-          <TelegramPreview
-            texts={t.telegram}
-            appointment={appointment}
-            directionTitle={direction?.title ?? ""}
-            doctorName={doctor ? shortName(doctor.fullName) : ""}
-            branchName={branch?.name ?? ""}
-          />
-
           <section className={styles.reminders} aria-labelledby="reminders-title">
-            <h2 id="reminders-title" className={styles.sideTitle}>
+            <h2 id="reminders-title" className={styles.remindersTitle}>
               {t.reminders.title}
             </h2>
-            {reminders.length > 0 ? (
-              <>
-                <ul className={styles.reminderList}>
-                  {reminders.map((r) => (
-                    <li key={r.at}>{fill(r.text, { when: `${formatDayMonth(r.at)}, ${timeOf(r.at)}` })}</li>
-                  ))}
-                </ul>
-                <p>{fill(t.reminders.channel, { phone: appointment.patient.phone })}</p>
-                <p>{t.reminders.confirm}</p>
-              </>
-            ) : (
-              <p>{t.reminders.none}</p>
-            )}
+            <p>
+              {reminders.length > 0
+                ? fill(t.reminders.text, {
+                    phone: appointment.patient.phone,
+                    times: reminders
+                      .map((r) => fill(r.text, { when: `${formatDayMonth(r.at)}, ${timeOf(r.at)}` }))
+                      .join(t.reminders.joiner),
+                  })
+                : t.reminders.none}
+            </p>
             <p className={styles.muted}>{t.reminders.settings}</p>
           </section>
-        </div>
+
+          <div className={styles.actions}>
+            <Button onClick={addToCalendar}>{t.calendar}</Button>
+            <ButtonLink href="/zapis/" variant="secondary">
+              {t.another}
+            </ButtonLink>
+          </div>
+        </section>
       </div>
     </div>
   );
