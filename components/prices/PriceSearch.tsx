@@ -1,23 +1,21 @@
 import { cx } from "@/lib/cx";
-import { fill } from "@/lib/format";
-import { pluralWord } from "@/lib/priceSearch";
 import type { PricesContent } from "@/lib/types";
 import styles from "./PriceSearch.module.css";
 
 type Props = {
   query: string;
-  found: number;
   texts: PricesContent;
   onChange: (value: string) => void;
 };
 
-export function PriceSearch({ query, found, texts, onChange }: Props) {
+export function PriceSearch({ query, texts, onChange }: Props) {
   const active = query.trim().length > 0;
   return (
     <div className={styles.search}>
       <label className="visually-hidden" htmlFor="price-search">
         {texts.searchLabel}
       </label>
+      <div className={styles.field}>
       <input
         id="price-search"
         className={styles.input}
@@ -29,6 +27,10 @@ export function PriceSearch({ query, found, texts, onChange }: Props) {
         value={query}
         onChange={(event) => onChange(event.target.value)}
       />
+      {active && (
+        <button type="button" className={styles.clear} aria-label={texts.clear} onClick={() => onChange("")} />
+      )}
+      </div>
       <div className={styles.meta}>
         <ul className={styles.chips}>
           {texts.popular.map((word) => (
@@ -44,17 +46,6 @@ export function PriceSearch({ query, found, texts, onChange }: Props) {
             </li>
           ))}
         </ul>
-        <p className={styles.found} aria-live="polite">
-          {active && (
-            <>
-              {fill(texts.found, { n: found, word: pluralWord(found, texts.serviceForms) })}
-              {" · "}
-              <button type="button" className={styles.reset} onClick={() => onChange("")}>
-                {texts.reset}
-              </button>
-            </>
-          )}
-        </p>
       </div>
     </div>
   );

@@ -67,7 +67,6 @@ export function PricesView({ directions, items, texts, phone }: Props) {
           <h1 className={styles.title}>{texts.title}</h1>
           <p className={styles.lead}>{texts.lead}</p>
         </div>
-        <p className={styles.updated}>{texts.updated}</p>
       </header>
 
       <div className={styles.layout}>
@@ -80,7 +79,7 @@ export function PricesView({ directions, items, texts, phone }: Props) {
         />
         <div className={styles.main}>
           <div ref={searchRef}>
-            <PriceSearch query={query} found={found} texts={texts} onChange={changeQuery} />
+            <PriceSearch query={query} texts={texts} onChange={changeQuery} />
           </div>
 
           {found === 0 ? (
