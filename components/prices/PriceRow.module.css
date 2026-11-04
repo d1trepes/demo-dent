@@ -1,54 +1,112 @@
 .item {
-  border-bottom: 1px solid var(--color-line);
+  position: relative;
+  border-radius: var(--radius-md);
+  transition: background-color var(--dur) var(--ease);
+}
+
+/* Тонкий разделитель с отступом от краёв карточки; прячется у строки под курсором и у раскрытой */
+.item + .item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: var(--space-6);
+  left: var(--space-6);
+  height: 1px;
+  background: var(--color-line);
+  transition: opacity 0.2s var(--ease);
+}
+
+.item:hover::before,
+.item:hover + .item::before,
+.itemOpen::before,
+.itemOpen + .item::before {
+  opacity: 0;
+}
+
+.item:hover,
+.itemOpen {
+  background: var(--color-tint);
 }
 
 .row {
   display: grid;
-  grid-template-columns: minmax(0, max-content) 1fr auto;
-  align-items: end;
-  gap: var(--space-4);
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-8);
   width: 100%;
-  min-height: 64px;
-  padding: var(--space-5) 0;
+  min-height: 68px;
+  padding: var(--space-4) var(--space-6);
   border: 0;
+  border-radius: var(--radius-md);
   background: none;
   font: inherit;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.4;
   text-align: left;
   color: var(--color-text);
   cursor: pointer;
 }
 
-.name {
+.name,
+.price,
+.from {
   transition: color var(--dur) var(--ease);
 }
 
-.row:hover .name,
-.rowOpen .name {
-  color: var(--color-primary);
-}
-
-/* Отточие: пунктир на уровне базовой линии последней строки названия */
-.leader {
-  align-self: end;
-  height: 0;
-  margin-bottom: 0.4em;
-  border-bottom: 1px dotted var(--color-text-muted);
-}
-
 .price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 18px;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 
-.mark {
-  padding: 0 2px;
-  margin: 0 -2px;
-  border-radius: 4px;
+.from {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.item:hover .name,
+.item:hover .price,
+.item:hover .from,
+.itemOpen .name,
+.itemOpen .price,
+.itemOpen .from {
+  color: var(--color-primary);
+}
+
+/* «Бесплатно» — пилюля кобальтом */
+.free {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-pill);
   background: var(--color-tint);
-  color: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-primary);
+  white-space: nowrap;
+  transition:
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.item:hover .free,
+.itemOpen .free {
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+}
+
+.mark {
+  padding: 0 3px;
+  margin: 0 -3px;
+  border-radius: 4px;
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
 }
 
 /* Раскрытие: высота 0fr → 1fr; закрытое содержимое не фокусируется (visibility) */
@@ -79,9 +137,9 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-8);
-  margin-bottom: var(--space-5);
-  padding: var(--space-5) var(--space-6);
-  border-radius: var(--radius-md);
+  margin: 0 var(--space-3) var(--space-3);
+  padding: var(--space-4) var(--space-3);
+  border-radius: var(--radius-sm);
   background: var(--color-surface);
 }
 
@@ -105,9 +163,14 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .item,
+  .item::before,
   .panel,
   .panelOpen,
-  .name {
+  .name,
+  .price,
+  .from,
+  .free {
     transition: none;
   }
 }

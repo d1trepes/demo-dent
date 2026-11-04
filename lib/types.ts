@@ -811,9 +811,14 @@ export type PricesContent = {
   updated: string;
   searchLabel: string;
   searchPlaceholder: string;
+  /** Плейсхолдер компактного поиска в боковой колонке. */
+  searchShort: string;
+  clear: string;
   popular: string[];
   /** «Найдено {n} {word}», word — по serviceForms. */
   found: string;
+  /** «{n} {word}» — счётчик в шапке раздела. */
+  count: string;
   serviceForms: [string, string, string];
   reset: string;
   empty: { title: string; text: string };
@@ -830,4 +835,5 @@ export type PricesContent = {
   };
   book: string;
   free: string;
+  from: string;
 };

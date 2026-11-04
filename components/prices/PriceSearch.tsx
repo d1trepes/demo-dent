@@ -1,3 +1,4 @@
+import { cx } from "@/lib/cx";
 import { fill } from "@/lib/format";
 import { pluralWord } from "@/lib/priceSearch";
 import type { PricesContent } from "@/lib/types";
@@ -32,7 +33,12 @@ export function PriceSearch({ query, found, texts, onChange }: Props) {
         <ul className={styles.chips}>
           {texts.popular.map((word) => (
             <li key={word}>
-              <button type="button" className={styles.chip} onClick={() => onChange(word)}>
+              <button
+                type="button"
+                className={cx(styles.chip, query.trim() === word && styles.chipOn)}
+                aria-pressed={query.trim() === word}
+                onClick={() => onChange(query.trim() === word ? "" : word)}
+              >
                 {word}
               </button>
             </li>

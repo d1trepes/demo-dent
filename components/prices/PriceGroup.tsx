@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { fill } from "@/lib/format";
+import { pluralWord } from "@/lib/priceSearch";
 import type { Direction, PriceItem, PricesContent } from "@/lib/types";
 import { PriceRow } from "./PriceRow";
 import styles from "./PriceGroup.module.css";
@@ -20,9 +22,12 @@ export function PriceGroup({ direction, items, stems, openId, onToggle, texts }:
   return (
     <section id={priceSectionId(direction.id)} className={styles.group} aria-labelledby={`${priceSectionId(direction.id)}-title`}>
       <header className={styles.head}>
-        <h2 id={`${priceSectionId(direction.id)}-title`} className={styles.title}>
-          {direction.title}
-        </h2>
+        <div className={styles.titleWrap}>
+          <h2 id={`${priceSectionId(direction.id)}-title`} className={styles.title}>
+            {direction.title}
+          </h2>
+          <span className={styles.count}>{fill(texts.count, { n: items.length, word: pluralWord(items.length, texts.serviceForms) })}</span>
+        </div>
         {direction.hasPage && (
           <Link href={`/uslugi/${direction.id}/`} className={styles.about}>
             {texts.aboutDirection}

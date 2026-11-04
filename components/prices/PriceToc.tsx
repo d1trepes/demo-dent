@@ -47,7 +47,7 @@ export function PriceToc({ entries, label }: Props) {
   };
 
   return (
-    <nav className={styles.toc} aria-label={label}>
+    <nav aria-label={label}>
       <ul className={styles.list}>
         {entries.map((entry) => {
           const disabled = entry.count === 0;

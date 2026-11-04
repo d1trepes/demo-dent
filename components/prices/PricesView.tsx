@@ -1,13 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Contraindications } from "@/components/ui/Contraindications";
 import { fill } from "@/lib/format";
 import { matchesItem, queryStems } from "@/lib/priceSearch";
 import type { Direction, PriceItem, PricesContent } from "@/lib/types";
 import { PriceGroup, priceSectionId } from "./PriceGroup";
 import { PriceSearch } from "./PriceSearch";
-import { PriceToc } from "./PriceToc";
+import { PriceAside } from "./PriceAside";
 import styles from "./PricesView.module.css";
 
 type Props = {
@@ -20,6 +20,20 @@ type Props = {
 export function PricesView({ directions, items, texts, phone }: Props) {
   const [query, setQuery] = useState("");
   const [openId, setOpenId] = useState<string | null>(null);
+  const [searchOut, setSearchOut] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const groupsRef = useRef<HTMLDivElement>(null);
+
+  // Основной поиск ушёл под шапку — показываем компактный в боковой колонке
+  useEffect(() => {
+    const el = searchRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => setSearchOut(!entry.isIntersecting), {
+      rootMargin: "-120px 0px 0px 0px",
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const stems = useMemo(() => queryStems(query), [query]);
   const groups = useMemo(
@@ -36,6 +50,12 @@ export function PricesView({ directions, items, texts, phone }: Props) {
     setQuery(value);
     setOpenId(null);
   };
+  // Поиск из боковой колонки: выдача меняется — возвращаем к её началу, если ушли ниже
+  const changeFromAside = (value: string) => {
+    changeQuery(value);
+    const top = groupsRef.current?.getBoundingClientRect().top ?? 0;
+    if (top < 0) groupsRef.current?.scrollIntoView({ block: "start" });
+  };
   const toggle = (id: string) => setOpenId((current) => (current === id ? null : id));
 
   const [emptyBefore, emptyAfter] = texts.empty.text.split("{phone}");
@@ -51,12 +71,17 @@ export function PricesView({ directions, items, texts, phone }: Props) {
       </header>
 
       <div className={styles.layout}>
-        <PriceToc
-          label={texts.tocLabel}
+        <PriceAside
           entries={groups.map((g) => ({ id: g.direction.id, title: g.direction.title, count: g.items.length }))}
+          query={query}
+          showSearch={searchOut}
+          texts={texts}
+          onChange={changeFromAside}
         />
         <div className={styles.main}>
-          <PriceSearch query={query} found={found} texts={texts} onChange={changeQuery} />
+          <div ref={searchRef}>
+            <PriceSearch query={query} found={found} texts={texts} onChange={changeQuery} />
+          </div>
 
           {found === 0 ? (
             <div className={styles.empty}>
@@ -70,7 +95,7 @@ export function PricesView({ directions, items, texts, phone }: Props) {
               </p>
             </div>
           ) : (
-            <div className={styles.groups}>
+            <div ref={groupsRef} className={styles.groups}>
               {groups
                 .filter((g) => g.items.length > 0)
                 .map((g) => (

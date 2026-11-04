@@ -7,7 +7,7 @@
   width: 100%;
   min-height: 64px;
   padding: 0 var(--space-8);
-  border: 1px solid var(--color-text-muted);
+  border: 1px solid transparent;
   border-radius: var(--radius-pill);
   background: var(--color-surface);
   font: inherit;
@@ -21,7 +21,7 @@
 }
 
 .input:hover {
-  border-color: var(--color-text);
+  border-color: var(--color-line);
 }
 
 /* Фокус — одна целая обводка кобальтом, как у TextField */
@@ -52,21 +52,27 @@
 .chip {
   min-height: var(--tap);
   padding: 0 var(--space-5);
-  border: 1px solid var(--color-line);
+  border: 1px solid transparent;
   border-radius: var(--radius-pill);
-  background: transparent;
+  background: var(--color-surface);
   font: inherit;
   font-size: var(--text-base);
   color: var(--color-text);
   cursor: pointer;
   transition:
-    border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
     color var(--dur) var(--ease);
 }
 
 .chip:hover {
-  border-color: var(--color-primary);
+  background: var(--color-tint);
   color: var(--color-primary);
+}
+
+.chipOn,
+.chipOn:hover {
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
 }
 
 .found {

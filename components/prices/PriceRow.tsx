@@ -29,7 +29,7 @@ export function PriceRow({ item, stems, open, onToggle, texts }: Props) {
   ];
 
   return (
-    <li className={styles.item}>
+    <li className={cx(styles.item, open && styles.itemOpen)}>
       <button
         type="button"
         className={cx(styles.row, open && styles.rowOpen)}
@@ -42,8 +42,14 @@ export function PriceRow({ item, stems, open, onToggle, texts }: Props) {
             part.hit ? <mark key={i} className={styles.mark}>{part.text}</mark> : part.text,
           )}
         </span>
-        <span className={styles.leader} aria-hidden="true" />
-        <span className={styles.price}>{item.price === 0 ? texts.free : formatPrice(item.price, item.priceIsFrom)}</span>
+        {item.price === 0 ? (
+          <span className={styles.free}>{texts.free}</span>
+        ) : (
+          <span className={styles.price}>
+            {item.priceIsFrom && <span className={styles.from}>{texts.from}</span>}
+            {formatPrice(item.price)}
+          </span>
+        )}
       </button>
       <div id={panelId} className={cx(styles.panel, open && styles.panelOpen)}>
         <div className={styles.panelClip}>
@@ -56,7 +62,7 @@ export function PriceRow({ item, stems, open, onToggle, texts }: Props) {
                 </div>
               ))}
             </dl>
-            <ButtonLink href={`/zapis/?service=${item.id}`} variant="secondary" tabIndex={open ? 0 : -1}>
+            <ButtonLink href={`/zapis/?service=${item.id}`} tabIndex={open ? 0 : -1}>
               {texts.book}
             </ButtonLink>
           </div>
