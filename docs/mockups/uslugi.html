@@ -1,0 +1,253 @@
+<title>Ясень — страница Услуги</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Prata&display=swap">
+<style>
+/* Макет /uslugi/ v3 — та же система, что у /ceny/: шапка страницы, слева липкая белая плашка (поиск + разделы), справа карточки с фото 2 колонки. Имплантация — широкая карточка, в сетке — синяя плашка «Болит зуб?». Только светлая тема, как сайт. */
+:root {
+  --primary: #2d4be6;
+  --primary-deep: #1a2fa8;
+  --tint: #e6eafc;
+  --bg: #f3f4f8;
+  --surface: #ffffff;
+  --text: #12162e;
+  --muted: #5a6079;
+  --line: #dcdfea;
+  --ph: #d5d8e2;
+  --display: "Prata", "Times New Roman", serif;
+  --sans: "Golos Text", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 0.35s;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+
+.wrap { max-width: 1680px; margin: 0 auto; padding-block: 16px 96px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 1024px) { .wrap { padding-left: max(64px, env(safe-area-inset-left, 0px)); padding-right: max(64px, env(safe-area-inset-right, 0px)); } }
+
+/* Шапка — как на сайте */
+.header { position: sticky; top: max(12px, env(safe-area-inset-top, 0px)); z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 72px; padding: 0 12px 0 24px; border-radius: 36px; background: var(--surface); }
+.logo { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 26px; }
+.logo svg { width: 28px; height: 34px; color: var(--primary); }
+.nav { display: flex; gap: 4px; }
+.nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; font-size: 15px; font-weight: 500; transition: color var(--dur) var(--ease); }
+.nav a:hover { color: var(--primary); }
+.nav a[aria-current] { background: var(--tint); color: var(--primary); }
+.hbtns { display: flex; gap: 12px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 30px; border-radius: 999px; border: 1px solid var(--text); background: transparent; font-weight: 500; font-size: 16px; line-height: 1; cursor: pointer; white-space: nowrap; transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+.btn:hover { border-color: var(--primary); color: var(--primary); }
+.btn-primary { border-color: var(--primary); background: var(--primary); color: #fff; }
+.btn-primary:hover { border-color: var(--primary-deep); background: var(--primary-deep); color: #fff; }
+.btn-white { border-color: #fff; background: #fff; color: var(--primary); }
+.btn-white:hover { border-color: var(--tint); background: var(--tint); color: var(--primary-deep); }
+@media (max-width: 1100px) { .nav, .hbtns .btn:first-child { display: none; } }
+
+/* Шапка страницы — отступы как у /zapis/ */
+.head { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; padding-top: 32px; }
+.title { font-family: var(--display); font-weight: 400; font-size: clamp(40px, 3.6vw + 16px, 60px); line-height: 1.1; }
+.lead { max-width: 760px; margin-top: 16px; font-size: 20px; line-height: 1.45; color: var(--muted); }
+.updated { font-size: 14px; color: var(--muted); white-space: nowrap; }
+
+.layout { display: grid; grid-template-columns: 312px minmax(0, 1fr); gap: 40px; align-items: start; margin-top: 40px; }
+
+/* Боковая плашка — как на /ceny/ */
+.aside { position: sticky; top: 108px; padding: 12px; border-radius: 28px; background: var(--surface); }
+.search { position: relative; padding-bottom: 12px; }
+.search input { width: 100%; min-height: 52px; padding: 0 52px 0 20px; border: 1px solid transparent; border-radius: 999px; background: var(--bg); font-size: 16px; transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease); }
+.search input::placeholder { color: var(--muted); }
+.search input:hover { border-color: var(--line); }
+.search input:focus { outline: none; border-color: var(--primary); background: var(--surface); box-shadow: inset 0 0 0 1px var(--primary); }
+.clear { position: absolute; top: 4px; right: 4px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: none; color: var(--muted); cursor: pointer; }
+.clear::before, .clear::after { content: ""; position: absolute; top: 50%; left: 50%; width: 14px; height: 1.5px; background: currentColor; transform: translate(-50%, -50%) rotate(45deg); }
+.clear::after { transform: translate(-50%, -50%) rotate(-45deg); }
+.clear:hover { color: var(--primary); }
+.cats { display: grid; gap: 2px; }
+.cat { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 52px; padding: 12px 20px; border: 0; border-radius: 18px; background: none; font-size: 16px; line-height: 1.3; text-align: left; cursor: pointer; transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease); }
+.cat:hover { background: var(--bg); color: var(--primary); }
+.cat[aria-pressed="true"] { background: var(--tint); color: var(--primary); font-weight: 500; }
+.cat span:last-child { min-width: 28px; font-size: 14px; font-weight: 400; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.cat[aria-pressed="true"] span:last-child { color: var(--primary); }
+.cat[disabled] { opacity: 0.4; pointer-events: none; }
+.aside-note { margin: 12px 8px 4px; padding: 16px 16px 18px; border-radius: 18px; background: var(--bg); }
+.aside-note b { display: block; font-weight: 500; }
+.aside-note p { margin-top: 4px; font-size: 14px; line-height: 1.45; color: var(--muted); }
+.aside-note a { display: inline-block; margin-top: 10px; font-size: 15px; font-weight: 500; color: var(--primary); border-bottom: 1px solid currentColor; }
+
+/* Сетка карточек */
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.card { display: grid; grid-template-rows: auto 1fr; padding: 12px; border-radius: 28px; background: var(--surface); transition: background-color var(--dur) var(--ease); }
+.card[hidden] { display: none; }
+.photo { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 18px; background: var(--ph); }
+.photo-img { position: absolute; inset: 0; display: flex; align-items: flex-end; padding: 16px 18px; background: var(--ph); transition: transform 0.8s var(--ease); }
+.photo-img span { max-width: 34ch; font-size: 13px; line-height: 1.4; color: var(--muted); }
+.card:hover .photo-img { transform: scale(1.04); }
+.body { display: grid; align-content: space-between; gap: 24px; padding: 24px 16px 8px; }
+.name { font-size: 24px; font-weight: 500; line-height: 1.25; transition: color var(--dur) var(--ease); }
+.short { margin-top: 8px; max-width: 52ch; font-size: 15px; color: var(--muted); }
+.foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.price { display: inline-flex; align-items: baseline; gap: 6px; font-size: 22px; font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; transition: color var(--dur) var(--ease); }
+.price small { font-size: 14px; font-weight: 400; color: var(--muted); }
+.more { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border: 1px solid var(--line); border-radius: 999px; font-size: 15px; white-space: nowrap; transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+.card:hover .name, .card:hover .price, .card:hover .price small { color: var(--primary); }
+.card:hover .more { border-color: var(--primary); background: var(--primary); color: #fff; }
+
+/* Широкая карточка: фото ровно по колонке сетки, текст — по второй колонке (column-gap 48 = 24 зазор сетки + 2×12 поля карточек) */
+.wide { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; grid-template-rows: none; column-gap: 48px; }
+.wide.flip .photo { order: 2; }
+.wide .body { padding: 24px 16px 4px; }
+.wide.flip .body { padding-left: 4px; }
+.wide .name { font-size: 32px; line-height: 1.2; }
+.wide .short { margin-top: 12px; font-size: 16px; }
+.wide .foot { padding: 16px 16px 16px 20px; margin-left: -4px; border-radius: 18px; background: var(--bg); }
+.wide.flip .foot { margin-left: 0; }
+.wide .price { font-size: 28px; color: var(--primary); }
+.price-label { display: block; font-size: 13px; color: var(--muted); }
+/* Фильтр или поиск: широкие карточки становятся обычными */
+.filtered .wide { grid-column: auto; grid-template-columns: none; grid-template-rows: auto 1fr; }
+.filtered .wide .photo { order: 0; }
+.filtered .wide .body { padding: 24px 16px 8px; }
+.filtered .wide .name { font-size: 24px; }
+.filtered .wide .short { font-size: 15px; margin-top: 8px; }
+.filtered .wide .foot { padding: 0; margin: 0; background: none; }
+.filtered .wide .price { font-size: 22px; color: inherit; }
+
+/* Синяя плашка внизу — как на главной: текст слева, белая пилюля справа */
+.urgent { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 40px; padding: 36px 40px; border-radius: 28px; background: var(--primary); color: #fff; }
+.urgent h2 { font-size: 26px; font-weight: 500; line-height: 1.25; }
+.urgent p { margin-top: 8px; color: rgb(255 255 255 / 0.85); }
+.urgent p b { font-weight: 500; color: #fff; font-variant-numeric: tabular-nums; }
+.urgent .btn-white { flex: none; }
+
+.empty { grid-column: 1 / -1; padding: 32px; border-radius: 28px; background: var(--surface); }
+.empty b { display: block; font-size: 20px; font-weight: 500; }
+.empty p { margin-top: 6px; color: var(--muted); }
+
+@media (max-width: 1100px) {
+  .layout { grid-template-columns: 1fr; }
+  .aside { position: static; }
+  .wide { grid-template-columns: 1fr; }
+  .wide.flip .photo { order: 0; }
+}
+@media (max-width: 720px) {
+  .grid { grid-template-columns: 1fr; }
+  .head { flex-direction: column; align-items: flex-start; }
+  .wide .body { padding: 24px 16px 8px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="header">
+    <a class="logo" href="#">
+      <svg viewBox="0 0 30 36" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 2c3 0 4 2 7 2s4-2 7-2c4 0 6 4 6 9 0 6-2 9-3 14-1 6-2 9-4 9s-2-5-3-9c-1-3-2-4-3-4s-2 1-3 4c-1 4-1 9-3 9s-3-3-4-9C4 20 2 17 2 11c0-5 2-9 6-9Z"/><path d="M15 9c3-3 7-3 8-2-1 3-4 5-8 4" fill="currentColor" stroke="none"/></svg>
+      Ясень
+    </a>
+    <nav class="nav" aria-label="Основное меню">
+      <a href="#" aria-current="page">Услуги</a><a href="#">Цены</a><a href="#">Врачи</a><a href="#">Филиалы</a><a href="#">Пациентам</a>
+    </nav>
+    <div class="hbtns"><a class="btn" href="#">Войти</a><a class="btn btn-primary" href="#">Записаться</a></div>
+  </header>
+
+  <main>
+    <div class="head">
+      <div>
+        <h1 class="title">Услуги</h1>
+        <p class="lead">Восемь направлений в двух филиалах. У каждого — что входит, сколько визитов и цена «от». Итоговую сумму врач называет в плане лечения до начала работ.</p>
+      </div>
+    </div>
+
+    <div class="layout">
+      <aside class="aside">
+        <div class="search">
+          <label for="q" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Поиск по услугам</label>
+          <input id="q" type="text" placeholder="Найти услугу" autocomplete="off">
+          <button class="clear" type="button" id="clear" aria-label="Очистить поиск" hidden></button>
+        </div>
+        <div class="cats" id="cats" role="group" aria-label="Разделы"></div>
+        <div class="aside-note">
+          <b>Не знаете, к кому идти?</b>
+          <p>Выберите повод в записи — подберём врача и покажем свободное время.</p>
+          <a href="#">Подобрать врача</a>
+        </div>
+      </aside>
+
+      <div class="grid" id="grid"></div>
+    </div>
+  </main>
+</div>
+
+<script>
+const cats = [
+  { id: 'all', label: 'Все направления' },
+  { id: 'treat', label: 'Лечение' },
+  { id: 'surg', label: 'Хирургия и имплантация' },
+  { id: 'smile', label: 'Прикус и эстетика' },
+  { id: 'check', label: 'Профилактика' },
+  { id: 'kids', label: 'Детям' },
+];
+const services = [
+  { id: 'implant', wide: true, cat: 'surg', name: 'Имплантация под ключ', from: true, price: '58 000', label: 'Цена под ключ',
+    short: 'Операция, формирователь, абатмент и коронка — одной суммой. Хирург называет её после КТ, до начала лечения.', shot: 'Фото: хирург-имплантолог у монитора с КТ-снимком челюсти, лицо не в фокусе', words: 'имплант зуб нет зуба' },
+  { id: 'kariies', cat: 'treat', name: 'Лечение кариеса', from: true, price: '6 500', short: 'Под местной анестезией и с изоляцией зуба. Стоимость называем после осмотра и снимка.', shot: 'Фото: руки терапевта с зеркалом и зондом', words: 'пломба болит кариес' },
+  { id: 'kanaly', cat: 'treat', name: 'Лечение каналов', from: true, price: '9 800', short: 'Лечим пульпит и перелечиваем каналы под микроскопом, чтобы сохранить свой зуб.', shot: 'Фото: стоматологический микроскоп над креслом', words: 'пульпит нерв болит' },
+  { id: 'orto', wide: true, label: 'Цена', cat: 'smile', name: 'Брекеты и элайнеры', from: true, price: '65 000', short: 'Металлические и керамические брекеты, прозрачные элайнеры. План и стоимость — до начала.', shot: 'Фото: прозрачный элайнер в руке ортодонта', words: 'прикус кривые зубы брекеты элайнеры' },
+  { id: 'gigiena', cat: 'check', name: 'Профгигиена', from: false, price: '5 900', short: 'Снимаем камень и налёт, полируем и укрепляем эмаль. Цена фиксированная, все этапы включены.', shot: 'Фото: гигиенист готовит инструменты, лицо не в фокусе', words: 'чистка камень налёт отбеливание' },
+  { id: 'proteze', cat: 'smile', name: 'Протезирование', from: true, price: '18 000', short: 'Коронки, виниры, вкладки и съёмные протезы. Покажем, как будет выглядеть результат, ещё до работы.', shot: 'Фото: керамическая коронка в руке техника, крупно', words: 'коронка винир протез нет зуба' },
+  { id: 'udal', cat: 'surg', name: 'Удаление зубов', from: true, price: '3 900', short: 'Включая зубы мудрости, анестезия в цене. Если зуб можно сохранить — сначала предложим лечение.', shot: 'Фото: стерильный хирургический лоток с инструментами', words: 'удалить зуб мудрости' },
+  { id: 'deti', cat: 'kids', name: 'Детская стоматология', from: true, price: '1 500', short: 'Детский кабинет в «Академическом». Первый визит — знакомство без лечения.', shot: 'Фото: детский кабинет, маленькое кресло и игрушки, без людей', words: 'ребёнок ребенок дети молочные' },
+  { id: 'urgent' },
+];
+
+const grid = document.getElementById('grid');
+const catsEl = document.getElementById('cats');
+const q = document.getElementById('q');
+const clear = document.getElementById('clear');
+let cat = 'all';
+
+const priceHtml = (s) => `${s.from ? '<small>от</small>' : ''}${s.price} ₽`;
+function cardHtml(s) {
+  if (s.id === 'urgent') return `<section class="urgent" data-urgent>
+    <div><h2>Болит зуб? Приём сегодня</h2><p>Свободно сегодня: <b>14:30</b> Центр · <b>16:00</b> Академический · <b>18:15</b> Центр</p></div>
+    <a class="btn btn-white" href="#">Выбрать время</a></section>`;
+  const photo = `<div class="photo"><div class="photo-img"><span>${s.shot}</span></div></div>`;
+  if (s.wide) return `<a class="card wide${s.flip ? ' flip' : ''}" href="#" data-id="${s.id}">${photo}
+    <div class="body"><div><h2 class="name">${s.name}</h2><p class="short">${s.short}</p></div>
+    <div class="foot"><span><span class="price-label">${s.label}</span><span class="price">${priceHtml(s)}</span></span><span class="more">Подробнее</span></div></div></a>`;
+  return `<a class="card" href="#" data-id="${s.id}">${photo}
+    <div class="body"><div><h2 class="name">${s.name}</h2><p class="short">${s.short}</p></div>
+    <div class="foot"><span class="price">${priceHtml(s)}</span><span class="more">Подробнее</span></div></div></a>`;
+}
+grid.innerHTML = services.map(cardHtml).join('') + `<div class="empty" id="empty" hidden><b>Ничего не нашли</b><p>Попробуйте другое слово или позвоните: +7 343 300-27-90.</p></div>`;
+
+const norm = (t) => t.toLowerCase().replace(/ё/g, 'е');
+const matchesQ = (s) => { const v = norm(q.value.trim()); return !v || norm(s.name + ' ' + s.short + ' ' + s.words).includes(v); };
+
+function render() {
+  const real = services.filter((s) => s.name);
+  catsEl.innerHTML = cats.map((c) => {
+    const n = real.filter((s) => (c.id === 'all' || s.cat === c.id) && matchesQ(s)).length;
+    return `<button class="cat" type="button" data-c="${c.id}" aria-pressed="${c.id === cat}" ${n ? '' : 'disabled'}><span>${c.label}</span><span>${n}</span></button>`;
+  }).join('');
+  let shown = 0;
+  grid.querySelectorAll('[data-id]').forEach((el) => {
+    const s = services.find((x) => x.id === el.dataset.id);
+    const ok = (cat === 'all' || s.cat === cat) && matchesQ(s);
+    el.hidden = !ok; if (ok) shown++;
+  });
+  const filtered = cat !== 'all' || q.value.trim();
+  grid.querySelector('[data-urgent]').hidden = !!filtered;
+  grid.classList.toggle('filtered', !!filtered);
+  document.getElementById('empty').hidden = shown > 0;
+  clear.hidden = !q.value;
+}
+catsEl.addEventListener('click', (e) => { const b = e.target.closest('.cat'); if (!b) return; cat = b.dataset.c; render(); });
+q.addEventListener('input', render);
+clear.addEventListener('click', () => { q.value = ''; q.focus(); render(); });
+render();
+</script>
