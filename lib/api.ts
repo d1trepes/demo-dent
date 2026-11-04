@@ -17,6 +17,7 @@ import promosData from "@/data/promos.json";
 import reasonsData from "@/data/reasons.json";
 import reviewsData from "@/data/reviews.json";
 import servicePagesData from "@/data/servicePages.json";
+import servicesIndexData from "@/data/servicesIndex.json";
 import servicesData from "@/data/services.json";
 import { implant, installment } from "./calc";
 import { clinicNow, fromRelative, relativeDay } from "./dates";
@@ -57,6 +58,7 @@ import type {
   ReviewsData,
   ServiceDetails,
   ServicePage,
+  ServicesIndexContent,
   ServicesData,
   Slot,
   SlotQuery,
@@ -160,6 +162,11 @@ export function getServices(): Promise<Pick<ServicesData, "directions" | "items"
 /** Тексты страницы /ceny/. */
 export function getPricesContent(): Promise<PricesContent> {
   return respond(pricesData as PricesContent);
+}
+
+/** Тексты и карточки страницы /uslugi/. */
+export function getServicesIndexContent(): Promise<ServicesIndexContent> {
+  return respond(servicesIndexData as ServicesIndexContent);
 }
 
 export async function getService(slug: string): Promise<ServiceDetails | null> {

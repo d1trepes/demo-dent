@@ -1,24 +1,23 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { PageStub } from "@/components/ui/PageStub";
-import { getServices } from "@/lib/api";
-import { formatPrice } from "@/lib/format";
+import { ServicesView } from "@/components/services/ServicesView";
+import { getBranches, getClinic, getServices, getServicesIndexContent } from "@/lib/api";
+import { resolveServiceCards } from "@/lib/servicesIndex";
 
 export const metadata: Metadata = { title: "Услуги" };
 
 export default async function ServicesPage() {
-  const { directions } = await getServices();
+  const [{ cards, ...texts }, { directions, items }, clinic, branches] = await Promise.all([
+    getServicesIndexContent(),
+    getServices(),
+    getClinic(),
+    getBranches(),
+  ]);
   return (
-    <PageStub title="Услуги" chat={4}>
-      <ul>
-        {directions
-          .filter((d) => d.hasPage)
-          .map((d) => (
-            <li key={d.id}>
-              <Link href={`/uslugi/${d.id}/`}>{d.title}</Link> — {formatPrice(d.priceFrom, true)}
-            </li>
-          ))}
-      </ul>
-    </PageStub>
+    <ServicesView
+      texts={texts}
+      cards={resolveServiceCards(cards, directions, items)}
+      branches={branches.map((b) => ({ id: b.id, name: b.name }))}
+      phone={{ text: clinic.phone, href: clinic.phoneHref }}
+    />
   );
 }

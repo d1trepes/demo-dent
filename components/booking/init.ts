@@ -1,4 +1,4 @@
-/** Предзаполнение мастера из адреса: ?service= (id услуги или направления) &doctor= (slug или id) &branch= &reason= &mode=urgent. */
+/** Предзаполнение мастера из адреса: ?service= (id услуги или направления) &doctor= (slug или id) &branch= &reason= &mode=urgent|unknown. */
 import { fill } from "@/lib/format";
 import type { BookingData, BranchId } from "@/lib/types";
 import type { BookingDraft, BookingStep } from "@/store/bookingStore";
@@ -55,7 +55,7 @@ export function initFromParams(params: URLSearchParams, data: BookingData): Part
         : content.source.fallback;
 
   return {
-    mode: reason ? "unknown" : "planned",
+    mode: reason || (!direction && params.get("mode") === "unknown") ? "unknown" : "planned",
     step,
     directionId,
     serviceId: item?.id ?? null,

@@ -833,3 +833,41 @@ export type PricesContent = {
   free: string;
   from: string;
 };
+
+/* ---------- Страница /uslugi/ ---------- */
+
+export type ServicesIndexCard = {
+  /** id направления из services.json — ссылка /uslugi/<id>/ и цена. */
+  directionId: string;
+  category: string;
+  wide: boolean;
+  name: string;
+  short: string;
+  /** Подпись цены у широкой карточки. */
+  priceLabel?: string;
+  /** Синонимы для поиска. */
+  words: string[];
+  /** Путь к .webp в public/; пустая строка — серая заглушка с описанием кадра. */
+  image: string;
+  shot: string;
+};
+
+/** Карточка с ценой из services.json (в JSON страницы цен нет). */
+export type ServicesIndexCardView = ServicesIndexCard & { price: number; priceIsFrom: boolean };
+
+export type ServicesIndexContent = {
+  title: string;
+  lead: string;
+  searchLabel: string;
+  searchShort: string;
+  clear: string;
+  categoriesLabel: string;
+  from: string;
+  more: string;
+  categories: { id: string; label: string }[];
+  cards: ServicesIndexCard[];
+  urgent: { title: string; prefix: string; none: string; cta: string; href: string };
+  /** text содержит {phone}. */
+  empty: { title: string; text: string };
+  aside: { title: string; text: string; link: string; href: string };
+};

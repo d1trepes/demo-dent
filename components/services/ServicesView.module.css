@@ -1,0 +1,62 @@
+/* Отступ на внешней обёртке: на .container его затирает padding из globals (порядок CSS-чанков) */
+.page {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-24);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--display-2);
+}
+
+.lead {
+  max-width: 760px;
+  margin: var(--space-4) 0 0;
+  font-size: var(--text-lg);
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 312px minmax(0, 1fr);
+  gap: var(--space-10);
+  align-items: start;
+  margin-top: var(--space-10);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6);
+}
+
+.urgent {
+  grid-column: 1 / -1;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.emptyTitle {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.emptyText {
+  margin: 6px 0 0;
+  color: var(--color-text-muted);
+}
+
+.phone {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}

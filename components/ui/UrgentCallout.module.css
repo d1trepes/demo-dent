@@ -28,6 +28,12 @@
   color: rgb(255 255 255 / 0.88); /* контраст AA на кобальте */
 }
 
+.note b {
+  font-weight: 500;
+  color: var(--color-primary-contrast);
+  font-variant-numeric: tabular-nums;
+}
+
 /* Вид как у кнопки (56 px, пилюля) */
 .action {
   display: inline-flex;
@@ -86,5 +92,26 @@
 
   .compact .title {
     font-size: 20px;
+  }
+
+  .wide {
+    flex-wrap: wrap;
+    gap: var(--space-6) var(--space-10);
+    padding: 36px var(--space-10);
+  }
+
+  .wide .text {
+    gap: var(--space-2);
+  }
+
+  .wide .title {
+    font-size: 26px;
+    line-height: 1.25;
+  }
+
+  .wide .note {
+    font-size: var(--text-base);
+    line-height: 1.5;
+    color: rgb(255 255 255 / 0.85);
   }
 }
