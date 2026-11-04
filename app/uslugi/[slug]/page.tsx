@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Contraindications } from "@/components/ui/Contraindications";
 import { PageStub } from "@/components/ui/PageStub";
 import { getService, getServiceSlugs } from "@/lib/api";
 
@@ -21,7 +20,6 @@ export default async function ServicePage({ params }: Props) {
   return (
     <PageStub title={service.page.title} chat={4}>
       <p>{service.page.lead}</p>
-      <Contraindications />
     </PageStub>
   );
 }

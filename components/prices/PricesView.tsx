@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Contraindications } from "@/components/ui/Contraindications";
 import { fill } from "@/lib/format";
 import { matchesItem, queryStems } from "@/lib/priceSearch";
 import type { Direction, PriceItem, PricesContent } from "@/lib/types";
@@ -61,7 +60,8 @@ export function PricesView({ directions, items, texts, phone }: Props) {
   const [emptyBefore, emptyAfter] = texts.empty.text.split("{phone}");
 
   return (
-    <div className={`container ${styles.page}`}>
+    <div className={styles.page}>
+      <div className="container">
       <header className={styles.head}>
         <div className={styles.headText}>
           <h1 className={styles.title}>{texts.title}</h1>
@@ -112,10 +112,8 @@ export function PricesView({ directions, items, texts, phone }: Props) {
             </div>
           )}
 
-          <div className={styles.legal}>
-            <Contraindications />
-          </div>
         </div>
+      </div>
       </div>
     </div>
   );
