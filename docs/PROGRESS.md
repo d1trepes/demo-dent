@@ -32,6 +32,7 @@
 | 4Б | `/uslugi/` по макету `docs/mockups/uslugi.html` (делает Sonnet по промпту) | готово (04.11.2026) |
 | 4А-2 | `/ceny/`: убрать «Прайс действует…» и «Найдено N · Сбросить», крестик в поиске | готово (04.11.2026) |
 | 4В | Макеты + промпты: шаблон `/uslugi/[slug]/`, `/rassrochka/`, `/akcii/` | следующий чат |
+| 4В-1 | `/rassrochka/` + передача рассрочки в мастер | готово (04.11.2026) |
 | 5 | Врачи, филиалы, юр.страницы | — |
 | 6 | Кабинет пациента | — |
 | 7 | Панель администратора | — |
@@ -78,12 +79,16 @@
 - 03.11.2026, чат 2C-1: калькулятор-тизер удалён (ImplantCalculator, `home.json → implant.calculator`, тип, `formatPriceRange`); вместо него карточка «Имплантация под ключ от 58 000 ₽» + «Записаться на консультацию с КТ» + `<Contraindications />` (21% площади). Блок 5 `Doctors.tsx` + `DoctorsShowcase.tsx`: большая карточка + 5 листьев-миниатюр, клик меняет местами; данные — getDoctors/getBranches, порядок — `home.json → doctors`, `formatYears()`. 6 портретов: фон вырезан rembg, единый фон и масштаб → `public/images/doctors/*.webp` (720×960, ~23 КБ). Проверено на 1440 и 375 (обмен работает, горизонтального скролла нет).
 - 04.11.2026, 4Б: `/uslugi/` сделана по макету — `data/servicesIndex.json`, `getServicesIndexContent()`, `lib/servicesIndex.ts` (цена и «от» из services.json), `components/services/` (ServicesView, ServicesAside, ServiceCard, ServicesUrgent); поиск через `lib/priceSearch.ts`, слоты синей плашки — `getUrgentSlots` по монтированию. Фото пока серые заглушки с описанием кадра (`image: ""`).
 - 04.11.2026, 4Б: `UrgentCallout` получил проп `wide` и принимает ReactNode; в `components/booking/init.ts` добавлен `?mode=unknown` (открывает вкладку «Не знаю, к кому»). «от» у протезирования и детской стоматологии нет — в макете было, в прайсе фиксированная цена.
+- 04.11.2026, 4В-1: `/rassrochka/` по макету `docs/mockups/rassrochka.html`: `data/rassrochka.json`, тип `RassrochkaContent`, `getRassrochkaContent()` / `getInstallmentTerms()`, `components/rassrochka/*` (hero, калькулятор, `RassrochkaView`). Переиспользованы `Manifesto`, `PlanBranch` (проп `compact`, тип `PlanContent` без cta) и новая `CallbackCard` (вынесена из `Callback`; `CallbackForm` получил проп `source`). Калькулятор платежа оставлен (вопрос «оставить или убрать» закрыт).
+- 04.11.2026, 4В-1: мастер принимает `?sum=&months=` (оба допустимы по `services.json → installment`): `BookingData.installment`, `BookingDraft.installment`, метка `source.label` «Рассрочка: … ₽ на … мес.» приоритетнее остальных, строка «Рассрочка» в `Summary`, примечание в `BookingDone`; `Appointment.installment?` хранится вместе с записью, чтобы `/zapis/gotovo/` знал, что показывать после сброса черновика.
 
 ## Расхождения с паспортом
 - §10: вместо тёплой палитры — синий и белый; 3D-имплант — слоёные картинки, не r3f/.glb; «до/после» заменён слайдером КТ. Подробно — docs/DESIGN.md.
 - §10: кобальт `#2D4BE6` (не `#3048D0`), шрифты только Prata + Golos Text (не Cormorant + Manrope); первый экран — «Ветвь ясеня» вместо «ЯСЕНЬ за фото врача». Паспорт стоит поправить.
 
 ## Открытые вопросы
+- Чат 4В-1: вход в рассрочку из прайса и страниц услуг (`?sum=`) отложен на чат 8.
+- Чат 4В-1: значения калькулятора по умолчанию (120 000 ₽, 12 мес.) лежат в `rassrochka.json → calc.defaults`, а не в `services.json`; подпись «6 или 12» в lead и шагах ветки написана текстом, при смене сроков в `installment` её нужно править руками.
 - Чат 4А: «Несколько визитов» вместо длительности показываем при durationMin ≥ 150 (2 позиции: пульпит под микроскопом и протез на 4 имплантах). Порог — константа `MULTI_VISIT_MIN` в `PriceRow.tsx`.
 - Чат 4А: `<Contraindications />` внизу прайса — вариант banner со своей обводкой под линией 1 px; если дизайнеру покажется двойным, убрать линию или обводку.
 - Чат 4А: в `prices.json` добавлены ключи сверх ТЗ: `searchLabel`, `serviceForms`, `tocLabel`, `facts.minutes`.

@@ -6,6 +6,9 @@ export function formatDate(date: string): string {
   return dateFormatter.format(new Date(`${date.slice(0, 10)}T00:00:00Z`));
 }
 
+/** 120000 → "120 000". */
+export const formatNumber = (value: number) => priceFormatter.format(value);
+
 /** 58000 → "58 000 ₽", с from — "от 58 000 ₽". */
 export function formatPrice(value: number, from = false): string {
   if (value === 0) return "Бесплатно";

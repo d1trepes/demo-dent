@@ -1,0 +1,80 @@
+/* Hero /rassrochka/: синяя плашка по сетке (края = края шапки), текст — колонки 1–6, калькулятор — 8–12. */
+.hero {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--space-6);
+  align-items: center;
+  padding: var(--space-16);
+  border-radius: var(--radius-panel);
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.text {
+  grid-column: 1 / 7;
+}
+
+.calc {
+  grid-column: 8 / 13;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--display-2);
+  font-weight: 400;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.lead {
+  max-width: 520px;
+  margin-top: var(--space-4);
+  font-size: 20px;
+  line-height: 1.45;
+  color: rgb(255 255 255 / 0.85);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--space-6);
+  margin: var(--space-10) 0 0;
+}
+
+.facts > div {
+  padding: 16px 0 18px;
+  border-top: 1px solid rgb(255 255 255 / 0.25);
+}
+
+.facts dt {
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgb(255 255 255 / 0.8);
+}
+
+.facts dd {
+  margin: 2px 0 0;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+@media (max-width: 1100px) {
+  .hero {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-8);
+    padding: var(--space-8) var(--space-5);
+    border-radius: var(--radius-lg);
+  }
+
+  .text,
+  .calc {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 720px) {
+  .facts {
+    grid-template-columns: 1fr;
+  }
+}

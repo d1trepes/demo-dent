@@ -1,6 +1,7 @@
-/** Предзаполнение мастера из адреса: ?service= (id услуги или направления) &doctor= (slug или id) &branch= &reason= &mode=urgent|unknown. */
-import { fill } from "@/lib/format";
-import type { BookingData, BranchId } from "@/lib/types";
+/** Предзаполнение мастера из адреса: ?service= (id услуги или направления) &doctor= (slug или id) &branch= &reason= &mode=urgent|unknown &sum= &months= (рассрочка). */
+import { installment } from "@/lib/calc";
+import { fill, formatNumber } from "@/lib/format";
+import type { BookingData, BookingInstallment, BranchId } from "@/lib/types";
 import type { BookingDraft, BookingStep } from "@/store/bookingStore";
 
 const BRANCH_IDS: readonly BranchId[] = ["center", "akadem"];
@@ -45,8 +46,11 @@ export function initFromParams(params: URLSearchParams, data: BookingData): Part
   let step: BookingStep = 1;
   if (directionId) step = branchId ? 3 : 2;
 
+  const plan = installmentFromParams(params, data);
   const query = params.toString();
-  const label = doctor
+  const label = plan
+    ? fill(content.source.installment, { sum: formatNumber(plan.sum), months: plan.months })
+    : doctor
     ? fill(content.source.doctor, { name: doctor.fullName })
     : item
       ? fill(content.source.service, { title: item.title })
@@ -62,6 +66,16 @@ export function initFromParams(params: URLSearchParams, data: BookingData): Part
     reasonId: reason?.id ?? null,
     doctorId: doctor?.id ?? null,
     branchId,
+    ...(plan ? { installment: plan } : {}),
     source: { page: query ? `/zapis/?${query}` : "/zapis/", label },
   };
+}
+
+/** ?sum= и ?months= — только если оба допустимы по условиям рассрочки (services.json → installment). */
+function installmentFromParams(params: URLSearchParams, data: BookingData): BookingInstallment | null {
+  const terms = data.installment;
+  const sum = Number(params.get("sum"));
+  const months = Number(params.get("months"));
+  if (!Number.isFinite(sum) || sum < terms.minSum || sum > terms.maxSum || !terms.months.includes(months)) return null;
+  return { sum, months, monthly: installment(sum, months, terms).monthly };
 }

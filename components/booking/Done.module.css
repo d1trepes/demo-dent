@@ -71,6 +71,12 @@
   font-weight: 500;
 }
 
+.note {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
 .muted {
   font-size: var(--text-sm);
   color: var(--color-text-muted);

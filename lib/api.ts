@@ -14,6 +14,7 @@ import legalData from "@/data/legal.json";
 import patientData from "@/data/patient.json";
 import pricesData from "@/data/prices.json";
 import promosData from "@/data/promos.json";
+import rassrochkaData from "@/data/rassrochka.json";
 import reasonsData from "@/data/reasons.json";
 import reviewsData from "@/data/reviews.json";
 import servicePagesData from "@/data/servicePages.json";
@@ -55,6 +56,8 @@ import type {
   Reason,
   ReminderSettings,
   PricesContent,
+  RassrochkaContent,
+  InstallmentTerms,
   ReviewsData,
   ServiceDetails,
   ServicePage,
@@ -162,6 +165,16 @@ export function getServices(): Promise<Pick<ServicesData, "directions" | "items"
 /** Тексты страницы /ceny/. */
 export function getPricesContent(): Promise<PricesContent> {
   return respond(pricesData as PricesContent);
+}
+
+/** Тексты страницы /rassrochka/. */
+export function getRassrochkaContent(): Promise<RassrochkaContent> {
+  return respond(rassrochkaData as RassrochkaContent);
+}
+
+/** Сроки и границы суммы рассрочки (services.json → installment). */
+export function getInstallmentTerms(): Promise<InstallmentTerms> {
+  return respond(servicesData.installment);
 }
 
 /** Тексты и карточки страницы /uslugi/. */

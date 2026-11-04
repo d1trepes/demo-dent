@@ -109,18 +109,21 @@
       "reason": "Повод",
       "branch": "Филиал",
       "doctor": "Врач",
-      "time": "Время"
+      "time": "Время",
+      "installment": "Рассрочка"
     },
     "empty": "Пока не выбрано",
     "anyDoctor": "Подберём по времени",
-    "minutes": "{n} мин"
+    "minutes": "{n} мин",
+    "installment": "{sum} ₽ на {months} мес., {monthly} ₽ в месяц"
   },
   "source": {
     "fallback": "Онлайн-запись",
     "urgent": "Главная — «Болит зуб? Приём сегодня»",
     "doctor": "Врач: {name}",
     "service": "Услуга: {title}",
-    "direction": "Направление: {title}"
+    "direction": "Направление: {title}",
+    "installment": "Рассрочка: {sum} ₽ на {months} мес."
   },
   "done": {
     "title": "Запись создана",
@@ -154,6 +157,7 @@
     "ics": {
       "summary": "Приём в «Ясень»: {service}",
       "description": "Врач: {doctor}. Запись № {id}. Телефон клиники: {phone}."
-    }
+    },
+    "installmentNote": "График платежей покажет администратор на консультации"
   }
 }

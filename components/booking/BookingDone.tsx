@@ -100,6 +100,8 @@ export function BookingDone({ data }: { data: BookingData }) {
             ))}
           </dl>
 
+          {appointment.installment && <p className={styles.note}>{t.installmentNote}</p>}
+
           <section className={styles.reminders} aria-labelledby="reminders-title">
             <h2 id="reminders-title" className={styles.remindersTitle}>
               {t.reminders.title}

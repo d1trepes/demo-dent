@@ -245,6 +245,9 @@ export type Consents = {
   version: string;
 };
 
+/** Рассрочка, выбранная на /rassrochka/ и переданная в мастер записи. */
+export type BookingInstallment = { sum: number; months: number; monthly: number };
+
 export type AppointmentPayload = {
   directionId: string;
   serviceId?: string;
@@ -256,6 +259,7 @@ export type AppointmentPayload = {
   patient: { name: string; phone: string };
   consents: Consents;
   source: AppointmentSource;
+  installment?: BookingInstallment;
 };
 
 export type Appointment = {
@@ -272,6 +276,7 @@ export type Appointment = {
   urgent: boolean;
   patient: { name: string; phone: string };
   source: AppointmentSource;
+  installment?: BookingInstallment;
 };
 
 export type CreateAppointmentResult = { id: string; status: "new" };
@@ -581,10 +586,10 @@ export type PlanBranchStep = {
   leaf: Picture;
 };
 
-export type HomePlan = {
-  steps: PlanBranchStep[];
-  cta: HomeLink;
-};
+/** Ветка шагов без призыва — её же берут внутренние страницы (/rassrochka/). */
+export type PlanContent = { steps: PlanBranchStep[] };
+
+export type HomePlan = PlanContent & { cta: HomeLink };
 
 /** Деталь импланта (блок 4): подпись и точка, от которой идёт линия, — в долях кадра видео (по кадру максимального разбора). */
 export type ImplantPart = {
@@ -715,6 +720,8 @@ export type BookingData = {
   branches: Branch[];
   doctors: BookingDoctor[];
   specialties: SpecialtyInfo[];
+  /** Допустимые сроки и суммы рассрочки — для проверки ?sum= &months= в адресе. */
+  installment: InstallmentTerms;
   consentsVersion: string;
   content: BookingContent;
 };
@@ -783,12 +790,14 @@ export type BookingContent = {
   };
   summary: {
     title: string;
-    rows: { service: string; reason: string; branch: string; doctor: string; time: string };
+    rows: { service: string; reason: string; branch: string; doctor: string; time: string; installment: string };
     empty: string;
     anyDoctor: string;
     minutes: string;
+    /** {sum}, {months}, {monthly}. */
+    installment: string;
   };
-  source: { fallback: string; urgent: string; doctor: string; service: string; direction: string };
+  source: { fallback: string; urgent: string; doctor: string; service: string; direction: string; installment: string };
   done: {
     title: string;
     lead: string;
@@ -800,6 +809,7 @@ export type BookingContent = {
     notFound: { title: string; text: string; action: string };
     reminders: { title: string; text: string; before24: string; before2: string; joiner: string; none: string; settings: string };
     ics: { summary: string; description: string };
+    installmentNote: string;
   };
 };
 
@@ -870,4 +880,30 @@ export type ServicesIndexContent = {
   /** text содержит {phone}. */
   empty: { title: string; text: string };
   aside: { title: string; text: string; link: string; href: string };
+};
+
+/* ---------- Страница /rassrochka/ ---------- */
+
+export type RassrochkaContent = {
+  metaTitle: string;
+  title: string;
+  lead: string;
+  /** value — шаблон с {months}, {min}, {max}: срок и границы суммы берутся из services.json → installment. */
+  facts: { label: string; value: string }[];
+  calc: {
+    sumLabel: string;
+    sumSuffix: string;
+    rangeLabel: string;
+    termsLabel: string;
+    /** {n} — число месяцев. */
+    term: string;
+    payLabel: string;
+    totalLabel: string;
+    defaults: { sum: number; months: number };
+    book: { label: string };
+    callback: HomeLink;
+  };
+  manifesto: HomeManifesto;
+  plan: PlanContent;
+  callback: { title: string; subtitle: string; sourceLabel: string };
 };

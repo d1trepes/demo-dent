@@ -2,18 +2,19 @@
  * Данные для мастера записи и страницы «Запись создана»: собираются на сервере при сборке
  * через lib/api.ts и уходят в клиентские компоненты пропсами — так мастер не ждёт «сервер» при открытии.
  */
-import { getBookingContent, getBranches, getDoctors, getReasons, getServices, getSpecialties } from "./api";
+import { getBookingContent, getBranches, getDoctors, getInstallmentTerms, getReasons, getServices, getSpecialties } from "./api";
 import { staticTexts } from "./staticTexts";
 import type { BookingData } from "./types";
 
 export async function getBookingData(): Promise<BookingData> {
-  const [services, reasons, branches, doctors, specialties, content] = await Promise.all([
+  const [services, reasons, branches, doctors, specialties, content, installment] = await Promise.all([
     getServices(),
     getReasons(),
     getBranches(),
     getDoctors(),
     getSpecialties(),
     getBookingContent(),
+    getInstallmentTerms(),
   ]);
   return {
     directions: services.directions,
@@ -40,6 +41,7 @@ export async function getBookingData(): Promise<BookingData> {
       photo,
     })),
     specialties,
+    installment,
     consentsVersion: staticTexts.consentsVersion,
     content,
   };

@@ -1,4 +1,4 @@
-import { formatMoment, fill, shortName } from "@/lib/format";
+import { formatMoment, fill, formatNumber, shortName } from "@/lib/format";
 import type { BookingData } from "@/lib/types";
 import type { BookingDraft } from "@/store/bookingStore";
 import styles from "./Wizard.module.css";
@@ -30,6 +30,18 @@ export function Summary({ data, draft }: Props) {
       value: draft.slot ? formatMoment(draft.slot.start) : null,
       hint: draft.slot ? fill(t.minutes, { n: draft.slot.durationMin }) : undefined,
     },
+    ...(draft.installment
+      ? [
+          {
+            label: t.rows.installment,
+            value: fill(t.installment, {
+              sum: formatNumber(draft.installment.sum),
+              months: draft.installment.months,
+              monthly: formatNumber(draft.installment.monthly),
+            }),
+          },
+        ]
+      : []),
   ];
 
   return (

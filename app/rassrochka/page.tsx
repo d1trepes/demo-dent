@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { PageStub } from "@/components/ui/PageStub";
+import { RassrochkaView } from "@/components/rassrochka/RassrochkaView";
+import { getHomeContent, getInstallmentTerms, getRassrochkaContent } from "@/lib/api";
 
-export const metadata: Metadata = { title: "Рассрочка" };
+export async function generateMetadata(): Promise<Metadata> {
+  const { metaTitle } = await getRassrochkaContent();
+  return { title: metaTitle };
+}
 
-export default function RassrochkaPage() {
-  return <PageStub title="Рассрочка без переплаты" chat={4} />;
+export default async function RassrochkaPage() {
+  const [content, terms, { callback }] = await Promise.all([getRassrochkaContent(), getInstallmentTerms(), getHomeContent()]);
+  return <RassrochkaView content={content} terms={terms} callback={callback} />;
 }

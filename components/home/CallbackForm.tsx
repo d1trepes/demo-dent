@@ -15,6 +15,9 @@ import { TextField } from "@/components/ui/TextField";
 import styles from "./Callback.module.css";
 
 type Texts = Omit<HomeCallback, "title" | "subtitle" | "photo">;
+type Source = { page: string; label: string };
+
+const HOME_SOURCE: Source = { page: "/", label: "Главная — «Перезвоните мне»" };
 
 function schemaFor(errors: HomeCallback["errors"]) {
   return z.object({
@@ -30,8 +33,9 @@ type Values = z.infer<ReturnType<typeof schemaFor>>;
  * Форма «Перезвоните мне» (блок 8): имя, телефон, отдельное согласие на ПДн.
  * Повода и свободного текста нет — согласие на данные о здоровье не нужно.
  * Отправка — только createCallbackRequest из lib/api.ts (заглушка), заявка — в adminStore для /admin/.
+ * source — откуда пришла заявка (по умолчанию главная; /rassrochka/ передаёт свою).
  */
-export function CallbackForm({ texts }: { texts: Texts }) {
+export function CallbackForm({ texts, source = HOME_SOURCE }: { texts: Texts; source?: Source }) {
   const addCallback = useAdminStore((s) => s.addCallback);
   const [sentName, setSentName] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState(false);
@@ -64,7 +68,7 @@ export function CallbackForm({ texts }: { texts: Texts }) {
         id: result.id,
         status: result.status,
         createdAt: `${now.date}T${now.time}`,
-        source: { page: "/", label: "Главная — «Перезвоните мне»" },
+        source,
       });
       setSentName(payload.name);
     } catch {

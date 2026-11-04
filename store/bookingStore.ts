@@ -6,7 +6,7 @@
 import { create } from "zustand";
 import { ApiError, createAppointment } from "@/lib/api";
 import { clinicNow } from "@/lib/dates";
-import type { Appointment, AppointmentSource, BranchId, Slot } from "@/lib/types";
+import type { Appointment, AppointmentSource, BookingInstallment, BranchId, Slot } from "@/lib/types";
 import { useAdminStore } from "./adminStore";
 import { usePatientStore } from "./patientStore";
 
@@ -27,6 +27,8 @@ type Draft = {
   phone: string;
   consentPersonalData: boolean;
   consentHealth: boolean;
+  /** Рассрочка с /rassrochka/ (?sum= &months=). */
+  installment: BookingInstallment | null;
   source: AppointmentSource;
 };
 
@@ -58,6 +60,7 @@ const initialDraft: Draft = {
   phone: "",
   consentPersonalData: false,
   consentHealth: false,
+  installment: null,
   source: { page: "/zapis/", label: "Онлайн-запись" },
 };
 
@@ -89,6 +92,7 @@ export const useBookingStore = create<BookingState>()((set, get) => ({
         patient: { name: d.name, phone: d.phone },
         consents: { personalData: d.consentPersonalData, health: d.consentHealth, version: consentsVersion },
         source: d.source,
+        installment: d.installment ?? undefined,
       });
       const now = clinicNow();
       const appointment: Appointment = {
@@ -105,6 +109,7 @@ export const useBookingStore = create<BookingState>()((set, get) => ({
         urgent: d.mode === "urgent",
         patient: { name: d.name, phone: d.phone },
         source: d.source,
+        installment: d.installment ?? undefined,
       };
       useAdminStore.getState().addAppointment(appointment);
       usePatientStore.getState().addAppointment(appointment);

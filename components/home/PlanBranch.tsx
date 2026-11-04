@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import { asset } from "@/lib/asset";
 import { cx } from "@/lib/cx";
-import type { HomePlan, PlanBranchStep } from "@/lib/types";
+import type { PlanBranchStep, PlanContent } from "@/lib/types";
 import styles from "./PlanBranch.module.css";
 
 /*
@@ -66,11 +66,12 @@ function stepVars(i: number): CSSProperties {
   } as CSSProperties;
 }
 
-export function PlanBranch({ content }: { content: HomePlan }) {
+/** compact — внутренние страницы: меньший отступ сверху (манифест стоит прямо над веткой). */
+export function PlanBranch({ content, compact = false }: { content: PlanContent; compact?: boolean }) {
   const steps = content.steps.slice(0, ROW_H.length);
 
   return (
-    <div className={styles.branch}>
+    <div className={cx(styles.branch, compact && styles.compact)}>
       <svg className={styles.lineDesktop} viewBox={`0 0 ${STAGE_W} ${STAGE_H}`} width={STAGE_W} height={STAGE_H} aria-hidden>
         <path className={styles.line} d={linePath(steps.length)} pathLength={1} />
       </svg>

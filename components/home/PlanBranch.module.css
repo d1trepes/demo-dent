@@ -7,6 +7,16 @@
   margin-top: var(--space-24);
 }
 
+/* Внутренние страницы: манифест над веткой, отступ 48 (мобильный) / 56 (десктоп) вместо 96 / 120 */
+.branch.compact {
+  margin-top: var(--space-12);
+}
+
+@media (min-width: 1200px) {
+  .branch.compact {
+    margin-top: 56px;
+  }
+}
 
 .lineDesktop,
 .lineMobile,
