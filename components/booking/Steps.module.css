@@ -51,6 +51,7 @@
 
 /* Вкладки шага 1 в одной ячейке: высота по большей, смена вкладки без скачка */
 .panels {
+  position: relative;
   display: grid;
 }
 
@@ -62,7 +63,10 @@
   transition: opacity 0.2s var(--ease);
 }
 
+/* Скрытая вкладка не держит высоту: «Дальше» прижимается к видимому блоку */
 .panelHidden {
+  position: absolute;
+  inset: 0 0 auto;
   visibility: hidden;
   opacity: 0;
   transition:
