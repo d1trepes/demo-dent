@@ -1,0 +1,409 @@
+<title>Ясень — страница Рассрочка</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Prata&display=swap">
+<style>
+/* Макет /rassrochka/ v2. Калькулятор (7/12) и условия (5/12) одной высоты, ниже ветка из листьев с тремя шагами (геометрия как у блока 3 главной), подвал как на сайте. Без вопросов и пустых призывов. Только светлая тема. */
+:root {
+  --primary: #2d4be6;
+  --primary-deep: #1a2fa8;
+  --tint: #e6eafc;
+  --bg: #f3f4f8;
+  --surface: #ffffff;
+  --text: #12162e;
+  --muted: #5a6079;
+  --line: #dcdfea;
+  --ph: #d5d8e2;
+  --display: "Prata", "Times New Roman", serif;
+  --sans: "Golos Text", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 0.35s;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, p, ul, ol, dl, dd { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+
+.wrap { max-width: 1680px; margin: 0 auto; padding-block: 16px 16px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 1024px) { .wrap { padding-left: max(64px, env(safe-area-inset-left, 0px)); padding-right: max(64px, env(safe-area-inset-right, 0px)); } }
+
+/* Шапка сайта */
+.header { position: sticky; top: max(12px, env(safe-area-inset-top, 0px)); z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 72px; padding: 0 12px 0 24px; border-radius: 36px; background: var(--surface); }
+.logo { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 26px; }
+.logo svg { width: 28px; height: 34px; color: var(--primary); }
+.nav { display: flex; gap: 4px; }
+.nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; font-size: 15px; font-weight: 500; transition: color var(--dur) var(--ease); }
+.nav a:hover { color: var(--primary); }
+.nav a[aria-current] { background: var(--tint); color: var(--primary); }
+.hbtns { display: flex; gap: 12px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 30px; border-radius: 999px; border: 1px solid var(--text); background: transparent; font-weight: 500; font-size: 16px; line-height: 1; cursor: pointer; white-space: nowrap; transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+.btn:hover { border-color: var(--primary); color: var(--primary); }
+.btn-primary { border-color: var(--primary); background: var(--primary); color: #fff; }
+.btn-primary:hover { border-color: var(--primary-deep); background: var(--primary-deep); color: #fff; }
+@media (max-width: 1100px) { .nav, .hbtns .btn:first-child { display: none; } }
+
+
+.card { padding: 12px; border-radius: 28px; background: var(--surface); }
+
+/* 1. Hero-блок: синяя плашка по сетке (как hero главной), слева заголовок и факты, справа белая карточка калькулятора */
+.hero { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: center; margin-top: 32px; padding: 64px; border-radius: 36px; background: var(--primary); color: #fff; }
+.hero-text { grid-column: 1 / 7; }
+.title { font-family: var(--display); font-weight: 400; font-size: clamp(40px, 3.6vw + 16px, 60px); line-height: 1.1; text-wrap: balance; }
+.lead { max-width: 520px; margin-top: 16px; font-size: 20px; line-height: 1.45; color: rgb(255 255 255 / 0.85); }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; margin-top: 40px; }
+.facts div { padding: 16px 0 18px; border-top: 1px solid rgb(255 255 255 / 0.25); }
+.facts dt { font-size: 13px; line-height: 1.4; color: rgb(255 255 255 / 0.8); }
+.facts dd { margin-top: 2px; font-size: 18px; font-weight: 500; line-height: 1.35; }
+.hero .calc { grid-column: 8 / 13; }
+.main { display: grid; gap: 64px; margin-top: 96px; }
+.main > section { min-width: 0; }
+.calc { display: grid; align-content: start; gap: 16px; color: var(--text); }
+.f-label { display: block; margin: 8px 8px 0; font-size: 14px; line-height: 1.4; color: var(--muted); }
+.sum { position: relative; margin-top: 6px; }
+.sum input[type="text"] { width: 100%; min-height: 56px; padding: 0 52px 0 24px; border: 1px solid transparent; border-radius: 999px; background: var(--bg); font-size: 22px; font-weight: 500; font-variant-numeric: tabular-nums; transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease); }
+.sum input[type="text"]:hover { border-color: var(--line); }
+.sum input[type="text"]:focus { outline: none; border-color: var(--primary); background: var(--surface); box-shadow: inset 0 0 0 1px var(--primary); }
+.sum span { position: absolute; top: 50%; right: 24px; transform: translateY(-50%); font-size: 22px; font-weight: 500; color: var(--muted); pointer-events: none; }
+.range-box { margin: 0 8px; }
+.range { display: block; width: 100%; height: 24px; margin: 0; background: none; accent-color: var(--primary); cursor: pointer; }
+.terms { display: flex; gap: 8px; margin: 0 8px; }
+.terms button { min-height: 44px; padding: 0 22px; border: 1px solid transparent; border-radius: 999px; background: var(--bg); font-size: 16px; cursor: pointer; transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease); }
+.terms button:hover { background: var(--tint); color: var(--primary); }
+.terms button[aria-pressed="true"] { background: var(--primary); color: #fff; }
+.acts { display: flex; gap: 8px; }
+.acts .btn-primary { flex: 1; padding: 0 20px; }
+.result { display: grid; grid-template-columns: 1.4fr 1fr; gap: 12px 24px; align-items: end; padding: 18px 24px 20px; border-radius: 18px; background: var(--bg); }
+.result dt { font-size: 13px; line-height: 1.4; color: var(--muted); }
+.result dd { margin-top: 2px; font-size: 20px; font-weight: 500; line-height: 1.25; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.result .pay { font-size: 34px; color: var(--primary); }
+
+
+/* Заголовок секции — как манифест главной: Prata 48, по центру, фото-таблетки 104×48 в строке */
+.manifest { max-width: 1040px; margin: 0 auto 56px; font-family: var(--display); font-weight: 400; font-size: 30px; line-height: 1.3; text-align: center; text-wrap: balance; }
+.manifest .vis { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; column-gap: 0.28em; row-gap: 0.18em; }
+.pill { flex: none; width: 68px; height: 32px; overflow: hidden; border-radius: 999px; background: var(--ph); }
+.pill img { display: block; width: 100%; height: 100%; object-fit: cover; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .manifest { view-timeline: --manifest block; }
+    .word { animation: word-in linear both; animation-timeline: --manifest; animation-range: cover calc(18% + var(--p) * 28%) cover calc(26% + var(--p) * 28%); }
+  }
+}
+@keyframes word-in { from { color: var(--line); } to { color: var(--text); } }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (min-width: 1024px) { .manifest { font-size: 48px; line-height: 1.25; } .pill { width: 104px; height: 48px; } }
+
+/* 2. Ветка из листьев — как блок 3 главной (PlanBranch): сцена 1120, лист 200, строка 300, черенок под 45° */
+.branch { position: relative; width: 1120px; max-width: 100%; height: 1200px; margin: 0 auto; }
+.branch svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; fill: none; stroke: var(--primary); stroke-width: 2; }
+.bstep { position: absolute; left: 0; width: 100%; height: 300px; }
+.leaf { position: absolute; top: 16px; width: 200px; height: 200px; overflow: hidden; background: var(--ph); }
+.leaf::after { content: ""; position: absolute; inset: 0; border: 2px solid var(--primary); border-radius: inherit; pointer-events: none; }
+.leaf img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.bstep.left .leaf img { transform: scaleX(-1); }
+.bstep.left .leaf { border-radius: 0 100% 0 100%; }
+.bstep.right .leaf { border-radius: 100% 0 100% 0; }
+.btext { position: absolute; top: 116px; width: 320px; transform: translateY(-50%); }
+.bstep.left .btext { text-align: right; }
+.bnum { display: block; font-size: 15px; font-variant-numeric: tabular-nums; color: var(--primary); }
+.btext h3 { margin-top: 4px; font-size: 22px; font-weight: 500; line-height: 1.3; }
+.btext p { margin-top: 4px; font-size: 15px; line-height: 1.45; color: var(--muted); }
+/* Дорожка и появление шагов — как PlanBranch.module.css: линия «рисуется» по скроллу, шаги всплывают. Без поддержки animation-timeline и при reduced-motion всё видно сразу */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .branch { view-timeline: --plan-branch block; }
+    .branch .line { stroke-dasharray: 1; animation: draw linear both; animation-timeline: --plan-branch; animation-range: cover 12% cover 72%; }
+    .bstep { animation: step-in linear both; animation-timeline: view(); animation-range: entry 40% cover 40%; }
+  }
+}
+@keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes step-in { from { opacity: 0; translate: 0 16px; } to { opacity: 1; translate: 0 0; } }
+@media (max-width: 1199px) {
+  .branch { height: auto; display: grid; gap: 32px; }
+  .branch > svg, .bstep > svg { display: none; }
+  .bstep { position: static; height: auto; display: flex; align-items: center; gap: 20px; }
+  .bstep .leaf { position: relative; top: 0; left: 0 !important; flex: none; width: 120px; height: 120px; border-radius: 100% 0 100% 0; }
+    .bstep .btext { position: static; width: auto; transform: none; text-align: left !important; }
+}
+
+/* 3. «Перезвоним» — блок 8 главной: белая карточка радиус 36, слева заголовок и форма, справа врач стоит на нижнем крае */
+.cb { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; row-gap: 40px; margin-top: 56px; padding: 64px; border: 1px solid var(--line); border-radius: 36px; background: var(--surface); }
+.cb-head { grid-column: 1 / 8; grid-row: 1; }
+.cb-title { font-family: var(--display); font-weight: 400; font-size: 48px; line-height: 1.12; text-wrap: balance; }
+.cb-sub { margin-top: 16px; font-size: 17px; line-height: 1.55; color: var(--muted); }
+.cb-form { grid-column: 1 / 7; grid-row: 2; display: grid; gap: 24px; max-width: 520px; }
+.cb-fields { display: grid; gap: 20px; }
+.fld { display: grid; align-content: start; gap: 8px; }
+.fld label { font-size: 15px; font-weight: 500; line-height: 1.3; }
+.fld input { width: 100%; min-height: 56px; padding: 0 24px; border: 1px solid var(--muted); border-radius: 999px; background: var(--surface); font-size: 17px; transition: border-color var(--dur) var(--ease); }
+.fld input::placeholder { color: var(--muted); }
+.fld input:hover { border-color: var(--text); }
+.fld input:focus { outline: none; border-color: var(--primary); box-shadow: inset 0 0 0 1px var(--primary); }
+.consent { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; align-items: start; }
+.consent input { appearance: none; width: 24px; height: 24px; margin: 10px 0 0; border: 1.5px solid var(--muted); border-radius: 6px; background: var(--surface); cursor: pointer; }
+.consent input:checked { border-color: var(--primary); background: var(--primary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L19 7'/%3E%3C/svg%3E") center / 16px no-repeat; }
+.consent label { min-height: 44px; padding-top: 10px; font-size: 14px; line-height: 1.45; cursor: pointer; }
+.consent a { color: var(--primary); text-underline-offset: 3px; text-decoration: underline; }
+.cb-photo { grid-column: 7 / 13; grid-row: 1 / 3; position: relative; margin: -64px 0; }
+.cb-photo img { position: absolute; bottom: 0; left: 50%; height: 640px; width: auto; transform: translateX(-50%); }
+@media (max-width: 1023px) {
+  .cb { grid-template-columns: 1fr; padding: 32px 20px; border-radius: 28px; }
+  .cb-head, .cb-form, .cb-photo { grid-column: 1; grid-row: auto; }
+  .cb-title { font-size: 32px; }
+  .cb-photo { order: 2; margin: 0; height: 280px; }
+  .cb-photo img { height: 280px; }
+  .cb-form { order: 3; max-width: none; }
+}
+
+/* Подвал — как на сайте (components/layout/Footer): синяя плашка радиус 36, 12 колонок */
+.footer { margin-top: 96px; padding-bottom: 16px; --fm: rgb(255 255 255 / 0.8); --fl: rgb(255 255 255 / 0.2); }
+.fpanel { display: grid; padding: 32px 20px; border-radius: 28px; background: var(--primary); color: #fff; font-size: 15px; line-height: 1.5; }
+.fpanel :focus-visible { outline-color: #fff; }
+.ftop { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 20px; }
+.fbrand { grid-column: 1 / -1; display: grid; justify-items: start; align-content: start; gap: 12px; }
+.flogo { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 26px; }
+.flogo svg { width: 28px; height: 34px; }
+.fphone { display: inline-flex; align-items: center; min-height: 44px; font-size: 22px; font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.fphone:hover, .flink:hover, .froute:hover, .flegal a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.fhead { margin-bottom: 8px; font-size: 13px; font-weight: 500; line-height: 1.4; color: var(--fm); }
+.flist { display: grid; }
+.flink { display: inline-flex; align-items: center; min-height: 32px; }
+.fstub { display: inline-flex; align-items: center; min-height: 32px; cursor: default; }
+.fbranches { display: grid; gap: 32px; margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--fl); }
+.fbranch { display: grid; justify-items: start; gap: 4px; }
+.fbranch h2 { font-size: 15px; font-weight: 500; line-height: 1.5; }
+.fmuted { color: var(--fm); }
+.froute { display: inline-flex; align-items: center; min-height: 32px; text-decoration: underline; text-decoration-color: var(--fl); text-underline-offset: 4px; }
+.flegal { display: grid; gap: 16px; margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--fl); font-size: 13px; line-height: 1.5; color: var(--fm); }
+.freq { display: grid; gap: 4px; }
+.flegal ul { display: flex; flex-wrap: wrap; column-gap: 24px; }
+.flegal ul a { display: inline-flex; align-items: center; min-height: 32px; }
+.fnotes { display: grid; gap: 4px; }
+@media (min-width: 768px) {
+  .fpanel { padding: 48px 40px 32px; }
+  .ftop { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .fbranches { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+}
+@media (min-width: 1024px) {
+  .fpanel { padding: 64px 64px 40px; border-radius: 36px; }
+  .ftop { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; }
+  .fbrand { grid-column: 1 / 4; }
+  .fgroup { grid-column: span 3; }
+  .fbranches { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; margin-top: 48px; padding-top: 48px; }
+  .fbranch { grid-column: span 3; }
+  .flegal { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; margin-top: 48px; padding-top: 48px; }
+  .freq { grid-column: 1 / 9; }
+  .flegal ul { grid-column: 9 / 13; justify-content: flex-end; align-self: start; margin-top: -4px; }
+  .fnotes { grid-column: 1 / -1; grid-template-columns: auto auto 1fr; column-gap: 24px; }
+  .fnotes > :last-child { justify-self: end; }
+}
+
+@media (max-width: 1100px) {
+  .hero { grid-template-columns: 1fr; row-gap: 32px; padding: 32px 20px; border-radius: 28px; }
+  .hero-text, .hero .calc { grid-column: 1; }
+  .main { margin-top: 64px; }
+}
+@media (max-width: 720px) {
+    .result { grid-template-columns: 1fr 1fr; }
+  .result > :first-child { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="header">
+    <a class="logo" href="#">
+      <svg viewBox="0 0 30 36" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 2c3 0 4 2 7 2s4-2 7-2c4 0 6 4 6 9 0 6-2 9-3 14-1 6-2 9-4 9s-2-5-3-9c-1-3-2-4-3-4s-2 1-3 4c-1 4-1 9-3 9s-3-3-4-9C4 20 2 17 2 11c0-5 2-9 6-9Z"/><path d="M15 9c3-3 7-3 8-2-1 3-4 5-8 4" fill="currentColor" stroke="none"/></svg>
+      Ясень
+    </a>
+    <nav class="nav" aria-label="Основное меню">
+      <a href="#">Услуги</a><a href="#">Цены</a><a href="#">Врачи</a><a href="#">Филиалы</a><a href="#" aria-current="page">Пациентам</a>
+    </nav>
+    <div class="hbtns"><a class="btn" href="#">Войти</a><a class="btn btn-primary" href="#">Записаться</a></div>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Рассрочка и расчёт платежа">
+      <div class="hero-text">
+        <h1 class="title">Рассрочка без переплаты</h1>
+        <p class="lead">Стоимость лечения делится на 6 или 12 равных платежей. Проценты не начисляются, банк не нужен.</p>
+        <dl class="facts">
+          <div><dt>Срок</dt><dd>6 или 12 месяцев</dd></div>
+          <div><dt>Проценты и комиссии</dt><dd>Нет</dd></div>
+          <div><dt>Сумма лечения</dt><dd>От 20 000 до 600 000 ₽</dd></div>
+          <div><dt>Оформление</dt><dd>В клинике, без банка</dd></div>
+        </dl>
+      </div>
+      <div class="card calc">
+        <div>
+          <label class="f-label" for="sum">Сумма лечения</label>
+          <div class="sum">
+            <input id="sum" type="text" inputmode="numeric" autocomplete="off" value="120 000">
+            <span aria-hidden="true">₽</span>
+          </div>
+        </div>
+        <div class="range-box">
+          <input class="range" id="range" type="range" min="20000" max="600000" step="1000" value="120000" aria-label="Сумма лечения, ползунок">
+        </div>
+        <div class="terms" role="group" aria-label="Срок рассрочки">
+          <button type="button" data-m="6" aria-pressed="false">6 месяцев</button>
+          <button type="button" data-m="12" aria-pressed="true">12 месяцев</button>
+        </div>
+        <dl class="result">
+          <div><dt>Платёж в месяц</dt><dd class="pay" id="pay">10 000 ₽</dd></div>
+          <div><dt>Всего к оплате</dt><dd id="total">120 000 ₽</dd></div>
+        </dl>
+        <div class="acts">
+          <a class="btn btn-primary" id="book" href="#">Записаться на консультацию</a>
+          <a class="btn" href="#callback">Перезвоните мне</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="main">
+      <section>
+        <h2 class="manifest" id="manifest"></h2>
+        <div class="branch" id="branch">
+          <svg id="bline" viewBox="0 0 1120 1200" aria-hidden="true"></svg>
+        </div>
+
+        <div class="cb" id="callback">
+          <div class="cb-head">
+            <h2 class="cb-title">Перезвоним и посчитаем</h2>
+            <p class="cb-sub">Администратор перезвонит в рабочее время, посчитает платёж и подберёт время приёма</p>
+          </div>
+          <form class="cb-form" onsubmit="return false" novalidate>
+            <div class="cb-fields">
+              <div class="fld"><label for="cb-name">Имя</label><input id="cb-name" type="text" autocomplete="given-name"></div>
+              <div class="fld"><label for="cb-phone">Телефон</label><input id="cb-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__"></div>
+            </div>
+            <div class="consent"><input id="cb-consent" type="checkbox"><label for="cb-consent">Согласен на обработку персональных данных. <a href="#">Текст согласия</a> · <a href="#">Политика обработки данных</a></label></div>
+            <div><button class="btn btn-primary" type="submit">Перезвоните мне</button></div>
+          </form>
+          <div class="cb-photo"><img src="../../public/images/callback/doctor.webp" width="345" height="900" alt="Врач клиники в белом халате с планшетом"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="fpanel">
+      <div class="ftop">
+        <div class="fbrand">
+          <a class="flogo" href="#" aria-label="Ясень — на главную">
+            <svg viewBox="0 0 30 36" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 2c3 0 4 2 7 2s4-2 7-2c4 0 6 4 6 9 0 6-2 9-3 14-1 6-2 9-4 9s-2-5-3-9c-1-3-2-4-3-4s-2 1-3 4c-1 4-1 9-3 9s-3-3-4-9C4 20 2 17 2 11c0-5 2-9 6-9Z"/><path d="M15 9c3-3 7-3 8-2-1 3-4 5-8 4" fill="currentColor" stroke="none"/></svg>
+            Ясень
+          </a>
+          <a class="fphone" href="#">+7 343 300-27-90</a>
+        </div>
+        <nav class="fgroup" aria-label="Пациентам"><h2 class="fhead">Пациентам</h2><ul class="flist"><li><a class="flink" href="#">Услуги</a></li><li><a class="flink" href="#">Цены</a></li><li><a class="flink" href="#">Врачи</a></li><li><a class="flink" href="#">Рассрочка</a></li><li><a class="flink" href="#">Налоговый вычет</a></li><li><a class="flink" href="#">Акции</a></li></ul></nav>
+        <nav class="fgroup" aria-label="Клиника"><h2 class="fhead">Клиника</h2><ul class="flist"><li><a class="flink" href="#">О клинике</a></li><li><a class="flink" href="#">Филиалы</a></li><li><a class="flink" href="#">Сведения о медорганизации</a></li><li><a class="flink" href="#">Документы</a></li></ul></nav>
+        <nav class="fgroup" aria-label="Онлайн"><h2 class="fhead">Онлайн</h2><ul class="flist"><li><a class="flink" href="#">Записаться</a></li><li><a class="flink" href="#">Личный кабинет</a></li><li><span class="fstub">Telegram</span></li><li><span class="fstub">MAX</span></li></ul></nav>
+      </div>
+
+      <section class="fbranches" aria-label="Филиалы">
+        <div class="fbranch"><h2>«Центр»</h2><p class="fmuted">Екатеринбург, ул. Вязовая, 12</p><p class="fmuted">Пн–Пт 8:00–21:00<br>Сб–Вс 9:00–18:00</p><a class="froute" href="#">Как добраться</a></div>
+        <div class="fbranch"><h2>«Академический»</h2><p class="fmuted">Екатеринбург, ул. Липовая аллея, 5</p><p class="fmuted">Пн–Пт 8:00–21:00<br>Сб–Вс 9:00–18:00</p><a class="froute" href="#">Как добраться</a></div>
+      </section>
+
+      <div class="flegal">
+        <div class="freq">
+          <p>Общество с ограниченной ответственностью «Ясень-Дент», ИНН 6600000000, ОГРН 1236600000000</p>
+          <p>Лицензия № Л041-01021-66/00000000 от 14 марта 2023 г., выдана: Министерство здравоохранения Свердловской области</p>
+        </div>
+        <ul><li><a href="#">Политика обработки данных</a></li><li><a href="#">Согласие на обработку ПДн</a></li></ul>
+        <div class="fnotes">
+          <p>Имеются противопоказания. Необходима консультация специалиста</p>
+          <p>Демо-проект студии. Клиника, врачи и данные вымышлены</p>
+          <p>© 2026 ООО «Ясень-Дент»</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+const IMG = {'__CONSULT__':'../../public/images/manifest/manifest-consult.webp','__CONTRACT__':'../../public/images/manifest/manifest-contract.webp'};
+document.querySelectorAll('[data-img]').forEach((i) => { i.src = IMG[i.dataset.img]; });
+/* Заголовок: слова проявляются при скролле, как манифест главной */
+(function () {
+  const segs = [
+    { t: 'Как оформить рассрочку:' },
+    { pill: '__CONSULT__' },
+    { t: 'договор в клинике по паспорту' },
+    { pill: '__CONTRACT__' },
+    { t: 'без банка и справок о доходах' },
+  ];
+  const words = segs.flatMap((x) => (x.t ? x.t.split(' ') : []));
+  const h = document.getElementById('manifest');
+  let i = 0;
+  const vis = segs.map((x) => x.pill
+    ? '<span class="pill"><img src="' + IMG[x.pill] + '" alt=""></span>'
+    : x.t.split(' ').map((w) => '<span class="word" style="--p:' + (i++ / (words.length - 1)).toFixed(3) + '">' + w + '</span>').join(' ')
+  ).join('');
+  h.innerHTML = '<span class="vh">' + words.join(' ') + '</span><span class="vis" aria-hidden="true">' + vis + '</span>';
+})();
+
+/* Калькулятор */
+const MIN = 20000, MAX = 600000;
+const sum = document.getElementById('sum'), range = document.getElementById('range');
+const pay = document.getElementById('pay'), total = document.getElementById('total');
+const fmt = (n) => n.toLocaleString('ru-RU').replace(/ /g, ' ');
+let months = 12, value = 120000;
+function render(fromText) {
+  value = Math.min(Math.max(value, MIN), MAX);
+  pay.textContent = fmt(Math.ceil(value / months / 10) * 10) + ' ₽';
+  total.textContent = fmt(value) + ' ₽';
+  range.value = value;
+  document.getElementById('book').href = '#zapis?service=diagnostika&sum=' + value + '&months=' + months;
+  if (!fromText) sum.value = fmt(value);
+}
+range.addEventListener('input', () => { value = +range.value; render(false); });
+sum.addEventListener('input', () => { value = +sum.value.replace(/\D/g, '') || MIN; render(true); });
+sum.addEventListener('blur', () => render(false));
+document.querySelectorAll('.terms button').forEach((b) => b.addEventListener('click', () => {
+  months = +b.dataset.m;
+  document.querySelectorAll('.terms button').forEach((x) => x.setAttribute('aria-pressed', x === b));
+  render(false);
+}));
+render(false);
+
+/* Ветка: геометрия перенесена из components/home/PlanBranch.tsx (строка 300, лист 200, змейка по центру) */
+const steps = [
+  { n: '01', t: 'План лечения', p: 'Врач осматривает, составляет план и называет итоговую сумму до начала работ. Она фиксируется в договоре.', img: '../../public/images/manifest/plan-02-plan.webp' },
+  { n: '02', t: 'Срок и платёж', p: 'Выбираете 6 или 12 месяцев. Сумма делится на равные платежи, проценты не начисляются.', img: IMG['__CONSULT__'] },
+  { n: '03', t: 'Договор', p: 'Подписываете договор рассрочки в клинике по паспорту. Банк и справки о доходах не нужны.', img: IMG['__CONTRACT__'] },
+  { n: '04', t: 'Платежи по графику', p: 'Платите в клинике или в личном кабинете. Остаток и ближайший платёж видны в плане лечения.', img: '../../public/images/manifest/plan-04-control.webp' },
+];
+const ROW = 300, LEAF = 200, TOP = 16, LX = { left: 620, right: 500 }, DX = 60, DY = 30, STR = 18, OV = 4, TAN = 16;
+const side = (i) => (i % 2 === 0 ? 'left' : 'right');
+let d = `M${LX.left} 0`;
+steps.forEach((_, i) => { if (!i) return; const b = ROW * i, a = LX[side(i - 1)], c = LX[side(i)]; d += ` V${b - 70} C${a} ${b} ${c} ${b} ${c} ${b + 70}`; });
+d += ` V${ROW * steps.length}`;
+const branch = document.getElementById('branch');
+const line = document.getElementById('bline');
+line.setAttribute('viewBox', `0 0 1120 ${ROW * steps.length}`);
+line.innerHTML = `<path class="line" pathLength="1" d="${d}"/>`;
+branch.style.height = ROW * steps.length + 'px';
+function stem(s) {
+  const x = LX[s], dir = s === 'left' ? -1 : 1, bx = x + dir * DX, by = TOP + LEAF, sy = by + DY;
+  const on = (k) => `${bx - dir * k} ${by + k}`;
+  return `M${x} ${sy} C${x + dir * 20} ${sy + 2} ${on(STR + TAN)} ${on(STR)} L${on(-OV)}`;
+}
+steps.forEach((s, i) => {
+  const sd = side(i), x = LX[sd];
+  const leafX = sd === 'left' ? x - DX - LEAF : x + DX;
+  const el = document.createElement('div');
+  el.className = 'bstep ' + sd;
+  el.style.top = ROW * i + 'px';
+  const textPos = sd === 'left' ? `right:${1120 - leafX + 40}px` : `left:${leafX + LEAF + 40}px`;
+  el.innerHTML = `<svg viewBox="0 0 1120 ${ROW}" aria-hidden="true"><path d="${stem(sd)}"/></svg>
+    <div class="leaf" style="left:${leafX}px"><img src="${s.img}" alt=""></div>
+    <div class="btext" style="${textPos}"><span class="bnum">${s.n}</span><h3>${s.t}</h3><p>${s.p}</p></div>`;
+  branch.appendChild(el);
+});
+</script>
