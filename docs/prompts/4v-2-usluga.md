@@ -15,15 +15,15 @@
 - Prata — только h1, заголовок-манифест и заголовки секций «Врачи направления» и «Перезвоним…». Заголовки внутри карточек («Кому подходит», «Цены») — Golos 24/500.
 - Никаких надзаголовков, пилюль-меток поверх фото, иконок и стрелок в кнопках, эмодзи, градиентов. Кнопки 56 px, малые пилюли 44 px.
 - Все тексты, id и пути — из JSON (/data) и типов в lib/types.ts; цены, длительности и названия позиций — только из services.json по id, не дублировать.
-- Серверные данные только через lib/api.ts. Фото не генерировать: только файлы из public/images (список ниже). Нет файла — серая заглушка с подписью из поля shot.
+- Серверные данные только через lib/api.ts. Фото не генерировать: только файлы из public/images (список ниже) — все листья на месте.
 - Десктоп, но брейкпоинты макета (≤1199 для ветки, ≤1100, ≤1023, ≤720) перенести.
 - Без any, без неиспользуемого кода, правки точечные. Без скриншотов, Lighthouse и проверок в браузере. Сомнения — одной строкой в «Открытые вопросы» PROGRESS.md.
 
 1. Данные (data/servicePages.json + lib/types.ts)
 - Удалить faq у всех 8 страниц и тип Faq, поле faq из ServicePage.
-- steps: каждому шагу добавить leaf: Picture (640×640, alt "") и shot: string (подпись заглушки, пока фото нет). Номер шага не хранить — PlanBranch считает «01», «02»… по индексу.
+- steps: каждому шагу добавить leaf: Picture (640×640, alt ""). Номер шага не хранить — PlanBranch считает «01», «02»… по индексу.
 - Новые поля ServicePage: priceLabel, buyNote?, priceItemIds (string[]), manifesto (HomeManifesto), doctorsNote, callback {title, subtitle, sourceLabel}.
-- Фото листьев (public/images/…): есть — steps/lechenie-kariesa-01, -03, -04; steps/lechenie-kanalov-02, -03, -04; steps/profgigiena-01…04; steps/implantaciya-03, -04, -05; steps/protezirovanie-01…04; steps/ortodontiya-01, -03, -04. Готовые из manifest/: lechenie-kariesa-02 и ortodontiya-02 → manifest/plan-02-plan.webp; lechenie-kanalov-01 и udalenie-01 → manifest/plan-01-scan.webp; implantaciya-01 → plan-01-scan, implantaciya-02 → plan-02-plan. Пока нет (leaf.src "", shot заполнить по промптам из docs/PHOTO_PROMPTS.md, раздел «Страницы услуг», одной фразой по-русски): ortodontiya-05, detskaya-01…03, udalenie-02…04 — будут steps/<slug>-0N.webp.
+- Фото листьев (public/images/…): steps/lechenie-kariesa-01, -03, -04; steps/lechenie-kanalov-02, -03, -04; steps/profgigiena-01…04; steps/implantaciya-03, -04, -05; steps/protezirovanie-01…04; steps/ortodontiya-01, -03, -04, -05; steps/detskaya-01…03; steps/udalenie-02…04. Готовые из manifest/: lechenie-kariesa-02 и ortodontiya-02 → manifest/plan-02-plan.webp; lechenie-kanalov-01 и udalenie-01 → manifest/plan-01-scan.webp; implantaciya-01 → plan-01-scan, implantaciya-02 → plan-02-plan.
 - priceItemIds: lechenie-kariesa — d-01, k-01, k-02, k-03, k-05, k-06; lechenie-kanalov — d-01, c-01, c-02, c-03, c-04, c-06; profgigiena — g-01, g-02, g-03, g-04, g-05, g-07; implantaciya — d-02, i-01, i-02, i-03, i-04, i-08; protezirovanie — p-01, p-02, p-03, p-04, p-06, p-08; ortodontiya — o-01, o-02, o-03, o-04, o-05, o-06; detskaya — ch-01, ch-02, ch-03, ch-04, ch-05, ch-06; udalenie — d-02, u-01, u-02, u-03, u-04, u-05.
 - priceLabel: implantaciya «Цена под ключ», остальные «Цена». buyNote только у implantaciya: «Итоговую сумму называет хирург после КТ, до начала лечения».
 - manifesto (сегменты: текст · таблетка · текст · таблетка · текст; таблетки — leaf первого и последнего шага страницы, alt ""):
@@ -41,8 +41,7 @@
 - getService() дополнить: items по priceItemIds в их порядке (вместо всех позиций направления); branches для названий филиалов врачей.
 
 2. Компоненты (components/service/*, CSS Modules)
-- PlanBranch (точечно): ROW_H из 4 фиксированных строк → N строк по 300 px по steps.length (геометрию линии и черенков не менять, срез slice(0, 4) убрать); номер «0N» по индексу, если в шаге нет number; leaf.src "" → серый лист --color-placeholder с подписью shot 12/1.35 muted по центру, padding 44. PlanBranchStep.number сделать необязательным; главная и /rassrochka/ не должны измениться.
-- Manifesto (точечно): таблетка с пустым src → пустая серая пилюля.
+- PlanBranch (точечно): ROW_H из 4 фиксированных строк → N строк по 300 px по steps.length (геометрию линии и черенков не менять, срез slice(0, 4) убрать); номер «0N» по индексу, если в шаге нет number. PlanBranchStep.number сделать необязательным; главная и /rassrochka/ не должны измениться.
 - ServiceAside: липкая белая карточка (top 104, radius 28, поле 12, gap 12): блок цены на --color-bg (radius 18, поля 18/20/20) — priceLabel 13 muted, «от» 15 muted + сумма 28/500 кобальт (direction.priceFrom, «от» по наличию у позиции-минимума — как в lib/servicesIndex.ts), buyNote 14 muted margin-top 8; основная кнопка на всю ширину → /zapis/?service={slug}; якоря #for, #price, #steps, #doctors — строки 52 px, поля 12/20, radius 18, hover --color-bg + кобальт.
 - ServiceIntro (id="for"): белая карточка, сетка 1fr 1fr, column-gap 48; фото /images/directions/{slug}.webp без aspect-ratio, min-height 280, radius 18, object-fit cover; справа (padding 24 16 4 0, grid space-between, gap 24) — h2 Golos 24/500, список forWhom: строки 17/1.4, padding 12 0, линии 1px --color-line сверху и снизу последней; внизу плашка --color-bg radius 18, поля 16/20, margin-left −4: dt 13 muted, dd 18/500.
 - ServicePrices (id="price"): белая карточка, поля 32/12/12; шапка padding 0 12 16 24: h2 Golos 24/500 + «N услуг» 15 muted, справа пилюля-обводка 44 «Весь прайс по направлению» → /ceny/?direction={slug}. Строки — ссылки на /zapis/?service={id позиции}, вид как PriceRow (68 px, поля 14/24, radius 18, разделители 1px с отступом 24, hover --color-tint + кобальт); название позиции до двоеточия, хвост после двоеточия — подстрокой 14 muted вместе с длительностью через « · », иначе только «N мин»; цена 18/500 tabular, «от» 14 muted; 0 ₽ → пилюля «Бесплатно» (tint/кобальт, на hover заливка). Ниже priceNote: плашка --color-bg, radius 18, поля 16/24, 15 muted, margin-top 12.
@@ -54,6 +53,6 @@
 
 4. В конце
 - docs/DESIGN.md: «Страница услуги» — отметить «сделано (4В-3)»; PlanBranch теперь на N шагов.
-- docs/PROGRESS.md: строка 4В-3 → готово; 2–3 строки в журнал; в «Открытые вопросы»: 7 фото листьев ещё нет (ortodontiya-05, detskaya-01…03, udalenie-02…04).
+- docs/PROGRESS.md: строка 4В-3 → готово; 2–3 строки в журнал.
 - npm run build без ошибок → коммит «chat-4v-3: шаблон страницы услуги» → push.
 - Отчёт 3–5 строк: что сделано, что проверить руками (/uslugi/implantaciya/, /uslugi/detskaya/), следующий шаг.

@@ -86,7 +86,7 @@
 - 04.11.2026, 4В-2: `/uslugi/` — у широких карточек фото без aspect-ratio, `min-height: 280`, высоту задаёт текст (то же в `docs/mockups/uslugi.html`).
 - 04.11.2026, 4В-2: `/ceny/` — `PriceToc` со скролл-шпионом и якорями заменён фильтром `PriceFilter` («Все направления» + направления, счётчики по поиску, `?direction=`); `prices.json`: `tocLabel` → `filterLabel`, `all`.
 - 10.11.2026, 4В-2: макет шаблона услуги `docs/mockups/usluga.html` утверждён (черновик удалён); в `docs/PHOTO_PROMPTS.md` — 27 промптов листьев этапов (`public/images/steps/`), 6 этапов берут фото из `manifest/`. Ждём фото → загрузка → промпт для Sonnet. Затем макет `/akcii/`.
-- 10.11.2026, 4В-2: 20 фото листьев этапов → `public/images/steps/` (640×640 webp, 431 КБ); нет ещё 7: ortodontiya-05, detskaya-01…03, udalenie-02…04. Промпт для Sonnet — `docs/prompts/4v-2-usluga.md`.
+- 10.11.2026, 4В-2: 20 фото листьев этапов → `public/images/steps/` (640×640 webp, 431 КБ); +7 (ortodontiya-05, detskaya, udalenie) — все 33 листа на месте. Промпт для Sonnet — `docs/prompts/4v-2-usluga.md`.
 
 ## Расхождения с паспортом
 - §10: вместо тёплой палитры — синий и белый; 3D-имплант — слоёные картинки, не r3f/.glb; «до/после» заменён слайдером КТ. Подробно — docs/DESIGN.md.
