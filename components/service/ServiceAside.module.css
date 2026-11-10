@@ -2,6 +2,7 @@
   position: sticky;
   top: calc(var(--header-h) + 8px);
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-3);
   padding: var(--space-3);
   border-radius: var(--radius-lg);
@@ -80,4 +81,8 @@
   .toc {
     display: none;
   }
+}
+
+.book {
+  padding: 0 var(--space-4);
 }

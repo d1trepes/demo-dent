@@ -24,7 +24,7 @@ export function ServiceAside({ service, texts }: Props) {
         {page.buyNote && <p className={styles.note}>{page.buyNote}</p>}
       </div>
 
-      <ButtonLink href={`/zapis/?service=${direction.id}`} block>
+      <ButtonLink href={`/zapis/?service=${direction.id}`} block className={styles.book}>
         {texts.book}
       </ButtonLink>
 
