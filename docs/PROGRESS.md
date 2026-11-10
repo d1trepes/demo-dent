@@ -84,6 +84,7 @@
 - 04.11.2026, 4В-1: мастер принимает `?sum=&months=` (оба допустимы по `services.json → installment`): `BookingData.installment`, `BookingDraft.installment`, метка `source.label` «Рассрочка: … ₽ на … мес.» приоритетнее остальных, строка «Рассрочка» в `Summary`, примечание в `BookingDone`; `Appointment.installment?` хранится вместе с записью, чтобы `/zapis/gotovo/` знал, что показывать после сброса черновика.
 - 04.11.2026, 4В-2: `/uslugi/` — у широких карточек фото без aspect-ratio, `min-height: 280`, высоту задаёт текст (то же в `docs/mockups/uslugi.html`).
 - 04.11.2026, 4В-2: `/ceny/` — `PriceToc` со скролл-шпионом и якорями заменён фильтром `PriceFilter` («Все направления» + направления, счётчики по поиску, `?direction=`); `prices.json`: `tocLabel` → `filterLabel`, `all`.
+- 10.11.2026, 4В-2: макет шаблона услуги `docs/mockups/usluga.html` утверждён (черновик удалён); в `docs/PHOTO_PROMPTS.md` — 27 промптов листьев этапов (`public/images/steps/`), 6 этапов берут фото из `manifest/`. Ждём фото → загрузка → промпт для Sonnet. Затем макет `/akcii/`.
 
 ## Расхождения с паспортом
 - §10: вместо тёплой палитры — синий и белый; 3D-имплант — слоёные картинки, не r3f/.glb; «до/после» заменён слайдером КТ. Подробно — docs/DESIGN.md.
