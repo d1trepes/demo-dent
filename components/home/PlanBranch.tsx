@@ -11,7 +11,8 @@ import styles from "./PlanBranch.module.css";
  * Константы — только геометрия сцены, контент приходит из data/home.json.
  */
 const STAGE_W = 1120;
-const ROW_H = [300, 300, 300, 300];
+/** Высота строки одного шага: сцена тянется на steps.length строк. */
+const ROW = 300;
 const LEAF = 200;
 const LEAF_TOP = 16;
 /** Линия отходит от листа: у левого шага правее центра, у правого — левее. */
@@ -29,18 +30,17 @@ const TANGENT = 16;
 type Side = keyof typeof LINE_X;
 
 const sideOf = (i: number): Side => (i % 2 === 0 ? "left" : "right");
-const rowTops = ROW_H.map((_, i) => ROW_H.slice(0, i).reduce((s, h) => s + h, 0));
-const STAGE_H = ROW_H.reduce((s, h) => s + h, 0);
 
 /** Змейка: прямые участки у каждого шага, S-переходы на границах строк. */
 function linePath(count: number): string {
+  const stageH = count * ROW;
   const xs = Array.from({ length: count }, (_, i) => LINE_X[sideOf(i)]);
   let d = `M${xs[0]} 0`;
   for (let i = 1; i < count; i++) {
-    const b = rowTops[i];
+    const b = i * ROW;
     d += ` V${b - 70} C${xs[i - 1]} ${b} ${xs[i]} ${b} ${xs[i]} ${b + 70}`;
   }
-  return `${d} V${STAGE_H}`;
+  return `${d} V${stageH}`;
 }
 
 /** Черенок в координатах строки: кривая от линии выходит на ось листа, дальше прямой отрезок под 45° в основание. */
@@ -59,7 +59,7 @@ function stepVars(i: number): CSSProperties {
   const x = LINE_X[side];
   const leafX = side === "left" ? x - STEM_DX - LEAF : x + STEM_DX;
   return {
-    "--row-h": `${ROW_H[i]}px`,
+    "--row-h": `${ROW}px`,
     "--leaf-x": `${leafX}px`,
     "--leaf-top": `${LEAF_TOP}px`,
     "--leaf-s": `${LEAF}px`,
@@ -68,11 +68,12 @@ function stepVars(i: number): CSSProperties {
 
 /** compact — внутренние страницы: меньший отступ сверху (манифест стоит прямо над веткой). */
 export function PlanBranch({ content, compact = false }: { content: PlanContent; compact?: boolean }) {
-  const steps = content.steps.slice(0, ROW_H.length);
+  const { steps } = content;
+  const stageH = steps.length * ROW;
 
   return (
     <div className={cx(styles.branch, compact && styles.compact)}>
-      <svg className={styles.lineDesktop} viewBox={`0 0 ${STAGE_W} ${STAGE_H}`} width={STAGE_W} height={STAGE_H} aria-hidden>
+      <svg className={styles.lineDesktop} viewBox={`0 0 ${STAGE_W} ${stageH}`} width={STAGE_W} height={stageH} aria-hidden>
         <path className={styles.line} d={linePath(steps.length)} pathLength={1} />
       </svg>
       <svg className={styles.lineMobile} viewBox="0 0 2 100" preserveAspectRatio="none" aria-hidden>
@@ -81,8 +82,8 @@ export function PlanBranch({ content, compact = false }: { content: PlanContent;
 
       <ol className={styles.steps}>
         {steps.map((step, i) => (
-          <li key={step.number} className={cx(styles.step, styles[sideOf(i)])} style={stepVars(i)}>
-            <svg className={styles.stemDesktop} viewBox={`0 0 ${STAGE_W} ${ROW_H[i]}`} aria-hidden>
+          <li key={step.title} className={cx(styles.step, styles[sideOf(i)])} style={stepVars(i)}>
+            <svg className={styles.stemDesktop} viewBox={`0 0 ${STAGE_W} ${ROW}`} aria-hidden>
               <path d={stemPath(sideOf(i))} />
             </svg>
             <svg className={styles.stemMobile} viewBox="0 0 60 160" aria-hidden>
@@ -90,7 +91,7 @@ export function PlanBranch({ content, compact = false }: { content: PlanContent;
             </svg>
             <Leaf step={step} />
             <div className={styles.text}>
-              <span className={styles.number}>{step.number}</span>
+              <span className={styles.number}>{step.number ?? String(i + 1).padStart(2, "0")}</span>
               <h3 className={styles.title}>{step.title}</h3>
               <p className={styles.caption}>{step.text}</p>
             </div>

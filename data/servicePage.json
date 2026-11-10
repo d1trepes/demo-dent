@@ -1,0 +1,25 @@
+{
+  "forTitle": "Кому подходит",
+  "durationLabel": "Сколько длится лечение",
+  "pricesTitle": "Цены",
+  "count": "{n} {word}",
+  "serviceForms": ["услуга", "услуги", "услуг"],
+  "minutes": "{n} мин",
+  "allPrices": "Весь прайс по направлению",
+  "book": "Записаться на консультацию",
+  "free": "Бесплатно",
+  "from": "от",
+  "asideLabel": "Цена и запись",
+  "tocLabel": "Разделы страницы",
+  "toc": {
+    "for": "Кому подходит",
+    "price": "Цены",
+    "steps": "Этапы лечения",
+    "doctors": "Врачи"
+  },
+  "stepsLabel": "Этапы лечения",
+  "doctorsTitle": "Врачи направления",
+  "allDoctors": "Все врачи",
+  "experience": "Стаж {years}",
+  "bookDoctor": "Записаться"
+}

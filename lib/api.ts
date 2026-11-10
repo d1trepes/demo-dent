@@ -17,6 +17,7 @@ import promosData from "@/data/promos.json";
 import rassrochkaData from "@/data/rassrochka.json";
 import reasonsData from "@/data/reasons.json";
 import reviewsData from "@/data/reviews.json";
+import servicePageTextsData from "@/data/servicePage.json";
 import servicePagesData from "@/data/servicePages.json";
 import servicesIndexData from "@/data/servicesIndex.json";
 import servicesData from "@/data/services.json";
@@ -60,6 +61,7 @@ import type {
   InstallmentTerms,
   ReviewsData,
   ServiceDetails,
+  ServicePageTexts,
   ServicePage,
   ServicesIndexContent,
   ServicesData,
@@ -182,6 +184,11 @@ export function getServicesIndexContent(): Promise<ServicesIndexContent> {
   return respond(servicesIndexData as ServicesIndexContent);
 }
 
+/** Общие тексты шаблона страницы услуги. */
+export function getServicePageTexts(): Promise<ServicePageTexts> {
+  return respond(servicePageTextsData as ServicePageTexts);
+}
+
 export async function getService(slug: string): Promise<ServiceDetails | null> {
   const direction = services.directions.find((d) => d.id === slug && d.hasPage);
   const page = servicePages.find((p) => p.slug === slug);
@@ -189,8 +196,13 @@ export async function getService(slug: string): Promise<ServiceDetails | null> {
   return respond({
     direction,
     page,
-    items: services.items.filter((i) => i.directionId === slug),
+    items: page.priceItemIds.map((id) => {
+      const item = services.items.find((i) => i.id === id);
+      if (!item) throw new ApiError("not_found", `Позиция прайса ${id} не найдена (страница ${slug})`);
+      return item;
+    }),
     doctors: doctors.doctors.filter((d) => d.directions.includes(slug)),
+    branches,
   });
 }
 

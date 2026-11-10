@@ -34,13 +34,14 @@
 | 4В | Макеты + промпты: шаблон `/uslugi/[slug]/`, `/rassrochka/`, `/akcii/` | в работе |
 | 4В-1 | `/rassrochka/` + передача рассрочки в мастер | готово (04.11.2026) |
 | 4В-2 | Правки `/uslugi/` и `/ceny/`; макеты + промпты шаблона услуги и `/akcii/` | в работе |
-| 4В-3 | Шаблон `/uslugi/[slug]/` по макету (Sonnet, `docs/prompts/4v-2-usluga.md`) | следующий чат |
+| 4В-3 | Шаблон `/uslugi/[slug]/` по макету (Sonnet, `docs/prompts/4v-2-usluga.md`) | готово (10.11.2026) |
 | 5 | Врачи, филиалы, юр.страницы | — |
 | 6 | Кабинет пациента | — |
 | 7 | Панель администратора | — |
 | 8 | Полировка и сдача | — |
 
 ## Журнал
+- 10.11.2026, 4В-3: `/uslugi/[slug]/` — 8 страниц по макету `usluga.html`: `components/service/*` (ServiceView, Aside, Intro, Prices, Doctors), манифест + `PlanBranch` на N шагов (ROW 300 по `steps.length`, номер «0N» по индексу, `PlanBranchStep.number` необязателен; главная и `/rassrochka/` не менялись), `CallbackCard` с текстами страницы. Данные: `servicePages.json` (faq удалён, добавлены leaf, priceItemIds, manifesto, doctorsNote, callback, priceLabel/buyNote), `servicePage.json` + `ServicePageTexts` + `getServicePageTexts()`; `getService()` отдаёт позиции по `priceItemIds` и `branches`. Сборка проходит, в браузере не смотрел (§13).
 - 04.11.2026, 4Б-1: `/uslugi/` — в карточки подставлены фото направлений с главной (`public/images/directions/*.webp`, 800×800, object-fit cover); у `<img>` убран padding заглушки.
 - 04.11.2026, правка 4А-2: `/ceny/` без строк «Прайс действует…» и «Найдено N · Сбросить» (ключи `updated`/`found`/`reset` удалены из prices.json и типов); крестик очистки в основном поиске (круг 40, кобальт, hover primary-deep) и в PriceAside (круг 36).
 - 04.11.2026, 4Б: макет `/uslugi/` утверждён — `docs/mockups/uslugi.html` (сетка «широкая — две вертикальные», синяя плашка «Болит зуб?» внизу, без меток на фото и без предупреждения).

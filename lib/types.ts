@@ -124,8 +124,7 @@ export type ServicesData = {
   installment: InstallmentTerms;
 };
 
-export type Step = { title: string; text: string };
-export type Faq = { q: string; a: string };
+export type Step = { title: string; text: string; leaf: Picture };
 
 export type ServicePage = {
   slug: string;
@@ -135,7 +134,41 @@ export type ServicePage = {
   steps: Step[];
   duration: string;
   priceNote: string;
-  faq: Faq[];
+  /** Подпись над ценой в боковой плашке: «Цена» / «Цена под ключ». */
+  priceLabel: string;
+  /** Пояснение под ценой (только у имплантации). */
+  buyNote?: string;
+  /** id позиций services.json для блока «Цены» — в нужном порядке. */
+  priceItemIds: string[];
+  /** Заголовок-манифест перед этапами: «Четыре этапа [фото] от снимка до полировки [фото] …». */
+  manifesto: HomeManifesto;
+  doctorsNote: string;
+  callback: { title: string; subtitle: string; sourceLabel: string };
+};
+
+/** Общие тексты шаблона страницы услуги (data/servicePage.json). */
+export type ServicePageTexts = {
+  forTitle: string;
+  durationLabel: string;
+  pricesTitle: string;
+  /** «{n} {word}» — счётчик услуг. */
+  count: string;
+  serviceForms: [string, string, string];
+  /** «{n} мин». */
+  minutes: string;
+  allPrices: string;
+  book: string;
+  free: string;
+  from: string;
+  asideLabel: string;
+  tocLabel: string;
+  toc: { for: string; price: string; steps: string; doctors: string };
+  stepsLabel: string;
+  doctorsTitle: string;
+  allDoctors: string;
+  /** «Стаж {years}». */
+  experience: string;
+  bookDoctor: string;
 };
 
 /* ---------- Врачи и расписание ---------- */
@@ -291,8 +324,10 @@ export type AppointmentChangeResult = {
 export type ServiceDetails = {
   direction: Direction;
   page: ServicePage;
+  /** Позиции прайса по page.priceItemIds, в их порядке. */
   items: PriceItem[];
   doctors: Doctor[];
+  branches: Branch[];
 };
 
 /* ---------- Кабинет пациента ---------- */
@@ -580,7 +615,8 @@ export type HomeManifesto = { segments: ManifestoSegment[] };
 
 /** Шаг ветки плана. Фото листа подготовлено под правый лист (основание внизу слева). */
 export type PlanBranchStep = {
-  number: string;
+  /** Если не задан — ветка нумерует шаги сама («01», «02»…). */
+  number?: string;
   title: string;
   text: string;
   leaf: Picture;
