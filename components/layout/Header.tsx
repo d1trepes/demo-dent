@@ -4,6 +4,7 @@ import { bookingHref, loginHref, mainNav } from "@/lib/nav";
 import { ButtonLink } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
 import { MobileMenu } from "./MobileMenu";
+import { NavDropdown } from "./NavDropdown";
 import { NavLink } from "./NavLink";
 import styles from "./Header.module.css";
 
@@ -24,8 +25,7 @@ export async function Header() {
             {mainNav.map((item) =>
               item.children ? (
                 <li key={item.href}>
-                  {/* Открывается при наведении и фокусе с клавиатуры (CSS), закрывается, когда курсор уходит */}
-                  <div className={styles.dropdown}>
+                  <NavDropdown className={styles.dropdown}>
                     <NavLink href={item.href} className={styles.navLink}>
                       {item.label}
                     </NavLink>
@@ -38,7 +38,7 @@ export async function Header() {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </NavDropdown>
                 </li>
               ) : (
                 <li key={item.href}>
