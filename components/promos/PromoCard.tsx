@@ -11,7 +11,7 @@ type Props = {
   texts: Pick<PromosContent, "until" | "termsLabel" | "book" | "about">;
 };
 
-/** Карточка акции: фото направления, срок, цифра акции, условия раскрываются, запись в мастер с услугой. */
+/** Карточка акции: фото направления, срок, цифра акции, условия видны сразу, запись в мастер с услугой. */
 export function PromoCard({ promo, wide, texts }: Props) {
   const titleId = `promo-${promo.id}`;
   return (
@@ -28,10 +28,10 @@ export function PromoCard({ promo, wide, texts }: Props) {
             {promo.title}
           </h2>
           <p className={styles.text}>{promo.text}</p>
-          <details className={styles.terms}>
-            <summary className={styles.summary}>{texts.termsLabel}</summary>
+          <div className={styles.terms}>
+            <h3 className={styles.termsLabel}>{texts.termsLabel}</h3>
             <p className={styles.termsText}>{promo.conditions}</p>
-          </details>
+          </div>
         </div>
 
         <div className={styles.foot}>
