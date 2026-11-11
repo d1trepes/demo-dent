@@ -1,8 +1,6 @@
-import type { Metadata } from "next";
-import { PageStub } from "@/components/ui/PageStub";
+import { legalPage } from "@/components/legal/legalPage";
 
-export const metadata: Metadata = { title: "Политика обработки персональных данных" };
+const { generateMetadata, Page } = legalPage("privacy");
 
-export default function PrivacyPage() {
-  return <PageStub title="Политика обработки персональных данных" chat={5} />;
-}
+export { generateMetadata };
+export default Page;

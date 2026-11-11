@@ -1,21 +1,13 @@
 import type { Metadata } from "next";
-import { PageStub } from "@/components/ui/PageStub";
-import { getLegal } from "@/lib/api";
-import { asset } from "@/lib/asset";
+import { DocumentsView } from "@/components/about/DocumentsView";
+import { getAboutContent, getLegal } from "@/lib/api";
 
-export const metadata: Metadata = { title: "Документы" };
+export async function generateMetadata(): Promise<Metadata> {
+  const { documents } = await getAboutContent();
+  return { title: documents.metaTitle };
+}
 
 export default async function DocumentsPage() {
-  const { clinicDocuments } = await getLegal();
-  return (
-    <PageStub title="Документы и лицензия" chat={5}>
-      <ul>
-        {clinicDocuments.map((d) => (
-          <li key={d.id}>
-            <a href={asset(d.file)}>{d.title}</a> (PDF)
-          </li>
-        ))}
-      </ul>
-    </PageStub>
-  );
+  const [{ documents }, { clinicDocuments, docs }] = await Promise.all([getAboutContent(), getLegal()]);
+  return <DocumentsView texts={documents} files={clinicDocuments} legalDocs={docs} />;
 }

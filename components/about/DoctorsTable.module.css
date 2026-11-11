@@ -1,0 +1,71 @@
+.card {
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.table th,
+.table td {
+  padding: var(--space-4) var(--space-3);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table thead th {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.table tbody tr {
+  border-top: 1px solid var(--color-line);
+  transition: background-color var(--dur) var(--ease);
+}
+
+.table tbody tr:hover {
+  background: var(--color-tint);
+}
+
+.name {
+  min-width: 180px;
+  font-weight: 500;
+}
+
+.name a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--dur) var(--ease);
+}
+
+.table tbody tr:hover .name a,
+.name a:focus-visible {
+  color: var(--color-primary);
+}
+
+.line {
+  margin: 0;
+}
+
+.line + .line {
+  margin-top: var(--space-2);
+}
+
+.muted {
+  display: block;
+  color: var(--color-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .table tbody tr,
+  .name a {
+    transition: none;
+  }
+}

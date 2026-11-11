@@ -4,6 +4,7 @@
  * Программист меняет только тела функций (описание — docs/HANDOFF.md),
  * сигнатуры и типы из lib/types.ts остаются. Данные никуда не отправляются.
  */
+import aboutData from "@/data/about.json";
 import adminData from "@/data/admin.json";
 import bookingData from "@/data/booking.json";
 import branchesData from "@/data/branches.json";
@@ -53,6 +54,7 @@ import type {
   PatientDocument,
   PatientProfile,
   PatientSeed,
+  AboutContent,
   PayStageResult,
   Promo,
   PromosContent,
@@ -144,6 +146,11 @@ export function getClinic(): Promise<Clinic> {
 /** Тексты и картинки главной (в бою — CMS или те же JSON). */
 export function getHomeContent(): Promise<HomeContent> {
   return respond(home);
+}
+
+/** Тексты /o-klinike/, /o-klinike/dokumenty/ и юр.страниц. */
+export function getAboutContent(): Promise<AboutContent> {
+  return respond(aboutData as AboutContent);
 }
 
 export function getBranches(): Promise<Branch[]> {

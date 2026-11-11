@@ -553,6 +553,60 @@ export type LegalData = {
   clinicDocuments: ClinicDocument[];
 };
 
+export type ImageRef = { src: string; alt: string; width: number; height: number };
+
+export type ClinicInfoField =
+  | "fullName"
+  | "shortName"
+  | "ogrn"
+  | "inn"
+  | "kpp"
+  | "legalAddress"
+  | "director"
+  | "branches"
+  | "phone"
+  | "email"
+  | "license"
+  | "works"
+  | "authorities";
+
+export type DoctorsTableTexts = {
+  title: string;
+  lead: string;
+  columns: Record<"name" | "specialty" | "education" | "certification" | "branch" | "schedule", string>;
+  accreditation: string;
+  certificate: string;
+  validUntil: string;
+  weekdays: string[];
+};
+
+export type AboutContent = {
+  metaTitle: string;
+  title: string;
+  lead: string;
+  intro: { title: string; paragraphs: string[]; photos: ImageRef[] };
+  info: {
+    title: string;
+    labels: Record<ClinicInfoField, string>;
+    branchPrefix: string;
+    licenseTemplate: string;
+    registryLink: string;
+  };
+  doctors: DoctorsTableTexts;
+  documentsLink: string;
+  documents: {
+    metaTitle: string;
+    title: string;
+    lead: string;
+    filesTitle: string;
+    fileLabel: string;
+    textsTitle: string;
+    legalPages: { id: LegalDocId; href: string }[];
+    pageLabel: string;
+  };
+  legalPage: { tocLabel: string; edition: string };
+};
+
 /* ---------- Сырые данные JSON (только для lib/api.ts) ---------- */
 
 /** В моках даты заданы смещением от сегодняшнего дня, чтобы демка всегда выглядела свежей. */

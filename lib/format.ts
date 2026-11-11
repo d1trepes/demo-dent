@@ -1,3 +1,5 @@
+import type { BranchId, ScheduleShift } from "./types";
+
 const dateFormatter = new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 const priceFormatter = new Intl.NumberFormat("ru-RU");
 
@@ -60,3 +62,27 @@ export const initials = (fullName: string) => fullName.split(" ").slice(0, 2).ma
 /** Подстановка {name} в текст из JSON: fill("Стаж {years}", { years: "5 лет" }). */
 export const fill = (template: string, values: Record<string, string | number>) =>
   template.replace(/\{(\w+)\}/g, (_, key: string) => String(values[key] ?? ""));
+
+const clockTime = (time: string) => time.replace(/^0/, "");
+
+/** Смены врача → строки по филиалам: «Пн–Пт 8:00–14:00, Вс 9:00–15:00». weekdays — подписи Пн…Вс. */
+export function scheduleByBranch(shifts: ScheduleShift[], weekdays: string[]): { branchId: BranchId; text: string }[] {
+  const byBranch = new Map<BranchId, ScheduleShift[]>();
+  for (const shift of [...shifts].sort((a, b) => a.weekday - b.weekday)) {
+    byBranch.set(shift.branchId, [...(byBranch.get(shift.branchId) ?? []), shift]);
+  }
+  return [...byBranch].map(([branchId, list]) => {
+    const runs: { from: number; to: number; hours: string }[] = [];
+    for (const s of list) {
+      const hours = `${clockTime(s.start)}–${clockTime(s.end)}`;
+      const last = runs[runs.length - 1];
+      if (last && last.hours === hours && last.to === s.weekday - 1) last.to = s.weekday;
+      else runs.push({ from: s.weekday, to: s.weekday, hours });
+    }
+    const day = (n: number) => weekdays[n - 1];
+    const text = runs
+      .map((r) => `${r.from === r.to ? day(r.from) : `${day(r.from)}${r.to - r.from === 1 ? ", " : "–"}${day(r.to)}`} ${r.hours}`)
+      .join("; ");
+    return { branchId, text };
+  });
+}

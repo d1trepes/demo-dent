@@ -1,8 +1,6 @@
-import type { Metadata } from "next";
-import { PageStub } from "@/components/ui/PageStub";
+import { legalPage } from "@/components/legal/legalPage";
 
-export const metadata: Metadata = { title: "Согласие на обработку персональных данных" };
+const { generateMetadata, Page } = legalPage("consent");
 
-export default function SoglasiePage() {
-  return <PageStub title="Согласие на обработку персональных данных" chat={5} />;
-}
+export { generateMetadata };
+export default Page;
