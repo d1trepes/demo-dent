@@ -1,14 +1,13 @@
 import { CallbackCard } from "@/components/home/CallbackCard";
 import { PageHead } from "@/components/ui/PageHead";
-import type { Branch, BranchesPageContent, HomeCallback, ReviewsData } from "@/lib/types";
+import type { Branch, BranchesPageContent, HomeCallback } from "@/lib/types";
 import { BranchCard } from "./BranchCard";
-import { BranchReviews } from "./BranchReviews";
 import styles from "./BranchesView.module.css";
 
-type Props = { content: BranchesPageContent; branches: Branch[]; reviews: ReviewsData; callback: HomeCallback };
+type Props = { content: BranchesPageContent; branches: Branch[]; callback: HomeCallback };
 
-/** /filialy/: верх страницы → 2 широкие карточки филиалов → рейтинги и отзывы → «Перезвоните мне». */
-export function BranchesView({ content, branches, reviews, callback }: Props) {
+/** /filialy/: верх страницы → 2 широкие карточки филиалов → «Перезвоните мне». */
+export function BranchesView({ content, branches, callback }: Props) {
   return (
     <div className={styles.page}>
       <div className="container">
@@ -18,10 +17,6 @@ export function BranchesView({ content, branches, reviews, callback }: Props) {
           {branches.map((b) => (
             <BranchCard key={b.id} branch={b} texts={content} />
           ))}
-        </div>
-
-        <div className={styles.reviews}>
-          <BranchReviews data={reviews} texts={content.reviews} />
         </div>
 
         <section id="callback" className={styles.callback} aria-labelledby="callback-title">

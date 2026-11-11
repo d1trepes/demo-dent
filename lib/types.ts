@@ -1103,12 +1103,7 @@ export type BranchesPageContent = {
     url: string;
     label: string;
     note: string;
-  };
-  reviews: {
-    title: string;
-    lead: string;
-    countForms: [string, string, string];
-    ratingOf: string;
+    caption: string;
   };
   callback: { title: string; subtitle: string; sourceLabel: string };
 };

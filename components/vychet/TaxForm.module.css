@@ -26,9 +26,21 @@
   line-height: 1.3;
 }
 
-/* Сегмент «Сам / Родственник» — по высоте поля 56 */
-.segment {
+/* legend не участвует в grid-gap — отступ задаём ему самому */
+legend.label {
+  margin-bottom: var(--space-2);
+}
+
+/* Сегмент «Сам / Родственник» — во всю ширину колонки, две равные половины, высота как у поля 56 */
+.group .segment {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-bottom: 0;
+}
+
+.group .segment > button {
+  min-height: 46px;
+  padding: 0 var(--space-3);
 }
 
 .methods {

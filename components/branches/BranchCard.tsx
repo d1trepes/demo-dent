@@ -27,7 +27,10 @@ export function BranchCard({ branch, texts }: Props) {
           ))}
         </div>
         <div className={styles.map}>
-          <p className={styles.mapAddress}>{branch.address}</p>
+          <p className={styles.mapAddress}>
+            <span className={styles.mapCaption}>{map.caption}</span>
+            {branch.address}
+          </p>
           <a className={styles.mapLink} href={mapUrl} target="_blank" rel="noopener">
             {map.label}
             <span className="visually-hidden"> — {map.note}</span>

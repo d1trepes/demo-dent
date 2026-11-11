@@ -61,10 +61,6 @@ export function DoctorProfile({ doctor, specialty, branches, directions, texts, 
   return (
     <div className={styles.page}>
       <div className="container">
-        <Link href="/vrachi/" className={styles.back}>
-          {texts.back}
-        </Link>
-
         <section className={styles.hero}>
           <div className={styles.photo}>
             <img src={asset(doctor.photo)} width={720} height={960} alt={doctor.fullName} decoding="async" />
@@ -85,9 +81,12 @@ export function DoctorProfile({ doctor, specialty, branches, directions, texts, 
               ))}
             </ul>
             <p className={styles.about}>{doctor.about}</p>
-            <ButtonLink href={`/zapis/?doctor=${doctor.slug}`} className={styles.book}>
-              {texts.book}
-            </ButtonLink>
+            <div className={styles.actions}>
+              <ButtonLink href={`/zapis/?doctor=${doctor.slug}`}>{texts.book}</ButtonLink>
+              <ButtonLink href="/vrachi/" variant="secondary">
+                {texts.back}
+              </ButtonLink>
+            </div>
           </div>
         </section>
 

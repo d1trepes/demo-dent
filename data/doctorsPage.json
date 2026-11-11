@@ -24,7 +24,7 @@
   },
   "profile": {
     "metaTitle": "{name} — {specialty}",
-    "back": "Все врачи",
+    "back": "Другие врачи",
     "experience": "Стаж {years}",
     "book": "Записаться к врачу",
     "slots": {
