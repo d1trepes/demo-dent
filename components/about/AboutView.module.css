@@ -12,6 +12,8 @@
 }
 
 .introText {
+  display: flex;
+  flex-direction: column;
   padding: var(--space-8);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
@@ -33,6 +35,39 @@
 
 .paragraph + .paragraph {
   margin-top: var(--space-4);
+}
+
+/* Факты прижаты к низу карточки: высоту задают фото, пустоты нет */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: auto 0 0;
+  padding-top: var(--space-8);
+}
+
+.fact {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+}
+
+.factValue {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--color-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.factLabel {
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--color-text-muted);
 }
 
 .photo {

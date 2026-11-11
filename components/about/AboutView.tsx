@@ -11,6 +11,12 @@ type Props = { content: AboutContent; clinic: Clinic; branches: Branch[]; doctor
 /** /o-klinike/: о клинике → сведения о медорганизации (#svedeniya) → сводная таблица врачей. */
 export function AboutView({ content, clinic, branches, doctors }: Props) {
   const { intro, info } = content;
+  const facts = [
+    { label: intro.facts.founded, value: clinic.foundedYear },
+    { label: intro.facts.branches, value: branches.length },
+    { label: intro.facts.doctors, value: doctors.length },
+    { label: intro.facts.chairs, value: branches.reduce((sum, b) => sum + b.chairs, 0) },
+  ];
   return (
     <div className={styles.page}>
       <div className="container">
@@ -26,6 +32,14 @@ export function AboutView({ content, clinic, branches, doctors }: Props) {
                 {fill(p, { year: clinic.foundedYear })}
               </p>
             ))}
+            <dl className={styles.facts}>
+              {facts.map((f) => (
+                <div key={f.label} className={styles.fact}>
+                  <dt className={styles.factLabel}>{f.label}</dt>
+                  <dd className={styles.factValue}>{f.value}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
           {intro.photos.map((photo) => (
             <img

@@ -584,7 +584,12 @@ export type AboutContent = {
   metaTitle: string;
   title: string;
   lead: string;
-  intro: { title: string; paragraphs: string[]; photos: ImageRef[] };
+  intro: {
+    title: string;
+    paragraphs: string[];
+    photos: ImageRef[];
+    facts: Record<"founded" | "branches" | "doctors" | "chairs", string>;
+  };
   info: {
     title: string;
     labels: Record<ClinicInfoField, string>;

@@ -17,7 +17,10 @@ export function DocumentsView({ texts, files, legalDocs }: Props) {
       <div className="container">
         <PageHead title={texts.title} lead={texts.lead} />
 
-        <section className={styles.group} aria-label={texts.filesTitle}>
+        <section className={styles.group} aria-labelledby="docs-files">
+          <h2 id="docs-files" className={styles.groupTitle}>
+            {texts.filesTitle}
+          </h2>
           <ul className={styles.list}>
             {files.map((f) => (
               <li key={f.id}>
