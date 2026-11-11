@@ -49,7 +49,7 @@ type Values = z.infer<ReturnType<typeof schemaFor>>;
 
 /**
  * Заявка на справку для налогового вычета. Медицинских полей нет — согласие на данные о здоровье не нужно.
- * Отправка — createTaxCertificateRequest из lib/api.ts (заглушка), заявка — в adminStore для /admin/.
+ * Отправка — createTaxCertificateRequest из lib/api.ts (заглушка), заявка — в adminStore (хранилище заявок демо).
  */
 export function TaxForm({ texts, branches }: { texts: Texts; branches: Branch[] }) {
   const addTaxRequest = useAdminStore((s) => s.addTaxRequest);

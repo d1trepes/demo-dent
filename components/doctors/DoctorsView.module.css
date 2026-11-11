@@ -52,3 +52,32 @@
   margin: -10px 0 0;
   color: var(--color-text-muted);
 }
+
+/* Мобильная версия (чат 8): одна колонка, боковая колонка — над контентом */
+@media (max-width: 1023px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+  }
+}
+
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+  .page {
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-16);
+  }
+  .lead {
+    font-size: var(--text-base);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

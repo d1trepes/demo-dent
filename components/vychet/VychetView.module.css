@@ -81,3 +81,14 @@
   margin-top: 96px;
   scroll-margin-top: 120px;
 }
+
+@media (max-width: 1023px) {
+  .card {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-6) var(--space-5);
+    margin-top: var(--space-6);
+  }
+  .aside {
+    order: -1;
+  }
+}

@@ -174,3 +174,19 @@
     transition: none;
   }
 }
+
+@media (max-width: 767px) {
+  .row {
+    gap: var(--space-4);
+    min-height: 60px;
+    padding: var(--space-3) var(--space-4);
+    font-size: 16px;
+  }
+  .price {
+    font-size: 16px;
+  }
+  .item + .item::before {
+    right: var(--space-4);
+    left: var(--space-4);
+  }
+}

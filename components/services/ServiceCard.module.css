@@ -180,3 +180,23 @@ img.photoImg {
     transition: none;
   }
 }
+
+@media (max-width: 1023px) {
+  .wide {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+  }
+  .wide .photo {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+  .wide .body {
+    padding: var(--space-5) var(--space-2) var(--space-1);
+  }
+  .wide .name {
+    font-size: 24px;
+  }
+  .wide .price {
+    font-size: 22px;
+  }
+}

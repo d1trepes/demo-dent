@@ -82,3 +82,14 @@
     transition: none;
   }
 }
+
+@media (max-width: 1023px) {
+  .segments {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .segment {
+    flex: none;
+    white-space: nowrap;
+  }
+}

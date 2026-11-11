@@ -110,3 +110,10 @@
     animation: none;
   }
 }
+
+@media (max-width: 767px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-1);
+  }
+}

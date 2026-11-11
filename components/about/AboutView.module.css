@@ -97,3 +97,20 @@
   line-height: 1.5;
   color: var(--color-text-muted);
 }
+
+@media (max-width: 1023px) {
+  .intro {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .introText {
+    grid-column: 1 / -1;
+    padding: var(--space-6) var(--space-5);
+  }
+  .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: var(--space-5);
+  }
+  .page {
+    padding-bottom: var(--space-16);
+  }
+}

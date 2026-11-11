@@ -7,7 +7,7 @@ import styles from "./MobileBar.module.css";
 export async function MobileBar() {
   const clinic = await getClinic();
   return (
-    <div className={styles.bar}>
+    <div className={styles.bar} data-mobile-bar>
       <a href={clinic.phoneHref} className={buttonClass({ variant: "secondary", block: true })}>
         Позвонить
       </a>

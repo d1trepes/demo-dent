@@ -465,3 +465,45 @@
     transition: none;
   }
 }
+
+@media (max-width: 1023px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+  }
+  .aside {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .stage {
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: var(--space-3) var(--space-4);
+  }
+  .stage > :last-child {
+    grid-column: 2;
+  }
+  .switchGroups {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+@media (max-width: 767px) {
+  .main,
+  .card,
+  .panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .head,
+  .apRow,
+  .planFoot,
+  .taxCta {
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+  .card {
+    padding: var(--space-5);
+  }
+}

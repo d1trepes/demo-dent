@@ -32,7 +32,7 @@ type Values = z.infer<ReturnType<typeof schemaFor>>;
 /**
  * Форма «Перезвоните мне» (блок 8): имя, телефон, отдельное согласие на ПДн.
  * Повода и свободного текста нет — согласие на данные о здоровье не нужно.
- * Отправка — только createCallbackRequest из lib/api.ts (заглушка), заявка — в adminStore для /admin/.
+ * Отправка — только createCallbackRequest из lib/api.ts (заглушка), заявка — в adminStore (хранилище заявок демо).
  * source — откуда пришла заявка (по умолчанию главная; /rassrochka/ передаёт свою).
  */
 export function CallbackForm({ texts, source = HOME_SOURCE }: { texts: Texts; source?: Source }) {

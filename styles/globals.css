@@ -88,8 +88,11 @@ img {
 
 /* Отступ под мобильную нижнюю панель «Позвонить | Записаться» */
 @media (max-width: 767px) {
-  body {
+  body:has([data-mobile-bar]) {
     padding-bottom: var(--mobile-bar-h);
+  }
+  body:not(:has([data-mobile-bar])) {
+    --mobile-bar-h: 0px;
   }
 }
 

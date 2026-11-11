@@ -65,3 +65,21 @@
     transition: none;
   }
 }
+
+@media (max-width: 767px) {
+  .group {
+    padding: var(--space-6) var(--space-1) var(--space-1);
+  }
+  .head {
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    padding: 0 var(--space-4) var(--space-4);
+  }
+  .titleWrap {
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-3);
+  }
+  .title {
+    font-size: 26px;
+  }
+}

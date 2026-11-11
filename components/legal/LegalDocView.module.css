@@ -98,3 +98,21 @@
     transition: none;
   }
 }
+
+/* Мобильная версия (чат 8): одна колонка, боковая колонка — над контентом */
+@media (max-width: 1023px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+  }
+}
+
+@media (max-width: 1023px) {
+  .aside {
+    display: none;
+  }
+  .card {
+    padding: var(--space-6) var(--space-5);
+  }
+}

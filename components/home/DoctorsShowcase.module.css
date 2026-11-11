@@ -179,7 +179,9 @@
   }
 
   .thumbs li {
-    width: var(--small);
+    flex: 0 1 var(--small);
+    width: auto;
+    min-width: 0;
   }
 
   /* Первый маленький — слева от большого, низ на одной линии с ним */

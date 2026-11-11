@@ -267,3 +267,15 @@
     justify-self: end;
   }
 }
+
+.slim {
+  margin-top: var(--space-8);
+  display: grid;
+  gap: var(--space-1);
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-6);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  text-align: center;
+}

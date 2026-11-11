@@ -170,3 +170,30 @@
     transition: none;
   }
 }
+
+/* Мобильная: не липнет, направления — лентой со свайпом */
+@media (max-width: 1023px) {
+  .aside {
+    position: static;
+    padding: var(--space-2);
+  }
+  .cats {
+    display: flex;
+    gap: var(--space-2);
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin: 0 calc(-1 * var(--space-2));
+    padding: 0 var(--space-2);
+  }
+  .cats::-webkit-scrollbar {
+    display: none;
+  }
+  .cat {
+    flex: none;
+    width: auto;
+    white-space: nowrap;
+  }
+  .note {
+    display: none;
+  }
+}

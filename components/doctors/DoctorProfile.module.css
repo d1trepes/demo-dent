@@ -220,3 +220,30 @@
     transition: none;
   }
 }
+
+@media (max-width: 1023px) {
+  .hero,
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-8);
+  }
+  .photo {
+    max-width: 420px;
+    max-height: none;
+  }
+}
+@media (max-width: 767px) {
+  .table {
+    display: block;
+    overflow-x: auto;
+    font-size: 15px;
+  }
+  .table th,
+  .table td {
+    padding: var(--space-3) var(--space-4);
+    white-space: nowrap;
+  }
+  .page {
+    padding-bottom: var(--space-16);
+  }
+}
