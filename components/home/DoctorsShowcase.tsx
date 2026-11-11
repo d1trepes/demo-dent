@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import { asset } from "@/lib/asset";
 import { ButtonLink } from "@/components/ui/Button";
@@ -70,9 +69,9 @@ export function DoctorsShowcase({ doctors, photo, labels }: Props) {
         <p className={styles.about}>{active.about}</p>
         <div className={styles.actions}>
           <ButtonLink href={`/zapis/?doctor=${active.slug}`}>{labels.book}</ButtonLink>
-          <Link href={`/vrachi/${active.slug}/`} className={styles.profile}>
+          <ButtonLink href={`/vrachi/${active.slug}/`} variant="secondary">
             {labels.profile}
-          </Link>
+          </ButtonLink>
         </div>
       </div>
 

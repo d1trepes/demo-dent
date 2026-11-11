@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { getBranches, getHomeContent } from "@/lib/api";
 import { asset } from "@/lib/asset";
 import type { Picture } from "@/lib/types";
+import { ButtonLink } from "@/components/ui/Button";
 import { RevealTitle } from "@/components/ui/RevealTitle";
 import styles from "./Branches.module.css";
 
@@ -49,9 +49,9 @@ export async function Branches() {
                     <h3 className={styles.cardTitle}>«{branch.name}»</h3>
                     <p className={styles.subtitle}>{card.subtitle}</p>
                   </div>
-                  <Link href={content.routeLink.href} className={styles.route}>
+                  <ButtonLink href={content.routeLink.href} variant="secondary">
                     {content.routeLink.label}
-                  </Link>
+                  </ButtonLink>
                 </div>
                 <div className={styles.cardPhotos}>
                   {card.photos.map((p) => (

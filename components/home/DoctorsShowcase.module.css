@@ -82,25 +82,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-6);
+  gap: var(--space-3);
   margin-top: var(--space-6);
-}
-
-.profile {
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--tap);
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--color-text);
-  text-decoration: underline;
-  text-decoration-color: var(--color-line);
-  text-underline-offset: 6px;
-  transition: text-decoration-color var(--dur) var(--ease);
-}
-
-.profile:hover {
-  text-decoration-color: currentColor;
 }
 
 /* Ряд маленьких фото: на мобильном — прокрутка по горизонтали */
