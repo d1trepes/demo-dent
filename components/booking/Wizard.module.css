@@ -231,3 +231,11 @@ button.progressHit:focus-visible {
     flex: 1 1 auto;
   }
 }
+
+@media (max-width: 767px) {
+  .footer > a,
+  .footer > button {
+    flex: 1 1 0;
+    width: auto;
+  }
+}

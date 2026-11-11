@@ -115,3 +115,9 @@
     color: rgb(255 255 255 / 0.85);
   }
 }
+
+@media (max-width: 767px) {
+  .action {
+    width: 100%;
+  }
+}

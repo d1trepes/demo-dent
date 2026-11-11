@@ -14,8 +14,10 @@ import styles from "./ImplantScroll.module.css";
  * Подписи появляются только у самого разбора: --k = 0 пока детали сомкнуты, 1 — полный разбор.
  */
 
-/** Работает только на десктопе без reduced-motion; иначе — статичный кадр и список (CSS). */
-const SCENE_QUERY = "(min-width: 1024px) and (prefers-reduced-motion: no-preference)";
+/** Сцена по скроллу везде без reduced-motion (8А-2: и на мобильном); иначе — статичный кадр и список (CSS). */
+const SCENE_QUERY = "(prefers-reduced-motion: no-preference)";
+/** На мобильном закреплена только сцена в своей обёртке, на десктопе — вся секция. */
+const DESKTOP_QUERY = "(min-width: 1024px)";
 /** Доля отрезка (от разбора), на которой подписи уже исчезли / ещё полностью видны. */
 const REVEAL_FROM = 0.15;
 const REVEAL_FULL = 0.04;
@@ -55,14 +57,17 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
   const trackRef = useRef<HTMLDivElement>(null);
   const figureRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const sceneTrackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const track = trackRef.current;
     const figure = figureRef.current;
     const video = videoRef.current;
-    if (!track || !figure || !video) return;
+    const sceneTrack = sceneTrackRef.current;
+    if (!track || !figure || !video || !sceneTrack) return;
 
     const mq = window.matchMedia(SCENE_QUERY);
+    const desktop = window.matchMedia(DESKTOP_QUERY);
     let frame = 0;
     let visible = false;
     let current = -1;
@@ -74,9 +79,10 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
     const tick = () => {
       frame = 0;
       const T = duration();
-      const rect = track.getBoundingClientRect();
-      const distance = rect.height - window.innerHeight;
-      const p = distance > 0 ? clamp(-rect.top / distance) : 0;
+      const rect = (desktop.matches ? track : sceneTrack).getBoundingClientRect();
+      const stickTop = desktop.matches ? 0 : parseFloat(getComputedStyle(figure).top) || 0;
+      const distance = rect.height - (desktop.matches ? window.innerHeight : figure.offsetHeight);
+      const p = distance > 0 ? clamp((stickTop - rect.top) / distance) : 0;
       const share = shareAt(p);
 
       current = current < 0 ? share : current + (share - current) * EASE;
@@ -163,6 +169,7 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
           ))}
         </div>
 
+        <div ref={sceneTrackRef} className={styles.sceneTrack}>
         <div
           ref={figureRef}
           className={styles.scene}
@@ -186,6 +193,7 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
               <Callout key={part.id} part={part} index={i} />
             ))}
           </ul>
+        </div>
         </div>
 
         <div className={styles.static}>

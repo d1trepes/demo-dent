@@ -42,15 +42,22 @@
 }
 
 /* ---- Фото ---- */
+/* Мобильный (8А-2): портрет по пояс в плашке tint — ноги не обрезаются посередине кадра */
 .photo {
   grid-area: photo;
   display: flex;
   justify-content: center;
+  height: 260px;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-tint);
 }
 
 .photo img {
   width: auto;
-  height: 280px;
+  height: 580px;
+  max-width: none;
+  margin-top: var(--space-5);
 }
 
 /* ---- Форма ---- */
@@ -150,10 +157,15 @@
     grid-column: 7 / 13;
     grid-row: 1 / 3;
     position: relative;
+    height: auto;
     margin: calc(-1 * var(--space-16)) 0;
+    overflow: visible;
+    border-radius: 0;
+    background: none;
   }
 
   .photo img {
+    margin-top: 0;
     position: absolute;
     bottom: 0;
     left: 50%;

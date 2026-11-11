@@ -9,6 +9,7 @@ import styles from "./Hero.module.css";
  * Блок 1 главной — «Ветвь ясеня» (docs/DESIGN.md, холст «Ясень — идеи первого экрана», артборд 2).
  * Синяя плашка с «Лечим всей / СЕМЬЁЙ», врач в овале, от овала вниз — стебель с тремя парами листьев.
  * Все размеры сцены — в единицах макета (--u), сцена масштабируется по ширине контейнера.
+ * Мобильный (8А-2): без стебля и листьев, под овалом — «Записаться» и «Познакомиться с врачами».
  */
 export async function Hero() {
   const { hero } = await getHomeContent();
@@ -45,6 +46,16 @@ export async function Hero() {
           </div>
 
           <ButtonLink href={hero.doctorsLink.href} variant="secondary" className={styles.doctors}>
+            {hero.doctorsLink.label}
+          </ButtonLink>
+        </div>
+
+        {/* Мобильный: главное действие сразу под врачом, во всю ширину */}
+        <div className={styles.ctas}>
+          <ButtonLink href={hero.bookingLink.href} block>
+            {hero.bookingLink.label}
+          </ButtonLink>
+          <ButtonLink href={hero.doctorsLink.href} variant="secondary" block>
             {hero.doctorsLink.label}
           </ButtonLink>
         </div>

@@ -717,6 +717,8 @@ export type HomeHero = {
   /** Врач в овале, снят на фоне цвета плашки. */
   photo: Picture;
   doctorsLink: HomeLink;
+  /** Главное действие на мобильном первом экране */
+  bookingLink: HomeLink;
   /** 6 листьев (640×640): на мобильном остаётся только нижняя пара. */
   leaves: HeroLeaf[];
 };

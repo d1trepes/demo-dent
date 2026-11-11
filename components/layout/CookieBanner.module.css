@@ -2,7 +2,7 @@
   position: fixed;
   left: var(--gutter);
   right: var(--gutter);
-  bottom: calc(var(--mobile-bar-h) + var(--space-2));
+  bottom: var(--space-2);
   z-index: 50;
   max-width: 560px;
   padding: var(--space-4);

@@ -45,6 +45,7 @@ export async function Doctors() {
             doctors={cards}
             photo={content.photo}
             labels={{ book: content.bookLabel, profile: content.profileLabel, thumbs: content.thumbsLabel }}
+            allDoctors={content.allDoctors}
           />
         </div>
       </div>

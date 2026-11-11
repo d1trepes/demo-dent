@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { bookingHref, loginHref, type NavItem } from "@/lib/nav";
 import type { WorkHours } from "@/lib/types";
 import styles from "./MobileMenu.module.css";
@@ -18,6 +18,7 @@ type Props = {
 export function MobileMenu({ nav, phone, phoneHref, hours }: Props) {
   const [open, setOpen] = useState(false);
   const [openedAt, setOpenedAt] = useState<string | null>(null);
+  const [group, setGroup] = useState<string | null>(null);
   const pathname = usePathname();
   const panelId = useId();
 
@@ -63,8 +64,16 @@ export function MobileMenu({ nav, phone, phoneHref, hours }: Props) {
               <li key={item.href}>
                 {item.children ? (
                   <>
-                    <span className={styles.group}>{item.label}</span>
-                    <ul className={styles.sublist}>
+                    <button
+                      type="button"
+                      className={styles.link}
+                      aria-expanded={group === item.href}
+                      onClick={() => setGroup((g) => (g === item.href ? null : item.href))}
+                    >
+                      {item.label}
+                      <ChevronDown aria-hidden size={22} className={styles.chevron} />
+                    </button>
+                    <ul className={styles.sublist} hidden={group !== item.href}>
                       {item.children.map((child) => (
                         <li key={child.href}>
                           <Link href={child.href} className={styles.link}>
@@ -100,6 +109,9 @@ export function MobileMenu({ nav, phone, phoneHref, hours }: Props) {
           <Link href={bookingHref} className={styles.cta}>
             Записаться
           </Link>
+          <a href={phoneHref} className={styles.call}>
+            Позвонить
+          </a>
         </div>
       </div>
     </>

@@ -4,7 +4,6 @@ import { Footer } from "@/components/layout/Footer";
 import { FooterSlim } from "@/components/layout/FooterSlim";
 import { PathGate } from "@/components/layout/PathGate";
 import { Header } from "@/components/layout/Header";
-import { MobileBar } from "@/components/layout/MobileBar";
 import "@fontsource/prata/400.css";
 import "@fontsource/golos-text/400.css";
 import "@fontsource/golos-text/500.css";
@@ -40,9 +39,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <PathGate paths={WORK_SCREENS} mode="except">
           <Footer />
-        </PathGate>
-        <PathGate paths={[...WORK_SCREENS, "/kabinet/"]} mode="except">
-          <MobileBar />
         </PathGate>
         <PathGate paths={WORK_SCREENS} mode="on">
           <FooterSlim />

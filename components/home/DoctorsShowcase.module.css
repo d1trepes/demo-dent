@@ -198,3 +198,21 @@
     display: none;
   }
 }
+
+/* Мобильный (8А-2): под врачом «Записаться» + «Все врачи» на всю ширину, «О враче» — только десктоп */
+@media (max-width: 1023px) {
+  .actions .desktopOnly {
+    display: none;
+  }
+  .actions {
+    display: grid;
+    justify-self: stretch;
+    gap: var(--space-3);
+  }
+}
+
+@media (min-width: 1024px) {
+  .actions .mobileOnly {
+    display: none;
+  }
+}

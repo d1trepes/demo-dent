@@ -19,6 +19,7 @@ type Props = {
   doctors: DoctorCard[];
   photo: { width: number; height: number };
   labels: { book: string; profile: string; thumbs: string };
+  allDoctors: { href: string; label: string };
 };
 
 /** «Ковалёва Мария Андреевна» → фамилия отдельной строкой. */
@@ -32,7 +33,7 @@ function splitName(fullName: string): [string, string] {
  * под текстом ряд маленьких. order[0] — большой врач, order[1] — маленький слева, остальные — справа.
  * Клик по маленькому — врачи меняются местами.
  */
-export function DoctorsShowcase({ doctors, photo, labels }: Props) {
+export function DoctorsShowcase({ doctors, photo, labels, allDoctors }: Props) {
   const [order, setOrder] = useState(() => doctors.map((d) => d.slug));
   const bySlug = new Map(doctors.map((d) => [d.slug, d]));
   const active = bySlug.get(order[0]);
@@ -69,8 +70,11 @@ export function DoctorsShowcase({ doctors, photo, labels }: Props) {
         <p className={styles.about}>{active.about}</p>
         <div className={styles.actions}>
           <ButtonLink href={`/zapis/?doctor=${active.slug}`}>{labels.book}</ButtonLink>
-          <ButtonLink href={`/vrachi/${active.slug}/`} variant="secondary">
+          <ButtonLink href={`/vrachi/${active.slug}/`} variant="secondary" className={styles.desktopOnly}>
             {labels.profile}
+          </ButtonLink>
+          <ButtonLink href={allDoctors.href} variant="secondary" className={styles.mobileOnly}>
+            {allDoctors.label}
           </ButtonLink>
         </div>
       </div>

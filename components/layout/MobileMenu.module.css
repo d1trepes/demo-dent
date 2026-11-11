@@ -17,7 +17,7 @@
   inset: var(--header-h) 0 0;
   z-index: 30;
   overflow-y: auto;
-  padding: var(--space-4) var(--gutter) calc(var(--mobile-bar-h) + var(--space-6));
+  padding: var(--space-4) var(--gutter) var(--space-6);
   background: var(--color-bg);
 }
 
@@ -32,20 +32,40 @@
   padding: 0;
 }
 
+/* «Пациентам» — раскрывается по нажатию (8А-2) */
 .sublist {
-  padding-left: var(--space-4);
+  padding: 0 0 var(--space-2) var(--space-4);
+  border-left: 2px solid var(--color-tint);
+  margin-left: 2px;
 }
 
-.group {
-  display: block;
-  padding-top: var(--space-4);
+.sublist .link {
+  min-height: 48px;
+  font-size: var(--text-base);
   color: var(--color-text-muted);
-  font-size: var(--text-sm);
+}
+
+.chevron {
+  margin-left: auto;
+  color: var(--color-text-muted);
+  transition: rotate var(--dur) var(--ease);
+}
+
+[aria-expanded="true"] > .chevron {
+  rotate: 180deg;
 }
 
 .link {
   display: flex;
   align-items: center;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
   min-height: 52px;
   font-size: var(--text-lg);
   font-weight: 500;
@@ -75,6 +95,19 @@
   font-weight: 500;
   background: var(--color-accent);
   color: var(--color-accent-contrast);
+  text-decoration: none;
+}
+
+.call {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  margin-top: var(--space-3);
+  border: 1px solid var(--color-text);
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+  color: var(--color-text);
   text-decoration: none;
 }
 

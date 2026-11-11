@@ -28,14 +28,14 @@
   width: 100%;
   max-width: 520px;
   margin: 0 auto;
-  aspect-ratio: 335 / 566;
+  aspect-ratio: 335 / 425;
 }
 
 /* ---- Синяя плашка ---- */
 .plate {
   position: absolute;
   inset: 0 0 auto;
-  height: calc(330 * var(--u));
+  height: calc(340 * var(--u));
   border-radius: var(--radius-lg);
   background: var(--color-primary);
 }
@@ -47,7 +47,7 @@
 /* ---- Заголовок ---- */
 .title {
   position: absolute;
-  inset: calc(30 * var(--u)) 0 auto;
+  inset: calc(34 * var(--u)) 0 auto;
   z-index: 1;
   margin: 0;
   font-weight: 400;
@@ -79,21 +79,42 @@
   text-transform: uppercase;
 }
 
-/* ---- Врач в овале: верх чуть перекрывает «СЕМЬЁЙ», низ выходит за плашку ---- */
+/* ---- Врач в овале: ниже «СЕМЬЁЙ» с воздухом, низ выходит за плашку.
+   Обводка двухцветная (8А-2): на синем — белая, на фоне страницы — кобальт. --split — где кончается плашка ---- */
 .oval {
+  --split: calc(168 * var(--u));
   position: absolute;
   left: calc(82.5 * var(--u));
-  top: calc(128 * var(--u));
+  top: calc(172 * var(--u));
   z-index: 3;
   width: calc(170 * var(--u));
   height: calc(245 * var(--u));
   overflow: hidden;
-  border: 4px solid var(--color-primary-contrast);
   border-radius: 50%;
   background: var(--color-primary);
 }
 
+.oval::before,
+.oval::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.oval::before {
+  box-shadow: inset 0 0 0 4px var(--color-primary);
+}
+
+.oval::after {
+  box-shadow: inset 0 0 0 4px var(--color-primary-contrast);
+  clip-path: inset(0 0 calc(100% - var(--split)) 0);
+}
+
 .oval img {
+  position: relative;
   display: block;
   width: 100%;
   height: 100%;
@@ -185,9 +206,10 @@
   border-color: var(--color-primary-contrast);
 }
 
-/* Мобильный: только нижняя пара, по бокам от стебля */
-.top,
-.middle {
+/* Мобильный: листьев и стебля нет — только плашка и врач (8А-2) */
+.leaf,
+.branchMobile,
+.stage .doctors {
   display: none;
 }
 
@@ -223,6 +245,13 @@
   background: var(--color-bg);
 }
 
+
+.ctas {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 520px;
+  margin: var(--space-8) auto 0;
+}
 
 /* ---- Десктоп: макет 1360 × 772, три пары листьев ---- */
 @media (min-width: 1024px) {
@@ -279,6 +308,7 @@
   }
 
   .oval {
+    --split: calc(306 * var(--u));
     left: calc(515 * var(--u));
     top: calc(214 * var(--u));
     width: calc(330 * var(--u));
@@ -293,9 +323,17 @@
     display: none;
   }
 
-  .top,
-  .middle {
+  .leaf {
     display: block;
+  }
+
+  .stage .doctors {
+    display: inline-flex;
+    width: auto;
+  }
+
+  .ctas {
+    display: none;
   }
 
   /* Размеры 150 / 180 / 210, фото непрозрачные; появляются снизу вверх */

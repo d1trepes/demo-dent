@@ -86,15 +86,6 @@ img {
   top: var(--space-2);
 }
 
-/* Отступ под мобильную нижнюю панель «Позвонить | Записаться» */
-@media (max-width: 767px) {
-  body:has([data-mobile-bar]) {
-    padding-bottom: var(--mobile-bar-h);
-  }
-  body:not(:has([data-mobile-bar])) {
-    --mobile-bar-h: 0px;
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   *,

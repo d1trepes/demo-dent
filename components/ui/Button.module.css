@@ -55,3 +55,12 @@
   cursor: progress;
   transform: none;
 }
+
+/* Мобильный (8А-2): кнопки во всю ширину колонки */
+@media (max-width: 767px) {
+  .button {
+    width: 100%;
+    padding-inline: var(--space-5);
+    white-space: normal;
+  }
+}
