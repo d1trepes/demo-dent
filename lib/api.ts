@@ -14,6 +14,7 @@ import legalData from "@/data/legal.json";
 import patientData from "@/data/patient.json";
 import pricesData from "@/data/prices.json";
 import promosData from "@/data/promos.json";
+import akciiData from "@/data/akcii.json";
 import rassrochkaData from "@/data/rassrochka.json";
 import reasonsData from "@/data/reasons.json";
 import reviewsData from "@/data/reviews.json";
@@ -54,6 +55,7 @@ import type {
   PatientSeed,
   PayStageResult,
   Promo,
+  PromosContent,
   Reason,
   ReminderSettings,
   PricesContent,
@@ -221,6 +223,10 @@ export function getReasons(): Promise<Reason[]> {
 
 export function getPromos(): Promise<Promo[]> {
   return respond(promos);
+}
+
+export function getPromosContent(): Promise<PromosContent> {
+  return respond(akciiData as PromosContent);
 }
 
 export function getReviews(): Promise<ReviewsData> {

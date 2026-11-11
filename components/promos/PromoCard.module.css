@@ -1,0 +1,188 @@
+.card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-placeholder);
+}
+
+.img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease);
+}
+
+.card:hover .img {
+  transform: scale(1.04);
+}
+
+/* Срок — белой пилюлей на фото, как подписи деталей импланта */
+.until {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.body {
+  display: grid;
+  align-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-6) var(--space-4) var(--space-2);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.text {
+  margin: var(--space-2) 0 0;
+  max-width: 52ch;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.terms {
+  margin-top: var(--space-4);
+  border-top: 1px solid var(--color-line);
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--tap);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  list-style: none;
+  transition: color var(--dur) var(--ease);
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Плюс → минус, без иконок-эмодзи */
+.summary::after {
+  content: "+";
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+  transition: transform var(--dur) var(--ease);
+}
+
+.terms[open] .summary::after {
+  transform: rotate(45deg);
+}
+
+.summary:hover,
+.summary:focus-visible {
+  color: var(--color-primary);
+}
+
+.termsText {
+  margin: 0 0 var(--space-2);
+  max-width: 56ch;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.foot {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  margin: 0 calc(var(--space-2) * -1);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+}
+
+.value {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+}
+
+.valueNum {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--color-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.valueLabel {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* Широкая: фото слева на колонку сетки, текст справа (как широкая карточка /uslugi/) */
+.wide {
+  grid-column: 1 / -1;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: none;
+  column-gap: 48px;
+}
+
+.wide .photo {
+  aspect-ratio: auto;
+  min-height: 360px;
+}
+
+.wide .title {
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.wide .text {
+  margin-top: var(--space-3);
+  font-size: var(--text-base);
+}
+
+.wide .foot {
+  grid-template-columns: auto auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-4) var(--space-4) var(--space-5);
+  margin: 0 0 0 calc(var(--space-1) * -1);
+}
+
+.wide .valueNum {
+  font-size: 44px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .img,
+  .summary,
+  .summary::after {
+    transition: none;
+  }
+}

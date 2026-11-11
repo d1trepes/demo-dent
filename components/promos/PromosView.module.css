@@ -1,0 +1,36 @@
+/* Отступ на внешней обёртке, как у /uslugi/ и /rassrochka/ */
+.page {
+  padding-top: var(--space-8);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--display-2);
+}
+
+.lead {
+  max-width: 760px;
+  margin: var(--space-4) 0 0;
+  font-size: var(--text-lg);
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+.list {
+  margin-top: var(--space-10);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6);
+}
+
+.note {
+  margin-top: var(--space-6);
+}
+
+.callback {
+  margin-top: 96px;
+  scroll-margin-top: 120px;
+}

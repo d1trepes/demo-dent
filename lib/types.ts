@@ -486,6 +486,24 @@ export type Promo = {
   directionId: string;
   validUntil: string;
   conditions: string;
+  /** Крупная цифра акции: «0 ₽», «−20%». */
+  value: string;
+  valueLabel: string;
+  image: string;
+  /** id позиции прайса — для ?service= в мастере. */
+  serviceId: string;
+};
+
+export type PromosContent = {
+  metaTitle: string;
+  title: string;
+  lead: string;
+  /** {date} — «31 декабря». */
+  until: string;
+  termsLabel: string;
+  book: string;
+  about: string;
+  callback: { title: string; subtitle: string; sourceLabel: string };
 };
 
 export type PlatformRating = {
