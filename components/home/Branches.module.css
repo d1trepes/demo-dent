@@ -94,8 +94,6 @@
   color: var(--color-text-muted);
 }
 
-/* «Как добраться» — текстовая ссылка с подчёркиванием, зона нажатия 44 px */
-
 /* ---- Доп. фото 1:1 ---- */
 .extras {
   display: grid;
@@ -142,6 +140,8 @@
     grid-row: 1 / 4;
     justify-self: end;
     align-content: start;
+    /* Обе карточки одной высоты — по самой высокой */
+    grid-auto-rows: 1fr;
     width: 100%;
     max-width: 640px;
   }
@@ -153,16 +153,19 @@
     padding: var(--space-6);
   }
 
+  /* Текст и фото по одной высоте: название — по верху фото, кнопка — по низу, поля карточки 24 со всех сторон */
   .cardText {
-    padding: var(--space-2) 0 0 var(--space-2);
+    padding: 0 0 0 var(--space-2);
   }
 
   .cardPhotos {
     order: 0;
     grid-template-columns: repeat(2, clamp(120px, 11vw, 168px));
+    align-items: stretch;
   }
 
   .cardPhoto {
-    aspect-ratio: 1;
+    aspect-ratio: auto;
+    min-height: clamp(120px, 11vw, 168px);
   }
 }
