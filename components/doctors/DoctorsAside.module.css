@@ -17,13 +17,13 @@
   padding-top: 0;
 }
 
-/* Филиал: три сегмента в капсуле на фоне страницы */
+/* Филиал: три сегмента в капсуле с обводкой — как сегменты мастера записи и /vychet/, без тени */
 .segments {
   display: flex;
-  gap: 2px;
-  padding: 4px;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border: 1px solid var(--color-line);
   border-radius: var(--radius-pill);
-  background: var(--color-bg);
 }
 
 .segment,
@@ -53,10 +53,9 @@
 }
 
 .segment[aria-pressed="true"] {
-  background: var(--color-surface);
-  color: var(--color-primary);
+  background: var(--color-tint);
+  color: var(--color-primary-deep);
   font-weight: 500;
-  box-shadow: var(--shadow-soft);
 }
 
 /* «Принимает детей» — отдельный чип-переключатель */
