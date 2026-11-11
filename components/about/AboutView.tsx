@@ -1,4 +1,3 @@
-import { ButtonLink } from "@/components/ui/Button";
 import { PageHead } from "@/components/ui/PageHead";
 import { asset } from "@/lib/asset";
 import { fill } from "@/lib/format";
@@ -9,7 +8,7 @@ import styles from "./AboutView.module.css";
 
 type Props = { content: AboutContent; clinic: Clinic; branches: Branch[]; doctors: Doctor[] };
 
-/** /o-klinike/: о клинике → сведения о медорганизации (#svedeniya) → сводная таблица врачей → документы. */
+/** /o-klinike/: о клинике → сведения о медорганизации (#svedeniya) → сводная таблица врачей. */
 export function AboutView({ content, clinic, branches, doctors }: Props) {
   const { intro, info } = content;
   return (
@@ -57,11 +56,6 @@ export function AboutView({ content, clinic, branches, doctors }: Props) {
           <DoctorsTable doctors={doctors} branches={branches} texts={content.doctors} />
         </section>
 
-        <div className={styles.footerLink}>
-          <ButtonLink href="/o-klinike/dokumenty/" variant="secondary">
-            {content.documentsLink}
-          </ButtonLink>
-        </div>
       </div>
     </div>
   );

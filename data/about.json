@@ -9,8 +9,18 @@
       "Филиал «Центр» на Вязовой — КТ, хирургия и имплантация. «Академический» на Липовой аллее — детский кабинет и семейный приём. Оба работают без выходных, рассрочка — без переплаты и без банка."
     ],
     "photos": [
-      { "src": "/images/branches/extra-01.webp", "alt": "Кабинет терапевта в филиале «Центр»", "width": 800, "height": 800 },
-      { "src": "/images/branches/extra-02.webp", "alt": "Зона ожидания в филиале «Академический»", "width": 800, "height": 800 }
+      {
+        "src": "/images/branches/extra-01.webp",
+        "alt": "Кабинет терапевта в филиале «Центр»",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "src": "/images/branches/extra-02.webp",
+        "alt": "Зона ожидания в филиале «Академический»",
+        "width": 800,
+        "height": 800
+      }
     ]
   },
   "info": {
@@ -48,9 +58,16 @@
     "accreditation": "Аккредитация",
     "certificate": "Сертификат",
     "validUntil": "действует до",
-    "weekdays": ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
+    "weekdays": [
+      "Пн",
+      "Вт",
+      "Ср",
+      "Чт",
+      "Пт",
+      "Сб",
+      "Вс"
+    ]
   },
-  "documentsLink": "Документы клиники",
   "documents": {
     "metaTitle": "Документы клиники",
     "title": "Документы",
@@ -59,9 +76,18 @@
     "fileLabel": "PDF, скачать",
     "textsTitle": "Персональные данные",
     "legalPages": [
-      { "id": "privacy", "href": "/privacy/" },
-      { "id": "consent", "href": "/soglasie/" },
-      { "id": "healthConsent", "href": "/soglasie-zdorovye/" }
+      {
+        "id": "privacy",
+        "href": "/privacy/"
+      },
+      {
+        "id": "consent",
+        "href": "/soglasie/"
+      },
+      {
+        "id": "healthConsent",
+        "href": "/soglasie-zdorovye/"
+      }
     ],
     "pageLabel": "Открыть"
   },

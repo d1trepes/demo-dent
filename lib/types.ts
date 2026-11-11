@@ -593,7 +593,6 @@ export type AboutContent = {
     registryLink: string;
   };
   doctors: DoctorsTableTexts;
-  documentsLink: string;
   documents: {
     metaTitle: string;
     title: string;
