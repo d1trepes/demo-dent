@@ -10,6 +10,7 @@ import bookingData from "@/data/booking.json";
 import branchesData from "@/data/branches.json";
 import clinicData from "@/data/clinic.json";
 import doctorsData from "@/data/doctors.json";
+import doctorsPageData from "@/data/doctorsPage.json";
 import homeData from "@/data/home.json";
 import legalData from "@/data/legal.json";
 import patientData from "@/data/patient.json";
@@ -44,6 +45,7 @@ import type {
   Doctor,
   HomeContent,
   DoctorFilters,
+  DoctorsPageContent,
   DoctorsData,
   ImplantParams,
   ImplantResult,
@@ -241,6 +243,11 @@ export function getReviews(): Promise<ReviewsData> {
 }
 
 /* ---------- Врачи ---------- */
+
+/** Тексты /vrachi/ и карточки врача. */
+export function getDoctorsPageContent(): Promise<DoctorsPageContent> {
+  return respond(doctorsPageData as DoctorsPageContent);
+}
 
 export function getSpecialties(): Promise<SpecialtyInfo[]> {
   return respond(doctors.specialties);

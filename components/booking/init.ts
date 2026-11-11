@@ -1,7 +1,8 @@
-/** Предзаполнение мастера из адреса: ?service= (id услуги или направления) &doctor= (slug или id) &branch= &reason= &mode=urgent|unknown &sum= &months= (рассрочка). */
+/** Предзаполнение мастера из адреса: ?service= (id услуги или направления) &doctor= (slug или id) &branch= &slot= (с карточки врача) &reason= &mode=urgent|unknown &sum= &months= (рассрочка). */
 import { installment } from "@/lib/calc";
 import { fill, formatNumber } from "@/lib/format";
-import type { BookingData, BookingInstallment, BranchId } from "@/lib/types";
+import { doctorSlots } from "@/lib/slots";
+import type { BookingData, BookingDoctor, BookingInstallment, BranchId, Slot } from "@/lib/types";
 import type { BookingDraft, BookingStep } from "@/store/bookingStore";
 
 const BRANCH_IDS: readonly BranchId[] = ["center", "akadem"];
@@ -43,8 +44,13 @@ export function initFromParams(params: URLSearchParams, data: BookingData): Part
         ? doctor.branches[0]
         : null;
 
+  // ?slot= с карточки врача: время ещё свободно → сразу шаг «Контакты», направление — первое у врача
+  const slot = doctor && branchId ? freeSlot(doctor, branchId, params.get("slot")) : null;
+  const slotDirectionId = slot && doctor ? (directionId ?? doctor.directions.find((id) => directions.some((d) => d.id === id)) ?? null) : null;
+
   let step: BookingStep = 1;
   if (directionId) step = branchId ? 3 : 2;
+  if (slot && slotDirectionId) step = 4;
 
   const plan = installmentFromParams(params, data);
   const query = params.toString();
@@ -61,11 +67,12 @@ export function initFromParams(params: URLSearchParams, data: BookingData): Part
   return {
     mode: reason || (!direction && params.get("mode") === "unknown") ? "unknown" : "planned",
     step,
-    directionId,
+    directionId: slotDirectionId ?? directionId,
     serviceId: item?.id ?? null,
     reasonId: reason?.id ?? null,
     doctorId: doctor?.id ?? null,
     branchId,
+    ...(slot && slotDirectionId ? { slot } : {}),
     ...(plan ? { installment: plan } : {}),
     source: { page: query ? `/zapis/?${query}` : "/zapis/", label },
   };
@@ -78,4 +85,11 @@ function installmentFromParams(params: URLSearchParams, data: BookingData): Book
   const months = Number(params.get("months"));
   if (!Number.isFinite(sum) || sum < terms.minSum || sum > terms.maxSum || !terms.months.includes(months)) return null;
   return { sum, months, monthly: installment(sum, months, terms).monthly };
+}
+
+/** Слот из адреса, только если он есть среди свободных у врача в этом филиале. */
+function freeSlot(doctor: BookingDoctor, branchId: BranchId, value: string | null): Slot | null {
+  if (!value || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(value)) return null;
+  const found = doctorSlots(doctor, value.slice(0, 10)).find((s) => s.start === value && s.branchId === branchId);
+  return found ?? null;
 }

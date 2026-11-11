@@ -225,6 +225,59 @@ export type DoctorFilters = {
 
 export type SpecialtyInfo = { id: Specialty; title: string; plural: string };
 
+/** Тексты /vrachi/ и карточки врача — data/doctorsPage.json. */
+export type DoctorsPageContent = {
+  metaTitle: string;
+  title: string;
+  lead: string;
+  list: {
+    specialtyLabel: string;
+    allSpecialties: string;
+    branchLabel: string;
+    allBranches: string;
+    kids: string;
+    experience: string;
+    nearest: string;
+    nearestLoading: string;
+    nearestNone: string;
+    today: string;
+    tomorrow: string;
+    book: string;
+    about: string;
+    empty: { title: string; text: string; reset: string };
+  };
+  profile: {
+    metaTitle: string;
+    back: string;
+    experience: string;
+    book: string;
+    slots: {
+      title: string;
+      lead: string;
+      loading: string;
+      empty: string;
+      noneWeek: string;
+      today: string;
+      dayParts: Record<"morning" | "day" | "evening", string>;
+    };
+    qualification: {
+      title: string;
+      lead: string;
+      specialty: string;
+      position: string;
+      category: string;
+      noCategory: string;
+      education: string;
+      accreditation: string;
+      certificate: string;
+      certTemplate: string;
+    };
+    directionsTitle: string;
+    schedule: { title: string; day: string; hours: string; branch: string; dayOff: string; weekdays: string[] };
+    callback: { title: string; subtitle: string; sourceLabel: string };
+  };
+};
+
 export type DoctorsData = {
   specialties: SpecialtyInfo[];
   doctors: Doctor[];
@@ -821,7 +874,7 @@ export type BookingItem = Pick<PriceItem, "id" | "directionId" | "title" | "pric
 
 export type BookingDoctor = Pick<
   Doctor,
-  "id" | "slug" | "fullName" | "specialty" | "position" | "experienceSince" | "branches" | "directions" | "acceptsKids" | "photo"
+  "id" | "slug" | "fullName" | "specialty" | "position" | "experienceSince" | "branches" | "directions" | "acceptsKids" | "photo" | "slotMin" | "schedule"
 >;
 
 /** Всё, что мастеру нужно «с сервера»: страница собирает это при сборке через lib/api.ts. */

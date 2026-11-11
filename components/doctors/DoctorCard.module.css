@@ -1,0 +1,82 @@
+.card {
+  display: grid;
+  grid-template-columns: 172px minmax(0, 1fr);
+  gap: var(--space-6);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.photo {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-placeholder);
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: var(--space-2) var(--space-2) 0 0;
+}
+
+.specialty {
+  margin: 0;
+  font-size: 15px;
+  color: var(--color-primary);
+}
+
+.name {
+  margin: 6px 0 0;
+  font-family: var(--font-text);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.25;
+  transition: color var(--dur) var(--ease);
+}
+
+.card:hover .name {
+  color: var(--color-primary);
+}
+
+.meta {
+  margin: var(--space-3) 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.nearest {
+  margin: var(--space-3) 0 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-5);
+}
+
+.button {
+  flex: 1 1 auto;
+  min-height: 48px;
+  padding-inline: var(--space-5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .name {
+    transition: none;
+  }
+}

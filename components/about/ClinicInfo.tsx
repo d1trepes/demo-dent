@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { AboutContent, Branch, Clinic, ClinicInfoField } from "@/lib/types";
 import { fill, formatDate } from "@/lib/format";
+import { InfoRows } from "./InfoRows";
 import styles from "./ClinicInfo.module.css";
 
 type Props = { clinic: Clinic; branches: Branch[]; texts: AboutContent["info"] };
@@ -60,14 +61,5 @@ export function ClinicInfo({ clinic, branches, texts }: Props) {
     ],
   ];
 
-  return (
-    <dl className={styles.card}>
-      {rows.map(([field, value]) => (
-        <div key={field} className={styles.row}>
-          <dt className={styles.label}>{texts.labels[field]}</dt>
-          <dd className={styles.value}>{value}</dd>
-        </div>
-      ))}
-    </dl>
-  );
+  return <InfoRows rows={rows.map(([field, value]) => ({ key: field, label: texts.labels[field], value }))} />;
 }

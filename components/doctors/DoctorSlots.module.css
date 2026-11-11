@@ -1,0 +1,21 @@
+/* Время — ссылки в мастер, внешне как кнопки шага «Время» */
+.times {
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+
+.time {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.time:hover {
+  background: var(--color-tint);
+  color: var(--color-primary);
+}
+
+.date:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

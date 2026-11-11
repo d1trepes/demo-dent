@@ -28,7 +28,7 @@ export async function getBookingData(): Promise<BookingData> {
     })),
     reasons,
     branches,
-    doctors: doctors.map(({ id, slug, fullName, specialty, position, experienceSince, branches: doctorBranches, directions, acceptsKids, photo }) => ({
+    doctors: doctors.map(({ id, slug, fullName, specialty, position, experienceSince, branches: doctorBranches, directions, acceptsKids, photo, slotMin, schedule }) => ({
       id,
       slug,
       fullName,
@@ -39,6 +39,8 @@ export async function getBookingData(): Promise<BookingData> {
       directions,
       acceptsKids,
       photo,
+      slotMin,
+      schedule,
     })),
     specialties,
     installment,

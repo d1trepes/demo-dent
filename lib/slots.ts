@@ -33,7 +33,7 @@ type GenerateOptions = {
 };
 
 /** Свободные слоты врача на день. */
-export function doctorSlots(doctor: Doctor, date: string, options: GenerateOptions = {}): Slot[] {
+export function doctorSlots(doctor: Pick<Doctor, "id" | "schedule" | "slotMin">, date: string, options: GenerateOptions = {}): Slot[] {
   const now = options.now ?? clinicNow();
   if (date < now.date) return [];
   const weekday = weekdayOf(date);
