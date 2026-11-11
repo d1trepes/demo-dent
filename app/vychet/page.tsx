@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { PageStub } from "@/components/ui/PageStub";
+import { VychetView } from "@/components/vychet/VychetView";
+import { getBranches, getHomeContent, getVychetContent } from "@/lib/api";
 
-export const metadata: Metadata = { title: "Налоговый вычет" };
+export async function generateMetadata(): Promise<Metadata> {
+  const { metaTitle } = await getVychetContent();
+  return { title: metaTitle };
+}
 
-export default function VychetPage() {
-  return <PageStub title="Налоговый вычет за лечение" chat={5} />;
+export default async function VychetPage() {
+  const [content, branches, { callback }] = await Promise.all([getVychetContent(), getBranches(), getHomeContent()]);
+  return <VychetView content={content} branches={branches} callback={callback} />;
 }

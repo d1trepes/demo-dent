@@ -1,0 +1,18 @@
+.page {
+  padding-top: var(--space-8);
+}
+
+.list {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-10);
+}
+
+.reviews {
+  margin-top: 96px;
+}
+
+.callback {
+  margin-top: 96px;
+  scroll-margin-top: 120px;
+}

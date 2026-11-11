@@ -414,6 +414,7 @@
       "relation": "self",
       "patientName": null,
       "method": "fns",
+      "branchId": null,
       "phone": "+7 922 000-31-08",
       "created": {
         "day": 0,
@@ -429,6 +430,7 @@
       "relation": "child",
       "patientName": "Шарова Полина Алексеевна",
       "method": "paper",
+      "branchId": "center",
       "phone": "+7 908 000-12-90",
       "created": {
         "day": -2,
@@ -444,6 +446,7 @@
       "relation": "spouse",
       "patientName": "Носкова Елена Викторовна",
       "method": "paper",
+      "branchId": "akadem",
       "phone": "+7 912 000-77-45",
       "created": {
         "day": -5,
@@ -459,6 +462,7 @@
       "relation": "self",
       "patientName": null,
       "method": "fns",
+      "branchId": null,
       "phone": "+7 912 000-36-54",
       "created": {
         "day": -12,

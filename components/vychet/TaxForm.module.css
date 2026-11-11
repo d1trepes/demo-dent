@@ -1,0 +1,84 @@
+.form {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: var(--space-5);
+}
+
+.group {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.label {
+  padding: 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Сегмент «Сам / Родственник» — по высоте поля 56 */
+.segment {
+  margin-bottom: 0;
+}
+
+.methods {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.submitError {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--color-danger);
+}
+
+.success {
+  display: grid;
+  justify-items: start;
+  align-content: start;
+  gap: var(--space-4);
+  border-radius: var(--radius-sm);
+}
+
+.success:focus {
+  outline: none;
+}
+
+.success:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 8px;
+}
+
+.successTitle {
+  max-width: 32ch;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.successText {
+  max-width: 56ch;
+  margin-bottom: var(--space-4);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}

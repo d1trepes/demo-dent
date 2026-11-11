@@ -450,6 +450,8 @@ export type TaxCertificatePayload = {
   relation: TaxPatientRelation;
   patientName: string | null;
   method: TaxMethod;
+  /** Филиал, где забрать бумажную справку; для передачи в ФНС — null. */
+  branchId: BranchId | null;
   phone: string;
   consents: Consents;
 };
@@ -464,6 +466,7 @@ export type TaxRequest = {
   relation: TaxPatientRelation;
   patientName: string | null;
   method: TaxMethod;
+  branchId: BranchId | null;
   phone: string;
 };
 
@@ -1072,5 +1075,91 @@ export type RassrochkaContent = {
   };
   manifesto: HomeManifesto;
   plan: PlanContent;
+  callback: { title: string; subtitle: string; sourceLabel: string };
+};
+
+/* ---------- /filialy/ (чат 5В) ---------- */
+
+export type BranchesPageContent = {
+  metaTitle: string;
+  title: string;
+  lead: string;
+  labels: {
+    address: string;
+    hours: string;
+    phone: string;
+    howToGet: string;
+    parking: string;
+    /** {n} — число кресел. */
+    chairs: string;
+    ct: string;
+    kidsRoom: string;
+  };
+  photos: Record<BranchId, Picture[]>;
+  book: string;
+  doctors: string;
+  map: {
+    /** Шаблон ссылки: {lat}, {lng} из branches.json → coords. */
+    url: string;
+    label: string;
+    note: string;
+  };
+  reviews: {
+    title: string;
+    lead: string;
+    countForms: [string, string, string];
+    ratingOf: string;
+  };
+  callback: { title: string; subtitle: string; sourceLabel: string };
+};
+
+/* ---------- /vychet/ (чат 5В) ---------- */
+
+export type VychetContent = {
+  metaTitle: string;
+  title: string;
+  lead: string;
+  howTitle: string;
+  plan: PlanContent;
+  form: {
+    title: string;
+    lead: string;
+    taxpayerName: string;
+    taxpayerInn: string;
+    innHint: string;
+    year: string;
+    relation: string;
+    relationSelf: string;
+    relationOther: string;
+    patientName: string;
+    kinship: string;
+    kinshipOptions: { id: Exclude<TaxPatientRelation, "self">; label: string }[];
+    method: string;
+    methods: { id: TaxMethod; title: string; text: string }[];
+    branch: string;
+    branchPlaceholder: string;
+    phone: string;
+    consentLabel: string;
+    consentDocLabel: string;
+    policyLabel: string;
+    submit: string;
+    sending: string;
+    errors: {
+      name: string;
+      inn: string;
+      patientName: string;
+      branch: string;
+      phone: string;
+      consent: string;
+      submit: string;
+    };
+    /** {id}, {days} */
+    success: string;
+    successMethod: Record<TaxMethod, string>;
+    readyDays: number;
+    dayForms: [string, string, string];
+    again: string;
+  };
+  aside: { title: string; items: string[]; note: string };
   callback: { title: string; subtitle: string; sourceLabel: string };
 };

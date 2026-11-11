@@ -1,0 +1,83 @@
+.page {
+  padding-top: var(--space-8);
+}
+
+/* Белая карточка: слева форма, справа «Что понадобится» на --color-bg, как плашка цены */
+.card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: var(--space-8);
+  margin-top: var(--space-10);
+  padding: var(--space-10);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  scroll-margin-top: 120px;
+}
+
+.main {
+  min-width: 0;
+}
+
+.formTitle {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.formLead {
+  margin: var(--space-2) 0 var(--space-8);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.aside {
+  align-self: start;
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+}
+
+.asideTitle {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.asideList {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding-left: 1.1em;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.asideNote {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-line);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.how {
+  margin-top: 96px;
+}
+
+.howTitle {
+  margin: 0;
+  font-size: 48px;
+  line-height: 1.12;
+  text-align: center;
+}
+
+.callback {
+  margin-top: 96px;
+  scroll-margin-top: 120px;
+}

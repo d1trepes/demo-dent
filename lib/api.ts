@@ -8,6 +8,7 @@ import aboutData from "@/data/about.json";
 import adminData from "@/data/admin.json";
 import bookingData from "@/data/booking.json";
 import branchesData from "@/data/branches.json";
+import branchesPageData from "@/data/branchesPage.json";
 import clinicData from "@/data/clinic.json";
 import doctorsData from "@/data/doctors.json";
 import doctorsPageData from "@/data/doctorsPage.json";
@@ -24,6 +25,7 @@ import servicePageTextsData from "@/data/servicePage.json";
 import servicePagesData from "@/data/servicePages.json";
 import servicesIndexData from "@/data/servicesIndex.json";
 import servicesData from "@/data/services.json";
+import vychetData from "@/data/vychet.json";
 import { implant, installment } from "./calc";
 import { clinicNow, fromRelative, relativeDay } from "./dates";
 import { slotsForDoctors } from "./slots";
@@ -64,6 +66,8 @@ import type {
   ReminderSettings,
   PricesContent,
   RassrochkaContent,
+  BranchesPageContent,
+  VychetContent,
   InstallmentTerms,
   ReviewsData,
   ServiceDetails,
@@ -153,6 +157,16 @@ export function getHomeContent(): Promise<HomeContent> {
 /** Тексты /o-klinike/, /o-klinike/dokumenty/ и юр.страниц. */
 export function getAboutContent(): Promise<AboutContent> {
   return respond(aboutData as AboutContent);
+}
+
+/** Тексты /filialy/. */
+export function getBranchesPageContent(): Promise<BranchesPageContent> {
+  return respond(branchesPageData as BranchesPageContent);
+}
+
+/** Тексты /vychet/. */
+export function getVychetContent(): Promise<VychetContent> {
+  return respond(vychetData as VychetContent);
 }
 
 export function getBranches(): Promise<Branch[]> {
@@ -389,6 +403,7 @@ export function updateReminderSettings(settings: ReminderSettings): Promise<Remi
 export async function createTaxCertificateRequest(payload: TaxCertificatePayload): Promise<TaxRequest> {
   if (!payload.consents.personalData) throw new ApiError("validation", "Нужно согласие на обработку персональных данных");
   if (!/^\d{12}$/.test(payload.taxpayerInn)) throw new ApiError("validation", "ИНН физлица — 12 цифр");
+  if (payload.method === "paper" && !payload.branchId) throw new ApiError("validation", "Выберите филиал для бумажной справки");
   const request: TaxRequest = {
     id: newId("tx"),
     createdAt: nowMoment(),
@@ -399,6 +414,7 @@ export async function createTaxCertificateRequest(payload: TaxCertificatePayload
     relation: payload.relation,
     patientName: payload.patientName,
     method: payload.method,
+    branchId: payload.method === "paper" ? payload.branchId : null,
     phone: payload.phone,
   };
   return respond(request);

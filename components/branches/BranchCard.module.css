@@ -1,0 +1,183 @@
+/* Как широкая карточка /uslugi/: белая, поля 12, две равные колонки, текст через 48 от медиа */
+.card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 48px;
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.media {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: var(--space-3);
+}
+
+.photos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  min-height: 320px;
+}
+
+.photos img {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  background: var(--color-placeholder);
+}
+
+/* Карта-заглушка: без iframe и внешних скриптов */
+.map {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 120px;
+  padding: var(--space-5) var(--space-6);
+  border-radius: var(--radius-md);
+  background: var(--color-placeholder);
+}
+
+.mapAddress {
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.mapLink {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  min-height: var(--tap);
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-primary);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.mapLink:hover {
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+}
+
+.body {
+  display: grid;
+  align-content: start;
+  gap: var(--space-6);
+  padding: var(--space-6) var(--space-4) var(--space-4) 0;
+}
+
+.name {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.district {
+  margin-top: var(--space-1);
+  font-size: 15px;
+  color: var(--color-text-muted);
+}
+
+/* Факты на --color-bg, как цена в широкой карточке /uslugi/ */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+}
+
+.facts dt {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.facts dd {
+  margin: var(--space-1) 0 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.phone {
+  color: inherit;
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.phone:hover {
+  color: var(--color-primary);
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pills li {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.route {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-6);
+}
+
+.subtitle {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-text);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.list {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: 1.1em;
+}
+
+.list,
+.text {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mapLink {
+    transition: none;
+  }
+}
