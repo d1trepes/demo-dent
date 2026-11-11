@@ -13,6 +13,7 @@ import clinicData from "@/data/clinic.json";
 import doctorsData from "@/data/doctors.json";
 import doctorsPageData from "@/data/doctorsPage.json";
 import homeData from "@/data/home.json";
+import kabinetData from "@/data/kabinet.json";
 import legalData from "@/data/legal.json";
 import patientData from "@/data/patient.json";
 import pricesData from "@/data/prices.json";
@@ -69,6 +70,7 @@ import type {
   BranchesPageContent,
   VychetContent,
   InstallmentTerms,
+  KabinetContent,
   ReviewsData,
   ServiceDetails,
   ServicePageTexts,
@@ -349,6 +351,10 @@ export async function createCallbackRequest(payload: CallbackPayload): Promise<C
 }
 
 /* ---------- Кабинет ---------- */
+
+export function getKabinetContent(): Promise<KabinetContent> {
+  return respond(kabinetData as KabinetContent);
+}
 
 export async function requestSmsCode(phone: string): Promise<SmsCodeResult> {
   if (phone.replace(/\D/g, "").length !== 11) throw new ApiError("validation", "Проверьте номер телефона");

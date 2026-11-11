@@ -1,0 +1,69 @@
+.page {
+  padding: var(--space-16) 0 var(--space-24);
+}
+
+/* Белая карточка по центру, как карточки /vychet/ */
+.card {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 520px;
+  margin: 0 auto;
+  padding: var(--space-10);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.demo {
+  justify-self: start;
+  margin: 0;
+  padding: 6px var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--color-tint);
+  font-size: var(--text-sm);
+  color: var(--color-primary-deep);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.lead,
+.sentTo,
+.hint,
+.resend {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.hint {
+  margin-top: calc(var(--space-3) * -1);
+  font-size: var(--text-sm);
+}
+
+.resend {
+  text-align: center;
+  font-size: var(--text-sm);
+}
+
+.link {
+  min-height: var(--tap);
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}

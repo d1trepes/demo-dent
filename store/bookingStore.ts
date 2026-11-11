@@ -4,7 +4,6 @@
  * Созданная запись попадает в кабинет пациента и в панель администратора.
  */
 import { create } from "zustand";
-import { ApiError, createAppointment } from "@/lib/api";
 import { clinicNow } from "@/lib/dates";
 import type { Appointment, AppointmentSource, BookingInstallment, BranchId, Slot } from "@/lib/types";
 import { useAdminStore } from "./adminStore";
@@ -47,7 +46,7 @@ type BookingState = Draft & {
   reset: () => void;
 };
 
-const initialDraft: Draft = {
+export const initialDraft: Draft = {
   mode: "planned",
   step: 1,
   directionId: null,
@@ -80,6 +79,7 @@ export const useBookingStore = create<BookingState>()((set, get) => ({
       return null;
     }
     set({ submitting: true, error: null, errorCode: null });
+    const { ApiError, createAppointment } = await import("@/lib/api");
     try {
       const result = await createAppointment({
         directionId: d.directionId,

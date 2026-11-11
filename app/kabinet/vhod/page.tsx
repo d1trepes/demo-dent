@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { PageStub } from "@/components/ui/PageStub";
+import { LoginView } from "@/components/kabinet/LoginView";
+import { getKabinetContent } from "@/lib/api";
 
-export const metadata: Metadata = { title: "Вход в кабинет" };
+export async function generateMetadata(): Promise<Metadata> {
+  const { login } = await getKabinetContent();
+  return { title: login.metaTitle };
+}
 
-export default function KabinetVhodPage() {
-  return <PageStub title="Вход в личный кабинет" chat={6} />;
+export default async function KabinetVhodPage() {
+  const { login } = await getKabinetContent();
+  return <LoginView texts={login} />;
 }

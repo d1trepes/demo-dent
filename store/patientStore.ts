@@ -4,16 +4,6 @@
  */
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import {
-  cancelAppointment,
-  getAppointments,
-  getReminderSettings,
-  getTreatmentPlan,
-  payPlanStage,
-  rescheduleAppointment,
-  updateReminderSettings,
-  verifySmsCode,
-} from "@/lib/api";
 import type { Appointment, PatientProfile, ReminderSettings, Slot, TreatmentPlan } from "@/lib/types";
 import { useAdminStore } from "./adminStore";
 import { safeJSONStorage } from "./safeStorage";
@@ -41,19 +31,29 @@ export const usePatientStore = create<PatientState>()(
       plan: null,
       reminders: null,
       signIn: async (phone, code) => {
-        const profile = await verifySmsCode(phone, code);
-        const [seeded, plan, reminders] = await Promise.all([getAppointments(), getTreatmentPlan(), getReminderSettings()]);
+        const api = await import("@/lib/api");
+        const profile = await api.verifySmsCode(phone, code);
+        const [seeded, plan, reminders] = await Promise.all([
+          api.getAppointments(),
+          api.getTreatmentPlan(),
+          api.getReminderSettings(),
+        ]);
+        const { createdAppointments, statusOverrides } = useAdminStore.getState();
         const known = new Set(get().appointments.map((a) => a.id));
+        const fresh = [...createdAppointments, ...seeded].filter((a) => !known.has(a.id) && (known.add(a.id), true));
         set((s) => ({
           profile,
           plan,
           reminders,
-          appointments: [...s.appointments, ...seeded.filter((a) => !known.has(a.id))],
+          appointments: [...s.appointments, ...fresh].map((a) =>
+            statusOverrides[a.id] ? { ...a, status: statusOverrides[a.id] } : a,
+          ),
         }));
       },
       signOut: () => set({ profile: null, plan: null, reminders: null, appointments: [] }),
       addAppointment: (appointment) => set((s) => ({ appointments: [appointment, ...s.appointments] })),
       reschedule: async (id, slot) => {
+        const { rescheduleAppointment } = await import("@/lib/api");
         const result = await rescheduleAppointment(id, slot);
         set((s) => ({
           appointments: s.appointments.map((a) =>
@@ -65,11 +65,13 @@ export const usePatientStore = create<PatientState>()(
         useAdminStore.getState().moveAppointment(id, result.start);
       },
       cancel: async (id) => {
+        const { cancelAppointment } = await import("@/lib/api");
         const result = await cancelAppointment(id);
         set((s) => ({ appointments: s.appointments.map((a) => (a.id === id ? { ...a, status: result.status } : a)) }));
         await useAdminStore.getState().setStatus(id, result.status);
       },
       payStage: async (stageId) => {
+        const { payPlanStage } = await import("@/lib/api");
         await payPlanStage(stageId);
         set((s) => {
           if (!s.plan) return {};
@@ -78,6 +80,7 @@ export const usePatientStore = create<PatientState>()(
         });
       },
       setReminders: async (settings) => {
+        const { updateReminderSettings } = await import("@/lib/api");
         set({ reminders: await updateReminderSettings(settings) });
       },
     }),

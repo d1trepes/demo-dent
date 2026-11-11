@@ -1158,3 +1158,82 @@ export type VychetContent = {
   aside: { title: string; items: string[]; note: string };
   callback: { title: string; subtitle: string; sourceLabel: string };
 };
+
+/* ---------- Тексты кабинета (data/kabinet.json) ---------- */
+
+export type LoginContent = {
+  metaTitle: string;
+  title: string;
+  lead: string;
+  demoNote: string;
+  phoneLabel: string;
+  getCode: string;
+  sending: string;
+  sentTo: string;
+  changePhone: string;
+  codeLabel: string;
+  codeHint: string;
+  resendIn: string;
+  resend: string;
+  submit: string;
+  checking: string;
+  errors: { phone: string; code: string; submit: string };
+};
+
+export type CabinetContent = {
+  metaTitle: string;
+  greeting: string;
+  lead: string;
+  signOut: string;
+  book: HomeLink;
+  redirecting: string;
+  tocLabel: string;
+  sections: Record<CabinetSectionId, string>;
+  error: string;
+  appointments: {
+    empty: string;
+    pastTitle: string;
+    reschedule: string;
+    cancel: string;
+    cancelQuestion: string;
+    cancelYes: string;
+    cancelNo: string;
+    rescheduleTitle: string;
+    rescheduleSave: string;
+    close: string;
+    saving: string;
+    urgent: string;
+    statuses: Record<AppointmentStatus, string>;
+  };
+  plan: {
+    note: string;
+    doctorLabel: string;
+    createdLabel: string;
+    total: string;
+    paid: string;
+    left: string;
+    paidBadge: string;
+    pay: string;
+    installment: HomeLink;
+    stageStatuses: Record<PlanStageStatus, string>;
+    dialog: { title: string; demo: string; sumLabel: string; confirm: string; paying: string; cancel: string };
+    paidToast: string;
+  };
+  documents: {
+    fileLabel: string;
+    tax: { title: string; text: string; label: string; href: string };
+  };
+  reminders: {
+    lead: string;
+    channelsTitle: string;
+    channels: Record<ReminderChannel, string>;
+    timingTitle: string;
+    before24h: string;
+    before2h: string;
+    saved: string;
+  };
+};
+
+export type CabinetSectionId = "appointments" | "plan" | "documents" | "reminders";
+
+export type KabinetContent = { login: LoginContent; cabinet: CabinetContent };
