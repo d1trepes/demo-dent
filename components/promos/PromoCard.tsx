@@ -18,7 +18,7 @@ export function PromoCard({ promo, wide, texts }: Props) {
     <article className={cx(styles.card, wide && styles.wide)} aria-labelledby={titleId}>
       <div className={styles.photo}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className={styles.img} src={asset(promo.image)} alt="" width={800} height={800} loading="lazy" />
+        <img className={styles.img} src={asset(promo.image)} alt="" width={800} height={800} loading="lazy" decoding="async" />
         <span className={styles.until}>{fill(texts.until, { date: formatDayMonth(promo.validUntil) })}</span>
       </div>
 

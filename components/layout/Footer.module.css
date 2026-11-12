@@ -7,7 +7,7 @@
 .footer {
   --footer-muted: rgb(255 255 255 / 0.8);
   --footer-line: rgb(255 255 255 / 0.2);
-  margin-top: var(--section-gap);
+  margin-top: var(--footer-gap);
   padding-bottom: var(--gutter);
 }
 

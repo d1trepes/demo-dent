@@ -1,6 +1,5 @@
 .page {
   padding-top: var(--space-6);
-  padding-bottom: var(--space-24);
 }
 
 /* Верх: фото 5 колонок, текст справа */
@@ -242,8 +241,5 @@
   .table td {
     padding: var(--space-3) var(--space-4);
     white-space: nowrap;
-  }
-  .page {
-    padding-bottom: var(--space-16);
   }
 }

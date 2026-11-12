@@ -40,7 +40,8 @@ legend.label {
 
 .group .segment > button {
   min-height: 46px;
-  padding: 0 var(--space-3);
+  padding: 0 var(--space-2);
+  white-space: nowrap;
 }
 
 .methods {

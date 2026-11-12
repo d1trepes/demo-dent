@@ -83,13 +83,20 @@
   }
 }
 
+/* Мобильная: три филиала делят капсулу поровну, «Принимает детей» — во всю ширину */
 @media (max-width: 1023px) {
-  .segments {
-    overflow-x: auto;
-    scrollbar-width: none;
+  .top {
+    padding: var(--space-2) 0 var(--space-4);
+  }
+  .label {
+    padding-left: var(--space-2);
   }
   .segment {
-    flex: none;
+    flex: 1 1 auto;
+    padding: 0 var(--space-2);
     white-space: nowrap;
+  }
+  .toggle {
+    justify-self: stretch;
   }
 }

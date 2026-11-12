@@ -40,9 +40,10 @@ img.photoImg {
   color: var(--color-text-muted);
 }
 
-.card:hover .photoImg,
-.card:focus-visible .photoImg {
-  transform: scale(1.04);
+@media (hover: hover) {
+  .card:hover .photoImg {
+    transform: scale(1.04);
+  }
 }
 
 .body {
@@ -109,20 +110,30 @@ img.photoImg {
     border-color var(--dur) var(--ease);
 }
 
-.card:hover .name,
-.card:hover .price,
-.card:hover .price small,
 .card:focus-visible .name,
 .card:focus-visible .price,
 .card:focus-visible .price small {
   color: var(--color-primary);
 }
 
-.card:hover .more,
 .card:focus-visible .more {
   border-color: var(--color-primary);
   background: var(--color-primary);
   color: var(--color-primary-contrast);
+}
+
+/* Наведение — только там, где есть мышь: на телефоне после тапа карточка не «залипает» синей */
+@media (hover: hover) {
+  .card:hover .name,
+  .card:hover .price,
+  .card:hover .price small {
+    color: var(--color-primary);
+  }
+  .card:hover .more {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: var(--color-primary-contrast);
+  }
 }
 
 /* Широкая: фото ровно по колонке сетки, текст — там же, где текст второй колонки (column-gap 48 = 24 зазор + 2×12 поля карточек) */
@@ -190,13 +201,28 @@ img.photoImg {
     min-height: 0;
     aspect-ratio: 16 / 10;
   }
+  /* На мобильном широкая карточка выглядит как обычная: без плашки цены и подписи «Цена» */
   .wide .body {
-    padding: var(--space-5) var(--space-2) var(--space-1);
+    padding: var(--space-6) var(--space-4) var(--space-2);
   }
   .wide .name {
     font-size: 24px;
+    line-height: 1.25;
+  }
+  .wide .short {
+    margin-top: var(--space-2);
+    font-size: 15px;
+  }
+  .wide .foot {
+    margin-left: 0;
+    padding: 0;
+    background: none;
   }
   .wide .price {
     font-size: 22px;
+    color: inherit;
+  }
+  .wide .priceLabel {
+    display: none;
   }
 }

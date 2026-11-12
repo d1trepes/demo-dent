@@ -55,7 +55,7 @@
     "innHint": "12 цифр",
     "year": "Год оплаты лечения",
     "relation": "Кто лечился",
-    "relationSelf": "Сам налогоплательщик",
+    "relationSelf": "Я сам",
     "relationOther": "Родственник",
     "patientName": "ФИО пациента",
     "kinship": "Кем приходится пациент",

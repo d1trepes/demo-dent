@@ -85,7 +85,7 @@ function Leaf({ leaf }: { leaf: HeroLeaf }) {
   return (
     <div className={cx(styles.leaf, styles[leaf.tier], styles[leaf.side])}>
       <div className={styles.leafPhoto}>
-        <img src={asset(leaf.src)} width={640} height={640} alt={leaf.alt} decoding="async" />
+        <img src={asset(leaf.src)} width={640} height={640} alt={leaf.alt} loading="lazy" decoding="async" />
       </div>
       {leaf.tier !== "top" && <span className={cx(styles.leafOutline, styles.outlineBlue)} aria-hidden />}
       {leaf.tier !== "bottom" && <span className={cx(styles.leafOutline, styles.outlineWhite)} aria-hidden />}

@@ -66,11 +66,9 @@
   height: auto;
 }
 
-/* Фон кадров уже перекрашен в --color-bg; мягкий край — страховка от разницы цветовых профилей */
-.staticImage,
-.video {
-  transform: translateZ(0);
-  will-change: contents;
+/* Фон кадров уже перекрашен в --color-bg; мягкий край — страховка от разницы цветовых профилей.
+ * На видео маска только с 1024 px: на телефонах (iOS, Telegram) маска перерисовывается на каждом кадре перемотки → рывки (8Б). */
+.staticImage {
   mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent),
     linear-gradient(to bottom, transparent, #000 2%, #000 97%, transparent);
   mask-composite: intersect;
@@ -91,6 +89,12 @@
 }
 
 @media (min-width: 1024px) {
+  .video {
+    mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent),
+      linear-gradient(to bottom, transparent, #000 2%, #000 97%, transparent);
+    mask-composite: intersect;
+  }
+
   .stage {
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
@@ -228,6 +232,7 @@
   .scene {
     position: sticky;
     top: calc(var(--header-h) + var(--space-4));
+    contain: layout paint;
     display: grid;
     justify-items: center;
     gap: var(--space-4);

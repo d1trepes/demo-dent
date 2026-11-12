@@ -136,22 +136,6 @@
     min-width: 0;
   }
   .chips {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .chips::-webkit-scrollbar {
-    display: none;
-  }
-  .chip {
-    flex: none;
-    white-space: nowrap;
-  }
-}
-
-@media (max-width: 767px) {
-  .chips {
-    margin: 0 calc(var(--gutter) * -1);
-    padding: 0 var(--gutter);
+    flex-wrap: wrap;
   }
 }

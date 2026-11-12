@@ -1,7 +1,6 @@
 /* Отступ на внешней обёртке: на .container его затирает padding из globals (порядок CSS-чанков) */
 .page {
   padding-top: var(--space-8);
-  padding-bottom: var(--space-24);
 }
 
 .head {
@@ -91,9 +90,6 @@
   .layout > aside,
   .layout > :first-child:not(.main) {
     display: none;
-  }
-  .page {
-    padding-bottom: var(--space-16);
   }
   .lead {
     font-size: var(--text-base);

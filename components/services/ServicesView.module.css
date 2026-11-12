@@ -1,7 +1,6 @@
 /* Отступ на внешней обёртке: на .container его затирает padding из globals (порядок CSS-чанков) */
 .page {
   padding-top: var(--space-8);
-  padding-bottom: var(--space-24);
 }
 
 .title {
@@ -77,7 +76,6 @@
   }
   .page {
     padding-top: var(--space-6);
-    padding-bottom: var(--space-16);
   }
   .lead {
     font-size: var(--text-base);

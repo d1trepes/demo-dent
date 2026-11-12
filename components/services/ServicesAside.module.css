@@ -105,9 +105,11 @@
     color var(--dur) var(--ease);
 }
 
-.cat:hover {
-  background: var(--color-bg);
-  color: var(--color-primary);
+@media (hover: hover) {
+  .cat:hover {
+    background: var(--color-bg);
+    color: var(--color-primary);
+  }
 }
 
 .cat[aria-pressed="true"] {
@@ -171,7 +173,7 @@
   }
 }
 
-/* Мобильная: не липнет, направления — лентой со свайпом */
+/* Мобильная: не липнет, направления — чипами с переносом, все видны сразу */
 @media (max-width: 1023px) {
   .aside {
     position: static;
@@ -179,19 +181,29 @@
   }
   .cats {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--space-2);
-    overflow-x: auto;
-    scrollbar-width: none;
-    margin: 0 calc(-1 * var(--space-2));
-    padding: 0 var(--space-2);
-  }
-  .cats::-webkit-scrollbar {
-    display: none;
   }
   .cat {
     flex: none;
     width: auto;
+    min-height: var(--tap);
+    gap: var(--space-2);
+    padding: 0 var(--space-4);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-pill);
+    font-size: 15px;
     white-space: nowrap;
+  }
+  .cat[aria-pressed="true"] {
+    border-color: var(--color-tint);
+  }
+  .count {
+    min-width: 0;
+    font-size: 13px;
+  }
+  .cat:disabled {
+    display: none;
   }
   .note {
     display: none;

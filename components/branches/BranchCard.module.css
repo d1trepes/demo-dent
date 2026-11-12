@@ -211,10 +211,16 @@
     min-height: 200px;
   }
   .map {
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--space-4);
   }
   .mapAddress {
     font-size: 17px;
+  }
+  .mapLink {
+    justify-content: center;
+    min-height: 48px;
   }
   .facts,
   .route {

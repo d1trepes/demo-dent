@@ -25,7 +25,7 @@ export function ServiceCard({ card, wide, texts }: Props) {
       <div className={styles.photo}>
         {card.image ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img className={styles.photoImg} src={asset(card.image)} alt="" width={800} height={800} loading="lazy" />
+          <img className={styles.photoImg} src={asset(card.image)} alt="" width={800} height={800} loading="lazy" decoding="async" />
         ) : (
           <div className={styles.photoImg}>
             <span className={styles.shot}>{card.shot}</span>

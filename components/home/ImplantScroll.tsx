@@ -73,6 +73,14 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
     let current = -1;
     let ready = false;
     let blobUrl = "";
+    // top закреплённой сцены и её высота меняются только при ресайзе — не читать стили в каждом кадре
+    let stickTop = 0;
+    let figureH = 0;
+    const measure = () => {
+      stickTop = desktop.matches ? 0 : parseFloat(getComputedStyle(figure).top) || 0;
+      figureH = figure.offsetHeight;
+    };
+    measure();
 
     const duration = () => (Number.isFinite(video.duration) && video.duration > 0 ? video.duration : 0);
 
@@ -80,8 +88,7 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
       frame = 0;
       const T = duration();
       const rect = (desktop.matches ? track : sceneTrack).getBoundingClientRect();
-      const stickTop = desktop.matches ? 0 : parseFloat(getComputedStyle(figure).top) || 0;
-      const distance = rect.height - (desktop.matches ? window.innerHeight : figure.offsetHeight);
+      const distance = rect.height - (desktop.matches ? window.innerHeight : figureH);
       const p = distance > 0 ? clamp((stickTop - rect.top) / distance) : 0;
       const share = shareAt(p);
 
@@ -89,7 +96,9 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
       if (Math.abs(share - current) < 0.001) current = share;
 
       if (ready && !video.seeking && Math.abs(video.currentTime - current * T) > MIN_STEP) {
-        video.currentTime = current * T;
+        // Все кадры ключевые: fastSeek (Safari/iOS) даёт тот же кадр, но без лишнего декодирования
+        if (typeof video.fastSeek === "function") video.fastSeek(current * T);
+        else video.currentTime = current * T;
       }
       figure.style.setProperty("--k", ready ? String(clamp((REVEAL_FROM - current) / (REVEAL_FROM - REVEAL_FULL))) : "0");
 
@@ -98,6 +107,10 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
 
     const schedule = () => {
       if (!frame && visible) frame = requestAnimationFrame(tick);
+    };
+    const onResize = () => {
+      measure();
+      schedule();
     };
 
     // Ленивая загрузка (правка 2F): файл качается целиком в память (blob) за ~3 экрана до блока,
@@ -128,6 +141,7 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
     // Флаг готовности ставится один раз: во время seek readyState падает — подписи из-за этого мигали.
     const onReady = () => {
       ready = true;
+      measure();
       schedule();
     };
     const watcher = new IntersectionObserver(([entry]) => {
@@ -138,7 +152,7 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
     loader.observe(track);
     watcher.observe(track);
     window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
+    window.addEventListener("resize", onResize);
     video.addEventListener("loadeddata", onReady);
     video.addEventListener("seeked", schedule);
 
@@ -147,7 +161,7 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
       loader.disconnect();
       watcher.disconnect();
       window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
+      window.removeEventListener("resize", onResize);
       video.removeEventListener("loadeddata", onReady);
       if (blobUrl) URL.revokeObjectURL(blobUrl);
       video.removeEventListener("seeked", schedule);
