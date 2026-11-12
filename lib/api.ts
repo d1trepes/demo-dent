@@ -117,10 +117,10 @@ export class ApiError extends Error {
   }
 }
 
-/** Пауза «сервера» 300–600 мс. Только в браузере: при статической сборке ждать нечего. */
+/** Пауза «сервера» 120–240 мс (8Б: было 300–600, интерфейс казался медленным). Только в браузере: при статической сборке ждать нечего. */
 function wait(): Promise<void> {
   if (typeof window === "undefined") return Promise.resolve();
-  const ms = 300 + Math.round(Math.random() * 300);
+  const ms = 120 + Math.round(Math.random() * 120);
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
 import { asset } from "@/lib/asset";
 import { formatCount } from "@/lib/format";
 import type { BeforeAfterCase, HomeBeforeAfter } from "@/lib/types";
@@ -69,6 +69,20 @@ export function BeforeAfterSlider({ cases, labels }: Props) {
   const [position, setPosition] = useState(START);
   const lensRef = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
+
+  // Все пары «до/после» — в кэш заранее, чтобы при переключении случая фото было сразу (8Б)
+  useEffect(() => {
+    const load = () =>
+      cases.forEach((c) =>
+        [c.before, c.after].forEach((p) => {
+          const img = new Image();
+          img.src = asset(p.src);
+        }),
+      );
+    if (document.readyState === "complete") load();
+    else window.addEventListener("load", load, { once: true });
+    return () => window.removeEventListener("load", load);
+  }, [cases]);
 
   const count = cases.length;
   const current = cases[index];

@@ -25,6 +25,8 @@ const REVEAL_FULL = 0.04;
 const HOLD = 0.34;
 /** Плавность догоняния скролла (0–1 за кадр): меньше — мягче. */
 const EASE = 0.12;
+/** Для кадров на canvas: отрисовка дешёвая, догоняем скролл быстрее. */
+const EASE_FRAMES = 0.3;
 /** Не трогать currentTime ради сдвига меньше полкадра (24 к/с). */
 const MIN_STEP = 1 / 48;
 
@@ -57,26 +59,41 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
   const trackRef = useRef<HTMLDivElement>(null);
   const figureRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const sceneTrackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const track = trackRef.current;
     const figure = figureRef.current;
     const video = videoRef.current;
+    const canvas = canvasRef.current;
     const sceneTrack = sceneTrackRef.current;
-    if (!track || !figure || !video || !sceneTrack) return;
+    const ctx = canvas?.getContext("2d");
+    if (!track || !figure || !video || !canvas || !ctx || !sceneTrack) return;
 
     const mq = window.matchMedia(SCENE_QUERY);
     const desktop = window.matchMedia(DESKTOP_QUERY);
+    const { count, pattern } = content.video.frames;
+    const frames: (HTMLImageElement | undefined)[] = [];
     let frame = 0;
     let visible = false;
     let current = -1;
-    let ready = false;
+    let videoReady = false;
+    let videoStarted = false;
+    let framesStarted = false;
+    let drawn = -1;
     let blobUrl = "";
-    // top закреплённой сцены и её высота меняются только при ресайзе — не читать стили в каждом кадре
     let stickTop = 0;
     let figureH = 0;
+    let width = 0;
+
+    // Высота экрана фиксируется один раз (и при смене ширины): в Telegram/iOS панели браузера
+    // при скролле вверх меняют высоту окна — с svh/vh сцена «прыгала» и дёргалась (8Б).
     const measure = () => {
+      if (window.innerWidth !== width) {
+        width = window.innerWidth;
+        track.style.setProperty("--ih", `${window.innerHeight}px`);
+      }
       stickTop = desktop.matches ? 0 : parseFloat(getComputedStyle(figure).top) || 0;
       figureH = figure.offsetHeight;
     };
@@ -84,21 +101,62 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
 
     const duration = () => (Number.isFinite(video.duration) && video.duration > 0 ? video.duration : 0);
 
+    // Мягкий край цветом страницы поверх кадра: сжатие чуть сдвигает цвет фона, без этого виден прямоугольник.
+    // Рисуется вместе с кадром — дешевле маски, которая на iOS перерисовывается отдельно.
+    const bg = getComputedStyle(document.documentElement).getPropertyValue("--color-bg").trim() || "#f3f4f8";
+    const feather = () => {
+      const { width: w, height: h } = canvas;
+      const ex = Math.round(w * 0.1);
+      const ey = Math.round(h * 0.06);
+      const edges: [number, number, number, number, number, number, number, number][] = [
+        [0, 0, ex, 0, 0, 0, ex, h],
+        [w, 0, w - ex, 0, w - ex, 0, ex, h],
+        [0, 0, 0, ey, 0, 0, w, ey],
+        [0, h, 0, h - ey, 0, h - ey, w, ey],
+      ];
+      for (const [x0, y0, x1, y1, rx, ry, rw, rh] of edges) {
+        const g = ctx.createLinearGradient(x0, y0, x1, y1);
+        g.addColorStop(0, bg);
+        g.addColorStop(1, `${bg}00`);
+        ctx.fillStyle = g;
+        ctx.fillRect(rx, ry, rw, rh);
+      }
+    };
+
+    /** Ближайший загруженный кадр к нужному — пока грузятся остальные, анимация уже идёт. */
+    const draw = (share: number) => {
+      const want = Math.round(share * (count - 1));
+      for (let d = 0; d < count; d++) {
+        const i = frames[want - d] ? want - d : frames[want + d] ? want + d : -1;
+        if (i < 0) continue;
+        if (i !== drawn) {
+          ctx.drawImage(frames[i] as HTMLImageElement, 0, 0, canvas.width, canvas.height);
+          feather();
+          drawn = i;
+        }
+        return;
+      }
+    };
+
     const tick = () => {
       frame = 0;
-      const T = duration();
-      const rect = (desktop.matches ? track : sceneTrack).getBoundingClientRect();
-      const distance = rect.height - (desktop.matches ? window.innerHeight : figureH);
-      const p = distance > 0 ? clamp((stickTop - rect.top) / distance) : 0;
+      const onDesktop = desktop.matches;
+      const rect = (onDesktop ? track : sceneTrack).getBoundingClientRect();
+      const distance = rect.height - (onDesktop ? window.innerHeight : figureH);
+      const p = distance > 0 ? clamp(((onDesktop ? 0 : stickTop) - rect.top) / distance) : 0;
       const share = shareAt(p);
 
-      current = current < 0 ? share : current + (share - current) * EASE;
+      current = current < 0 ? share : current + (share - current) * (onDesktop ? EASE : EASE_FRAMES);
       if (Math.abs(share - current) < 0.001) current = share;
 
-      if (ready && !video.seeking && Math.abs(video.currentTime - current * T) > MIN_STEP) {
-        // Все кадры ключевые: fastSeek (Safari/iOS) даёт тот же кадр, но без лишнего декодирования
-        if (typeof video.fastSeek === "function") video.fastSeek(current * T);
-        else video.currentTime = current * T;
+      const ready = onDesktop ? videoReady : drawn >= 0;
+      if (onDesktop) {
+        const T = duration();
+        if (videoReady && !video.seeking && Math.abs(video.currentTime - current * T) > MIN_STEP) {
+          video.currentTime = current * T;
+        }
+      } else {
+        draw(current);
       }
       figure.style.setProperty("--k", ready ? String(clamp((REVEAL_FROM - current) / (REVEAL_FROM - REVEAL_FULL))) : "0");
 
@@ -108,15 +166,12 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
     const schedule = () => {
       if (!frame && visible) frame = requestAnimationFrame(tick);
     };
-    const onResize = () => {
-      measure();
-      schedule();
-    };
 
-    // Ленивая загрузка (правка 2F): файл качается целиком в память (blob) за ~3 экрана до блока,
-    // поэтому перемотка не ждёт сеть — без рывков при первом проходе. До готовности — постер.
-    const load = () => {
-      if (video.getAttribute("src")) return;
+    // Десктоп: файл целиком в память (blob), перемотка не ждёт сеть.
+    const loadVideo = () => {
+      if (videoStarted) return;
+      videoStarted = true;
+      video.preload = "auto";
       fetch(asset(content.video.src))
         .then((r) => r.blob())
         .then((b) => {
@@ -126,21 +181,55 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
         })
         .catch(() => {
           video.src = asset(content.video.src);
-          video.preload = "auto";
           video.load();
         });
     };
+
+    // Мобильный: кадры-картинки (~580 КБ). Сначала собранный кадр, потом грубая сетка, потом остальные.
+    const loadFrames = () => {
+      if (framesStarted) return;
+      framesStarted = true;
+      const order: number[] = [count - 1, 0];
+      for (let step = 16; step >= 1; step /= 2) {
+        for (let i = 0; i < count; i += step) if (!order.includes(i)) order.push(i);
+      }
+      for (const i of order) {
+        const img = new Image();
+        img.decoding = "async";
+        img.src = asset(pattern.replace("{i}", String(i).padStart(2, "0")));
+        img
+          .decode()
+          .then(() => {
+            frames[i] = img;
+            if (drawn < 0 || current < 0) draw(current < 0 ? 1 : current);
+            schedule();
+          })
+          .catch(() => undefined);
+      }
+    };
+
+    const start = () => {
+      if (!mq.matches) return;
+      if (desktop.matches) loadVideo();
+      else loadFrames();
+    };
+
+    // Грузим сразу после загрузки страницы, не дожидаясь подхода к блоку: к моменту скролла всё готово.
+    let idle = 0;
+    const startWhenIdle = () => {
+      idle = window.setTimeout(start, 400);
+    };
+    if (document.readyState === "complete") startWhenIdle();
+    else window.addEventListener("load", startWhenIdle, { once: true });
+
     const loader = new IntersectionObserver(
       ([entry]) => {
-        if (!entry?.isIntersecting || !mq.matches) return;
-        loader.disconnect();
-        load();
+        if (entry?.isIntersecting) start();
       },
       { rootMargin: "300% 0px" },
     );
-    // Флаг готовности ставится один раз: во время seek readyState падает — подписи из-за этого мигали.
-    const onReady = () => {
-      ready = true;
+    const onVideoReady = () => {
+      videoReady = true;
       measure();
       schedule();
     };
@@ -148,25 +237,38 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
       visible = Boolean(entry?.isIntersecting) && mq.matches;
       schedule();
     });
+    const onResize = () => {
+      measure();
+      schedule();
+    };
+    const onModeChange = () => {
+      measure();
+      start();
+      schedule();
+    };
 
     loader.observe(track);
     watcher.observe(track);
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", onResize);
-    video.addEventListener("loadeddata", onReady);
+    desktop.addEventListener("change", onModeChange);
+    video.addEventListener("loadeddata", onVideoReady);
     video.addEventListener("seeked", schedule);
 
     return () => {
       cancelAnimationFrame(frame);
+      window.clearTimeout(idle);
+      window.removeEventListener("load", startWhenIdle);
       loader.disconnect();
       watcher.disconnect();
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", onResize);
-      video.removeEventListener("loadeddata", onReady);
-      if (blobUrl) URL.revokeObjectURL(blobUrl);
+      desktop.removeEventListener("change", onModeChange);
+      video.removeEventListener("loadeddata", onVideoReady);
       video.removeEventListener("seeked", schedule);
+      if (blobUrl) URL.revokeObjectURL(blobUrl);
     };
-  }, [content.video.src]);
+  }, [content.video]);
 
   const { video, exploded, parts } = content;
 
@@ -201,6 +303,14 @@ export function ImplantScroll({ content, heading }: { content: HomeImplant; head
             disablePictureInPicture
             aria-hidden="true"
             tabIndex={-1}
+          />
+          <canvas
+            ref={canvasRef}
+            className={styles.canvas}
+            width={video.width}
+            height={video.height}
+            style={{ backgroundImage: `url(${asset(video.poster)})` }}
+            aria-hidden="true"
           />
           <ul className={styles.callouts}>
             {parts.map((part, i) => (

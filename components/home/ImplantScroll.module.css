@@ -50,7 +50,8 @@
 }
 
 /* ---------- Статичный вариант: мобильный и reduced-motion ---------- */
-.scene {
+.scene,
+.canvas {
   display: none;
 }
 
@@ -225,8 +226,9 @@
     display: none;
   }
 
+  /* --ih — высота экрана, зафиксированная скриптом (не svh: в Telegram панели браузера меняют её при скролле) */
   .sceneTrack {
-    height: 260svh;
+    height: calc(var(--ih, 100svh) * 2.6);
   }
 
   .scene {
@@ -239,10 +241,15 @@
   }
 
   .video {
+    display: none;
+  }
+
+  .canvas {
     display: block;
     width: auto;
-    height: min(52svh, 440px);
+    height: min(calc(var(--ih, 100svh) * 0.52), 440px);
     aspect-ratio: var(--ratio);
+    background: center / contain no-repeat;
     pointer-events: none;
   }
 

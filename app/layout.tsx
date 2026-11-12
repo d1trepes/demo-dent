@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { WarmImages } from "@/components/layout/WarmImages";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { Footer } from "@/components/layout/Footer";
 import { FooterSlim } from "@/components/layout/FooterSlim";
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <FooterSlim />
         </PathGate>
         <CookieBanner />
+        <WarmImages />
       </body>
     </html>
   );

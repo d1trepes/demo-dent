@@ -238,4 +238,8 @@ button.progressHit:focus-visible {
     flex: 1 1 0;
     width: auto;
   }
+  /* Первый шаг без «Назад»: пустая заглушка не занимает половину — «Дальше» во всю ширину */
+  .footer > span:empty {
+    display: none;
+  }
 }

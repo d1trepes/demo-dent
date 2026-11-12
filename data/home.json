@@ -257,7 +257,8 @@
       "src": "/video/implant.mp4",
       "poster": "/video/implant-poster.webp",
       "width": 392,
-      "height": 720
+      "height": 720,
+      "frames": { "pattern": "/video/frames/{i}.webp", "count": 62 }
     },
     "exploded": {
       "src": "/video/implant-exploded.webp",

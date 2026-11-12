@@ -777,6 +777,8 @@ export type ImplantVideo = {
   poster: string;
   width: number;
   height: number;
+  /** Мобильный (8Б): те же кадры картинками для canvas — без перемотки видео, плавно в iOS и Telegram. {i} — номер с нулём впереди. */
+  frames: { pattern: string; count: number };
 };
 
 export type HomeImplant = {
